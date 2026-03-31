@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <title>AstroHesap | Yükselen Burç</title>
+    <meta
+      name="description"
+      content="Doğum tarihi, saat ve şehir ile AstroHesap yükselen burç tahmin ekranını kullan."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="astro-tools.js"></script>
+  </head>
+  <body class="tool-page" data-page="rising-sign">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
+
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">Astro</span><span class="brand-wordmark-rest">Hesap</span>
+          </span>
+        </a>
+
+        <div class="page-nav" aria-label="Araç gezinme">
+          <a class="page-nav-link" href="dogum-haritasi.html">Doğum Haritası</a>
+          <a class="page-nav-link is-current" href="yukselen-burc.html">Yükselen Burç</a>
+          <a class="page-nav-link" href="ay-takvimi.html">Ay Takvimi</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="tool-main">
+      <section class="hero-content tool-hero">
+        <p class="eyebrow">Ufuk çizgisi</p>
+        <h1>Doğum saati ve şehre göre yükselen tahminini hızla hesapla.</h1>
+        <p class="subline">
+          Bu ekran, gün doğumu ekseni ve saat kayması üzerinden hızlı yükselen tahmini sunar. Sonuç
+          kartında yükselen, yönetici tema ve saat aralığı bir arada gösterilir.
+        </p>
+      </section>
+
+      <section class="tool-layout">
+        <article class="tool-card">
+          <div class="tool-card-head">
+            <p class="section-kicker">Form ekranı</p>
+            <h2>Yükselen bilgileri</h2>
+          </div>
+
+          <form id="risingSignForm" class="tool-form">
+            <div class="tool-form-grid">
+              <label class="tool-field">
+                <span>Doğum tarihi</span>
+                <input id="risingDate" name="birthDate" type="date" required value="1994-08-17" />
+              </label>
+
+              <label class="tool-field">
+                <span>Doğum saati</span>
+                <input id="risingTime" name="birthTime" type="time" required value="08:30" />
+              </label>
+
+              <label class="tool-field">
+                <span>Şehir</span>
+                <select id="risingCity" name="city">
+                  <option value="istanbul">İstanbul</option>
+                  <option value="ankara">Ankara</option>
+                  <option value="izmir">İzmir</option>
+                  <option value="antalya">Antalya</option>
+                  <option value="adana">Adana</option>
+                  <option value="trabzon">Trabzon</option>
+                </select>
+              </label>
+
+              <label class="tool-field">
+                <span>İlçe</span>
+                <select id="risingDistrict" name="district" data-location-district disabled>
+                  <option value="">İlçe seçiniz</option>
+                </select>
+              </label>
+
+              <label class="tool-field">
+                <span>Mahalle</span>
+                <select id="risingNeighborhood" name="neighborhood" data-location-neighborhood disabled>
+                  <option value="">Mahalle seçiniz</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="tool-actions">
+              <button class="tool-button" type="submit">Yükseleni hesapla</button>
+              <a class="tool-link" href="index.html">Ana sayfaya dön</a>
+            </div>
+          </form>
+
+          <p class="tool-note">
+            Bu sonuç hızlı tahmindir. Dakika farkı ve kesin koordinat, yükseleni değiştirebilir.
+          </p>
+        </article>
+
+        <article class="tool-card tool-result-card">
+          <div class="tool-card-head">
+            <p class="section-kicker">Sonuç ekranı</p>
+            <h2>Yükselen tahmini</h2>
+          </div>
+
+          <div id="risingSignResult" class="result-stack"></div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

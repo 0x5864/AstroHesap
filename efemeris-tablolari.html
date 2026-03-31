@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <title>AstroHesap | Efemeris Tabloları</title>
+    <meta
+      name="description"
+      content="Efemeris tabloları ekranında ay sekmeleri, yıl arşivi ve günlük gezegen kolonlarını Astro-Seek benzeri geniş tablo akışıyla incele."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="astro-tools.js"></script>
+  </head>
+  <body class="tool-page" data-page="ephemeris-tables">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
+
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">Astro</span><span class="brand-wordmark-rest">Hesap</span>
+          </span>
+        </a>
+
+        <div class="page-nav" aria-label="Araç gezinme">
+          <a class="page-nav-link" href="dogum-haritasi.html">Doğum Haritası</a>
+          <a class="page-nav-link" href="vedik-sideral-astroloji.html">Vedik/Sideral</a>
+          <a class="page-nav-link is-current" href="efemeris-tablolari.html">Efemeris</a>
+          <a class="page-nav-link" href="ay-takvimi.html">Ay Takvimi</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="tool-main tool-main-extended">
+      <section class="tool-card ephemeris-hero-card">
+        <div class="ephemeris-hero-copy">
+          <p class="section-kicker">Efemeris 1800-2100</p>
+          <h1>Gezegen efemeris tablolarını Astro-Seek tarzı yoğun tablo akışıyla incele.</h1>
+          <p class="ephemeris-hero-note">
+            Bu sayfa ay sekmeleri, yıl geçişi, kısa seçim satırı ve günlük gezegen kolonları ile geniş bir
+            efemeris görünümü verir. Tablonun düzeni referans sayfaya yaklaştırıldı.
+          </p>
+        </div>
+
+        <div class="ephemeris-hero-pills" aria-label="Efemeris öne çıkanları">
+          <article class="seek-mini-card">
+            <strong>Ay sekmeleri</strong>
+            <span>Seçili yıl içinde 12 ay arasında hızlı geçiş yap</span>
+          </article>
+          <article class="seek-mini-card">
+            <strong>Geniş tablo</strong>
+            <span>Tarih, hafta günü, sidereal time ve gezegen kolonları aynı tabloda</span>
+          </article>
+          <article class="seek-mini-card">
+            <strong>Yıl arşivi</strong>
+            <span>1800 ile 2100 arasındaki yılları alttaki arşivden tara</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="tool-card ephemeris-nav-card">
+        <div class="ephemeris-year-nav" id="ephemerisYearNav" aria-label="Yıl geçişi"></div>
+        <div class="ephemeris-month-strip" id="ephemerisMonthStrip" aria-label="Ay sekmeleri"></div>
+      </section>
+
+      <section class="tool-card ephemeris-settings-card">
+        <div class="tool-card-head">
+          <div>
+            <p class="section-kicker">Hızlı ayarlar</p>
+            <h2>Efemeris filtreleri</h2>
+          </div>
+          <p class="tool-note">
+            Referans sayfadaki kısa seçim şeridini korur: düğüm, lilith, doğruluk ve sembol modu.
+          </p>
+        </div>
+
+        <form id="ephemerisForm" class="tool-form ephemeris-inline-form">
+          <input id="ephemerisMonth" name="month" type="hidden" value="2026-03" />
+
+          <div class="ephemeris-inline-controls">
+            <label class="tool-field">
+              <span>Düğümleri</span>
+              <select id="ephemerisNodeMode" name="nodeMode">
+                <option value="mean" selected>Mean</option>
+                <option value="true">True</option>
+              </select>
+            </label>
+
+            <label class="tool-field">
+              <span>Lilith</span>
+              <select id="ephemerisLilithMode" name="lilithMode">
+                <option value="mean" selected>Mean</option>
+                <option value="true">True</option>
+              </select>
+            </label>
+
+            <label class="tool-field">
+              <span>Doğruluk</span>
+              <select id="ephemerisPrecision" name="precision">
+                <option value="degree">Derece°</option>
+                <option value="degree-minute" selected>Derece° Dakika′</option>
+                <option value="absolute">ABS Derece°</option>
+              </select>
+            </label>
+
+            <label class="tool-field">
+              <span>Sembol</span>
+              <select id="ephemerisSymbolMode" name="symbolMode">
+                <option value="color" selected>Renkli</option>
+                <option value="gray">Gri</option>
+              </select>
+            </label>
+          </div>
+        </form>
+      </section>
+
+      <section class="tool-card tool-result-card ephemeris-result-card">
+        <div class="tool-card-head">
+          <div>
+            <p class="section-kicker">Aylık tablo</p>
+            <h2 id="ephemerisHeading">Efemeris Tabloları</h2>
+          </div>
+          <p class="tool-note" id="ephemerisSubheading">
+            Günlük efemeris akışı 00:00 [UT/GMT] baz alınarak tabloya dökülür.
+          </p>
+        </div>
+
+        <div id="ephemerisResult" class="result-stack"></div>
+      </section>
+
+      <section class="tool-card ephemeris-archive-card">
+        <div class="tool-card-head">
+          <div>
+            <p class="section-kicker">Arşiv</p>
+            <h2>Efemeris Tabloları 1800-2100</h2>
+          </div>
+          <p class="tool-note">Yıl seçimi için tüm aralığı tek bakışta gösterir.</p>
+        </div>
+
+        <div id="ephemerisArchive" class="ephemeris-year-archive" aria-label="Efemeris yıl arşivi"></div>
+      </section>
+    </main>
+  </body>
+</html>

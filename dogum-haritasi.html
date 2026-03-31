@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#09111d" />
+    <title>AstroHesap | Doğum Haritası</title>
+    <meta
+      name="description"
+      content="Doğum tarihi, saat ve konuma göre temel doğum haritası yerleşimlerini temiz ve güçlü bir arayüzde hesapla."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #09111d;
+        --bg-deep: #040913;
+        --surface: rgba(246, 241, 232, 0.96);
+        --text: #112033;
+        --text-soft: #5d6877;
+        --line: rgba(17, 32, 51, 0.1);
+        --accent: #c88b35;
+        --accent-strong: #9c6120;
+        --accent-soft: rgba(200, 139, 53, 0.14);
+        --shadow: 0 28px 80px rgba(3, 9, 18, 0.24);
+        --shadow-soft: 0 16px 44px rgba(3, 9, 18, 0.12);
+        --container: 1240px;
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 12% 16%, rgba(69, 106, 172, 0.22), transparent 26%),
+          radial-gradient(circle at 88% 14%, rgba(200, 139, 53, 0.18), transparent 24%),
+          linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 24%, #e9ecef 24.1%, #f0f2f4 100%);
+        font-family: "Inter", "Segoe UI", sans-serif;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+          radial-gradient(rgba(200, 139, 53, 0.14) 1px, transparent 1px);
+        background-position: 0 0, 22px 22px;
+        background-size: 44px 44px;
+        opacity: 0.32;
+        mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.18) 42%, transparent 62%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      .page-shell {
+        width: min(var(--container), calc(100% - 32px));
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 22px 0 18px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.78rem;
+      }
+
+      .brand-mark {
+        width: 54px;
+        height: 54px;
+        border-radius: 0;
+        border: 0;
+        background: url("assets/astro.png") center / contain no-repeat;
+        box-shadow: none;
+      }
+
+      .brand-copy {
+        display: grid;
+        gap: 0.15rem;
+      }
+
+      .brand-title {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        font-size: clamp(2.35rem, 3.5vw, 3.25rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 0.9;
+        color: #f7f0e6;
+      }
+
+      .brand-copy small {
+        color: rgba(240, 233, 219, 0.76);
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .topbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        flex-wrap: wrap;
+      }
+
+      .topbar-link {
+        padding: 0.2rem 0;
+        border: 0;
+        color: rgba(247, 240, 230, 0.88);
+        font-size: 0.88rem;
+      }
+
+      .topbar-link:hover,
+      .topbar-link:focus-visible {
+        color: #ffffff;
+        outline: none;
+      }
+
+      .crumbs {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        flex-wrap: wrap;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: 0.9rem;
+      }
+
+      .crumbs span[aria-hidden="true"] {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .panel,
+      .note-card {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 0;
+        box-shadow: var(--shadow);
+      }
+
+      .panel-kicker,
+      .note-card .panel-kicker {
+        margin: 0;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+      }
+
+      .panel-kicker {
+        color: #efc889;
+      }
+
+      .panel h2,
+      .note-card h3 {
+        margin: 0.5rem 0 0;
+        font-family: "Inter", "Segoe UI", sans-serif;
+        font-weight: 700;
+        line-height: 1.02;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(340px, 0.95fr) minmax(0, 1.05fr);
+        gap: 1rem;
+        align-items: start;
+        margin-top: 1rem;
+      }
+
+      .panel {
+        background: var(--surface);
+        border-color: rgba(17, 32, 51, 0.08);
+      }
+
+      .panel-inner {
+        padding: 1.15rem;
+      }
+
+      .panel-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .panel h2 {
+        font-size: clamp(1.9rem, 3vw, 2.45rem);
+        color: #0f2137;
+      }
+
+      .panel-head-note {
+        max-width: 34ch;
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 0.9rem;
+        text-align: right;
+      }
+
+      .form-stack {
+        display: grid;
+        gap: 0.78rem;
+      }
+
+      .field-grid-2,
+      .field-grid-3 {
+        display: grid;
+        gap: 0.72rem;
+      }
+
+      .field-grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .field-grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .converter-field {
+        display: grid;
+        gap: 0.4rem;
+      }
+
+      .converter-field span {
+        color: var(--text-soft);
+        font-size: 0.84rem;
+      }
+
+      .converter-field input,
+      .converter-field select {
+        width: 100%;
+        min-height: 50px;
+        padding: 0.78rem 0.9rem;
+        border: 1px solid rgba(17, 32, 51, 0.12);
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.88);
+        color: var(--text);
+      }
+
+      .converter-field input:focus-visible,
+      .converter-field select:focus-visible {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+        outline: none;
+      }
+
+      .helper-row {
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .action-row {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+
+      .primary-button {
+        min-height: 48px;
+        padding: 0 1.15rem;
+        border: 0;
+        border-radius: 0;
+        background: linear-gradient(135deg, #ba7a23, #e4b268);
+        color: #0a1321;
+        font-size: 0.94rem;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: var(--shadow-soft);
+        transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+      }
+
+      .primary-button:hover,
+      .primary-button:focus-visible {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 36px rgba(186, 122, 35, 0.18);
+        filter: brightness(1.03);
+        outline: none;
+      }
+
+      .secondary-link {
+        color: var(--accent-strong);
+        font-size: 0.92rem;
+      }
+
+      .secondary-link:hover,
+      .secondary-link:focus-visible {
+        color: #6c4015;
+        outline: none;
+      }
+
+      .status-row {
+        padding: 0.9rem 1rem;
+        border: 1px dashed rgba(17, 32, 51, 0.12);
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.52);
+        color: var(--text-soft);
+        font-size: 0.9rem;
+      }
+
+      .other-error {
+        color: #b84c32 !important;
+      }
+
+      .result-stack {
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .result-summary {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.78rem;
+      }
+
+      .summary-card,
+      .other-result-card,
+      .note-card {
+        border: 1px solid rgba(17, 32, 51, 0.08);
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      .summary-card {
+        padding: 0.9rem 0.96rem;
+      }
+
+      .summary-card p,
+      .other-result-label {
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 0.84rem;
+      }
+
+      .summary-card strong,
+      .other-result-value {
+        display: block;
+        margin-top: 0.3rem;
+        color: var(--text);
+        font-size: 1.18rem;
+        font-weight: 800;
+        line-height: 1.3;
+      }
+
+      .other-result-group + .other-result-group {
+        margin-top: 0.95rem;
+      }
+
+      .group-title {
+        margin: 0 0 0.72rem;
+        color: var(--accent-strong);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+      }
+
+      .birth-chart-planet-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.72rem;
+      }
+
+      .other-result-card {
+        padding: 0.9rem 0.96rem;
+      }
+
+      .note-card {
+        padding: 1rem;
+        background:
+          linear-gradient(180deg, rgba(255, 251, 245, 0.96), rgba(252, 247, 240, 0.98)),
+          radial-gradient(circle at bottom right, rgba(200, 139, 53, 0.08), transparent 32%);
+      }
+
+      .note-card .panel-kicker {
+        color: var(--accent-strong);
+      }
+
+      .note-card h3 {
+        font-size: 1.7rem;
+        color: #0f2137;
+      }
+
+      .note-list {
+        display: grid;
+        gap: 0.68rem;
+        margin-top: 0.84rem;
+      }
+
+      .note-list p {
+        margin: 0;
+        padding: 0.86rem 0.9rem;
+        border: 1px solid rgba(17, 32, 51, 0.08);
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--text-soft);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 980px) {
+        .workspace {
+          grid-template-columns: 1fr;
+        }
+
+        .panel-head {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .panel-head-note {
+          text-align: left;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .page-shell {
+          width: min(var(--container), calc(100% - 18px));
+        }
+
+        .topbar {
+          flex-direction: column;
+          align-items: start;
+        }
+
+        .field-grid-2,
+        .field-grid-3,
+        .result-summary,
+        .birth-chart-planet-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header>
+        <div class="topbar">
+          <a class="brand" href="index.html" aria-label="AstroHesap">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-copy">
+              <span class="brand-title">AstroHesap</span>
+              <small>Dogum Haritasi Ekrani</small>
+            </span>
+          </a>
+
+          <div class="topbar-actions" aria-label="Ust baglantilar">
+            <a class="topbar-link" href="index.html">Anasayfa</a>
+            <a class="topbar-link" href="yukselen-burc.html">Yukselen Burc</a>
+            <a class="topbar-link" href="ay-takvimi.html">Ay Takvimi</a>
+          </div>
+        </div>
+
+        <nav class="crumbs" aria-label="Konum">
+          <a href="index.html">Anasayfa</a>
+          <span aria-hidden="true">/</span>
+          <span>Dogum Haritasi</span>
+        </nav>
+      </header>
+
+      <main>
+        <section class="workspace" aria-label="Hesaplama alani">
+          <article class="panel">
+            <div class="panel-inner">
+              <div class="panel-head">
+                <div>
+                  <p class="panel-kicker">Form alani</p>
+                  <h2>Dogum verileri</h2>
+                </div>
+                <p class="panel-head-note">
+                  Mahalle secersen koordinat daha net bulunur. Istersen enlem, boylam ve UTC farkini
+                  elle de girebilirsin.
+                </p>
+              </div>
+
+              <div class="form-stack">
+                <div class="field-grid-2">
+                  <label class="converter-field">
+                    <span>Il</span>
+                    <select data-birth-province>
+                      <option value="">Il seciniz</option>
+                    </select>
+                  </label>
+
+                  <label class="converter-field">
+                    <span>Ilce</span>
+                    <select data-birth-district disabled>
+                      <option value="">Ilce seciniz</option>
+                    </select>
+                  </label>
+                </div>
+
+                <label class="converter-field">
+                  <span>Mahalle</span>
+                  <select data-birth-neighborhood disabled>
+                    <option value="">Mahalle seciniz</option>
+                  </select>
+                </label>
+
+                <div class="field-grid-2">
+                  <label class="converter-field">
+                    <span>Dogum tarihi</span>
+                    <input type="date" data-birth-date />
+                  </label>
+
+                  <label class="converter-field">
+                    <span>Dogum saati</span>
+                    <input type="time" data-birth-time />
+                  </label>
+                </div>
+
+                <div class="field-grid-3">
+                  <label class="converter-field">
+                    <span>Enlem</span>
+                    <input type="number" step="0.0001" data-birth-latitude value="41.0082" />
+                  </label>
+
+                  <label class="converter-field">
+                    <span>Boylam</span>
+                    <input type="number" step="0.0001" data-birth-longitude value="28.9784" />
+                  </label>
+
+                  <label class="converter-field">
+                    <span>UTC farki</span>
+                    <input type="number" step="0.5" data-birth-timezone value="3" />
+                  </label>
+                </div>
+
+                <p class="helper-row">
+                  Ilce secince mahalleler otomatik gelir. Mahalle secersen koordinatlar daha net bulunur.
+                </p>
+
+                <div class="action-row">
+                  <button class="primary-button" type="button" data-birth-chart-calculate>Haritayi hesapla</button>
+                  <a class="secondary-link" href="index.html">Ana sayfaya don</a>
+                </div>
+
+                <p class="status-row" data-birth-chart-status>Hazir.</p>
+              </div>
+            </div>
+          </article>
+
+          <div class="result-stack">
+            <article class="panel">
+              <div class="panel-inner">
+                <div class="panel-head">
+                  <div>
+                    <p class="panel-kicker">Sonuc ozeti</p>
+                    <h2>Ana yerlesimler</h2>
+                  </div>
+                </div>
+
+                <div class="result-summary">
+                  <article class="summary-card">
+                    <p>Gunes</p>
+                    <strong data-birth-sun>-</strong>
+                  </article>
+                  <article class="summary-card">
+                    <p>Ay</p>
+                    <strong data-birth-moon>-</strong>
+                  </article>
+                  <article class="summary-card">
+                    <p>Yukselen</p>
+                    <strong data-birth-ascendant>-</strong>
+                  </article>
+                  <article class="summary-card">
+                    <p>MC</p>
+                    <strong data-birth-midheaven>-</strong>
+                  </article>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-inner">
+                <div class="panel-head">
+                  <div>
+                    <p class="panel-kicker">Gezegen listesi</p>
+                    <h2>Gezegen yerlesimleri</h2>
+                  </div>
+                </div>
+
+                <section class="other-result-group">
+                  <p class="group-title">Temel liste</p>
+                  <div class="birth-chart-planet-grid" data-birth-planet-grid></div>
+                </section>
+              </div>
+            </article>
+
+            <aside class="note-card" aria-label="Bilgi notu">
+              <p class="panel-kicker">Kisa not</p>
+              <h3>Bu ekran ne saglar?</h3>
+              <div class="note-list">
+                <p>Yerlesimleri burc ve derece olarak hizli okumani saglar.</p>
+                <p>Koordinat degisirse yukselen ve MC sonucu da degisebilir.</p>
+                <p>Sonuclar mevcut hesap motoru ile canli olarak yenilenir.</p>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+    <script src="dogum-haritasi.js?v=20260331-1512"></script>
+  </body>
+</html>

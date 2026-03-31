@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <title>AstroHesap | Vedik/Sideral Astroloji</title>
+    <meta
+      name="description"
+      content="Vedik ve sideral astroloji ekranında doğum verisi, manuel koordinat, ayanamsa ve ev sistemiyle ayrıntılı hesap akışını AstroHesap ile kur."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="astro-tools.js"></script>
+  </head>
+  <body class="tool-page" data-page="vedic-sidereal">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
+
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">Astro</span><span class="brand-wordmark-rest">Hesap</span>
+          </span>
+        </a>
+
+        <div class="page-nav" aria-label="Araç gezinme">
+          <a class="page-nav-link" href="dogum-haritasi.html">Doğum Haritası</a>
+          <a class="page-nav-link" href="dogum-haritasi1.html">Doğum Haritası1</a>
+          <a class="page-nav-link is-current" href="vedik-sideral-astroloji.html">Vedik/Sideral</a>
+          <a class="page-nav-link" href="yukselen-burc.html">Yükselen Burç</a>
+          <a class="page-nav-link" href="ay-takvimi.html">Ay Takvimi</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="tool-main tool-main-extended">
+      <section class="tool-card vedic-intro">
+        <div class="seek-intro-copy">
+          <p class="section-kicker">Vedik eksen</p>
+          <h1>Astro-Seek tarzı hesap akışını daha temiz bir vedik arayüz içinde kullan.</h1>
+          <p class="seek-intro-note">
+            Bu sürüm; gün, ay, yıl, saat, doğum yeri, manuel koordinat, saat dilimi, DST, ev sistemi,
+            ayanamsa ve görünür nokta seçimlerini tek form içinde toplar. Sonuç alanı bu seçimleri vedik
+            özet ile birlikte gösterir.
+          </p>
+        </div>
+
+        <div class="seek-intro-grid" aria-label="Vedik ekran özeti">
+          <article class="seek-mini-card">
+            <strong>Ayrıntılı giriş</strong>
+            <span>Gün, ay, yıl, saat ve yer bilgisi Astro-Seek benzeri akışla girilir</span>
+          </article>
+          <article class="seek-mini-card">
+            <strong>Konum kontrolü</strong>
+            <span>İl, ilçe, mahalle ve isterse manuel koordinat ile hesap zemini kurulur</span>
+          </article>
+          <article class="seek-mini-card">
+            <strong>Geniş ayarlar</strong>
+            <span>Ev sistemi, ayanamsa, görünür noktalar ve orb seçimi aynı yerde tutulur</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="seek-layout">
+        <div class="seek-main-column">
+          <article class="tool-card seek-form-card">
+              <div class="tool-card-head">
+                <div>
+                  <p class="section-kicker">Form ekranı</p>
+                  <h2>Vedik/Sideral Astroloji</h2>
+                </div>
+                <p class="tool-note">
+                Referans sayfadaki hesap yapısını koruyan daha ayrıntılı vedik giriş ekranı.
+                </p>
+              </div>
+
+            <form id="vedicForm" class="tool-form seek-form">
+              <section class="seek-section">
+                <div class="seek-section-head">
+                  <h3>Doğum verisi</h3>
+                  <p>Gün, ay, yıl ve saat bilgisini Astro-Seek benzeri ayrı alanlarla gir.</p>
+                </div>
+
+                <div class="seek-form-grid seek-form-grid-2">
+                  <label class="tool-field">
+                    <span>Ad</span>
+                    <input name="name" type="text" value="AstroHesap Danışanı" />
+                  </label>
+
+                  <div class="seek-form-grid seek-form-grid-3 seek-field-span">
+                    <label class="tool-field">
+                      <span>Gün</span>
+                      <select name="birthDay" data-vedic-day data-selected="17"></select>
+                    </label>
+
+                    <label class="tool-field">
+                      <span>Ay</span>
+                      <select name="birthMonth" data-vedic-month data-selected="8"></select>
+                    </label>
+
+                    <label class="tool-field">
+                      <span>Yıl</span>
+                      <select name="birthYear" data-vedic-year data-selected="1994"></select>
+                    </label>
+                  </div>
+
+                  <div class="seek-form-grid seek-form-grid-3 seek-field-span">
+                    <label class="tool-field">
+                      <span>Saat</span>
+                      <select name="birthHour" data-vedic-hour data-selected="08"></select>
+                    </label>
+
+                    <label class="tool-field">
+                      <span>Dakika</span>
+                      <select name="birthMinute" data-vedic-minute data-selected="30"></select>
+                    </label>
+
+                    <label class="seek-checkline seek-checkline-block">
+                      <input name="unknownBirthTime" type="checkbox" data-vedic-unknown-time />
+                      <span>Bilinmeyen saat</span>
+                    </label>
+                  </div>
+                </div>
+              </section>
+
+              <section class="seek-section">
+                <div class="seek-section-head">
+                  <h3>Doğum yeri</h3>
+                  <p>Yer adını yaz, sonra il, ilçe ve mahalle ile konumu netleştir. İstersen koordinatı elle gir.</p>
+                </div>
+
+                <div class="seek-form-grid seek-form-grid-2">
+                  <label class="tool-field seek-field-span">
+                    <span>Doğum yeri etiketi</span>
+                    <input
+                      name="birthPlace"
+                      type="text"
+                      value="İstanbul, Türkiye"
+                      placeholder="Lütfen doğum yeri yaz"
+                      data-vedic-place
+                    />
+                  </label>
+
+                  <label class="tool-field">
+                    <span>İl</span>
+                    <select name="city" data-default-city-label="İstanbul">
+                      <option value="İstanbul">İstanbul</option>
+                    </select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Ülke</span>
+                    <input name="country" type="text" value="Türkiye" readonly />
+                  </label>
+
+                  <label class="tool-field">
+                    <span>İlçe</span>
+                    <select name="district" data-location-district data-selected-district="Kadıköy" disabled>
+                      <option value="">İlçe seçiniz</option>
+                    </select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Mahalle</span>
+                    <select
+                      name="neighborhood"
+                      data-location-neighborhood
+                      data-selected-neighborhood="Moda"
+                      disabled
+                    >
+                      <option value="">Mahalle seçiniz</option>
+                    </select>
+                  </label>
+                </div>
+
+                <label class="seek-checkline">
+                  <input name="useManualCoordinates" type="checkbox" data-vedic-manual-toggle />
+                  <span>Koordinatları manuel gir</span>
+                </label>
+
+                <div class="seek-manual-panel" data-vedic-manual-panel hidden>
+                  <div class="seek-form-grid seek-form-grid-2">
+                    <label class="tool-field">
+                      <span>Enlem derece</span>
+                      <input name="latitudeDegrees" type="number" min="0" max="90" value="41" data-vedic-lat-deg />
+                    </label>
+
+                    <label class="tool-field">
+                      <span>Enlem dakika</span>
+                      <input name="latitudeMinutes" type="number" min="0" max="59" value="0" data-vedic-lat-min />
+                    </label>
+
+                    <label class="tool-field">
+                      <span>Enlem yönü</span>
+                      <select name="latitudeDirection" data-vedic-lat-dir>
+                        <option value="N" selected>Kuzey</option>
+                        <option value="S">Güney</option>
+                      </select>
+                    </label>
+
+                    <label class="tool-field">
+                      <span>Boylam derece</span>
+                      <input name="longitudeDegrees" type="number" min="0" max="180" value="28" data-vedic-lon-deg />
+                    </label>
+
+                    <label class="tool-field">
+                      <span>Boylam dakika</span>
+                      <input name="longitudeMinutes" type="number" min="0" max="59" value="57" data-vedic-lon-min />
+                    </label>
+
+                    <label class="tool-field">
+                      <span>Boylam yönü</span>
+                      <select name="longitudeDirection" data-vedic-lon-dir>
+                        <option value="E" selected>Doğu</option>
+                        <option value="W">Batı</option>
+                      </select>
+                    </label>
+                  </div>
+
+                  <div class="seek-form-grid seek-form-grid-2">
+                    <label class="tool-field">
+                      <span>Saat dilimi</span>
+                      <select name="timezoneOffset" data-vedic-timezone data-selected="3"></select>
+                    </label>
+
+                    <label class="tool-field">
+                      <span>DST</span>
+                      <select name="dstMode" data-vedic-dst>
+                        <option value="auto" selected>Otomatik</option>
+                        <option value="1">Gözlenen</option>
+                        <option value="0">Gözlenmeyen</option>
+                      </select>
+                    </label>
+                  </div>
+
+                  <p class="seek-inline-note">
+                    İl, ilçe ve mahalle seçildiğinde koordinat alanları otomatik eşlenir. Manuel mod açılırsa bu
+                    değerleri sen belirlersin.
+                  </p>
+                </div>
+
+                <details class="seek-advanced-block" open>
+                  <summary>Gelişmiş ayarlar</summary>
+                  <div class="seek-advanced-content">
+                    <div class="seek-form-grid seek-form-grid-3">
+                      <label class="tool-field">
+                        <span>Ev sistemi</span>
+                        <select name="houseSystem" data-vedic-house-system data-selected="placidus"></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Ayanamsa</span>
+                        <select name="ayanamsa" data-vedic-ayanamsa data-selected="lahiri"></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Orb</span>
+                        <select name="tolerance" data-vedic-tolerance data-selected="1"></select>
+                      </label>
+                    </div>
+
+                    <div class="seek-form-grid seek-form-grid-2">
+                      <label class="tool-field">
+                        <span>Analiz odağı</span>
+                        <select name="focusArea">
+                          <option value="dharma">Dharma ekseni</option>
+                          <option value="karma">Karma ekseni</option>
+                          <option value="relationships">İlişki ritmi</option>
+                          <option value="career">Kariyer hattı</option>
+                        </select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Çıktı tonu</span>
+                        <select name="readingStyle">
+                          <option value="balanced">Dengeli özet</option>
+                          <option value="spiritual">Ruhsal vurgu</option>
+                          <option value="practical">Pratik vurgu</option>
+                        </select>
+                      </label>
+                    </div>
+
+                    <div class="seek-subsection-head">
+                      <h4>Haritada göster</h4>
+                      <p>Referans formdaki görünür nokta seçimlerini vedik özetine taşı.</p>
+                    </div>
+
+                    <div class="seek-toggle-grid">
+                      <label class="seek-checkline">
+                        <input name="showFortune" type="checkbox" checked />
+                        <span>Fortune</span>
+                      </label>
+                      <label class="seek-checkline">
+                        <input name="showChiron" type="checkbox" checked />
+                        <span>Chiron</span>
+                      </label>
+                      <label class="seek-checkline">
+                        <input name="showLilith" type="checkbox" checked />
+                        <span>Lilith</span>
+                      </label>
+                      <label class="seek-checkline">
+                        <input name="showNodes" type="checkbox" checked />
+                        <span>Ay düğümleri</span>
+                      </label>
+                      <label class="seek-checkline">
+                        <input name="trueLilith" type="checkbox" />
+                        <span>True Lilith</span>
+                      </label>
+                      <label class="seek-checkline">
+                        <input name="trueNodes" type="checkbox" />
+                        <span>True düğümler</span>
+                      </label>
+                    </div>
+
+                    <div class="seek-subsection-head">
+                      <h4>Açılar ve yorum katmanı</h4>
+                      <p>Açı hedefleri ile AstroHesap’a özel yorum modüllerini birlikte kullan.</p>
+                    </div>
+
+                    <div class="seek-toggle-grid">
+                      <label class="seek-checkline">
+                        <input name="showAscMcAspects" type="checkbox" />
+                        <span>ASC ve MC açıları</span>
+                      </label>
+                      <label class="seek-checkline">
+                        <input name="showNakshatra" type="checkbox" checked />
+                        <span>Nakshatra kartını göster</span>
+                      </label>
+                      <label class="seek-checkline">
+                        <input name="showRemedies" type="checkbox" checked />
+                        <span>Dengeleme önerisi ekle</span>
+                      </label>
+                      <label class="seek-checkline">
+                        <input name="showDasha" type="checkbox" checked />
+                        <span>Dasha notu ekle</span>
+                      </label>
+                      <label class="seek-checkline">
+                        <input name="compareTropical" type="checkbox" />
+                        <span>Tropik farkı da göster</span>
+                      </label>
+                    </div>
+                  </div>
+                </details>
+              </section>
+
+              <section class="seek-section">
+                <div class="seek-section-head">
+                  <h3>Hesap özeti</h3>
+                  <p>Bu panel, formdaki seçimlerin hangi mantıkla sonuca girdiğini önden gösterir.</p>
+                </div>
+
+                <div class="seek-toggle-grid" aria-label="Vedik modüller">
+                  <article class="seek-mini-card">
+                    <strong>Tarih ve saat</strong>
+                    <span>Gün, ay, yıl, saat ve dakika ayrı olarak hesap motoruna gider</span>
+                  </article>
+                  <article class="seek-mini-card">
+                    <strong>Yer ve koordinat</strong>
+                    <span>İlçe ve mahalle seçimi yoksa il merkezi, manuel modda elle girilen koordinat kullanılır</span>
+                  </article>
+                  <article class="seek-mini-card">
+                    <strong>Ev sistemi ve ayanamsa</strong>
+                    <span>Gelişmiş ayarlar vedik kartların tamamına uygulanır</span>
+                  </article>
+                  <article class="seek-mini-card">
+                    <strong>Ek yorumlar</strong>
+                    <span>Nakshatra, dasha, tropik fark ve dengeleme notları isteğe bağlıdır</span>
+                  </article>
+                </div>
+              </section>
+
+              <div class="tool-actions">
+                <button class="tool-button" type="submit">Sideral haritayı hesapla</button>
+                <a class="tool-link" href="index.html">Ana sayfaya dön</a>
+              </div>
+            </form>
+          </article>
+
+          <article class="tool-card tool-result-card">
+            <div class="tool-card-head">
+              <div>
+                <p class="section-kicker">Sonuç ekranı</p>
+                <h2>Sideral özet</h2>
+              </div>
+              <p class="tool-note">Sonuç paneli vedik yorumu hızlı anlaşılır kartlar halinde sunar.</p>
+            </div>
+
+            <div id="vedicResult" class="result-stack"></div>
+          </article>
+        </div>
+
+        <aside class="seek-sidebar" aria-label="Vedik rehber">
+          <article class="tool-card seek-sidebar-card">
+            <p class="section-kicker">Vedik odaklar</p>
+            <h3>Bu ekranda neler var?</h3>
+            <div class="seek-sidebar-list">
+              <span>Ayrı gün, ay, yıl ve saat seçimi</span>
+              <span>Yer etiketi ile il, ilçe, mahalle senkronu</span>
+              <span>Manuel koordinat, saat dilimi ve DST girişi</span>
+              <span>Ev sistemi, ayanamsa ve orb tabanlı vedik özet</span>
+            </div>
+          </article>
+
+          <article class="tool-card seek-sidebar-card">
+            <p class="section-kicker">Araçlar</p>
+            <h3>İlgili ekranlar</h3>
+            <div class="seek-sidebar-list">
+              <a href="dogum-haritasi.html">Klasik Doğum Haritası</a>
+              <a href="dogum-haritasi1.html">Doğum Haritası1</a>
+              <a href="vedik-sideral-astroloji.html">Vedik/Sideral Astroloji</a>
+              <a href="yukselen-burc.html">Yükselen Burç</a>
+            </div>
+          </article>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <title>AstroHesap</title>
+    <meta
+      name="description"
+      content="AstroHesap ile doğum haritası, yükselen burç, transit, sinastri ve ay takvimi araçlarına hızlıca ulaş."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <body class="home-page">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
+
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">Astro</span><span class="brand-wordmark-rest">Hesap</span>
+          </span>
+        </a>
+
+        <form class="header-search" id="toolSearchForm" role="search" aria-label="Araç ara">
+          <label class="visually-hidden" for="toolSearchInput">Astro araç ara</label>
+          <input
+            id="toolSearchInput"
+            class="header-search-input"
+            type="search"
+            placeholder="Araç, konu ya da burç ara"
+            autocomplete="off"
+          />
+          <button class="header-search-btn" type="submit">Ara</button>
+        </form>
+      </nav>
+
+      <div class="global-topline">
+        <div class="global-topline-inner">
+          <span>Gökyüzü odaklı araçlar</span>
+          <span>Hızlı hesap</span>
+          <span>Temiz kart düzeni</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="hero">
+      <section class="zodiac-band-shell" aria-label="Burç ikonları kayan bant">
+        <div class="zodiac-marquee" aria-label="Burç ikonları kayan bant">
+          <div class="zodiac-marquee-track">
+            <ul class="zodiac-marquee-row">
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/aries.png?v=20260331-clean-4" alt="Koç burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/taurus.png?v=20260331-clean-4" alt="Boğa burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/gemini.png?v=20260331-clean-4" alt="İkizler burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/cancer.png?v=20260331-clean-4" alt="Yengeç burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/leo.png?v=20260331-clean-4" alt="Aslan burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/virgo.png?v=20260331-clean-4" alt="Başak burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/libra.png?v=20260331-clean-4" alt="Terazi burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/scorpio.png?v=20260331-clean-4" alt="Akrep burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/sagittarius.png?v=20260331-clean-4" alt="Yay burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/capricorn.png?v=20260331-clean-4" alt="Oğlak burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/aquarius.png?v=20260331-clean-4" alt="Kova burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/pisces.png?v=20260331-clean-4" alt="Balık burcu ikonu" loading="lazy" />
+                </figure>
+              </li>
+            </ul>
+
+            <ul class="zodiac-marquee-row" aria-hidden="true">
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/aries.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/taurus.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/gemini.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/cancer.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/leo.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/virgo.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/libra.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/scorpio.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/sagittarius.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/capricorn.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/aquarius.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+              <li class="zodiac-marquee-item">
+                <figure class="zodiac-chip">
+                  <img src="assets/zodiac/pisces.png?v=20260331-clean-4" alt="" loading="lazy" />
+                </figure>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell" aria-labelledby="toolGridTitle">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Hızlı erişim</p>
+            <h2 id="toolGridTitle">Araç kartları</h2>
+          </div>
+          <p class="section-note" id="searchStatus">Arama kutusu ile kartları anında filtreleyebilirsin.</p>
+        </div>
+
+        <div class="top-city-grid" id="toolGrid" aria-label="AstroHesap araçları">
+          <a
+            class="top-city-card category-home-card"
+            href="dogum-haritasi.html"
+            data-keywords="dogum haritasi natal chart gezegen ev aci"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Harita</span>
+              <span class="top-city-name">Doğum Haritası</span>
+              <span class="top-city-population">Gezegen, ev ve açı yerleşimlerini tek tabloda gör.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="dogum-haritasi1.html"
+            data-keywords="dogum haritasi1 astro seek gelismis form ayarlar natal chart"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Detay</span>
+              <span class="top-city-name">Doğum Haritası1</span>
+              <span class="top-city-population">Geniş form, ek ayarlar ve yan araç bloklarıyla daha kapsamlı ekran.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="vedik-sideral-astroloji.html"
+            data-keywords="vedik sideral astroloji vedic sidereal lahiri nakshatra ayanamsa"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Vedik</span>
+              <span class="top-city-name">Vedik/Sideral Astroloji</span>
+              <span class="top-city-population">Sideral burçlar, ayanamsa ve vedik yorum ekseniyle ayrı bir ekran aç.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="efemeris-tablolari.html"
+            data-keywords="efemeris tablolari ephemeris gezegen konumlari gunluk tablo"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Tablo</span>
+              <span class="top-city-name">Efemeris Tabloları</span>
+              <span class="top-city-population">Seçilen ay için günlük gezegen konumlarını tablo halinde çıkar.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="yukselen-burc.html"
+            data-keywords="yukselen burc rising ascendant saat konum"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Kimlik</span>
+              <span class="top-city-name">Yükselen Burç</span>
+              <span class="top-city-population">Doğum saati ve şehir bilgisine göre yükseleni hesapla.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="#ay-burcu"
+            data-keywords="ay burcu moon duygular ic dunya"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Duygu</span>
+              <span class="top-city-name">Ay Burcu</span>
+              <span class="top-city-population">Duygusal ritmini ay yerleşimi üzerinden incele.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="#burc-uyumu"
+            data-keywords="burc uyumu synastry ask iliski partner"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">İlişki</span>
+              <span class="top-city-name">Burç Uyumu</span>
+              <span class="top-city-population">İki harita arasında temel çekim ve uyum alanlarını tara.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="#sinastri"
+            data-keywords="sinastri synastry iki dogum haritasi aci uyum"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Eşleşme</span>
+              <span class="top-city-name">Sinastri</span>
+              <span class="top-city-population">İki kişinin açılarını ve ev temasını yan yana aç.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="#transit"
+            data-keywords="transit gunluk gezegen gecis yorum"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Zaman</span>
+              <span class="top-city-name">Transit Yorumu</span>
+              <span class="top-city-population">Güncel gökyüzünün natal haritana etkisini özetle.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="#solar-return"
+            data-keywords="solar return dogum gunu yili gunes donusu"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Yıl</span>
+              <span class="top-city-name">Solar Return</span>
+              <span class="top-city-population">Yeni yaş temalarını ve odak alanlarını çıkar.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="ay-takvimi.html"
+            data-keywords="ay takvimi new moon full moon luna"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Ay</span>
+              <span class="top-city-name">Ay Takvimi</span>
+              <span class="top-city-population">Yeni ay, dolunay ve ara fazları net sırayla takip et.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="#retro-takibi"
+            data-keywords="retro merkur retro venus retro mars retro"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Uyarı</span>
+              <span class="top-city-name">Retro Takibi</span>
+              <span class="top-city-population">Retro dönemlerini iş, ilişki ve iletişim başlıklarıyla izle.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="#zamanlayici"
+            data-keywords="muhur saat election time uygun saat"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Seçim</span>
+              <span class="top-city-name">Uygun Saat</span>
+              <span class="top-city-population">Başlangıçlar için destekleyici zaman aralıklarını ayır.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="#numeroloji"
+            data-keywords="numeroloji hayat yolu sayi isim sayisi"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Sayı</span>
+              <span class="top-city-name">Numeroloji</span>
+              <span class="top-city-population">Doğum tarihi ve isim üzerinden ana sayılarını çıkar.</span>
+            </span>
+          </a>
+
+          <a
+            class="top-city-card category-home-card"
+            href="#gunluk-yorum"
+            data-keywords="gunluk yorum enerji bugun astroloji"
+          >
+            <span class="top-city-content">
+              <span class="top-city-kicker">Bugün</span>
+              <span class="top-city-name">Günlük Yorum</span>
+              <span class="top-city-population">Kısa günlük enerji notlarını tek karttan oku.</span>
+            </span>
+          </a>
+        </div>
+
+        <p class="empty-state" id="emptyState" hidden>Bu arama için eşleşen araç bulunamadı.</p>
+      </section>
+
+      <section class="detail-grid" aria-label="Araç ön izlemeleri">
+        <article class="preview-card" id="dogum-haritasi">
+          <p class="preview-label">Bugün öne çıkan</p>
+          <h3>Doğum haritası alanı</h3>
+          <p>Gezegen tablo görünümü, ev listesi ve kısa yorum blokları için hazır kart yapısı.</p>
+        </article>
+
+        <article class="preview-card" id="dogum-haritasi1">
+          <p class="preview-label">Detayli kurulum</p>
+          <h3>Doğum Haritası1</h3>
+          <p>Uzun doğum verisi formu, gelişmiş ayarlar ve yan araç rehberi ile daha kapsamlı deneyim sunar.</p>
+        </article>
+
+        <article class="preview-card" id="vedik-sideral-astroloji">
+          <p class="preview-label">Sideral eksen</p>
+          <h3>Vedik/Sideral Astroloji</h3>
+          <p>Vedik yaklaşım için ayanamsa, nakshatra ve sideral yükselen başlıklarını aynı panelde toplar.</p>
+        </article>
+
+        <article class="preview-card" id="efemeris-tablolari">
+          <p class="preview-label">Gezegen akisi</p>
+          <h3>Efemeris Tabloları</h3>
+          <p>Bir ayın günlük gezegen yerleşimlerini tropik ya da sideral görünümle satır satır döker.</p>
+        </article>
+
+        <article class="preview-card" id="yukselen-burc">
+          <p class="preview-label">Kimlik katmanı</p>
+          <h3>Yükselen burç</h3>
+          <p>Doğum saati, şehir ve dakika doğruluğu ile yükselen sonucu veren sade sonuç alanı.</p>
+        </article>
+
+        <article class="preview-card" id="ay-burcu">
+          <p class="preview-label">Duygu ekseni</p>
+          <h3>Ay burcu</h3>
+          <p>İç dünya, alışkanlık ve güven ihtiyacı başlıkları için kısa yorum kartı.</p>
+        </article>
+
+        <article class="preview-card" id="burc-uyumu">
+          <p class="preview-label">Uyum ekranı</p>
+          <h3>Burç uyumu</h3>
+          <p>İki kişi arasında temel çekim, iletişim ve ritim farklarını özetleyen görünüm.</p>
+        </article>
+
+        <article class="preview-card" id="sinastri">
+          <p class="preview-label">Derin karşılaştırma</p>
+          <h3>Sinastri</h3>
+          <p>Haritalar arası açıları, ev düşümlerini ve güçlü temas noktalarını göstermek için alan.</p>
+        </article>
+
+        <article class="preview-card" id="transit">
+          <p class="preview-label">Takip listesi</p>
+          <h3>Transit özeti</h3>
+          <p>Günlük gökyüzü hareketlerini kısa cümlelerle ver ve aktif temayı net biçimde öne çıkar.</p>
+        </article>
+
+        <article class="preview-card" id="solar-return">
+          <p class="preview-label">Yıllık döngü</p>
+          <h3>Solar return</h3>
+          <p>Yeni yaşta kariyer, ilişki ve iç gelişim odaklarını tek bakışta toplar.</p>
+        </article>
+
+        <article class="preview-card" id="ay-takvimi">
+          <p class="preview-label">Ritim paneli</p>
+          <h3>Ay takvimi</h3>
+          <p>Yeni ay, dolunay ve ara fazları sade zaman çizgisi üzerinde göstermeye uygun yapı.</p>
+        </article>
+
+        <article class="preview-card" id="retro-takibi">
+          <p class="preview-label">Uyari paneli</p>
+          <h3>Retro takibi</h3>
+          <p>Merkur, Venüs ve Mars retro dönemlerini başlık başlık filtrelemek için hazır blok.</p>
+        </article>
+
+        <article class="preview-card" id="zamanlayici">
+          <p class="preview-label">Baslangic zamani</p>
+          <h3>Uygun saat</h3>
+          <p>Destekleyici zaman aralıklarını saat, konu ve niyet başlığı ile sıralayan panel.</p>
+        </article>
+
+        <article class="preview-card" id="numeroloji">
+          <p class="preview-label">Sayi izi</p>
+          <h3>Numeroloji</h3>
+          <p>Hayat yolu, kader ve isim sayısını kısa açıklama kartlarıyla sunan alan.</p>
+        </article>
+
+        <article class="preview-card" id="gunluk-yorum">
+          <p class="preview-label">Gunluk enerji</p>
+          <h3>Günlük yorum</h3>
+          <p>Bugünün gökyüzü etkisini tek paragraf, tek vurgu ve tek eylem notu ile verir.</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
