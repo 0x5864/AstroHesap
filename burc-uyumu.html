@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
+    <title>AstroHesap | Burç Uyumu</title>
+    <meta
+      name="description"
+      content="İki partnerin doğum tarihi, saat ve şehir bilgisine göre hızlı ilişki uyumu özeti çıkar."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="astro-tools.js?v=20260401-profile-1"></script>
+  </head>
+  <body class="tool-page compatibility-page" data-page="zodiac-compatibility">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
+
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
+          </span>
+        </a>
+
+        <form class="header-search" action="index.html" method="get" role="search" aria-label="Araç ara">
+          <label class="visually-hidden" for="toolSearchInputCompatibility">Astro araç ara</label>
+          <input
+            id="toolSearchInputCompatibility"
+            class="header-search-input"
+            type="search"
+            name="q"
+            placeholder="Araç, konu ya da burç ara"
+            autocomplete="off"
+          />
+          <button class="header-search-btn" type="submit">Ara</button>
+        </form>
+      </nav>
+    </header>
+
+    <main class="tool-main tool-main-extended">
+      <section class="compatibility-page-heading" aria-label="Sayfa başlığı">
+        <h1>Burç Uyumu</h1>
+      </section>
+
+      <section class="seek-layout">
+        <div class="seek-main-column">
+		          <article class="tool-card seek-form-card">
+	            <form id="compatibilityForm" class="tool-form seek-form">
+	              <section class="seek-section">
+	                <div class="seek-section-head">
+	                  <h3>Doğum bilgileri</h3>
+	                </div>
+
+                <div class="compatibility-partner-grid">
+	                  <article class="compatibility-person-card">
+	                    <div class="compatibility-person-head">
+	                      <div>
+	                        <h4>Birinci kişi</h4>
+	                      </div>
+                    </div>
+
+                    <div class="seek-form-grid seek-form-grid-2">
+                      <label class="tool-field seek-field-span">
+                        <span>İsim</span>
+                        <input name="partnerAName" type="text" value="Deniz" placeholder="İsim ya da rumuz" />
+                      </label>
+                    </div>
+
+                    <div class="compatibility-birth-grid">
+                      <label class="tool-field">
+                        <span>Gün</span>
+                        <select name="partnerADay" data-compat-day data-selected="17"></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Ay</span>
+                        <select name="partnerAMonth" data-compat-month data-selected="8"></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Yıl</span>
+                        <select name="partnerAYear" data-compat-year data-selected="1994"></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Saat</span>
+                        <select name="partnerAHour" data-compat-hour data-selected="08"></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Dakika</span>
+                        <select name="partnerAMinute" data-compat-minute data-selected="30"></select>
+                      </label>
+                    </div>
+
+                    <label class="seek-checkline compatibility-inline-check">
+                      <input name="partnerAUnknownTime" type="checkbox" />
+                      <span>Doğum saati bilinmiyor</span>
+                    </label>
+
+                    <div class="compatibility-location-grid">
+                      <label class="tool-field">
+                        <span>İl</span>
+                        <select
+                          name="partnerACity"
+                          data-location-city
+                          data-default-city-label="İstanbul"
+                          id="compatibilityCityA"
+                        ></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>İlçe</span>
+                        <select name="partnerADistrict" id="compatibilityDistrictA" data-location-district disabled>
+                          <option value="">İlçe seçiniz</option>
+                        </select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Mahalle</span>
+                        <select
+                          name="partnerANeighborhood"
+                          id="compatibilityNeighborhoodA"
+                          data-location-neighborhood
+                          disabled
+                        >
+                          <option value="">Mahalle seçiniz</option>
+                        </select>
+                      </label>
+                    </div>
+
+                    <p class="tool-helper">
+                      İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
+                    </p>
+                  </article>
+
+	                  <article class="compatibility-person-card">
+	                    <div class="compatibility-person-head">
+	                      <div>
+	                        <h4>İkinci kişi</h4>
+	                      </div>
+                    </div>
+
+                    <div class="seek-form-grid seek-form-grid-2">
+                      <label class="tool-field seek-field-span">
+                        <span>İsim</span>
+                        <input name="partnerBName" type="text" value="Alya" placeholder="İsim ya da rumuz" />
+                      </label>
+                    </div>
+
+                    <div class="compatibility-birth-grid">
+                      <label class="tool-field">
+                        <span>Gün</span>
+                        <select name="partnerBDay" data-compat-day data-selected="4"></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Ay</span>
+                        <select name="partnerBMonth" data-compat-month data-selected="11"></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Yıl</span>
+                        <select name="partnerBYear" data-compat-year data-selected="1992"></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Saat</span>
+                        <select name="partnerBHour" data-compat-hour data-selected="21"></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Dakika</span>
+                        <select name="partnerBMinute" data-compat-minute data-selected="10"></select>
+                      </label>
+                    </div>
+
+                    <label class="seek-checkline compatibility-inline-check">
+                      <input name="partnerBUnknownTime" type="checkbox" />
+                      <span>Doğum saati bilinmiyor</span>
+                    </label>
+
+                    <div class="compatibility-location-grid">
+                      <label class="tool-field">
+                        <span>İl</span>
+                        <select
+                          name="partnerBCity"
+                          data-location-city
+                          data-default-city-label="Ankara"
+                          id="compatibilityCityB"
+                        ></select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>İlçe</span>
+                        <select name="partnerBDistrict" id="compatibilityDistrictB" data-location-district disabled>
+                          <option value="">İlçe seçiniz</option>
+                        </select>
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Mahalle</span>
+                        <select
+                          name="partnerBNeighborhood"
+                          id="compatibilityNeighborhoodB"
+                          data-location-neighborhood
+                          disabled
+                        >
+                          <option value="">Mahalle seçiniz</option>
+                        </select>
+                      </label>
+                    </div>
+
+                    <p class="tool-helper">
+                      İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
+                    </p>
+                  </article>
+                </div>
+              </section>
+
+              <section class="seek-section">
+                <div class="seek-section-head">
+                  <div>
+                    <h3>Karşılaştırma ayarları</h3>
+                    <p>Uyum sonucunu hangi bakışla okumak istediğini seç.</p>
+                  </div>
+                </div>
+
+                <div class="seek-form-grid seek-form-grid-2">
+                  <label class="tool-field">
+                    <span>İlişki odağı</span>
+                    <select name="relationStyle">
+                      <option value="romance">Romantik uyum</option>
+                      <option value="friendship">Arkadaşlık uyumu</option>
+                      <option value="longterm">Uzun vadeli birliktelik</option>
+                    </select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Hesap derinliği</span>
+                    <select name="comparisonDepth">
+                      <option value="quick">Hızlı özet</option>
+                      <option value="balanced">Dengeli karşılaştırma</option>
+                      <option value="extended">Geniş vurgu seti</option>
+                    </select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Ev sistemi</span>
+                    <select name="houseSystem">
+                      <option value="placidus">Placidus</option>
+                      <option value="whole">Whole Sign</option>
+                      <option value="equal">Equal</option>
+                      <option value="koch">Koch</option>
+                    </select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Zodyak modu</span>
+                    <select name="zodiacMode">
+                      <option value="tropical">Tropik</option>
+                      <option value="sidereal">Sideral</option>
+                    </select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Orb seviyesi</span>
+                    <select name="orbLevel">
+                      <option value="tight">Dar orb</option>
+                      <option value="balanced">Dengeli orb</option>
+                      <option value="wide">Geniş orb</option>
+                    </select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Sonuç dili</span>
+                    <select name="readingTone">
+                      <option value="soft">Yumuşak yorum</option>
+                      <option value="direct">Net yorum</option>
+                      <option value="strategic">Stratejik yorum</option>
+                    </select>
+                  </label>
+                </div>
+
+                <div class="seek-toggle-grid" aria-label="Karşılaştırma vurguları">
+                  <label class="seek-checkline">
+                    <input name="includeMoon" type="checkbox" checked />
+                    <span>Ay uyumunu dahil et</span>
+                  </label>
+
+                  <label class="seek-checkline">
+                    <input name="includeAscendant" type="checkbox" checked />
+                    <span>Yükselen temasını dahil et</span>
+                  </label>
+
+                  <label class="seek-checkline">
+                    <input name="includeVenusMars" type="checkbox" checked />
+                    <span>Venüs ve Mars çekimini dahil et</span>
+                  </label>
+
+                  <label class="seek-checkline">
+                    <input name="focusLongTerm" type="checkbox" />
+                    <span>Uzun vadeli ritmi öne çıkar</span>
+                  </label>
+                </div>
+              </section>
+
+              <div class="tool-actions">
+                <button class="tool-button" type="submit">Uyumu analiz et</button>
+              </div>
+            </form>
+          </article>
+
+          <section class="compatibility-result-heading" aria-label="Sonuç başlığı">
+            <h2>Uyum özeti</h2>
+          </section>
+
+          <article class="tool-card tool-result-card compatibility-result-card">
+            <div id="compatibilityResult" class="result-stack"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

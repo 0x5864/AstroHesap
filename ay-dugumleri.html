@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
+    <title>AstroHesap | Ay Düğümleri</title>
+    <meta
+      name="description"
+      content="Doğum tarihine göre kuzey ve güney ay düğümü eksenini öğren, kadersel dönemi tablo üzerinden incele."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="astro-tools.js?v=20260401-profile-1"></script>
+  </head>
+  <body class="tool-page nodes-page" data-page="lunar-nodes">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
+
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
+          </span>
+        </a>
+
+        <form class="header-search" action="index.html" method="get" role="search" aria-label="Araç ara">
+          <label class="visually-hidden" for="toolSearchInputNodes">Astro araç ara</label>
+          <input
+            id="toolSearchInputNodes"
+            class="header-search-input"
+            type="search"
+            name="q"
+            placeholder="Araç, konu ya da burç ara"
+            autocomplete="off"
+          />
+          <button class="header-search-btn" type="submit">Ara</button>
+        </form>
+      </nav>
+    </header>
+
+    <main class="tool-main tool-main-extended">
+      <section class="nodes-page-heading" aria-label="Sayfa başlığı">
+        <h1>Ay Düğümleri</h1>
+      </section>
+
+      <section class="nodes-shell">
+        <article class="tool-card seek-form-card">
+          <form id="lunarNodesForm" class="tool-form seek-form">
+            <section class="seek-section">
+              <div class="seek-section-head">
+                <h3>Doğum bilgileri</h3>
+              </div>
+
+              <div class="nodes-form-grid">
+                <label class="tool-field">
+                  <span>İsim</span>
+                  <input name="name" type="text" placeholder="İsim ya da rumuz" />
+                </label>
+
+                <label class="tool-field">
+                  <span>Doğum tarihi</span>
+                  <input name="birthDate" type="date" />
+                </label>
+
+                <label class="tool-field">
+                  <span>Düğüm modu</span>
+                  <select name="nodeMode">
+                    <option value="mean">Mean Node</option>
+                    <option value="true">True Node</option>
+                  </select>
+                </label>
+
+                <label class="tool-field">
+                  <span>Zodyak modu</span>
+                  <select name="zodiacMode">
+                    <option value="tropical">Tropik</option>
+                    <option value="sidereal">Sideral</option>
+                  </select>
+                </label>
+
+                <label class="tool-field seek-field-span">
+                  <span>Yorum odağı</span>
+                  <select name="focusArea">
+                    <option value="general">Genel profil</option>
+                    <option value="relationships">İlişki dinamiği</option>
+                    <option value="career">Kariyer yönü</option>
+                    <option value="spiritual">Ruhsal eksen</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="tool-actions">
+                <button class="tool-button" type="submit">Ay düğümlerini göster</button>
+              </div>
+            </section>
+          </form>
+        </article>
+
+        <article class="tool-card tool-result-card nodes-result-card">
+          <section class="nodes-result-heading" aria-label="Sonuç başlığı">
+            <h2>Kadersel eksen</h2>
+          </section>
+          <div id="lunarNodesResult" class="result-stack"></div>
+        </article>
+      </section>
+
+      <article class="tool-card nodes-reference-card">
+        <div class="tool-card-head">
+          <div>
+            <h2>Doğum tarihine göre kuzey ve güney ay düğümü listesi</h2>
+          </div>
+        </div>
+
+        <div class="nodes-reference-wrap">
+          <table class="nodes-reference-table">
+            <thead>
+              <tr>
+                <th>Başlangıç</th>
+                <th>Bitiş</th>
+                <th>Kuzey Ay Düğümü</th>
+                <th>Güney Ay Düğümü</th>
+              </tr>
+            </thead>
+            <tbody id="lunarNodesTableBody"></tbody>
+          </table>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

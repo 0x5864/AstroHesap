@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#09111d" />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
     <title>AstroHesap | Doğum Haritası</title>
     <meta
       name="description"
-      content="Doğum tarihi, saat ve konuma göre temel doğum haritası yerleşimlerini temiz ve güçlü bir arayüzde hesapla."
+      content="Klasik astroloji düzeninde doğum bilgilerini girerek doğum haritasını, evleri ve kişisel gezegen konumlarını hesapla."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,621 +16,178 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --bg: #09111d;
-        --bg-deep: #040913;
-        --surface: rgba(246, 241, 232, 0.96);
-        --text: #112033;
-        --text-soft: #5d6877;
-        --line: rgba(17, 32, 51, 0.1);
-        --accent: #c88b35;
-        --accent-strong: #9c6120;
-        --accent-soft: rgba(200, 139, 53, 0.14);
-        --shadow: 0 28px 80px rgba(3, 9, 18, 0.24);
-        --shadow-soft: 0 16px 44px rgba(3, 9, 18, 0.12);
-        --container: 1240px;
-        --radius: 22px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        min-height: 100vh;
-        color: var(--text);
-        background:
-          radial-gradient(circle at 12% 16%, rgba(69, 106, 172, 0.22), transparent 26%),
-          radial-gradient(circle at 88% 14%, rgba(200, 139, 53, 0.18), transparent 24%),
-          linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 24%, #e9ecef 24.1%, #f0f2f4 100%);
-        font-family: "Inter", "Segoe UI", sans-serif;
-      }
-
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        background-image:
-          radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-          radial-gradient(rgba(200, 139, 53, 0.14) 1px, transparent 1px);
-        background-position: 0 0, 22px 22px;
-        background-size: 44px 44px;
-        opacity: 0.32;
-        mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.18) 42%, transparent 62%);
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      button,
-      input,
-      select {
-        font: inherit;
-      }
-
-      .page-shell {
-        width: min(var(--container), calc(100% - 32px));
-        margin: 0 auto;
-        position: relative;
-        z-index: 1;
-      }
-
-      .topbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-        padding: 22px 0 18px;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.78rem;
-      }
-
-      .brand-mark {
-        width: 54px;
-        height: 54px;
-        border-radius: 0;
-        border: 0;
-        background: url("assets/astro.png") center / contain no-repeat;
-        box-shadow: none;
-      }
-
-      .brand-copy {
-        display: grid;
-        gap: 0.15rem;
-      }
-
-      .brand-title {
-        font-family: "Inter", "Segoe UI", sans-serif;
-        font-size: clamp(2.35rem, 3.5vw, 3.25rem);
-        font-weight: 700;
-        letter-spacing: -0.04em;
-        line-height: 0.9;
-        color: #f7f0e6;
-      }
-
-      .brand-copy small {
-        color: rgba(240, 233, 219, 0.76);
-        font-size: 0.82rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .topbar-actions {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        flex-wrap: wrap;
-      }
-
-      .topbar-link {
-        padding: 0.2rem 0;
-        border: 0;
-        color: rgba(247, 240, 230, 0.88);
-        font-size: 0.88rem;
-      }
-
-      .topbar-link:hover,
-      .topbar-link:focus-visible {
-        color: #ffffff;
-        outline: none;
-      }
-
-      .crumbs {
-        display: flex;
-        align-items: center;
-        gap: 0.45rem;
-        flex-wrap: wrap;
-        color: rgba(255, 255, 255, 0.84);
-        font-size: 0.9rem;
-      }
-
-      .crumbs span[aria-hidden="true"] {
-        color: rgba(255, 255, 255, 0.4);
-      }
-
-      .panel,
-      .note-card {
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 0;
-        box-shadow: var(--shadow);
-      }
-
-      .panel-kicker,
-      .note-card .panel-kicker {
-        margin: 0;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        font-size: 0.72rem;
-      }
-
-      .panel-kicker {
-        color: #efc889;
-      }
-
-      .panel h2,
-      .note-card h3 {
-        margin: 0.5rem 0 0;
-        font-family: "Inter", "Segoe UI", sans-serif;
-        font-weight: 700;
-        line-height: 1.02;
-      }
-
-      .workspace {
-        display: grid;
-        grid-template-columns: minmax(340px, 0.95fr) minmax(0, 1.05fr);
-        gap: 1rem;
-        align-items: start;
-        margin-top: 1rem;
-      }
-
-      .panel {
-        background: var(--surface);
-        border-color: rgba(17, 32, 51, 0.08);
-      }
-
-      .panel-inner {
-        padding: 1.15rem;
-      }
-
-      .panel-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        gap: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .panel h2 {
-        font-size: clamp(1.9rem, 3vw, 2.45rem);
-        color: #0f2137;
-      }
-
-      .panel-head-note {
-        max-width: 34ch;
-        margin: 0;
-        color: var(--text-soft);
-        font-size: 0.9rem;
-        text-align: right;
-      }
-
-      .form-stack {
-        display: grid;
-        gap: 0.78rem;
-      }
-
-      .field-grid-2,
-      .field-grid-3 {
-        display: grid;
-        gap: 0.72rem;
-      }
-
-      .field-grid-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .field-grid-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .converter-field {
-        display: grid;
-        gap: 0.4rem;
-      }
-
-      .converter-field span {
-        color: var(--text-soft);
-        font-size: 0.84rem;
-      }
-
-      .converter-field input,
-      .converter-field select {
-        width: 100%;
-        min-height: 50px;
-        padding: 0.78rem 0.9rem;
-        border: 1px solid rgba(17, 32, 51, 0.12);
-        border-radius: 0;
-        background: rgba(255, 255, 255, 0.88);
-        color: var(--text);
-      }
-
-      .converter-field input:focus-visible,
-      .converter-field select:focus-visible {
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px var(--accent-soft);
-        outline: none;
-      }
-
-      .helper-row {
-        margin: 0;
-        color: var(--text-soft);
-        font-size: 0.9rem;
-        line-height: 1.55;
-      }
-
-      .action-row {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        flex-wrap: wrap;
-      }
-
-      .primary-button {
-        min-height: 48px;
-        padding: 0 1.15rem;
-        border: 0;
-        border-radius: 0;
-        background: linear-gradient(135deg, #ba7a23, #e4b268);
-        color: #0a1321;
-        font-size: 0.94rem;
-        font-weight: 800;
-        cursor: pointer;
-        box-shadow: var(--shadow-soft);
-        transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
-      }
-
-      .primary-button:hover,
-      .primary-button:focus-visible {
-        transform: translateY(-1px);
-        box-shadow: 0 16px 36px rgba(186, 122, 35, 0.18);
-        filter: brightness(1.03);
-        outline: none;
-      }
-
-      .secondary-link {
-        color: var(--accent-strong);
-        font-size: 0.92rem;
-      }
-
-      .secondary-link:hover,
-      .secondary-link:focus-visible {
-        color: #6c4015;
-        outline: none;
-      }
-
-      .status-row {
-        padding: 0.9rem 1rem;
-        border: 1px dashed rgba(17, 32, 51, 0.12);
-        border-radius: 0;
-        background: rgba(255, 255, 255, 0.52);
-        color: var(--text-soft);
-        font-size: 0.9rem;
-      }
-
-      .other-error {
-        color: #b84c32 !important;
-      }
-
-      .result-stack {
-        display: grid;
-        gap: 0.9rem;
-      }
-
-      .result-summary {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.78rem;
-      }
-
-      .summary-card,
-      .other-result-card,
-      .note-card {
-        border: 1px solid rgba(17, 32, 51, 0.08);
-        border-radius: 0;
-        background: rgba(255, 255, 255, 0.92);
-      }
-
-      .summary-card {
-        padding: 0.9rem 0.96rem;
-      }
-
-      .summary-card p,
-      .other-result-label {
-        margin: 0;
-        color: var(--text-soft);
-        font-size: 0.84rem;
-      }
-
-      .summary-card strong,
-      .other-result-value {
-        display: block;
-        margin-top: 0.3rem;
-        color: var(--text);
-        font-size: 1.18rem;
-        font-weight: 800;
-        line-height: 1.3;
-      }
-
-      .other-result-group + .other-result-group {
-        margin-top: 0.95rem;
-      }
-
-      .group-title {
-        margin: 0 0 0.72rem;
-        color: var(--accent-strong);
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        font-size: 0.72rem;
-      }
-
-      .birth-chart-planet-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.72rem;
-      }
-
-      .other-result-card {
-        padding: 0.9rem 0.96rem;
-      }
-
-      .note-card {
-        padding: 1rem;
-        background:
-          linear-gradient(180deg, rgba(255, 251, 245, 0.96), rgba(252, 247, 240, 0.98)),
-          radial-gradient(circle at bottom right, rgba(200, 139, 53, 0.08), transparent 32%);
-      }
-
-      .note-card .panel-kicker {
-        color: var(--accent-strong);
-      }
-
-      .note-card h3 {
-        font-size: 1.7rem;
-        color: #0f2137;
-      }
-
-      .note-list {
-        display: grid;
-        gap: 0.68rem;
-        margin-top: 0.84rem;
-      }
-
-      .note-list p {
-        margin: 0;
-        padding: 0.86rem 0.9rem;
-        border: 1px solid rgba(17, 32, 51, 0.08);
-        border-radius: 0;
-        background: rgba(255, 255, 255, 0.8);
-        color: var(--text-soft);
-        font-size: 0.9rem;
-      }
-
-      @media (max-width: 980px) {
-        .workspace {
-          grid-template-columns: 1fr;
-        }
-
-        .panel-head {
-          align-items: start;
-          flex-direction: column;
-        }
-
-        .panel-head-note {
-          text-align: left;
-        }
-      }
-
-      @media (max-width: 760px) {
-        .page-shell {
-          width: min(var(--container), calc(100% - 18px));
-        }
-
-        .topbar {
-          flex-direction: column;
-          align-items: start;
-        }
-
-        .field-grid-2,
-        .field-grid-3,
-        .result-summary,
-        .birth-chart-planet-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css?v=20260402-birth2-main-1" />
+    <script defer src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+    <script defer src="astro-tools.js?v=20260402-birth2-main-1"></script>
   </head>
-  <body>
-    <div class="page-shell">
-      <header>
-        <div class="topbar">
-          <a class="brand" href="index.html" aria-label="AstroHesap">
-            <span class="brand-mark" aria-hidden="true"></span>
-            <span class="brand-copy">
-              <span class="brand-title">AstroHesap</span>
-              <small>Dogum Haritasi Ekrani</small>
-            </span>
-          </a>
+  <body class="tool-page birth2-page" data-page="birth-chart-extended">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
 
-          <div class="topbar-actions" aria-label="Ust baglantilar">
-            <a class="topbar-link" href="index.html">Anasayfa</a>
-            <a class="topbar-link" href="yukselen-burc.html">Yukselen Burc</a>
-            <a class="topbar-link" href="ay-takvimi.html">Ay Takvimi</a>
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
+          </span>
+        </a>
+
+        <form class="header-search" action="index.html" method="get" role="search" aria-label="Araç ara">
+          <label class="visually-hidden" for="toolSearchInputBirth2">Astro araç ara</label>
+          <input
+            id="toolSearchInputBirth2"
+            class="header-search-input"
+            type="search"
+            name="q"
+            placeholder="Araç, konu ya da burç ara"
+            autocomplete="off"
+          />
+          <button class="header-search-btn" type="submit">Ara</button>
+        </form>
+      </nav>
+    </header>
+
+    <main class="tool-main tool-main-extended">
+      <section class="birth2-heading" aria-label="Sayfa başlığı">
+        <h1>Doğum Haritası</h1>
+      </section>
+
+      <section class="tool-layout birth2-top-layout">
+        <article class="tool-card birth2-form-card">
+          <div class="tool-card-head">
+            <div>
+              <h2>Doğum verileri</h2>
+            </div>
           </div>
-        </div>
 
-        <nav class="crumbs" aria-label="Konum">
-          <a href="index.html">Anasayfa</a>
-          <span aria-hidden="true">/</span>
-          <span>Dogum Haritasi</span>
-        </nav>
-      </header>
+          <form id="birthChartExtendedForm" class="tool-form" aria-label="Doğum haritası formu">
+            <div class="tool-form-grid">
+              <label class="tool-field">
+                <span>Doğum tarihi</span>
+                <input name="birthDate" type="date" required value="1994-08-17" />
+              </label>
 
-      <main>
-        <section class="workspace" aria-label="Hesaplama alani">
-          <article class="panel">
-            <div class="panel-inner">
-              <div class="panel-head">
-                <div>
-                  <p class="panel-kicker">Form alani</p>
-                  <h2>Dogum verileri</h2>
-                </div>
-                <p class="panel-head-note">
-                  Mahalle secersen koordinat daha net bulunur. Istersen enlem, boylam ve UTC farkini
-                  elle de girebilirsin.
-                </p>
+              <label class="tool-field">
+                <span>Doğum saati</span>
+                <input name="birthTime" type="time" required value="08:30" />
+              </label>
+            </div>
+
+            <div class="tool-form-grid tool-form-grid-3">
+              <label class="tool-field">
+                <span>İl</span>
+                <select name="city" data-extended-city>
+                  <option value="">İl seçiniz</option>
+                </select>
+              </label>
+
+              <label class="tool-field">
+                <span>İlçe</span>
+                <select
+                  name="district"
+                  data-location-district
+                  data-selected-district="Kadıköy"
+                  disabled
+                >
+                  <option value="">İlçe seçiniz</option>
+                </select>
+              </label>
+
+              <label class="tool-field">
+                <span>Mahalle</span>
+                <select
+                  name="neighborhood"
+                  data-location-neighborhood
+                  data-selected-neighborhood="Moda"
+                  disabled
+                >
+                  <option value="">Mahalle seçiniz</option>
+                </select>
+              </label>
+            </div>
+
+            <p class="tool-helper">
+              İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
+            </p>
+
+            <div class="tool-form-grid tool-form-grid-3">
+              <label class="tool-field">
+                <span>Enlem</span>
+                <input name="latitude" type="number" step="0.0001" value="41.0082" data-extended-latitude />
+              </label>
+
+              <label class="tool-field">
+                <span>Boylam</span>
+                <input name="longitude" type="number" step="0.0001" value="28.9784" data-extended-longitude />
+              </label>
+
+              <label class="tool-field">
+                <span>UTC farkı</span>
+                <input name="timezoneOffset" type="number" step="0.5" value="3" />
+              </label>
+            </div>
+
+            <div class="birth2-hidden-fields" aria-hidden="true">
+              <input name="name" type="text" value="AstroHesap Kullanıcısı" />
+              <input name="timezone" type="text" value="Europe/Istanbul" />
+              <input name="country" type="text" value="Türkiye" />
+              <input name="accuracy" type="text" value="Şehir merkezi" />
+              <input name="houseSystem" type="text" value="placidus" />
+              <input name="zodiacMode" type="text" value="tropical" />
+              <input name="orbLevel" type="text" value="balanced" />
+              <input name="focusArea" type="text" value="general" />
+            </div>
+          </form>
+        </article>
+
+        <article class="tool-card tool-result-card birth2-summary-card">
+          <div class="tool-card-head">
+            <div>
+              <h2>Ana yerleşimler</h2>
+            </div>
+          </div>
+
+          <article class="result-note-card birth-summary-panel">
+            <div class="birth-summary-inline">
+              <div class="birth-summary-point">
+                <p>Güneş</p>
+                <strong data-birth2-sun>-</strong>
               </div>
-
-              <div class="form-stack">
-                <div class="field-grid-2">
-                  <label class="converter-field">
-                    <span>Il</span>
-                    <select data-birth-province>
-                      <option value="">Il seciniz</option>
-                    </select>
-                  </label>
-
-                  <label class="converter-field">
-                    <span>Ilce</span>
-                    <select data-birth-district disabled>
-                      <option value="">Ilce seciniz</option>
-                    </select>
-                  </label>
-                </div>
-
-                <label class="converter-field">
-                  <span>Mahalle</span>
-                  <select data-birth-neighborhood disabled>
-                    <option value="">Mahalle seciniz</option>
-                  </select>
-                </label>
-
-                <div class="field-grid-2">
-                  <label class="converter-field">
-                    <span>Dogum tarihi</span>
-                    <input type="date" data-birth-date />
-                  </label>
-
-                  <label class="converter-field">
-                    <span>Dogum saati</span>
-                    <input type="time" data-birth-time />
-                  </label>
-                </div>
-
-                <div class="field-grid-3">
-                  <label class="converter-field">
-                    <span>Enlem</span>
-                    <input type="number" step="0.0001" data-birth-latitude value="41.0082" />
-                  </label>
-
-                  <label class="converter-field">
-                    <span>Boylam</span>
-                    <input type="number" step="0.0001" data-birth-longitude value="28.9784" />
-                  </label>
-
-                  <label class="converter-field">
-                    <span>UTC farki</span>
-                    <input type="number" step="0.5" data-birth-timezone value="3" />
-                  </label>
-                </div>
-
-                <p class="helper-row">
-                  Ilce secince mahalleler otomatik gelir. Mahalle secersen koordinatlar daha net bulunur.
-                </p>
-
-                <div class="action-row">
-                  <button class="primary-button" type="button" data-birth-chart-calculate>Haritayi hesapla</button>
-                  <a class="secondary-link" href="index.html">Ana sayfaya don</a>
-                </div>
-
-                <p class="status-row" data-birth-chart-status>Hazir.</p>
+              <div class="birth-summary-point">
+                <p>Ay</p>
+                <strong data-birth2-moon>-</strong>
+              </div>
+              <div class="birth-summary-point">
+                <p>Yükselen</p>
+                <strong data-birth2-ascendant>-</strong>
+              </div>
+              <div class="birth-summary-point">
+                <p>MC</p>
+                <strong data-birth2-midheaven>-</strong>
               </div>
             </div>
+
+            <div class="birth-summary-copy" data-birth2-interpretation>
+              <h4>Yorum ekseni</h4>
+              <p>Güneş, Ay ve Yükselen yerleşimlerin burada birlikte okunur. Hesaplama sonrası kısa yorum bu alanda görünür.</p>
+            </div>
           </article>
+        </article>
 
-          <div class="result-stack">
-            <article class="panel">
-              <div class="panel-inner">
-                <div class="panel-head">
-                  <div>
-                    <p class="panel-kicker">Sonuc ozeti</p>
-                    <h2>Ana yerlesimler</h2>
-                  </div>
-                </div>
+        <article class="tool-card tool-result-card birth2-result-card birth2-wide-card">
+          <div id="birthChartExtendedResult" class="result-stack"></div>
+        </article>
 
-                <div class="result-summary">
-                  <article class="summary-card">
-                    <p>Gunes</p>
-                    <strong data-birth-sun>-</strong>
-                  </article>
-                  <article class="summary-card">
-                    <p>Ay</p>
-                    <strong data-birth-moon>-</strong>
-                  </article>
-                  <article class="summary-card">
-                    <p>Yukselen</p>
-                    <strong data-birth-ascendant>-</strong>
-                  </article>
-                  <article class="summary-card">
-                    <p>MC</p>
-                    <strong data-birth-midheaven>-</strong>
-                  </article>
-                </div>
-              </div>
-            </article>
-
-            <article class="panel">
-              <div class="panel-inner">
-                <div class="panel-head">
-                  <div>
-                    <p class="panel-kicker">Gezegen listesi</p>
-                    <h2>Gezegen yerlesimleri</h2>
-                  </div>
-                </div>
-
-                <section class="other-result-group">
-                  <p class="group-title">Temel liste</p>
-                  <div class="birth-chart-planet-grid" data-birth-planet-grid></div>
-                </section>
-              </div>
-            </article>
-
-            <aside class="note-card" aria-label="Bilgi notu">
-              <p class="panel-kicker">Kisa not</p>
-              <h3>Bu ekran ne saglar?</h3>
-              <div class="note-list">
-                <p>Yerlesimleri burc ve derece olarak hizli okumani saglar.</p>
-                <p>Koordinat degisirse yukselen ve MC sonucu da degisebilir.</p>
-                <p>Sonuclar mevcut hesap motoru ile canli olarak yenilenir.</p>
-              </div>
-            </aside>
+        <article class="tool-card tool-result-card birth2-personal-card birth2-wide-card">
+          <div class="tool-card-head">
+            <div>
+              <h2>KİŞİSEL GEZEGEN KONUMLARINIZ</h2>
+            </div>
           </div>
-        </section>
-      </main>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
-    <script src="dogum-haritasi.js?v=20260331-1512"></script>
+          <div data-birth2-personal-planets></div>
+        </article>
+      </section>
+    </main>
   </body>
 </html>

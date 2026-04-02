@@ -10,7 +10,7 @@ const portValue = process.env.PORT ?? String(DEFAULT_PORT);
 const PORT = Number.parseInt(portValue, 10);
 
 if (Number.isNaN(PORT)) {
-  throw new Error(`Gecersiz PORT degeri: ${portValue}`);
+  throw new Error(`Geçersiz PORT değeri: ${portValue}`);
 }
 
 const MIME_TYPES = {
@@ -44,7 +44,7 @@ const server = createServer(async (request, response) => {
 
   if (!filePath) {
     response.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
-    response.end("Erisim reddedildi.");
+    response.end("Erişim reddedildi.");
     return;
   }
 
@@ -57,10 +57,10 @@ const server = createServer(async (request, response) => {
     response.end(file);
   } catch {
     response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-    response.end("Dosya bulunamadi.");
+    response.end("Dosya bulunamadı.");
   }
 });
 
 server.listen(PORT, "127.0.0.1", () => {
-  console.log(`AstroHesap hazir: http://127.0.0.1:${PORT}/index.html`);
+  console.log(`AstroHesap hazır: http://127.0.0.1:${PORT}/index.html`);
 });

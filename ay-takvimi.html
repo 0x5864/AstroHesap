@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#07111f" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
     <title>AstroHesap | Ay Takvimi</title>
     <meta
       name="description"
@@ -16,7 +17,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script defer src="astro-tools.js"></script>
+    <script defer src="astro-tools.js?v=20260401-profile-1"></script>
   </head>
   <body class="tool-page" data-page="moon-calendar">
     <div class="sky-noise"></div>
@@ -27,15 +28,22 @@
       <nav class="topbar global-topbar" aria-label="Ana gezinme">
         <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
           <span class="brand-wordmark">
-            <span class="brand-wordmark-accent">Astro</span><span class="brand-wordmark-rest">Hesap</span>
+            <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
           </span>
         </a>
 
-        <div class="page-nav" aria-label="Araç gezinme">
-          <a class="page-nav-link" href="dogum-haritasi.html">Doğum Haritası</a>
-          <a class="page-nav-link" href="yukselen-burc.html">Yükselen Burç</a>
-          <a class="page-nav-link is-current" href="ay-takvimi.html">Ay Takvimi</a>
-        </div>
+        <form class="header-search" action="index.html" method="get" role="search" aria-label="Araç ara">
+          <label class="visually-hidden" for="toolSearchInputMoon">Astro araç ara</label>
+          <input
+            id="toolSearchInputMoon"
+            class="header-search-input"
+            type="search"
+            name="q"
+            placeholder="Araç, konu ya da burç ara"
+            autocomplete="off"
+          />
+          <button class="header-search-btn" type="submit">Ara</button>
+        </form>
       </nav>
     </header>
 

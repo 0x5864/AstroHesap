@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#07111f" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
     <title>AstroHesap | Vedik/Sideral Astroloji</title>
     <meta
       name="description"
@@ -16,7 +17,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script defer src="astro-tools.js"></script>
+    <script defer src="astro-tools.js?v=20260401-profile-1"></script>
   </head>
   <body class="tool-page" data-page="vedic-sidereal">
     <div class="sky-noise"></div>
@@ -27,17 +28,22 @@
       <nav class="topbar global-topbar" aria-label="Ana gezinme">
         <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
           <span class="brand-wordmark">
-            <span class="brand-wordmark-accent">Astro</span><span class="brand-wordmark-rest">Hesap</span>
+            <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
           </span>
         </a>
 
-        <div class="page-nav" aria-label="Araç gezinme">
-          <a class="page-nav-link" href="dogum-haritasi.html">Doğum Haritası</a>
-          <a class="page-nav-link" href="dogum-haritasi1.html">Doğum Haritası1</a>
-          <a class="page-nav-link is-current" href="vedik-sideral-astroloji.html">Vedik/Sideral</a>
-          <a class="page-nav-link" href="yukselen-burc.html">Yükselen Burç</a>
-          <a class="page-nav-link" href="ay-takvimi.html">Ay Takvimi</a>
-        </div>
+        <form class="header-search" action="index.html" method="get" role="search" aria-label="Araç ara">
+          <label class="visually-hidden" for="toolSearchInputVedic">Astro araç ara</label>
+          <input
+            id="toolSearchInputVedic"
+            class="header-search-input"
+            type="search"
+            name="q"
+            placeholder="Araç, konu ya da burç ara"
+            autocomplete="off"
+          />
+          <button class="header-search-btn" type="submit">Ara</button>
+        </form>
       </nav>
     </header>
 
@@ -125,40 +131,17 @@
 
                     <label class="seek-checkline seek-checkline-block">
                       <input name="unknownBirthTime" type="checkbox" data-vedic-unknown-time />
-                      <span>Bilinmeyen saat</span>
+                      <span>Doğum saati bilinmiyor</span>
                     </label>
                   </div>
                 </div>
-              </section>
 
-              <section class="seek-section">
-                <div class="seek-section-head">
-                  <h3>Doğum yeri</h3>
-                  <p>Yer adını yaz, sonra il, ilçe ve mahalle ile konumu netleştir. İstersen koordinatı elle gir.</p>
-                </div>
-
-                <div class="seek-form-grid seek-form-grid-2">
-                  <label class="tool-field seek-field-span">
-                    <span>Doğum yeri etiketi</span>
-                    <input
-                      name="birthPlace"
-                      type="text"
-                      value="İstanbul, Türkiye"
-                      placeholder="Lütfen doğum yeri yaz"
-                      data-vedic-place
-                    />
-                  </label>
-
+                <div class="seek-form-grid seek-form-grid-3">
                   <label class="tool-field">
                     <span>İl</span>
                     <select name="city" data-default-city-label="İstanbul">
                       <option value="İstanbul">İstanbul</option>
                     </select>
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Ülke</span>
-                    <input name="country" type="text" value="Türkiye" readonly />
                   </label>
 
                   <label class="tool-field">
@@ -178,6 +161,35 @@
                     >
                       <option value="">Mahalle seçiniz</option>
                     </select>
+                  </label>
+                </div>
+
+                <p class="tool-helper">
+                  İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
+                </p>
+              </section>
+
+              <section class="seek-section">
+                <div class="seek-section-head">
+                  <h3>Konum ayrıntıları</h3>
+                  <p>Yer etiketini koru, istersen ülkeyi ve koordinatları manuel ayarla.</p>
+                </div>
+
+                <div class="seek-form-grid seek-form-grid-2">
+                  <label class="tool-field seek-field-span">
+                    <span>Doğum yeri etiketi</span>
+                    <input
+                      name="birthPlace"
+                      type="text"
+                      value="İstanbul, Türkiye"
+                      placeholder="Lütfen doğum yeri yaz"
+                      data-vedic-place
+                    />
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Ülke</span>
+                    <input name="country" type="text" value="Türkiye" readonly />
                   </label>
                 </div>
 

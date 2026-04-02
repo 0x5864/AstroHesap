@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#07111f" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
     <title>AstroHesap | Yükselen Burç</title>
     <meta
       name="description"
-      content="Doğum tarihi, saat ve şehir ile AstroHesap yükselen burç tahmin ekranını kullan."
+      content="Doğum günü, saat ve şehir bilgisiyle AstroHesap yükselen burç hesaplama ekranını kullan."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,9 +17,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script defer src="astro-tools.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+    <script defer src="astro-tools.js?v=20260401-profile-1"></script>
   </head>
-  <body class="tool-page" data-page="rising-sign">
+  <body class="tool-page rising-page" data-page="rising-sign">
     <div class="sky-noise"></div>
     <div class="sky-glow sky-glow-left"></div>
     <div class="sky-glow sky-glow-right"></div>
@@ -27,93 +29,126 @@
       <nav class="topbar global-topbar" aria-label="Ana gezinme">
         <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
           <span class="brand-wordmark">
-            <span class="brand-wordmark-accent">Astro</span><span class="brand-wordmark-rest">Hesap</span>
+            <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
           </span>
         </a>
 
-        <div class="page-nav" aria-label="Araç gezinme">
-          <a class="page-nav-link" href="dogum-haritasi.html">Doğum Haritası</a>
-          <a class="page-nav-link is-current" href="yukselen-burc.html">Yükselen Burç</a>
-          <a class="page-nav-link" href="ay-takvimi.html">Ay Takvimi</a>
-        </div>
+        <form class="header-search" action="index.html" method="get" role="search" aria-label="Araç ara">
+          <label class="visually-hidden" for="toolSearchInputRising">Astro araç ara</label>
+          <input
+            id="toolSearchInputRising"
+            class="header-search-input"
+            type="search"
+            name="q"
+            placeholder="Araç, konu ya da burç ara"
+            autocomplete="off"
+          />
+          <button class="header-search-btn" type="submit">Ara</button>
+        </form>
       </nav>
     </header>
 
-    <main class="tool-main">
-      <section class="hero-content tool-hero">
-        <p class="eyebrow">Ufuk çizgisi</p>
-        <h1>Doğum saati ve şehre göre yükselen tahminini hızla hesapla.</h1>
-        <p class="subline">
-          Bu ekran, gün doğumu ekseni ve saat kayması üzerinden hızlı yükselen tahmini sunar. Sonuç
-          kartında yükselen, yönetici tema ve saat aralığı bir arada gösterilir.
-        </p>
+    <main class="tool-main tool-main-extended">
+      <section class="rising-page-heading" aria-label="Sayfa başlığı">
+        <h1>Yükselen Burç Hesaplama</h1>
       </section>
 
-      <section class="tool-layout">
-        <article class="tool-card">
-          <div class="tool-card-head">
-            <p class="section-kicker">Form ekranı</p>
-            <h2>Yükselen bilgileri</h2>
-          </div>
-
-          <form id="risingSignForm" class="tool-form">
-            <div class="tool-form-grid">
-              <label class="tool-field">
-                <span>Doğum tarihi</span>
-                <input id="risingDate" name="birthDate" type="date" required value="1994-08-17" />
-              </label>
-
-              <label class="tool-field">
-                <span>Doğum saati</span>
-                <input id="risingTime" name="birthTime" type="time" required value="08:30" />
-              </label>
-
-              <label class="tool-field">
-                <span>Şehir</span>
-                <select id="risingCity" name="city">
-                  <option value="istanbul">İstanbul</option>
-                  <option value="ankara">Ankara</option>
-                  <option value="izmir">İzmir</option>
-                  <option value="antalya">Antalya</option>
-                  <option value="adana">Adana</option>
-                  <option value="trabzon">Trabzon</option>
-                </select>
-              </label>
-
-              <label class="tool-field">
-                <span>İlçe</span>
-                <select id="risingDistrict" name="district" data-location-district disabled>
-                  <option value="">İlçe seçiniz</option>
-                </select>
-              </label>
-
-              <label class="tool-field">
-                <span>Mahalle</span>
-                <select id="risingNeighborhood" name="neighborhood" data-location-neighborhood disabled>
-                  <option value="">Mahalle seçiniz</option>
-                </select>
-              </label>
+      <section class="rising-shell">
+        <div class="rising-form-column">
+          <article class="tool-card seek-form-card">
+            <div class="tool-card-head">
+              <div>
+                <h2>Doğum bilgileri</h2>
+              </div>
             </div>
 
-            <div class="tool-actions">
-              <button class="tool-button" type="submit">Yükseleni hesapla</button>
-              <a class="tool-link" href="index.html">Ana sayfaya dön</a>
+            <form id="risingSignForm" class="tool-form seek-form">
+              <section class="seek-section">
+                <div class="rising-select-grid">
+                  <label class="tool-field">
+                    <span>Gün</span>
+                    <select name="birthDay" data-rising-day></select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Ay</span>
+                    <select name="birthMonth" data-rising-month></select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Yıl</span>
+                    <select name="birthYear" data-rising-year></select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Saat</span>
+                    <select name="birthHour" data-rising-hour></select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Dakika</span>
+                    <select name="birthMinute" data-rising-minute></select>
+                  </label>
+                </div>
+
+                <label class="seek-checkline rising-inline-check">
+                  <input name="unknownBirthTime" type="checkbox" />
+                  <span>Doğum saati bilinmiyor</span>
+                </label>
+
+                <div class="rising-location-grid">
+                  <label class="tool-field">
+                    <span>İl</span>
+                    <select id="risingCity" name="city" data-empty-initial="true"></select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>İlçe</span>
+                    <select id="risingDistrict" name="district" data-location-district disabled>
+                      <option value="">İlçe seçiniz</option>
+                    </select>
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Mahalle</span>
+                    <select id="risingNeighborhood" name="neighborhood" data-location-neighborhood disabled>
+                      <option value="">Mahalle seçiniz</option>
+                    </select>
+                  </label>
+                </div>
+
+                <p class="tool-helper">
+                  İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
+                </p>
+              </section>
+
+              <section class="seek-section">
+                <div class="seek-section-head">
+                  <h3>Yükselen neden değişebilir?</h3>
+                </div>
+
+                <ul class="rising-note-list">
+                  <li>Doğum saatindeki 4-5 dakikalık fark bile sonucu etkileyebilir.</li>
+                  <li>Mahalle seviyesi yer seçimi, güneş doğumu eksenini daha tutarlı tahmin etmeyi sağlar.</li>
+                  <li>Doğum saati bilinmiyorsa sonuç yaklaşık kabul edilmelidir.</li>
+                </ul>
+              </section>
+
+            </form>
+          </article>
+        </div>
+
+        <div class="rising-results-column">
+          <article class="tool-card tool-result-card rising-result-card">
+            <div class="tool-card-head">
+              <div>
+                <h2>Yükselen burç</h2>
+              </div>
             </div>
-          </form>
 
-          <p class="tool-note">
-            Bu sonuç hızlı tahmindir. Dakika farkı ve kesin koordinat, yükseleni değiştirebilir.
-          </p>
-        </article>
-
-        <article class="tool-card tool-result-card">
-          <div class="tool-card-head">
-            <p class="section-kicker">Sonuç ekranı</p>
-            <h2>Yükselen tahmini</h2>
-          </div>
-
-          <div id="risingSignResult" class="result-stack"></div>
-        </article>
+            <div id="risingSignResult" class="result-stack"></div>
+          </article>
+        </div>
       </section>
     </main>
   </body>

@@ -1,17 +1,17 @@
 :root {
   --bg: #f2f3f5;
   --bg-soft: #e7ebf0;
-  --paper: rgba(10, 20, 35, 0.82);
-  --paper-strong: rgba(9, 18, 31, 0.96);
-  --ink: #f4efe6;
-  --muted: #b8c4d9;
-  --line: rgba(215, 227, 255, 0.16);
+  --paper: #fefbf7;
+  --paper-strong: #fefbf7;
+  --ink: #1a2431;
+  --muted: #5d6672;
+  --line: #b8c8dc;
   --line-strong: rgba(233, 202, 151, 0.38);
   --accent: #d39a52;
   --accent-strong: #f1c37c;
   --accent-soft: rgba(211, 154, 82, 0.12);
   --chip: rgba(12, 25, 42, 0.72);
-  --shadow: 0 28px 80px rgba(2, 7, 16, 0.42);
+  --shadow: 0 22px 56px rgba(18, 26, 38, 0.1);
   --hero-shadow: 0 40px 100px rgba(3, 9, 20, 0.52);
   --container: 1220px;
   --content-offset: clamp(2.2rem, 4vw, 3rem);
@@ -89,25 +89,29 @@ main,
 }
 
 .global-header-band {
-  padding-top: 0.72rem;
+  padding-top: calc(76px + 0.28rem + 0.7rem);
+  z-index: 1100;
+  isolation: isolate;
 }
 
 .global-topbar {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 1000;
-  width: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1200;
   min-height: 76px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding-inline-start: var(--header-line-start);
-  padding-inline-end: 0;
+  padding-inline-start: max(calc((100vw - 1220px) / 2 + var(--header-line-start)), calc(1.2rem + var(--header-line-start)));
+  padding-inline-end: max(calc((100vw - 1220px) / 2), 1.2rem);
   padding-bottom: 0.36rem;
   border-bottom: 1px solid rgba(184, 200, 220, 0.18);
-  background: rgba(5, 12, 22, 0.82);
+  background: #0a1321;
   backdrop-filter: blur(18px);
+  box-shadow: 0 14px 36px rgba(2, 8, 18, 0.18);
 }
 
 .topbar {
@@ -116,6 +120,9 @@ main,
 
 .global-topline {
   border-top: 0;
+  position: relative;
+  z-index: 1190;
+  background: #0a1321;
 }
 
 .global-topline-inner {
@@ -157,17 +164,21 @@ main,
 
 .brand-wordmark::before {
   content: "";
-  width: 1.18em;
-  height: 1.18em;
-  flex: 0 0 1.18em;
+  width: 1.56em;
+  height: 1.56em;
+  flex: 0 0 1.56em;
   margin-right: 0.35rem;
   border-radius: 0;
-  background: url("assets/astro.png") center / contain no-repeat;
+  background: url("assets/logo.png") center / contain no-repeat;
   box-shadow: none;
 }
 
 .brand-wordmark-accent {
-  color: var(--accent-strong);
+  color: #ff0000;
+}
+
+.brand-wordmark-rest {
+  color: #797152;
 }
 
 .header-search {
@@ -181,16 +192,16 @@ main,
 
 .header-search-input {
   width: 100%;
-  min-height: 40px;
+  min-height: 36px;
   border: 1px solid rgba(226, 236, 255, 0.16);
   border-radius: 0;
-  background: rgba(15, 28, 48, 0.82);
-  color: rgba(244, 239, 230, 0.96);
-  padding: 0.48rem 0.86rem;
+  background: #eef1f4;
+  color: #2f3b47;
+  padding: 0.4rem 0.86rem;
 }
 
 .header-search-input::placeholder {
-  color: rgba(191, 203, 225, 0.72);
+  color: #7a8693;
 }
 
 .header-search-input:focus-visible {
@@ -205,8 +216,8 @@ main,
   padding: 0 0.84rem;
   border: 0;
   border-radius: 0;
-  background: linear-gradient(135deg, #c9863f, #f0bd75);
-  color: #07111f;
+  background: #797152;
+  color: #ffffff;
   font-size: 0.86rem;
   font-weight: 800;
   cursor: pointer;
@@ -219,6 +230,698 @@ main,
   box-shadow: 0 10px 24px rgba(211, 154, 82, 0.22);
   filter: brightness(1.04);
   outline: none;
+}
+
+.header-utility {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.header-account-btn,
+.header-settings-btn,
+.header-lang-pill {
+  min-width: 34px;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(184, 200, 220, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #f3f6fb;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
+}
+
+.header-account-btn.is-authenticated {
+  border-color: rgba(184, 200, 220, 0.34);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.header-account-btn:hover,
+.header-account-btn:focus-visible,
+.header-settings-btn:hover,
+.header-settings-btn:focus-visible,
+.header-lang-pill:hover,
+.header-lang-pill:focus-visible {
+  border-color: rgba(184, 200, 220, 0.32);
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.header-settings-btn {
+  position: relative;
+}
+
+.header-settings-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  padding: 0.32rem 0.5rem;
+  border: 1px solid rgba(184, 200, 220, 0.2);
+  background: #ffffff;
+  color: #2f3b47;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-2px);
+  pointer-events: none;
+  box-shadow: 0 10px 24px rgba(16, 24, 38, 0.12);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.header-settings-btn:hover::after,
+.header-settings-btn:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-account-btn svg,
+.header-settings-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.header-settings-btn img {
+  width: 18px;
+  height: 18px;
+  display: block;
+  object-fit: contain;
+}
+
+.header-lang-pill {
+  padding-inline: 0.62rem;
+  color: #dce3ec;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(34, 44, 58, 0.18);
+  backdrop-filter: blur(4px);
+}
+
+.auth-overlay[hidden] {
+  display: none;
+}
+
+.auth-dialog {
+  position: relative;
+  width: min(100%, 360px);
+  border: 1px solid #dce3ea;
+  border-radius: 0;
+  background: #ffffff;
+  box-shadow: 0 26px 60px rgba(31, 42, 54, 0.18);
+  padding: 14px;
+}
+
+.auth-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d9e0e8;
+  border-radius: 0;
+  background: #ffffff;
+  color: #6b7684;
+  cursor: pointer;
+}
+
+.auth-close-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 34px;
+  border: 1px solid #dfe5ec;
+  background: #f7f8fa;
+}
+
+.auth-tab {
+  min-height: 34px;
+  border: 0;
+  border-right: 1px solid #dfe5ec;
+  background: transparent;
+  color: #6c7684;
+  font-size: 0.98rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.auth-tab:last-child {
+  border-right: 0;
+}
+
+.auth-tab.is-active {
+  background: #ffffff;
+  color: #3f6675;
+  box-shadow: inset 0 0 0 1px #dfe5ec;
+}
+
+.auth-panel {
+  padding-top: 14px;
+}
+
+.auth-panel[hidden] {
+  display: none;
+}
+
+.auth-form {
+  display: grid;
+  gap: 12px;
+}
+
+.auth-field {
+  display: grid;
+  gap: 6px;
+}
+
+.auth-field span {
+  color: #45505d;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.auth-field input {
+  min-height: 34px;
+  border: 1px solid #dfe5ec;
+  border-radius: 0;
+  background: #ffffff;
+  color: #273140;
+  padding: 0.48rem 0.7rem;
+}
+
+.auth-field input:focus-visible {
+  border-color: #3b68e0;
+  box-shadow: inset 0 0 0 1px #3b68e0;
+  outline: none;
+}
+
+.auth-input-wrap {
+  position: relative;
+}
+
+.auth-input-wrap input {
+  width: 100%;
+  padding-right: 38px;
+}
+
+.auth-input-side,
+.auth-eye-btn {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #738197;
+}
+
+.auth-input-side svg,
+.auth-eye-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.auth-eye-btn {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.auth-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.auth-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  color: #5c6775;
+  font-size: 0.92rem;
+}
+
+.auth-check input {
+  width: 14px;
+  height: 14px;
+  accent-color: #55706e;
+}
+
+.auth-check-stack {
+  align-items: start;
+}
+
+.auth-link-btn {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #537381;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.auth-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.auth-status {
+  margin: -0.1rem 0 0;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.auth-status.is-error {
+  color: #b4493e;
+}
+
+.auth-status.is-success {
+  color: #2f6c4d;
+}
+
+.auth-submit-btn {
+  min-width: 92px;
+  min-height: 36px;
+  padding: 0 0.95rem;
+  border: 0;
+  border-radius: 12px;
+  background: #163862;
+  color: #ffffff;
+  font-size: 0.94rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-submit-btn:hover,
+.auth-submit-btn:focus-visible {
+  filter: brightness(1.05);
+  outline: none;
+}
+
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1450;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(34, 44, 58, 0.18);
+  backdrop-filter: blur(4px);
+}
+
+.settings-overlay[hidden] {
+  display: none;
+}
+
+.settings-dialog {
+  position: relative;
+  width: min(100%, 950px);
+  border: 1px solid #dce3ea;
+  background: #ffffff;
+  box-shadow: 0 28px 64px rgba(31, 42, 54, 0.18);
+  padding: 28px 28px 20px;
+}
+
+.settings-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d9e0e8;
+  background: #ffffff;
+  color: #6b7684;
+  cursor: pointer;
+}
+
+.settings-close-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.settings-breadcrumb {
+  margin: 0 0 16px;
+  color: #596471;
+  font-size: 0.9rem;
+}
+
+.settings-shell {
+  display: grid;
+  grid-template-columns: 216px minmax(0, 1fr);
+  gap: 0;
+  border: 1px solid #e2e7ed;
+  background: #ffffff;
+}
+
+.settings-sidebar {
+  display: grid;
+  align-content: start;
+  gap: 0;
+  border-right: 1px solid #e2e7ed;
+  background: #fbfcfd;
+  padding: 0;
+}
+
+.settings-nav-item {
+  width: 100%;
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.82rem 0.95rem;
+  border: 0;
+  border-bottom: 1px solid #edf1f5;
+  background: transparent;
+  color: #2f3b47;
+  text-align: left;
+  cursor: pointer;
+}
+
+.settings-nav-item.is-active {
+  background: #f4f6f8;
+}
+
+.settings-nav-item:hover,
+.settings-nav-item:focus-visible {
+  background: #f7f9fc;
+  outline: none;
+}
+
+.settings-nav-icon,
+.settings-nav-arrow {
+  color: #4b5561;
+}
+
+.settings-nav-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: currentColor;
+}
+
+.settings-nav-label {
+  font-size: 0.96rem;
+  font-weight: 500;
+}
+
+.settings-nav-arrow {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.settings-sidebar-action {
+  margin: 14px 12px 12px;
+  min-height: 38px;
+  border: 0;
+  border-radius: 12px;
+  background: #7b8078;
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.settings-content {
+  padding: 0;
+  background: #ffffff;
+}
+
+.settings-panel {
+  padding: 12px 12px 16px;
+}
+
+.settings-panel[data-settings-panel="account"] {
+  background: #fefbf6;
+}
+
+.settings-panel[data-settings-panel="password"] {
+  background: #fefbf6;
+}
+
+.settings-panel[data-settings-panel="feedback"] {
+  background: #fefbf6;
+}
+
+.settings-panel[data-settings-panel="birth"] {
+  background: #fefbf6;
+}
+
+.settings-panel[hidden] {
+  display: none;
+}
+
+.settings-panel-head {
+  margin-bottom: 10px;
+}
+
+.settings-panel-head h2 {
+  margin: 0;
+  color: #2f3b47;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.settings-panel-head p {
+  margin: 0.2rem 0 0;
+  color: #78818b;
+  font-size: 0.88rem;
+}
+
+.settings-form {
+  display: grid;
+  gap: 10px;
+}
+
+.settings-birth-form {
+  gap: 12px;
+}
+
+.settings-birth-profile {
+  gap: 0.8rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.settings-birth-head {
+  padding: 0 0 0.2rem;
+}
+
+.settings-birth-helper {
+  margin-top: -0.1rem;
+}
+
+.settings-birth-coordinates {
+  margin-top: 0.05rem;
+}
+
+.settings-birth-location-grid {
+  margin-top: 0.1rem;
+}
+
+.settings-birth-profile .tool-field {
+  gap: 0.42rem;
+}
+
+.settings-birth-profile .tool-field span {
+  color: #596471;
+  font-size: 0.84rem;
+}
+
+.settings-birth-profile .tool-field input,
+.settings-birth-profile .tool-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.7rem 0.82rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #2f3b47;
+}
+
+.settings-birth-profile .tool-field input::placeholder {
+  color: #8a939d;
+}
+
+.settings-birth-profile .tool-field input:focus-visible,
+.settings-birth-profile .tool-field select:focus-visible {
+  border-color: #9eb3cb;
+  box-shadow: 0 0 0 2px rgba(184, 200, 220, 0.18);
+  outline: none;
+}
+
+.settings-birth-profile .tool-field input:disabled,
+.settings-birth-profile .tool-field select:disabled {
+  background: #eff2f6;
+  color: #7d8792;
+  cursor: not-allowed;
+}
+
+.settings-birth-checkline {
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #2f3b47;
+  box-shadow: none;
+  margin-top: 0.45rem;
+}
+
+.settings-birth-profile .settings-birth-checkline {
+  background: #ffffff;
+}
+
+.settings-birth-date-grid {
+  grid-template-columns: 72px 108px 84px 74px 84px;
+}
+
+.settings-field {
+  display: grid;
+  gap: 5px;
+}
+
+.settings-field span {
+  color: #596471;
+  font-size: 0.9rem;
+}
+
+.settings-field input,
+.settings-field select,
+.settings-field textarea {
+  width: 100%;
+  min-height: 36px;
+  border: 1px solid #d8dfe7;
+  background: #ffffff;
+  color: #2f3b47;
+  padding: 0.52rem 0.7rem;
+}
+
+.settings-field textarea {
+  min-height: 118px;
+  resize: vertical;
+}
+
+.settings-field input::placeholder,
+.settings-field textarea::placeholder {
+  color: #8a939d;
+}
+
+.settings-field input:focus-visible,
+.settings-field select:focus-visible,
+.settings-field textarea:focus-visible {
+  border-color: #b8c8dc;
+  outline: none;
+}
+
+.settings-status-note {
+  margin: 0.15rem 0 0;
+  color: #4d7a55;
+  font-size: 0.9rem;
+}
+
+.settings-status-note.is-warning,
+.settings-status-note.is-error {
+  color: #c05a54;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.settings-primary-btn {
+  min-width: 96px;
+  min-height: 38px;
+  border: 0;
+  border-radius: 12px;
+  background: #7b8078;
+  color: #ffffff;
+  font-size: 0.94rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.settings-primary-btn:hover,
+.settings-primary-btn:focus-visible,
+.settings-wide-btn:hover,
+.settings-wide-btn:focus-visible,
+.settings-sidebar-action:hover,
+.settings-sidebar-action:focus-visible {
+  filter: brightness(1.04);
+  outline: none;
+}
+
+.settings-offset-btn {
+  margin-top: -6px;
+}
+
+.settings-wide-btn {
+  width: min(100%, 410px);
+  min-height: 36px;
+  justify-self: start;
+  border: 1px solid #d8dfe7;
+  background: #ffffff;
+  color: #4c5560;
+  font-size: 0.96rem;
+  cursor: pointer;
+}
+
+.settings-email-btn {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: #7b8078;
+  color: #ffffff;
+  justify-self: stretch;
+}
+
+.settings-phone-row {
+  display: grid;
+  grid-template-columns: 60px 70px minmax(0, 1fr);
+  gap: 6px;
+}
+
+.settings-phone-code input,
+.settings-phone-area input {
+  text-align: center;
+}
+
+body.auth-open {
+  overflow: hidden;
 }
 
 .hero {
@@ -397,6 +1100,17 @@ h3 {
   outline: none;
 }
 
+.home-page .top-city-card {
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.home-page .top-city-card:hover,
+.home-page .top-city-card:focus-visible {
+  background: #ffffff;
+  box-shadow: 0 18px 34px rgba(18, 26, 38, 0.12);
+}
+
 .top-city-content {
   display: grid;
   gap: 0.35rem;
@@ -411,6 +1125,21 @@ h3 {
 .top-city-population {
   font-size: 0.9rem;
   color: var(--muted);
+}
+
+.home-page .top-city-kicker,
+.home-page .preview-label {
+  color: #5d6672;
+}
+
+.home-page .top-city-name,
+.home-page .preview-card h3 {
+  color: #2f3b47;
+}
+
+.home-page .top-city-population,
+.home-page .preview-card p:last-child {
+  color: #5d6672;
 }
 
 .empty-state {
@@ -433,6 +1162,10 @@ h3 {
   padding: 1rem;
   background: var(--paper-strong);
   box-shadow: var(--shadow);
+}
+
+.home-page .preview-card {
+  background: #ffffff;
 }
 
 .preview-card h3 {
@@ -459,7 +1192,7 @@ h3 {
 }
 
 .tool-page .global-header-band {
-  padding-top: 0.72rem;
+  padding-top: calc(76px + 0.48rem + 0.7rem);
 }
 
 .tool-main {
@@ -547,6 +1280,7 @@ h3 {
 }
 
 .birth-layout {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   align-items: start;
 }
 
@@ -560,18 +1294,45 @@ h3 {
 }
 
 .tool-result-card {
-  background: var(--paper-strong);
+  background: linear-gradient(180deg, #fefbf7, #f7f1e8);
 }
 
 .birth-form-card {
+  order: 1;
   background:
-    linear-gradient(180deg, rgba(10, 20, 35, 0.84), rgba(10, 20, 35, 0.92)),
+    linear-gradient(180deg, rgba(254, 251, 247, 0.98), rgba(247, 241, 232, 0.98)),
     radial-gradient(circle at top left, rgba(79, 134, 255, 0.08), transparent 30%);
 }
 
-.birth-results-column {
-  display: grid;
-  gap: 0.8rem;
+.birth-chart-page .tool-field input,
+.birth-chart-page .tool-field select {
+  border-color: rgba(29, 37, 48, 0.14);
+  background: #ffffff;
+  color: #3d4650;
+}
+
+.birth-chart-page .tool-field input::placeholder {
+  color: #7d8792;
+}
+
+.birth-chart-page .tool-field input:disabled,
+.birth-chart-page .tool-field select:disabled {
+  background: #f5f6f8;
+  color: #8a929c;
+}
+
+.birth-summary-column {
+  order: 2;
+  min-width: 0;
+}
+
+.birth-layout-wide {
+  order: 3;
+  grid-column: 1 / -1;
+}
+
+.birth-chart-page .tool-result-card {
+  padding: 0.6rem;
 }
 
 .birth-result-card {
@@ -580,7 +1341,7 @@ h3 {
 
 .birth-side-card {
   background:
-    linear-gradient(180deg, rgba(12, 24, 41, 0.94), rgba(9, 18, 31, 0.98)),
+    linear-gradient(180deg, rgba(254, 251, 247, 0.98), rgba(247, 241, 232, 0.98)),
     radial-gradient(circle at bottom right, rgba(211, 154, 82, 0.07), transparent 30%);
 }
 
@@ -593,9 +1354,9 @@ h3 {
 .birth-side-list p {
   margin: 0;
   padding: 0.85rem 0.92rem;
-  border: 1px solid rgba(233, 202, 151, 0.14);
+  border: 1px solid #b8c8dc;
   border-radius: 0;
-  background: rgba(14, 27, 46, 0.58);
+  background: rgba(255, 255, 255, 0.7);
   color: var(--muted);
   font-size: 0.9rem;
 }
@@ -608,6 +1369,18 @@ h3 {
   font-size: clamp(1.7rem, 2.8vw, 2.25rem);
 }
 
+.birth-chart-page .tool-result-card .tool-card-head {
+  margin-bottom: 0.55rem;
+}
+
+.birth-chart-page .tool-result-card .tool-card-head h2 {
+  font-size: clamp(1.28rem, 2.2vw, 1.55rem);
+}
+
+.birth-chart-page .birth-form-card .tool-card-head h2 {
+  font-size: clamp(1.28rem, 2.2vw, 1.55rem);
+}
+
 .tool-form {
   display: grid;
   gap: 1rem;
@@ -617,6 +1390,10 @@ h3 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.72rem;
+}
+
+.tool-form-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .tool-field {
@@ -654,6 +1431,10 @@ h3 {
   flex-wrap: wrap;
 }
 
+.birth-chart-page .tool-actions {
+  justify-content: flex-end;
+}
+
 .tool-button {
   min-height: 42px;
   padding: 0 1rem;
@@ -674,6 +1455,14 @@ h3 {
   outline: none;
 }
 
+.birth-chart-page .tool-button {
+  min-height: 36px;
+  padding: 0 0.84rem;
+  background: #797152;
+  color: #ffffff;
+  font-size: 0.86rem;
+}
+
 .tool-link {
   color: var(--accent-strong);
   font-size: 0.92rem;
@@ -691,22 +1480,93 @@ h3 {
   font-size: 0.88rem;
 }
 
+.tool-helper {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.tool-status {
+  padding: 0.9rem 1rem;
+  border: 1px dashed rgba(226, 236, 255, 0.14);
+  border-radius: 0;
+  background: rgba(10, 20, 35, 0.48);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.tool-status.other-error {
+  color: #ff9a87;
+  border-color: rgba(255, 154, 135, 0.32);
+  background: rgba(76, 19, 18, 0.28);
+}
+
 .result-stack {
   display: grid;
   gap: 0.8rem;
 }
 
+.saved-birth-override-card {
+  margin-top: 0.9rem;
+  display: grid;
+  justify-items: start;
+  gap: 0.55rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.saved-birth-override-copy {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.saved-birth-override-copy p {
+  margin: 0;
+  color: #2f3b47;
+  font-size: 0.88rem;
+  font-weight: 400;
+}
+
+.saved-birth-override-btn {
+  min-height: 38px;
+  padding: 0 0.95rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #2f3b47;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.saved-birth-override-btn:hover,
+.saved-birth-override-btn:focus-visible {
+  background: #f7f9fc;
+  outline: none;
+}
+
+.birth-chart-page .saved-birth-override-btn,
+.rising-page .saved-birth-override-btn,
+.sun-sign-page .saved-birth-override-btn,
+.moon-sign-page .saved-birth-override-btn {
+  border: 0;
+  background: #797152;
+  color: #ffffff;
+  font-size: 0.86rem;
+}
+
 .result-hero,
 .result-note-card {
   padding: 0.95rem;
-  border: 1px solid rgba(226, 236, 255, 0.12);
+  border: 1px solid #b8c8dc;
   border-radius: 0;
-  background: rgba(9, 18, 31, 0.78);
+  background: rgba(254, 251, 247, 0.96);
 }
 
 .result-hero h3,
 .result-note-card h4 {
   margin-top: 0.35rem;
+  color: #2f3b47;
 }
 
 .result-hero p:last-child,
@@ -715,17 +1575,28 @@ h3 {
   color: var(--muted);
 }
 
+.result-hero .preview-label {
+  color: #5d6672;
+}
+
 .result-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.7rem;
 }
 
+.birth-chart-page .result-grid,
+.birth-chart-page .birth-chart-planet-grid,
+.birth-chart-page .birth-chart-house-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.42rem;
+}
+
 .result-item {
   padding: 0.88rem 0.92rem;
-  border: 1px solid rgba(233, 202, 151, 0.14);
+  border: 1px solid #b8c8dc;
   border-radius: 0;
-  background: rgba(14, 27, 46, 0.72);
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .result-item p,
@@ -738,14 +1609,305 @@ h3 {
 .result-item strong {
   display: block;
   margin: 0.22rem 0;
-  color: #fff8ef;
+  color: #2f3b47;
   font-size: 1.15rem;
+}
+
+.birth-chart-page .result-item,
+.birth-chart-page .other-result-card {
+  background: #f3eeeb;
+  padding: 0.52rem 0.56rem;
+}
+
+.birth-summary-panel {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.birth-summary-inline {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.birth-summary-point p {
+  margin: 0;
+  color: #4a525c;
+  font-size: 0.72rem;
+}
+
+.birth-summary-point strong {
+  display: block;
+  margin-top: 0.14rem;
+  color: #2f3740;
+  font-size: 0.92rem;
+  line-height: 1.2;
+}
+
+.birth-summary-copy {
+  padding-top: 0.7rem;
+  border-top: 1px solid #b8c8dc;
+}
+
+.birth-solar-card {
+  padding: 0.72rem;
+}
+
+.birth-solar-wheel-shell {
+  position: relative;
+  margin-top: 0;
+  overflow: visible;
+}
+
+.birth-solar-wheel-shell svg {
+  display: block;
+  width: min(150%, 1572px);
+  max-width: 1572px;
+  margin-inline: auto;
+}
+
+.birth-solar-analysis-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.birth-personal-planets-block {
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+}
+
+.birth-personal-planets-head {
+  padding: 0.72rem 0.9rem;
+  border-bottom: 1px solid #d7e1ec;
+  background: #f4f6f8;
+}
+
+.birth-personal-planets-head h3 {
+  margin: 0;
+  color: #2f3b47;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.birth-personal-planets-table-wrap {
+  overflow-x: auto;
+}
+
+.birth-personal-planets-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  color: #35414d;
+}
+
+.birth-personal-planets-table th,
+.birth-personal-planets-table td {
+  padding: 0.72rem 0.9rem;
+  border-bottom: 1px solid #d7e1ec;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.birth-personal-planets-table th {
+  color: #66717d;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  background: #fbfcfd;
+}
+
+.birth-personal-planets-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.birth-personal-planet-name,
+.birth-personal-sign-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.birth-personal-planet-glyph,
+.birth-personal-sign-glyph {
+  color: #797152;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.birth-solar-analysis-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  gap: 1rem;
+  align-items: end;
+}
+
+.birth-solar-side-block {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.birth-solar-legend {
+  display: grid;
+  justify-self: start;
+  justify-content: start;
+  width: max-content;
+  max-width: 100%;
+  gap: 0.16rem;
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+}
+
+.birth-solar-body-list {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+}
+
+.birth-solar-body-head,
+.birth-solar-body-row {
+  display: grid;
+  grid-template-columns: 28px 92px 28px 110px 28px;
+  column-gap: 0;
+  row-gap: 0.45rem;
+  align-items: center;
+}
+
+.birth-solar-body-head {
+  color: #6a7480;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0 0.5rem;
+  border-bottom: 1px solid #b8c8dc;
+  background: #f4f6f8;
+}
+
+.birth-solar-body-head span:last-child {
+  text-align: right;
+}
+
+.birth-solar-body-row {
+  padding: 0 0.5rem;
+  border-bottom: 1px solid #d7e1ec;
+  background: #ffffff;
+  color: #5d6672;
+  font-size: 0.82rem;
+}
+
+.birth-solar-body-row:last-child {
+  border-bottom: 0;
+}
+
+.birth-solar-body-head span,
+.birth-solar-body-row span {
+  min-height: 100%;
+}
+
+.birth-solar-body-head span:not(:last-child),
+.birth-solar-body-row span:not(:last-child) {
+  padding-right: 0.32rem;
+  border-right: 1px solid #d7e1ec;
+}
+
+.birth-solar-body-head span:not(:first-child),
+.birth-solar-body-row span:not(:first-child) {
+  padding-left: 0.32rem;
+}
+
+.birth-solar-body-glyph {
+  color: #2f3b47;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.birth-solar-sign-glyph {
+  color: #4a5664;
+  font-size: 0.96rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.birth-solar-body-name,
+.birth-solar-body-value,
+.birth-solar-body-house {
+  color: #4a525c;
+}
+
+.birth-solar-body-value,
+.birth-solar-body-house {
+  font-weight: 600;
+}
+
+.birth-solar-body-house {
+  display: block;
+  width: 28px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.birth-solar-position-table th,
+.birth-solar-position-table td {
+  text-align: left;
+}
+
+.birth-chart-page .result-item p,
+.birth-chart-page .result-item span,
+.birth-chart-page .other-result-label {
+  color: #4a525c;
+  font-size: 0.72rem;
+}
+
+.birth-chart-page .result-item strong,
+.birth-chart-page .other-result-value {
+  color: #2f3740;
+  margin-top: 0.14rem;
+  font-size: 0.92rem;
+  line-height: 1.2;
 }
 
 .birth-chart-page .result-hero {
   background:
-    linear-gradient(180deg, rgba(14, 27, 46, 0.84), rgba(9, 18, 31, 0.92)),
+    linear-gradient(180deg, rgba(254, 251, 247, 0.98), rgba(247, 241, 232, 0.98)),
     radial-gradient(circle at top right, rgba(211, 154, 82, 0.08), transparent 34%);
+}
+
+.birth-chart-planet-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.birth-chart-house-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.other-result-card {
+  padding: 0.88rem 0.92rem;
+  border: 1px solid #b8c8dc;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.other-result-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.other-result-value {
+  display: block;
+  margin: 0.22rem 0 0;
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.34;
 }
 
 .result-inline-meta {
@@ -755,6 +1917,7 @@ h3 {
   flex-wrap: wrap;
   margin-top: 0.8rem;
   font-size: 0.84rem;
+  color: #5d6672;
 }
 
 .phase-list {
@@ -837,9 +2000,9 @@ h3 {
 .ephemeris-archive-link {
   min-height: 38px;
   padding: 0.52rem 0.72rem;
-  border: 1px solid rgba(233, 202, 151, 0.18);
-  background: rgba(10, 20, 35, 0.68);
-  color: var(--muted);
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #4a5560;
   cursor: pointer;
 }
 
@@ -849,13 +2012,14 @@ h3 {
 .ephemeris-month-link:focus-visible,
 .ephemeris-archive-link:hover,
 .ephemeris-archive-link:focus-visible {
-  border-color: var(--line-strong);
-  color: #fff8ef;
+  border-color: #9cb2ca;
+  color: #1f2a36;
+  background: #f7f9fc;
   outline: none;
 }
 
 .ephemeris-year-current {
-  color: #fff8ef;
+  color: #4a5560;
   font-size: 1.1rem;
   font-weight: 800;
 }
@@ -865,13 +2029,14 @@ h3 {
   flex-wrap: wrap;
   gap: 0.48rem;
   align-items: center;
+  padding-bottom: 0.85rem;
 }
 
 .ephemeris-month-link.is-active,
 .ephemeris-archive-link.is-active {
-  border-color: var(--line-strong);
-  background: rgba(24, 38, 60, 0.94);
-  color: #fff8ef;
+  border-color: #9cb2ca;
+  background: #eef3f8;
+  color: #1f2a36;
 }
 
 .ephemeris-inline-form,
@@ -884,23 +2049,53 @@ h3 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.ephemeris-inline-primary {
+  grid-template-columns: repeat(3, minmax(0, 168px));
+  justify-content: start;
+  align-items: end;
+  padding-bottom: 0.9rem;
+}
+
+.ephemeris-inline-secondary {
+  grid-template-columns: minmax(0, 132px);
+  justify-content: start;
+}
+
+.ephemeris-compact-field {
+  gap: 0.28rem;
+}
+
+.ephemeris-compact-field span {
+  font-size: 0.74rem;
+  color: #4f5c69;
+}
+
+.ephemeris-compact-field select {
+  min-height: 34px;
+  padding: 0.34rem 0.5rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #263341;
+  font-size: 0.78rem;
+}
+
 .ephemeris-table-wrap {
   overflow-x: auto;
-  border: 1px solid rgba(233, 202, 151, 0.14);
-  background: rgba(10, 20, 35, 0.58);
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
 }
 
 .ephemeris-table {
   width: 100%;
-  min-width: 1280px;
+  min-width: 1080px;
   border-collapse: collapse;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
 }
 
 .ephemeris-table th,
 .ephemeris-table td {
-  padding: 0.58rem 0.48rem;
-  border-bottom: 1px solid rgba(226, 236, 255, 0.08);
+  padding: 0.42rem 0.28rem;
+  border-bottom: 1px solid rgba(184, 200, 220, 0.6);
   text-align: center;
   white-space: nowrap;
 }
@@ -908,37 +2103,54 @@ h3 {
 .ephemeris-table th {
   position: sticky;
   top: 0;
-  background: rgba(8, 17, 29, 0.96);
-  color: #fff8ef;
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
+  background: #e6ebf1;
+  color: #344150;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   z-index: 2;
 }
 
 .ephemeris-table td {
   color: var(--muted);
+  background: #ffffff;
 }
 
 .ephemeris-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: #f7f9fc;
 }
 
 .ephemeris-reference-table thead tr:first-child th {
   top: 0;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
 }
 
 .ephemeris-reference-table thead tr:nth-child(2) th {
-  top: 46px;
+  top: 25px;
+}
+
+.ephemeris-reference-table thead th {
+  border-right: 1px solid #b8c8dc;
+  border-bottom: 1px solid #b8c8dc;
+}
+
+.ephemeris-reference-table thead th:first-child {
+  border-left: 1px solid #b8c8dc;
+}
+
+.ephemeris-reference-table thead tr:first-child th {
+  border-top: 1px solid #b8c8dc;
 }
 
 .ephemeris-reference-table th span {
   display: block;
-  margin-top: 0.22rem;
-  font-size: 0.66rem;
+  margin-top: 0;
+  line-height: 1.05;
+  font-size: 0.58rem;
   letter-spacing: 0;
   text-transform: none;
-  color: rgba(244, 239, 230, 0.72);
+  color: #5f6975;
 }
 
 .ephemeris-day-cell {
@@ -946,51 +2158,54 @@ h3 {
 }
 
 .ephemeris-day-cell strong {
-  color: #fff8ef;
+  color: #4a5560;
 }
 
 .ephemeris-pos {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.24rem;
   justify-content: center;
 }
 
 .ephemeris-pos.is-gray .ephemeris-sign-chip {
-  background: rgba(187, 197, 212, 0.18);
-  color: rgba(244, 239, 230, 0.78);
+  background: transparent;
+}
+
+.ephemeris-pos.is-gray .ephemeris-sign-icon {
+  filter: grayscale(1) saturate(0.2) brightness(0.94);
+  opacity: 0.9;
 }
 
 .ephemeris-sign-chip {
-  min-width: 40px;
-  padding: 0.18rem 0.34rem;
-  border: 1px solid rgba(233, 202, 151, 0.18);
+  width: 20px;
+  height: 20px;
+  padding: 0.04rem;
+  border: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: #07111f;
   font-size: 0.69rem;
   font-weight: 800;
 }
 
-.ephemeris-sign-0 { background: #f0b15d; }
-.ephemeris-sign-1 { background: #d5c17f; }
-.ephemeris-sign-2 { background: #a8d1e8; }
-.ephemeris-sign-3 { background: #9ec5d8; }
-.ephemeris-sign-4 { background: #ee9b57; }
-.ephemeris-sign-5 { background: #a8c892; }
-.ephemeris-sign-6 { background: #c6b9dd; }
-.ephemeris-sign-7 { background: #7ea7bd; }
-.ephemeris-sign-8 { background: #d29b67; }
-.ephemeris-sign-9 { background: #9fb88f; }
-.ephemeris-sign-10 { background: #8bb3cf; }
-.ephemeris-sign-11 { background: #8fc4c0; }
+.ephemeris-sign-icon {
+  width: 12px;
+  height: 12px;
+  display: block;
+  object-fit: contain;
+}
 
 .ephemeris-pos-value {
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
 }
 
 .ephemeris-chart-link {
   color: var(--accent-strong);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
 }
 
 .ephemeris-chart-link:hover,
@@ -1006,9 +2221,32 @@ h3 {
 }
 
 .ephemeris-year-archive {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
   gap: 0.45rem;
+}
+
+.ephemeris-year-archive .ephemeris-archive-link {
+  width: 100%;
+  min-width: 0;
+  padding: 0.48rem 0.4rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #4a5560;
+  text-align: center;
+}
+
+.ephemeris-year-archive .ephemeris-archive-link:hover,
+.ephemeris-year-archive .ephemeris-archive-link:focus-visible {
+  border-color: #9cb2ca;
+  background: #f7f9fc;
+  color: #1f2a36;
+}
+
+.ephemeris-year-archive .ephemeris-archive-link.is-active {
+  border-color: #9cb2ca;
+  background: #eef3f8;
+  color: #1f2a36;
 }
 
 .tool-main-extended {
@@ -1249,6 +2487,1229 @@ h3 {
   outline: none;
 }
 
+.compatibility-page .tool-field input,
+.compatibility-page .tool-field select {
+  border-color: rgba(29, 37, 48, 0.14);
+  background: #ffffff;
+  color: #2f3b47;
+}
+
+.compatibility-page .tool-field input::placeholder {
+  color: #7d8792;
+}
+
+.compatibility-page .seek-checkline {
+  border-color: #b8c8dc;
+  background: #ffffff;
+  color: #2f3b47;
+}
+
+.compatibility-page .result-item {
+  background: #ffffff;
+}
+
+.compatibility-page .result-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.42rem;
+}
+
+.compatibility-page .result-item p,
+.compatibility-page .result-item span {
+  color: #5d6672;
+  font-size: 0.72rem;
+}
+
+.compatibility-page .result-item strong {
+  color: #2f3b47;
+  font-size: 0.84rem;
+}
+
+.compatibility-page .result-grid .result-item {
+  padding: 0.64rem 0.58rem;
+}
+
+.compatibility-page .seek-section-head {
+  align-items: start;
+}
+
+.compatibility-page .seek-section-head > div {
+  display: grid;
+  gap: 0.22rem;
+}
+
+.compatibility-page .seek-section-head > div p {
+  max-width: none;
+  text-align: left;
+}
+
+.compatibility-page .seek-sidebar-card {
+  background: #ffffff;
+}
+
+.compatibility-page .seek-sidebar-card h3,
+.compatibility-page .seek-sidebar-card .section-kicker {
+  color: #2f3b47;
+}
+
+.compatibility-page .seek-sidebar-list span,
+.compatibility-page .seek-sidebar-list a {
+  border-color: #b8c8dc;
+  background: #ffffff;
+  color: #5d6672;
+}
+
+.compatibility-page .seek-sidebar-list a:hover,
+.compatibility-page .seek-sidebar-list a:focus-visible {
+  color: #2f3b47;
+  border-color: #9cb2ca;
+  background: #f7f9fc;
+}
+
+.compatibility-page .seek-layout {
+  grid-template-columns: 1fr;
+}
+
+.compatibility-page-heading {
+  margin: 0 0 -0.15rem;
+}
+
+.compatibility-page-heading h1 {
+  margin: 0;
+  color: #2f3b47;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.compatibility-result-heading {
+  margin: 0 0 -0.15rem;
+}
+
+.compatibility-result-heading h2 {
+  margin: 0;
+  color: #2f3b47;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.nodes-page-heading {
+  margin: 0 0 -0.15rem;
+}
+
+.nodes-page-heading h1 {
+  margin: 0;
+  color: #2f3b47;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.nodes-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.nodes-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.nodes-page .tool-field input,
+.nodes-page .tool-field select {
+  border-color: rgba(29, 37, 48, 0.14);
+  background: #ffffff;
+  color: #2f3b47;
+}
+
+.nodes-result-card {
+  min-width: 0;
+  background:
+    linear-gradient(180deg, rgba(254, 251, 247, 0.98), rgba(247, 241, 232, 0.98)),
+    radial-gradient(circle at top right, rgba(211, 154, 82, 0.06), transparent 36%);
+}
+
+.nodes-result-heading {
+  margin: 0 0 0.85rem;
+}
+
+.nodes-result-heading h2 {
+  margin: 0;
+  color: #2f3b47;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.nodes-summary-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.nodes-phase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.nodes-reference-card {
+  background:
+    linear-gradient(180deg, rgba(254, 251, 247, 0.98), rgba(247, 241, 232, 0.98)),
+    radial-gradient(circle at top right, rgba(211, 154, 82, 0.05), transparent 32%);
+}
+
+.nodes-reference-wrap {
+  overflow-x: auto;
+}
+
+.nodes-reference-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.nodes-reference-table th,
+.nodes-reference-table td {
+  padding: 0.68rem 0.72rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #5d6672;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.nodes-reference-table th {
+  background: #f4f6f8;
+  color: #2f3b47;
+  font-weight: 700;
+}
+
+.nodes-reference-table tbody tr.is-current td {
+  background: #f7f1e8;
+  color: #2f3b47;
+  font-weight: 700;
+}
+
+.nodes-reference-table tbody tr:hover td {
+  background: #f7f9fc;
+}
+
+.sun-sign-page-heading {
+  margin: 0 0 -0.15rem;
+}
+
+.sun-sign-page-heading h1 {
+  margin: 0;
+  color: #2f3b47;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.sun-sign-shell {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.sun-sign-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.sun-sign-page .tool-field input,
+.sun-sign-page .tool-field select,
+.moon-sign-page .tool-field input,
+.moon-sign-page .tool-field select {
+  border-color: rgba(29, 37, 48, 0.14);
+  background: #ffffff;
+  color: #2f3b47;
+}
+
+.sun-sign-page .seek-checkline,
+.moon-sign-page .seek-checkline {
+  border-color: #b8c8dc;
+  background: #ffffff;
+  color: #2f3b47;
+}
+
+.sun-sign-inline-check {
+  min-height: 42px;
+}
+
+.sun-sign-page .tool-actions,
+.moon-sign-page .tool-actions {
+  justify-content: flex-end;
+}
+
+.sun-sign-page .tool-button,
+.moon-sign-page .tool-button {
+  min-height: 36px;
+  padding: 0 0.84rem;
+  background: #797152;
+  color: #ffffff;
+  font-size: 0.86rem;
+}
+
+.sun-sign-form-card,
+.sun-sign-result-card,
+.sun-sign-reference-card {
+  background:
+    linear-gradient(180deg, rgba(254, 251, 247, 0.98), rgba(247, 241, 232, 0.98)),
+    radial-gradient(circle at top right, rgba(211, 154, 82, 0.06), transparent 36%);
+}
+
+.sun-sign-form-card {
+  order: 1;
+}
+
+.sun-sign-result-card {
+  order: 2;
+}
+
+.sun-sign-form-card .tool-card-head h2,
+.sun-sign-result-card .tool-card-head h2 {
+  font-size: 1.45rem;
+  line-height: 1.05;
+}
+
+.sun-sign-result-card {
+  min-width: 0;
+}
+
+.sun-sign-result-heading {
+  margin: 0 0 0.85rem;
+}
+
+.sun-sign-result-heading h2 {
+  margin: 0;
+  color: #2f3b47;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.sun-sign-result-panel,
+.sun-sign-story-grid .result-note-card {
+  background: #ffffff;
+}
+
+.sun-sign-result-panel {
+  position: relative;
+  padding: 1.15rem 1rem 1rem;
+  border: 1px solid #d8dde4;
+}
+
+.sun-sign-result-copy p {
+  margin: 0 0 0.62rem;
+  color: #48525d;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.sun-sign-result-copy p strong {
+  color: #2f3b47;
+}
+
+.sun-sign-result-note {
+  margin-top: 0.85rem;
+}
+
+.sun-sign-story-grid .result-note-card p {
+  color: #5d6672;
+}
+
+.sun-sign-story-grid .result-note-card h4 {
+  color: #2f3b47;
+}
+
+.sun-sign-story-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.sun-sign-mini-grid .seek-mini-card {
+  border-color: #d9cfc5;
+  background: #f3eeeb;
+}
+
+.sun-sign-mini-grid .seek-mini-card strong {
+  color: #2f3b47;
+}
+
+.sun-sign-mini-grid .seek-mini-card span {
+  color: #5d6672;
+}
+
+.sun-sign-reference-wrap {
+  overflow-x: auto;
+}
+
+.sun-sign-reference-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.sun-sign-reference-table th,
+.sun-sign-reference-table td {
+  padding: 0.68rem 0.72rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #5d6672;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.sun-sign-reference-table th {
+  background: #f4f6f8;
+  color: #2f3b47;
+  font-weight: 700;
+}
+
+.sun-sign-reference-table tbody tr.is-current td {
+  background: #f7f1e8;
+  color: #2f3b47;
+  font-weight: 700;
+}
+
+.sun-sign-reference-table tbody tr:hover td {
+  background: #f7f9fc;
+}
+
+body[data-page="birth-chart-extended"] .tool-card,
+body[data-page="birth-chart-extended"] .tool-result-card,
+body[data-page="birth-chart-extended"] .seek-sidebar-card,
+body[data-page="birth-chart-extended"] .result-hero,
+body[data-page="birth-chart-extended"] .result-note-card,
+body[data-page="birth-chart-extended"] .seek-mini-card,
+body[data-page="birth-chart-extended"] .phase-item,
+body[data-page="birth-chart-extended"] .seek-checkline {
+  background: #ffffff;
+}
+
+body[data-page="birth-chart-extended"] .tool-card,
+body[data-page="birth-chart-extended"] .tool-result-card,
+body[data-page="birth-chart-extended"] .seek-sidebar-card,
+body[data-page="birth-chart-extended"] .result-hero,
+body[data-page="birth-chart-extended"] .result-note-card,
+body[data-page="birth-chart-extended"] .seek-mini-card,
+body[data-page="birth-chart-extended"] .phase-item {
+  border-color: #b8c8dc;
+}
+
+body[data-page="birth-chart-extended"] .tool-card-head h2,
+body[data-page="birth-chart-extended"] .seek-section-head h3,
+body[data-page="birth-chart-extended"] .seek-sidebar-card h3,
+body[data-page="birth-chart-extended"] .result-hero h3,
+body[data-page="birth-chart-extended"] .result-note-card h4,
+body[data-page="birth-chart-extended"] .seek-mini-card strong,
+body[data-page="birth-chart-extended"] .phase-item strong,
+body[data-page="birth-chart-extended"] .tool-link {
+  color: #2f3b47;
+}
+
+body[data-page="birth-chart-extended"] .section-kicker,
+body[data-page="birth-chart-extended"] .tool-note,
+body[data-page="birth-chart-extended"] .tool-helper,
+body[data-page="birth-chart-extended"] .tool-field span,
+body[data-page="birth-chart-extended"] .seek-section-head p,
+body[data-page="birth-chart-extended"] .result-hero p,
+body[data-page="birth-chart-extended"] .result-note-card p,
+body[data-page="birth-chart-extended"] .seek-mini-card span,
+body[data-page="birth-chart-extended"] .phase-item span,
+body[data-page="birth-chart-extended"] .phase-item p,
+body[data-page="birth-chart-extended"] .seek-sidebar-list span,
+body[data-page="birth-chart-extended"] .seek-sidebar-list a {
+  color: #5d6672;
+}
+
+body[data-page="birth-chart-extended"] .tool-field input,
+body[data-page="birth-chart-extended"] .tool-field select {
+  border-color: #b8c8dc;
+  background: #ffffff;
+  color: #2f3b47;
+}
+
+body[data-page="birth-chart-extended"] .tool-field input::placeholder {
+  color: #8a929c;
+}
+
+body[data-page="birth-chart-extended"] .seek-checkline {
+  border-color: #b8c8dc;
+  color: #2f3b47;
+}
+
+.rising-page .tool-field input,
+.rising-page .tool-field select {
+  border-color: rgba(29, 37, 48, 0.14);
+  background: #ffffff;
+  color: #2f3b47;
+}
+
+.rising-page .tool-field input::placeholder {
+  color: #7d8792;
+}
+
+.rising-page .seek-checkline,
+.rising-page .seek-sidebar-list span,
+.rising-page .seek-sidebar-list a {
+  border-color: #b8c8dc;
+  background: #ffffff;
+  color: #5d6672;
+}
+
+.rising-page .tool-result-card {
+  background:
+    linear-gradient(180deg, rgba(254, 251, 247, 0.98), rgba(247, 241, 232, 0.98)),
+    radial-gradient(circle at top right, rgba(211, 154, 82, 0.06), transparent 36%);
+}
+
+.rising-page-heading {
+  margin: 0 0 -0.15rem;
+}
+
+.rising-page-heading h1 {
+  margin: 0;
+  color: #2f3b47;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: clamp(1.2rem, 1.9vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.rising-shell {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  align-items: start;
+}
+
+.rising-form-column,
+.rising-results-column {
+  min-width: 0;
+}
+
+.rising-page .rising-result-card {
+  min-width: 0;
+}
+
+.rising-page .tool-card-head h2 {
+  font-size: 1.45rem;
+  line-height: 1.05;
+}
+
+.rising-page .rising-summary-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.rising-page .rising-summary-grid .result-item {
+  padding: 0.7rem 0.72rem;
+}
+
+.rising-page .rising-summary-grid .result-item p,
+.rising-page .rising-summary-grid .result-item span {
+  font-size: 0.78rem;
+}
+
+.rising-page .rising-summary-grid .result-item strong {
+  font-size: 0.92rem;
+  margin: 0.16rem 0;
+}
+
+.rising-page .rising-secondary-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rising-select-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.12fr 0.7fr 0.8fr 0.8fr;
+  gap: 0.62rem;
+}
+
+.rising-location-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.62rem;
+}
+
+.rising-inline-check {
+  min-height: 42px;
+}
+
+.rising-note-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #5d6672;
+}
+
+.rising-note-list li + li {
+  margin-top: 0.45rem;
+}
+
+.rising-detail-tables {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.rising-wheel-card {
+  min-height: 100%;
+}
+
+.rising-wheel-shell {
+  display: grid;
+  place-items: center;
+  margin-top: 0.55rem;
+}
+
+.rising-wheel-shell svg {
+  width: min(100%, 460px);
+  height: auto;
+}
+
+.rising-wheel-matrix {
+  margin-top: 0.9rem;
+}
+
+.rising-wheel-matrix h5 {
+  margin: 0 0 0.6rem;
+  color: #2f3b47;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.rising-wheel-ring {
+  stroke: #98a8bf;
+}
+
+.rising-wheel-ring.outer-dial {
+  fill: #f7fbff;
+  stroke: #626d7c;
+  stroke-width: 1.85;
+}
+
+.rising-wheel-ring.sign-band {
+  fill: #edf4ff;
+  stroke: #8ea2bf;
+  stroke-width: 1.3;
+}
+
+.rising-wheel-ring.sign-band-cut {
+  fill: #ffffff;
+  stroke: #7f8ea4;
+  stroke-width: 1.15;
+}
+
+.rising-wheel-ring.house-band {
+  fill: #9fb8e6;
+  stroke: #6f87af;
+  stroke-width: 1.3;
+}
+
+.rising-wheel-ring.house-band-cut,
+.rising-wheel-ring.center-core {
+  fill: #ffffff;
+  stroke: #808d9f;
+  stroke-width: 1.08;
+}
+
+.rising-wheel-sign-divider,
+.rising-wheel-house-line {
+  stroke: rgba(108, 119, 134, 0.84);
+}
+
+.rising-wheel-sign-divider {
+  stroke-width: 0.92;
+}
+
+.rising-wheel-house-line {
+  stroke-width: 0.95;
+}
+
+.rising-wheel-tick {
+  stroke: #d16861;
+  stroke-width: 0.42;
+  opacity: 0.92;
+}
+
+.rising-wheel-tick.is-medium {
+  stroke: #5a6574;
+  stroke-width: 0.62;
+  opacity: 0.96;
+}
+
+.rising-wheel-tick.is-major {
+  stroke: #202833;
+  stroke-width: 0.95;
+}
+
+.rising-wheel-sign,
+.rising-wheel-house-label,
+.rising-wheel-axis-label,
+.rising-wheel-planet-label {
+  font-family: "Inter", "Segoe UI", sans-serif;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.rising-wheel-sign {
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.rising-wheel-degree {
+  fill: #4f5a68;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 7.5px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.rising-wheel-house-label {
+  fill: #3d4958;
+  font-size: 9.2px;
+  font-weight: 700;
+}
+
+.rising-wheel-axis {
+  stroke-width: 2.15;
+}
+
+.rising-wheel-axis.asc {
+  stroke: #797152;
+}
+
+.rising-wheel-axis.mc {
+  stroke: #d39a52;
+}
+
+.rising-wheel-axis-label {
+  fill: #24303d;
+  font-size: 9.2px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.rising-wheel-aspect {
+  stroke-width: 1.02;
+  opacity: 0.82;
+}
+
+.rising-wheel-aspect.aspect-conjunction {
+  stroke: #697381;
+}
+
+.rising-wheel-aspect.aspect-sextile {
+  stroke: #4f82e2;
+}
+
+.rising-wheel-aspect.aspect-square {
+  stroke: #ef6c61;
+}
+
+.rising-wheel-aspect.aspect-trine {
+  stroke: #74c36e;
+}
+
+.rising-wheel-aspect.aspect-opposition {
+  stroke: #d14c5b;
+}
+
+.rising-wheel-planet-marker {
+  fill: #1f2834;
+}
+
+.rising-wheel-planet-link {
+  stroke: rgba(62, 74, 89, 0.62);
+  stroke-width: 0.62;
+}
+
+.rising-wheel-planet-label {
+  fill: #202832;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.rising-wheel-planet-label.is-secondary {
+  fill: #465361;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.rising-wheel-planet-longitude {
+  fill: #4a5664;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 7.4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rising-wheel-planet-longitude.is-secondary {
+  fill: #63707d;
+  font-size: 6.6px;
+  font-weight: 500;
+}
+
+.birth-solar-wheel-tooltip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  padding: 0.24rem 0.42rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #2f3b47;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: 0 8px 18px rgba(18, 31, 49, 0.14);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.12s ease;
+}
+
+.birth-solar-wheel-tooltip.is-visible {
+  opacity: 1;
+}
+
+.rising-data-table-wrap,
+.rising-aspect-table-wrap {
+  overflow-x: auto;
+}
+
+.rising-data-table,
+.rising-aspect-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+
+.rising-data-table th,
+.rising-data-table td,
+.rising-aspect-table th,
+.rising-aspect-table td {
+  padding: 0.5rem 0.52rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #5d6672;
+  text-align: left;
+}
+
+.rising-data-table th,
+.rising-aspect-table th {
+  background: #f4f6f8;
+  color: #2f3b47;
+  font-weight: 700;
+}
+
+.rising-aspect-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.6rem 0 0.8rem;
+}
+
+.rising-aspect-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 30px;
+  padding: 0.3rem 0.52rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #5d6672;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.birth-solar-legend .rising-aspect-legend-item {
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 0.76rem;
+  font-weight: 500;
+}
+
+.rising-aspect-legend-symbol {
+  display: inline-flex;
+  width: 16px;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.birth-solar-legend .rising-aspect-legend-text {
+  color: #4a525c;
+}
+
+.rising-data-symbol {
+  width: 42px;
+  text-align: center;
+  color: #2f3b47;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.rising-aspect-table th,
+.rising-aspect-table td {
+  text-align: center;
+  min-width: 34px;
+}
+
+.rising-aspect-table td.is-empty {
+  background: #fbfcfd;
+}
+
+.rising-aspect-table td.is-label {
+  position: relative;
+  overflow: visible;
+  background: #f7f1e8;
+  color: #2f3b47;
+  font-weight: 700;
+  cursor: help;
+}
+
+.rising-aspect-table td.is-label::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  padding: 0.22rem 0.38rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #2f3b47;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(18, 31, 49, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 12;
+}
+
+.rising-aspect-table td.is-label:hover::after,
+.rising-aspect-table td.is-label:focus-visible::after {
+  opacity: 1;
+}
+
+.rising-aspect-table td.aspect-conjunction {
+  color: #797152;
+}
+
+.rising-aspect-table td.aspect-sextile {
+  color: #4f93d8;
+}
+
+.rising-aspect-table td.aspect-square {
+  color: #e06d63;
+}
+
+.rising-aspect-table td.aspect-trine {
+  color: #68b96c;
+}
+
+.rising-aspect-table td.aspect-opposition {
+  color: #b87fe0;
+}
+
+.rising-aspect-legend-symbol.aspect-conjunction {
+  color: #797152;
+}
+
+.rising-aspect-legend-symbol.aspect-sextile {
+  color: #4f93d8;
+}
+
+.rising-aspect-legend-symbol.aspect-square {
+  color: #e06d63;
+}
+
+.rising-aspect-legend-symbol.aspect-trine {
+  color: #68b96c;
+}
+
+.rising-aspect-legend-symbol.aspect-opposition {
+  color: #b87fe0;
+}
+
+.birth-solar-aspect-table {
+  width: auto;
+  table-layout: fixed;
+  display: inline-table;
+  font-size: 0.66rem;
+}
+
+.birth-solar-aspect-table th,
+.birth-solar-aspect-table td {
+  min-width: 17px;
+  width: 26px;
+  height: 26px;
+  min-height: 26px;
+  max-width: 26px;
+  padding: 0;
+  line-height: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.birth-solar-aspect-table th {
+  font-size: 0.64rem;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.birth-solar-aspect-table tbody th {
+  border: 0;
+  background: transparent;
+  color: #2f3b47;
+}
+
+.birth-solar-aspect-table td {
+  font-size: 0.7rem;
+  line-height: 26px;
+}
+
+.rising-shift-table-wrap {
+  overflow-x: auto;
+}
+
+.rising-shift-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.rising-shift-table th,
+.rising-shift-table td {
+  padding: 0.62rem 0.58rem;
+  border: 1px solid #b8c8dc;
+  text-align: left;
+  background: #ffffff;
+  color: #5d6672;
+}
+
+.rising-shift-table th {
+  color: #2f3b47;
+  background: #f4f6f8;
+  font-weight: 700;
+}
+
+.rising-shift-table tbody tr.is-current td {
+  background: #f7f1e8;
+  color: #2f3b47;
+  font-weight: 700;
+}
+
+.compatibility-partner-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.72rem;
+}
+
+.compatibility-person-card,
+.compatibility-result-card {
+  background:
+    linear-gradient(180deg, rgba(254, 251, 247, 0.98), rgba(247, 241, 232, 0.98)),
+    radial-gradient(circle at top right, rgba(211, 154, 82, 0.06), transparent 36%);
+}
+
+.compatibility-person-card {
+  display: grid;
+  gap: 0.8rem;
+  padding: 0.95rem;
+  border: 1px solid #b8c8dc;
+}
+
+.compatibility-person-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: start;
+}
+
+.compatibility-person-head h4 {
+  margin: 0.28rem 0 0;
+  font-size: 1.22rem;
+}
+
+.compatibility-person-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid #b8c8dc;
+  background: rgba(255, 255, 255, 0.78);
+  color: #5d6672;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.compatibility-birth-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.1fr 1.1fr 0.8fr 0.8fr;
+  gap: 0.6rem;
+}
+
+.compatibility-location-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.compatibility-inline-check {
+  min-height: 42px;
+}
+
+.settings-birth-profile .seek-checkline.settings-birth-checkline {
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #2f3b47;
+  box-shadow: none;
+}
+
+.settings-birth-profile .seek-checkline.settings-birth-checkline span {
+  color: #2f3b47;
+}
+
+.compatibility-score-shell {
+  display: grid;
+  gap: 0.72rem;
+}
+
+.compatibility-score-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: end;
+}
+
+.compatibility-score-value {
+  color: #2f3b47;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.compatibility-score-bar {
+  overflow: hidden;
+  height: 14px;
+  border: 1px solid #b8c8dc;
+  background: #edf1f5;
+}
+
+.compatibility-score-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #797152 0%, #c89b62 100%);
+}
+
+.compatibility-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.compatibility-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.3rem 0.58rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+  color: #5d6672;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.compatibility-insight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.compatibility-pair-summary {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.compatibility-pair-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.compatibility-token {
+  padding: 0.8rem 0.85rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+}
+
+.compatibility-token strong,
+.compatibility-token span {
+  display: block;
+}
+
+.compatibility-token strong {
+  color: #2f3b47;
+}
+
+.compatibility-token span {
+  margin-top: 0.18rem;
+  color: #5d6672;
+  font-size: 0.84rem;
+}
+
+.compatibility-aspect-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.compatibility-aspect-item {
+  padding: 0.82rem 0.88rem;
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+}
+
+.compatibility-aspect-item strong,
+.compatibility-aspect-item span {
+  display: block;
+}
+
+.compatibility-aspect-item strong {
+  color: #2f3b47;
+}
+
+.compatibility-aspect-item span {
+  margin-top: 0.16rem;
+  color: #5d6672;
+  font-size: 0.84rem;
+}
+
 .seek-chart-card {
   overflow: hidden;
 }
@@ -1364,14 +3825,25 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .birth-chart-page .result-grid,
+  .birth-chart-page .birth-chart-planet-grid,
+  .birth-chart-page .birth-chart-house-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .birth-hero {
     grid-template-columns: 1fr;
   }
 
   .seek-intro,
   .seek-layout,
+  .sun-sign-shell,
   .ephemeris-hero-card {
     grid-template-columns: 1fr;
+  }
+
+  .sun-sign-story-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .seek-chart-wrap {
@@ -1392,6 +3864,25 @@ h3 {
     align-items: start;
     flex-direction: column;
   }
+
+  .compatibility-partner-grid,
+  .compatibility-insight-grid,
+  .rising-detail-tables {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid #e2e7ed;
+  }
+
+  .rising-shell {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 860px) {
@@ -1407,7 +3898,11 @@ h3 {
   }
 
   .global-header-band {
-    padding-top: 0.55rem;
+    padding-top: calc(68px + 0.55rem + 0.7rem);
+  }
+
+  .tool-page .global-header-band {
+    padding-top: calc(68px + 0.55rem + 0.7rem);
   }
 
   .global-topbar {
@@ -1427,6 +3922,19 @@ h3 {
     flex: 1 1 100%;
     max-width: none;
     min-width: 0;
+  }
+
+  .header-utility {
+    margin-left: auto;
+  }
+
+  .auth-dialog {
+    width: min(100%, 342px);
+  }
+
+  .settings-dialog {
+    width: min(100%, 96vw);
+    padding: 22px 16px 16px;
   }
 
   h1 {
@@ -1471,16 +3979,39 @@ h3 {
   }
 
   .tool-form-grid,
-  .result-grid {
+  .result-grid,
+  .birth-chart-house-grid,
+  .birth-chart-planet-grid {
     grid-template-columns: 1fr;
   }
 
+  .saved-birth-override-card {
+    justify-items: stretch;
+  }
+
   .ephemeris-inline-controls,
+  .ephemeris-inline-primary,
+  .ephemeris-inline-secondary,
+  .birth-solar-analysis-top,
+  .compatibility-birth-grid,
+  .compatibility-location-grid,
+  .compatibility-pair-row,
+  .nodes-shell,
+  .nodes-form-grid,
+  .nodes-summary-grid,
+  .nodes-phase-grid,
+  .sun-sign-form-grid,
+  .sun-sign-story-grid,
+  .rising-select-grid,
+  .rising-location-grid,
+  .settings-birth-date-grid,
+  .settings-birth-location-grid,
   .seek-form-grid-2,
   .seek-form-grid-3,
   .seek-toggle-grid,
   .seek-mini-grid,
-  .seek-chart-legend {
+  .seek-chart-legend,
+  .settings-phone-row {
     grid-template-columns: 1fr;
   }
 
@@ -1502,6 +4033,7 @@ h3 {
   .zodiac-chip figcaption {
     font-size: 1.22rem;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1512,5 +4044,241 @@ h3 {
 
   .zodiac-marquee-track {
     animation: none;
+  }
+}
+.birth2-heading {
+  margin: 0 0 -0.12rem;
+}
+
+.birth2-heading h1 {
+  margin: 0;
+  color: #2f3b47;
+  font-size: 1.38rem;
+  font-weight: 700;
+}
+
+.birth2-top-layout {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: start;
+}
+
+.birth2-form-card {
+  background:
+    linear-gradient(180deg, rgba(254, 251, 247, 0.98), rgba(247, 241, 232, 0.98)),
+    radial-gradient(circle at top left, rgba(79, 134, 255, 0.08), transparent 30%);
+}
+
+.birth2-summary-card {
+  min-width: 0;
+}
+
+.birth2-wide-card {
+  grid-column: 1 / -1;
+}
+
+.birth2-page .birth2-form-card .tool-field input,
+.birth2-page .birth2-form-card .tool-field select {
+  border-color: rgba(29, 37, 48, 0.14);
+  background: #ffffff;
+  color: #3d4650;
+}
+
+.birth2-hidden-fields {
+  display: none;
+}
+
+.birth2-page .tool-actions {
+  padding-top: 0;
+}
+
+.birth2-personal-card {
+  min-width: 0;
+}
+
+.birth2-wheel-card {
+  padding: 1rem;
+  background: #ffffff;
+}
+
+.birth2-wheel-shell {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(100%, 760px);
+  margin: 0 auto;
+}
+
+.birth2-wheel-shell svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.birth2-personal-planets-block {
+  border: 1px solid #b8c8dc;
+  background: #ffffff;
+}
+
+.birth2-personal-planets-wrap {
+  overflow-x: auto;
+}
+
+.birth2-personal-planets-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  color: #35414d;
+}
+
+.birth2-personal-planets-table th,
+.birth2-personal-planets-table td {
+  padding: 0.72rem 0.9rem;
+  border-bottom: 1px solid #d7e1ec;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.birth2-personal-planets-table th {
+  color: #66717d;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  background: #fbfcfd;
+}
+
+.birth2-personal-planets-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.birth2-personal-planet-name,
+.birth2-personal-sign-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.birth2-personal-planet-glyph,
+.birth2-personal-sign-glyph {
+  color: #797152;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.birth2-wheel-fill {
+  fill: #eef0ff;
+}
+
+.birth2-wheel-outer {
+  fill: none;
+  stroke: #33207f;
+  stroke-width: 28;
+}
+
+.birth2-wheel-tick-ring,
+.birth2-wheel-house-ring,
+.birth2-wheel-core {
+  fill: none;
+  stroke: #4e5366;
+  stroke-width: 1.2;
+}
+
+.birth2-wheel-divider,
+.birth2-wheel-house-line {
+  stroke: #62687c;
+  stroke-width: 1.1;
+}
+
+.birth2-wheel-tick {
+  stroke: #4f5568;
+  stroke-width: 0.48;
+}
+
+.birth2-wheel-tick.is-major {
+  stroke: #3e4457;
+  stroke-width: 0.82;
+}
+
+.birth2-wheel-sign,
+.birth2-wheel-planet,
+.birth2-wheel-house-label,
+.birth2-wheel-axis-label {
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-family: "Times New Roman", Georgia, serif;
+}
+
+.birth2-wheel-sign {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.birth2-wheel-sign-icon {
+  overflow: visible;
+}
+
+.birth2-wheel-planet {
+  fill: #58616f;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.birth2-wheel-house-label {
+  fill: #25398a;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.birth2-wheel-axis {
+  stroke: #465aa6;
+  stroke-width: 1.7;
+}
+
+.birth2-wheel-axis.mc {
+  stroke: #58616f;
+}
+
+.birth2-wheel-axis-label {
+  fill: #4257a5;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.birth2-wheel-aspect {
+  opacity: 0.86;
+  stroke-width: 1.18;
+}
+
+.birth2-wheel-aspect.aspect-conjunction {
+  stroke: #50668f;
+}
+
+.birth2-wheel-aspect.aspect-sextile {
+  stroke: #5578d4;
+}
+
+.birth2-wheel-aspect.aspect-square {
+  stroke: #ff6360;
+}
+
+.birth2-wheel-aspect.aspect-trine {
+  stroke: #7bc44f;
+}
+
+.birth2-wheel-aspect.aspect-opposition {
+  stroke: #7bc44f;
+}
+
+@media (max-width: 860px) {
+  .birth2-classic-head {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .birth2-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
   }
 }
