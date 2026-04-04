@@ -1069,7 +1069,7 @@
       const angle = houseWheelAngle(index);
       const inner = polarToCartesian(cx, cy, houseBandInnerRadius, angle);
       const outer = polarToCartesian(cx, cy, houseBandOuterRadius, angle);
-      const label = polarToCartesian(cx, cy, 144, normalizeDegrees(houseWheelAngle(index) - 15));
+      const label = polarToCartesian(cx, cy, 132, normalizeDegrees(houseWheelAngle(index) - 15));
       return `
         <line class="rising-wheel-house-line" x1="${inner.x.toFixed(2)}" y1="${inner.y.toFixed(2)}" x2="${outer.x.toFixed(2)}" y2="${outer.y.toFixed(2)}" />
         <text class="rising-wheel-house-label" x="${label.x.toFixed(2)}" y="${label.y.toFixed(2)}">${index + 1}</text>

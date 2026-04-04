@@ -16,8 +16,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="astro-tools.js?v=20260401-profile-1"></script>
+    <link rel="stylesheet" href="styles.css?v=20260403-nodes-swiss-2" />
+    <script defer src="astro-tools.js?v=20260403-nodes-swiss-2"></script>
   </head>
   <body class="tool-page nodes-page" data-page="lunar-nodes">
     <div class="sky-noise"></div>
@@ -53,24 +53,73 @@
       </section>
 
       <section class="nodes-shell">
-        <article class="tool-card seek-form-card">
+        <article class="tool-card birth-form-card seek-form-card">
           <form id="lunarNodesForm" class="tool-form seek-form">
             <section class="seek-section">
               <div class="seek-section-head">
                 <h3>Doğum bilgileri</h3>
               </div>
 
-              <div class="nodes-form-grid">
-                <label class="tool-field">
-                  <span>İsim</span>
-                  <input name="name" type="text" placeholder="İsim ya da rumuz" />
-                </label>
-
+              <div class="tool-form-grid">
                 <label class="tool-field">
                   <span>Doğum tarihi</span>
                   <input name="birthDate" type="date" />
                 </label>
 
+                <label class="tool-field">
+                  <span>Doğum saati</span>
+                  <input name="birthTime" type="time" value="12:00" />
+                </label>
+              </div>
+
+              <label class="seek-checkline sun-sign-inline-check">
+                <input name="unknownTime" type="checkbox" />
+                <span>Doğum saati bilinmiyor</span>
+              </label>
+
+              <div class="tool-form-grid tool-form-grid-3">
+                <label class="tool-field">
+                  <span>İl</span>
+                  <select name="city" data-location-city data-default-city-label="İstanbul"></select>
+                </label>
+
+                <label class="tool-field">
+                  <span>İlçe</span>
+                  <select name="district" data-location-district disabled>
+                    <option value="">İlçe seçiniz</option>
+                  </select>
+                </label>
+
+                <label class="tool-field">
+                  <span>Mahalle</span>
+                  <select name="neighborhood" data-location-neighborhood disabled>
+                    <option value="">Mahalle seçiniz</option>
+                  </select>
+                </label>
+              </div>
+
+              <p class="tool-helper">
+                İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
+              </p>
+
+              <div class="tool-form-grid tool-form-grid-3">
+                <label class="tool-field">
+                  <span>Enlem</span>
+                  <input name="latitude" type="number" step="0.0001" value="41.0082" />
+                </label>
+
+                <label class="tool-field">
+                  <span>Boylam</span>
+                  <input name="longitude" type="number" step="0.0001" value="28.9784" />
+                </label>
+
+                <label class="tool-field">
+                  <span>UTC farkı</span>
+                  <input name="timezoneOffset" type="number" step="0.5" value="2" />
+                </label>
+              </div>
+
+              <div class="nodes-form-grid">
                 <label class="tool-field">
                   <span>Düğüm modu</span>
                   <select name="nodeMode">

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
+    <title>AstroHesap | 7. Ev (İlişki Evi)</title>
+    <meta
+      name="description"
+      content="Doğum haritasındaki 7. evini, descendant dereceni, ilişki yöneticini ve partner dinamiğini tek ekranda gör."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260403-seventh-house-7" />
+    <script defer src="astro-tools.js?v=20260403-seventh-house-7"></script>
+  </head>
+  <body class="tool-page sun-sign-page seventh-house-page" data-page="seventh-house">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
+
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
+          </span>
+        </a>
+
+        <form class="header-search" action="index.html" method="get" role="search" aria-label="Araç ara">
+          <label class="visually-hidden" for="toolSearchInputSeventhHouse">Astro araç ara</label>
+          <input
+            id="toolSearchInputSeventhHouse"
+            class="header-search-input"
+            type="search"
+            name="q"
+            placeholder="Araç, konu ya da burç ara"
+            autocomplete="off"
+          />
+          <button class="header-search-btn" type="submit">Ara</button>
+        </form>
+      </nav>
+    </header>
+
+    <main class="tool-main tool-main-extended">
+      <section class="sun-sign-page-heading" aria-label="Sayfa başlığı">
+        <h1>7. Ev (İlişki Evi)</h1>
+      </section>
+
+      <section class="sun-sign-shell">
+        <article class="tool-card sun-sign-result-card">
+          <div class="tool-card-head">
+            <div>
+              <h2>7. Ev Sonucu</h2>
+            </div>
+          </div>
+          <div id="seventhHouseResult" class="result-stack"></div>
+        </article>
+
+        <article class="tool-card birth-form-card sun-sign-form-card">
+          <div class="tool-card-head">
+            <div>
+              <h2>Doğum bilgileri</h2>
+            </div>
+          </div>
+
+          <form id="seventhHouseForm" class="tool-form seek-form">
+            <section class="seek-section">
+              <div class="tool-form-grid">
+                <label class="tool-field">
+                  <span>Doğum tarihi</span>
+                  <input name="birthDate" type="date" />
+                </label>
+
+                <label class="tool-field">
+                  <span>Doğum saati</span>
+                  <input name="birthTime" type="time" value="12:00" />
+                </label>
+              </div>
+
+              <label class="seek-checkline sun-sign-inline-check">
+                <input name="unknownTime" type="checkbox" />
+                <span>Doğum saati bilinmiyor</span>
+              </label>
+
+              <div class="tool-form-grid tool-form-grid-3">
+                <label class="tool-field">
+                  <span>İl</span>
+                  <select name="city" data-location-city data-default-city-label="İstanbul"></select>
+                </label>
+
+                <label class="tool-field">
+                  <span>İlçe</span>
+                  <select name="district" data-location-district disabled>
+                    <option value="">İlçe seçiniz</option>
+                  </select>
+                </label>
+
+                <label class="tool-field">
+                  <span>Mahalle</span>
+                  <select name="neighborhood" data-location-neighborhood disabled>
+                    <option value="">Mahalle seçiniz</option>
+                  </select>
+                </label>
+              </div>
+
+              <p class="tool-helper">
+                İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
+              </p>
+
+              <div class="tool-form-grid tool-form-grid-3">
+                <label class="tool-field">
+                  <span>Enlem</span>
+                  <input name="latitude" type="number" step="0.0001" value="41.0082" />
+                </label>
+
+                <label class="tool-field">
+                  <span>Boylam</span>
+                  <input name="longitude" type="number" step="0.0001" value="28.9784" />
+                </label>
+
+                <label class="tool-field">
+                  <span>UTC farkı</span>
+                  <input name="timezoneOffset" type="number" step="0.5" value="3" />
+                </label>
+              </div>
+            </section>
+
+            <div class="tool-actions">
+              <button class="tool-button" type="submit">7. evi hesapla</button>
+            </div>
+          </form>
+        </article>
+      </section>
+
+    </main>
+    <script>
+      (() => {
+        const resultNode = document.querySelector("#seventhHouseResult");
+        const form = document.querySelector("#seventhHouseForm");
+        if (!(resultNode instanceof HTMLElement) || !(form instanceof HTMLFormElement)) {
+          return;
+        }
+
+        const SIGNS = [
+          { name: "Koç", element: "Ateş", mode: "Öncü", ruler: "Mars" },
+          { name: "Boğa", element: "Toprak", mode: "Sabit", ruler: "Venüs" },
+          { name: "İkizler", element: "Hava", mode: "Değişken", ruler: "Merkür" },
+          { name: "Yengeç", element: "Su", mode: "Öncü", ruler: "Ay" },
+          { name: "Aslan", element: "Ateş", mode: "Sabit", ruler: "Güneş" },
+          { name: "Başak", element: "Toprak", mode: "Değişken", ruler: "Merkür" },
+          { name: "Terazi", element: "Hava", mode: "Öncü", ruler: "Venüs" },
+          { name: "Akrep", element: "Su", mode: "Sabit", ruler: "Plüton" },
+          { name: "Yay", element: "Ateş", mode: "Değişken", ruler: "Jüpiter" },
+          { name: "Oğlak", element: "Toprak", mode: "Öncü", ruler: "Satürn" },
+          { name: "Kova", element: "Hava", mode: "Sabit", ruler: "Uranüs" },
+          { name: "Balık", element: "Su", mode: "Değişken", ruler: "Neptün" },
+        ];
+
+        const THEMES = {
+          "Koç": {
+            magnet: "Doğrudan, hızlı ve net tavır alan kişilere çekim artar.",
+            theme: "İlişkide canlılık, açık dürüstlük ve girişkenlik aranır.",
+            lesson: "Sabırsız kararlar yerine ortak ritmi korumak önemli olur.",
+          },
+          "Boğa": {
+            magnet: "Sakin, güven veren ve istikrarlı partner tipi öne çıkar.",
+            theme: "Bağda sadakat, somut güven ve düzen isteği büyür.",
+            lesson: "Konfor alanına fazla tutunmak esnemeyi zorlaştırabilir.",
+          },
+          "İkizler": {
+            magnet: "Zihinsel uyum kuran, konuşkan ve hareketli kişiler dikkat çeker.",
+            theme: "İlişki içinde sohbet, merak ve karşılıklı öğrenme besleyicidir.",
+            lesson: "Dağılmadan derinleşmek bu evin ana dersidir.",
+          },
+          "Yengeç": {
+            magnet: "Şefkatli, koruyucu ve duygusal güven sunan kişiler çekici gelir.",
+            theme: "Yakınlık, ait hissetme ve ev hissi ilişkide öne çıkar.",
+            lesson: "Alınganlık yerine açık duygu paylaşımı denge sağlar.",
+          },
+          "Aslan": {
+            magnet: "Görünür, sıcak ve kalbiyle gelen partner tipi dikkat çeker.",
+            theme: "İlişkide gurur, cömertlik ve romantik ifade önemli olur.",
+            lesson: "Ego savaşları yerine karşılıklı takdir ilişkide rahatlatır.",
+          },
+          "Başak": {
+            magnet: "Düzenli, özenli ve gerçek hayatı toparlayan kişiler çekici gelir.",
+            theme: "İlişkide emek, işlev ve küçük detaylar bağın kalitesini belirler.",
+            lesson: "Aşırı eleştiri yerine yapıcı destek üretmek gerekir.",
+          },
+          "Terazi": {
+            magnet: "Zarif, dengeli ve ilişki zekası güçlü kişiler öne çıkar.",
+            theme: "Eşitlik, ortak karar ve estetik uyum ilişkide temel tema olur.",
+            lesson: "Kararsız kalmadan kendi ihtiyaçlarını da net söylemek gerekir.",
+          },
+          "Akrep": {
+            magnet: "Derin, sadık ve güçlü bağ kuran kişiler çekici gelir.",
+            theme: "İlişkide yoğunluk, güven testi ve dönüşüm alanı büyüktür.",
+            lesson: "Kontrol bırakıldıkça bağ daha sağlıklı akar.",
+          },
+          "Yay": {
+            magnet: "Özgür ruhlu, ufku açık ve maceracı kişiler dikkat çeker.",
+            theme: "İlişkide büyüme, yolculuk ve ortak anlam arayışı öne çıkar.",
+            lesson: "Aşırı bağımsızlık bağı yüzeyde bırakabilir.",
+          },
+          "Oğlak": {
+            magnet: "Olgun, hedefli ve sorumluluk sahibi partner tipi çekici gelir.",
+            theme: "İlişkide yapı, ciddiyet ve uzun vadeli güven inşası önemlidir.",
+            lesson: "Duyguyu fazla bastırmamak ilişkiyi yumuşatır.",
+          },
+          "Kova": {
+            magnet: "Özgün, zihinsel olarak özgür ve farklı düşünen kişiler dikkat çeker.",
+            theme: "İlişkide arkadaşlık, zihinsel alan ve bireysellik ihtiyacı belirgindir.",
+            lesson: "Mesafe ile bağ arasında sağlıklı denge kurmak gerekir.",
+          },
+          "Balık": {
+            magnet: "Sezgisel, yumuşak ve duygusal olarak geçirgen partner tipi öne çıkar.",
+            theme: "İlişkide empati, romantizm ve ruhsal yakınlık aranır.",
+            lesson: "Belirsizlik yerine net sınırlar kurmak bağı korur.",
+          },
+        };
+
+        const mod = (value, divisor) => ((value % divisor) + divisor) % divisor;
+        const escapeHtml = (value) =>
+          String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#39;");
+
+        const getSign = (degree) => SIGNS[Math.floor(mod(degree, 360) / 30)];
+        const getDegreeParts = (degree) => {
+          const normalized = mod(degree, 360);
+          const sign = getSign(normalized);
+          const degreeInSign = normalized % 30;
+          const whole = Math.floor(degreeInSign);
+          const minute = Math.floor((degreeInSign - whole) * 60);
+          return { sign, whole, minute };
+        };
+        const formatPos = (degree) => {
+          const parts = getDegreeParts(degree);
+          return `${parts.sign.name} ${parts.whole}° ${String(parts.minute).padStart(2, "0")}′`;
+        };
+
+        const getSunDegree = (date) => {
+          const year = date.getFullYear();
+          const start = new Date(year, 2, 21);
+          const diff = Math.floor((date - start) / 86400000);
+          return mod(diff * 0.9856, 360);
+        };
+
+        const getMoonAge = (date) => {
+          const knownNewMoon = Date.UTC(2025, 0, 29, 11, 35, 0, 0);
+          return mod((date.getTime() - knownNewMoon) / 86400000, 29.530588);
+        };
+
+        const getApproxAsc = (date, minutes) => {
+          const sunDegree = getSunDegree(date);
+          const segment = Math.floor(minutes / 120);
+          const innerShift = (minutes % 120) / 4;
+          return mod(sunDegree + segment * 30 + innerShift, 360);
+        };
+
+        const getHouseNumberForDegree = (degree, cusp1) => {
+          return Math.floor(mod(degree - cusp1, 360) / 30) + 1;
+        };
+
+        const renderCards = (items) =>
+          `
+            <section class="result-grid">
+              ${items
+                .map(
+                  (item) => `
+                    <article class="result-item">
+                      <p>${item.label}</p>
+                      <strong>${item.value}</strong>
+                      <span>${item.note}</span>
+                    </article>
+                  `,
+                )
+                .join("")}
+            </section>
+          `;
+
+        const renderPrompt = () => {
+          resultNode.innerHTML = `
+            <article class="result-note-card">
+              <h4>Doğum tarihini seç</h4>
+              <p>7. ev yorumunu görmek için tarih gir. Saat bilgisi varsa descendant ve ilişki ekseni daha net çıkar.</p>
+            </article>
+          `;
+        };
+
+        const update = () => {
+          const formData = new FormData(form);
+          const birthDateValue = String(formData.get("birthDate") ?? "");
+          if (!birthDateValue) {
+            renderPrompt();
+            return;
+          }
+
+          const unknownTime = formData.has("unknownTime");
+          const timeValue = unknownTime ? "12:00" : String(formData.get("birthTime") ?? "12:00");
+          const calculationDate = new Date(`${birthDateValue}T${timeValue}:00`);
+          if (!(calculationDate instanceof Date) || Number.isNaN(calculationDate.getTime())) {
+            renderPrompt();
+            return;
+          }
+
+          const [hours = "12", minutes = "00"] = timeValue.split(":");
+          const minuteValue = Number.parseInt(hours, 10) * 60 + Number.parseInt(minutes, 10);
+          const ascDegree = getApproxAsc(calculationDate, minuteValue);
+          const descendantDegree = mod(ascDegree + 180, 360);
+          const descendantSign = getSign(descendantDegree);
+          const ascSign = getSign(ascDegree);
+          const theme = THEMES[descendantSign.name] ?? THEMES["Terazi"];
+          const rulerName = descendantSign.ruler;
+
+          const sunDegree = getSunDegree(calculationDate);
+          const moonDegree = mod(sunDegree + getMoonAge(calculationDate) * 12.2, 360);
+          const mercuryDegree = mod(sunDegree + 14 + Math.sin(calculationDate.getTime() / 864000000) * 18, 360);
+          const venusDegree = mod(sunDegree + 32 + Math.cos(calculationDate.getTime() / 1296000000) * 14, 360);
+          const marsDegree = mod(sunDegree + 78 + Math.sin(calculationDate.getTime() / 1728000000) * 28, 360);
+          const jupiterDegree = mod(sunDegree + 120 + Math.cos(calculationDate.getTime() / 3456000000) * 22, 360);
+          const saturnDegree = mod(sunDegree + 200 + Math.sin(calculationDate.getTime() / 5184000000) * 16, 360);
+          const uranusDegree = mod(sunDegree + 248 + Math.cos(calculationDate.getTime() / 6048000000) * 12, 360);
+          const neptuneDegree = mod(sunDegree + 282 + Math.sin(calculationDate.getTime() / 6912000000) * 10, 360);
+          const plutoDegree = mod(sunDegree + 318 + Math.cos(calculationDate.getTime() / 7776000000) * 8, 360);
+
+          const planets = [
+            { label: "Güneş", key: "Güneş", degree: sunDegree },
+            { label: "Ay", key: "Ay", degree: moonDegree },
+            { label: "Merkür", key: "Merkür", degree: mercuryDegree },
+            { label: "Venüs", key: "Venüs", degree: venusDegree },
+            { label: "Mars", key: "Mars", degree: marsDegree },
+            { label: "Jüpiter", key: "Jüpiter", degree: jupiterDegree },
+            { label: "Satürn", key: "Satürn", degree: saturnDegree },
+            { label: "Uranüs", key: "Uranüs", degree: uranusDegree },
+            { label: "Neptün", key: "Neptün", degree: neptuneDegree },
+            { label: "Plüton", key: "Plüton", degree: plutoDegree },
+          ];
+
+          const rulerPlanet = planets.find((planet) => planet.key === rulerName) ?? null;
+          const rulerHouse = rulerPlanet ? getHouseNumberForDegree(rulerPlanet.degree, ascDegree) : "-";
+          const planetsInSeventh = planets.filter((planet) => getHouseNumberForDegree(planet.degree, ascDegree) === 7);
+          const cityText = form.querySelector('select[name="city"] option:checked')?.textContent?.trim() || "İstanbul";
+          const districtText =
+            form.querySelector('select[name="district"] option:checked')?.textContent?.trim() || "";
+          const neighborhoodText =
+            form.querySelector('select[name="neighborhood"] option:checked')?.textContent?.trim() || "";
+          const locationText = `${cityText}${districtText && districtText !== "İlçe seçiniz" ? `, ${districtText}` : ""}${
+            neighborhoodText && neighborhoodText !== "Mahalle seçiniz" ? ` / ${neighborhoodText}` : ""
+          }`;
+
+          resultNode.innerHTML = `
+            ${renderCards([
+              {
+                label: "7. ev burcu",
+                value: descendantSign.name,
+                note: `${descendantSign.element} · ${descendantSign.mode}`,
+              },
+              {
+                label: "Descendant",
+                value: formatPos(descendantDegree),
+                note: "İlişki kapısı",
+              },
+              {
+                label: "Yönetici gezegen",
+                value: rulerName,
+                note: rulerPlanet ? `${rulerHouse}. ev · ${formatPos(rulerPlanet.degree)}` : "Yerleşim okunamadı",
+              },
+              {
+                label: "7. ev vurgusu",
+                value: planetsInSeventh.length > 0 ? `${planetsInSeventh.length} gezegen` : "Gezegen yok",
+                note: planetsInSeventh.length > 0 ? planetsInSeventh.map((planet) => planet.label).join(", ") : "Yönetici daha belirleyici",
+              },
+            ])}
+
+            <article class="sun-sign-result-panel">
+              <div class="sun-sign-result-copy">
+                <p><strong>İlişki ekseni</strong></p>
+                <p><strong>7. Ev Burcun:</strong> ${descendantSign.name}</p>
+                <p><strong>Descendant Derecen:</strong> ${formatPos(descendantDegree)}</p>
+                <p><strong>İlişki Yöneticin:</strong> ${rulerName}${rulerPlanet ? ` · ${formatPos(rulerPlanet.degree)} · ${rulerHouse}. ev` : ""}</p>
+                <p><strong>7. Evdeki Gezegenler:</strong> ${
+                  planetsInSeventh.length > 0
+                    ? planetsInSeventh.map((planet) => `${planet.label} (${formatPos(planet.degree)})`).join(", ")
+                    : "7. evde ana gezegen yerleşimi görünmüyor. Yorum daha çok yönetici gezegen üzerinden okunur."
+                }</p>
+                <p><strong>İlişki Ekseni:</strong> 1. ev ${ascSign.name} / 7. ev ${descendantSign.name}</p>
+                <p><strong>Partnere Çekildiğin Tarz:</strong> ${theme.magnet}</p>
+                <p class="sun-sign-result-note"><strong>Not:</strong> ${
+                  unknownTime
+                    ? "Saat bilinmediği için descendant ve yönetici ev yorumu yaklaşık olarak 12:00 eksenine göre hesaplandı."
+                    : "Bu sayfada hızlı okuma için yaklaşık hesap yöntemi kullanılıyor. Saat ve konum doğru oldukça yorum ekseni daha tutarlı olur."
+                }</p>
+                <p class="result-inline-meta">${escapeHtml(birthDateValue)} · ${escapeHtml(timeValue)} · ${escapeHtml(locationText)}</p>
+              </div>
+            </article>
+
+            <section class="sun-sign-story-grid">
+              <article class="result-note-card">
+                <h4>İlişki tonu</h4>
+                <p>${theme.theme}</p>
+              </article>
+              <article class="result-note-card">
+                <h4>Gelişim dersi</h4>
+                <p>${theme.lesson}</p>
+              </article>
+            </section>
+
+            <section class="seek-mini-grid sun-sign-mini-grid">
+              <article class="seek-mini-card">
+                <strong>Yöneticinin alanı</strong>
+                <span>${rulerPlanet ? `${rulerName} ${rulerHouse}. evde çalışıyor; ilişki konuları bu alana taşınır.` : "Yönetici yerleşimi okunamadı."}</span>
+              </article>
+              <article class="seek-mini-card">
+                <strong>İlk bakışta partner profili</strong>
+                <span>${theme.magnet}</span>
+              </article>
+            </section>
+          `;
+        };
+
+        const bootFallback = () => {
+          if (resultNode.children.length === 0 || resultNode.textContent.trim() === "") {
+            update();
+          }
+          form.addEventListener("change", update);
+          form.addEventListener("input", update);
+          form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            update();
+          });
+        };
+
+        window.setTimeout(bootFallback, 600);
+      })();
+    </script>
+  </body>
+</html>

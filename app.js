@@ -1,6 +1,7 @@
 const searchForm = document.querySelector("#toolSearchForm");
 const searchInput = document.querySelector("#toolSearchInput");
 const toolCards = Array.from(document.querySelectorAll(".top-city-card"));
+const cardGroups = Array.from(document.querySelectorAll("[data-card-group]"));
 const resultsCount = document.querySelector("#resultsCount");
 const emptyState = document.querySelector("#emptyState");
 const initialQuery = new URLSearchParams(window.location.search).get("q") ?? "";
@@ -85,6 +86,16 @@ const updateCards = (rawQuery) => {
     if (isVisible) {
       visibleCount += 1;
     }
+  });
+
+  cardGroups.forEach((group) => {
+    if (!(group instanceof HTMLElement)) {
+      return;
+    }
+
+    const groupCards = Array.from(group.querySelectorAll(".top-city-card"));
+    const hasVisibleCard = groupCards.some((card) => !card.hidden);
+    group.hidden = !hasVisibleCard;
   });
 
   if (resultsCount) {

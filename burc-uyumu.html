@@ -16,8 +16,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="astro-tools.js?v=20260401-profile-1"></script>
+    <link rel="stylesheet" href="styles.css?v=20260403-compat-birth-format-1" />
+    <script defer src="astro-tools.js?v=20260403-compat-birth-format-1"></script>
   </head>
   <body class="tool-page compatibility-page" data-page="zodiac-compatibility">
     <div class="sky-noise"></div>
@@ -62,44 +62,24 @@
 	                </div>
 
                 <div class="compatibility-partner-grid">
-	                  <article class="compatibility-person-card">
+                  <article class="compatibility-person-card">
 	                    <div class="compatibility-person-head">
 	                      <div>
 	                        <h4>Birinci kişi</h4>
 	                      </div>
                     </div>
 
-                    <div class="seek-form-grid seek-form-grid-2">
-                      <label class="tool-field seek-field-span">
-                        <span>İsim</span>
-                        <input name="partnerAName" type="text" value="Deniz" placeholder="İsim ya da rumuz" />
-                      </label>
-                    </div>
+                    <input name="partnerAName" type="hidden" value="Birinci kişi" />
 
-                    <div class="compatibility-birth-grid">
+                    <div class="tool-form-grid">
                       <label class="tool-field">
-                        <span>Gün</span>
-                        <select name="partnerADay" data-compat-day data-selected="17"></select>
+                        <span>Doğum tarihi</span>
+                        <input name="partnerABirthDate" type="date" value="1994-08-17" />
                       </label>
 
                       <label class="tool-field">
-                        <span>Ay</span>
-                        <select name="partnerAMonth" data-compat-month data-selected="8"></select>
-                      </label>
-
-                      <label class="tool-field">
-                        <span>Yıl</span>
-                        <select name="partnerAYear" data-compat-year data-selected="1994"></select>
-                      </label>
-
-                      <label class="tool-field">
-                        <span>Saat</span>
-                        <select name="partnerAHour" data-compat-hour data-selected="08"></select>
-                      </label>
-
-                      <label class="tool-field">
-                        <span>Dakika</span>
-                        <select name="partnerAMinute" data-compat-minute data-selected="30"></select>
+                        <span>Doğum saati</span>
+                        <input name="partnerABirthTime" type="time" value="08:30" />
                       </label>
                     </div>
 
@@ -108,7 +88,7 @@
                       <span>Doğum saati bilinmiyor</span>
                     </label>
 
-                    <div class="compatibility-location-grid">
+                    <div class="tool-form-grid tool-form-grid-3">
                       <label class="tool-field">
                         <span>İl</span>
                         <select
@@ -142,6 +122,23 @@
                     <p class="tool-helper">
                       İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
                     </p>
+
+                    <div class="tool-form-grid tool-form-grid-3">
+                      <label class="tool-field">
+                        <span>Enlem</span>
+                        <input name="partnerALatitude" type="number" step="0.0001" value="41.0082" />
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Boylam</span>
+                        <input name="partnerALongitude" type="number" step="0.0001" value="28.9784" />
+                      </label>
+
+                      <label class="tool-field">
+                        <span>UTC farkı</span>
+                        <input name="partnerATimezoneOffset" type="number" step="0.5" value="2" />
+                      </label>
+                    </div>
                   </article>
 
 	                  <article class="compatibility-person-card">
@@ -151,37 +148,17 @@
 	                      </div>
                     </div>
 
-                    <div class="seek-form-grid seek-form-grid-2">
-                      <label class="tool-field seek-field-span">
-                        <span>İsim</span>
-                        <input name="partnerBName" type="text" value="Alya" placeholder="İsim ya da rumuz" />
-                      </label>
-                    </div>
+                    <input name="partnerBName" type="hidden" value="İkinci kişi" />
 
-                    <div class="compatibility-birth-grid">
+                    <div class="tool-form-grid">
                       <label class="tool-field">
-                        <span>Gün</span>
-                        <select name="partnerBDay" data-compat-day data-selected="4"></select>
+                        <span>Doğum tarihi</span>
+                        <input name="partnerBBirthDate" type="date" value="1992-11-04" />
                       </label>
 
                       <label class="tool-field">
-                        <span>Ay</span>
-                        <select name="partnerBMonth" data-compat-month data-selected="11"></select>
-                      </label>
-
-                      <label class="tool-field">
-                        <span>Yıl</span>
-                        <select name="partnerBYear" data-compat-year data-selected="1992"></select>
-                      </label>
-
-                      <label class="tool-field">
-                        <span>Saat</span>
-                        <select name="partnerBHour" data-compat-hour data-selected="21"></select>
-                      </label>
-
-                      <label class="tool-field">
-                        <span>Dakika</span>
-                        <select name="partnerBMinute" data-compat-minute data-selected="10"></select>
+                        <span>Doğum saati</span>
+                        <input name="partnerBBirthTime" type="time" value="21:10" />
                       </label>
                     </div>
 
@@ -190,7 +167,7 @@
                       <span>Doğum saati bilinmiyor</span>
                     </label>
 
-                    <div class="compatibility-location-grid">
+                    <div class="tool-form-grid tool-form-grid-3">
                       <label class="tool-field">
                         <span>İl</span>
                         <select
@@ -224,6 +201,23 @@
                     <p class="tool-helper">
                       İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
                     </p>
+
+                    <div class="tool-form-grid tool-form-grid-3">
+                      <label class="tool-field">
+                        <span>Enlem</span>
+                        <input name="partnerBLatitude" type="number" step="0.0001" value="39.9334" />
+                      </label>
+
+                      <label class="tool-field">
+                        <span>Boylam</span>
+                        <input name="partnerBLongitude" type="number" step="0.0001" value="32.8597" />
+                      </label>
+
+                      <label class="tool-field">
+                        <span>UTC farkı</span>
+                        <input name="partnerBTimezoneOffset" type="number" step="0.5" value="2" />
+                      </label>
+                    </div>
                   </article>
                 </div>
               </section>

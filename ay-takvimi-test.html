@@ -8,7 +8,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
-    <title>AstroHesap | Ay Takvimi</title>
+    <title>AstroHesap | Ay Takvimi Test</title>
     <meta
       name="description"
       content="Seçilen ay için yeni ay, dolunay ve çeyrek fazları AstroHesap ile listele."
@@ -19,10 +19,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260402-moon-calendar-inputs-3" />
+    <link rel="stylesheet" href="styles.css?v=20260402-moon-calendar-inputs-2" />
     <script>
       (() => {
-        const version = "20260402-moon-calendar-months-4";
+        const version = "20260402-moon-calendar-months-3";
         const url = new URL(window.location.href);
         if (!url.searchParams.get("v")) {
           url.searchParams.set("v", version);
@@ -30,7 +30,7 @@
         }
       })();
     </script>
-    <script defer src="astro-tools.js?v=20260402-moon-calendar-months-3"></script>
+    <script defer src="astro-tools.js?v=20260402-moon-calendar-months-2"></script>
   </head>
   <body class="tool-page moon-calendar-page" data-page="moon-calendar">
     <div class="sky-noise"></div>
@@ -62,7 +62,8 @@
 
     <main class="tool-main">
       <section class="hero-content tool-hero">
-        <h1>Ay Takvimi</h1>
+        <p class="eyebrow">Lunar ritim</p>
+        <h1>Seçtiğin ay için ana ay fazlarını ve bugünkü fazı aynı ekranda gör.</h1>
       </section>
 
       <section class="tool-layout">
@@ -90,7 +91,7 @@
                     <option value="11">Kasım</option>
                     <option value="12">Aralık</option>
                   </select>
-                  <input id="moonYear" name="year" type="number" min="1900" max="2100" step="1" placeholder="Yıl" required />
+                  <input id="moonYear" name="year" type="number" min="1900" max="2100" step="1" required />
                 </div>
               </div>
 
@@ -103,12 +104,11 @@
             <div class="tool-actions">
               <button class="tool-button" type="submit">Takvimi oluştur</button>
             </div>
-
-            <p class="tool-note">
-              Seçtiğin ay için ana ay fazlarını ve bugünkü fazı aynı ekranda gör.
-            </p>
           </form>
 
+          <p class="tool-note">
+            Faz tarihleri hızlı hesap yöntemi ile bulunur. Dakika hassasiyeti için astronomik veri katmanı gerekir.
+          </p>
         </article>
 
         <article class="tool-card tool-result-card">

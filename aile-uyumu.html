@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
+    <title>AstroHesap | Aile Uyumu</title>
+    <meta
+      name="description"
+      content="Anne, baba ve çocuk burç uyumunu doğum tarihi ya da direkt burç girişiyle hesapla; aile ritmini ve iletişim tonunu öğren."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260403-family-4" />
+    <script defer src="astro-tools.js?v=20260403-family-swiss-6"></script>
+  </head>
+  <body class="tool-page family-page" data-page="family-compatibility">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
+
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
+          </span>
+        </a>
+
+        <form class="header-search" action="index.html" method="get" role="search" aria-label="Araç ara">
+          <label class="visually-hidden" for="toolSearchInputFamily">Astro araç ara</label>
+          <input
+            id="toolSearchInputFamily"
+            class="header-search-input"
+            type="search"
+            name="q"
+            placeholder="Araç, konu ya da burç ara"
+            autocomplete="off"
+          />
+          <button class="header-search-btn" type="submit">Ara</button>
+        </form>
+      </nav>
+    </header>
+
+    <main class="tool-main tool-main-extended">
+      <section class="family-page-heading" aria-label="Sayfa başlığı">
+        <h1>Aile Uyumu</h1>
+        <p>Aile içi ritmi, iletişimi ve duygusal dengeyi üçlü eksende hızlıca gör.</p>
+      </section>
+
+      <section class="family-shell">
+        <article class="tool-card family-form-card">
+          <div class="tool-card-head">
+            <div>
+              <h2>Aile bilgileri</h2>
+            </div>
+          </div>
+
+          <form id="familyCompatibilityForm" class="tool-form family-form" aria-label="Aile uyumu formu">
+            <article class="family-member-card">
+              <div class="family-member-head">
+                <h3>Anne Bilgileri</h3>
+              </div>
+
+              <div class="family-mode-switch" role="radiogroup" aria-label="Anne giriş modu">
+                <label class="family-mode-pill">
+                  <input type="radio" name="motherMode" value="date" checked />
+                  <span>Doğum Tarihi</span>
+                </label>
+                <label class="family-mode-pill">
+                  <input type="radio" name="motherMode" value="sign" />
+                  <span>Burç</span>
+                </label>
+              </div>
+
+              <div class="family-member-inputs">
+                <label class="tool-field family-date-input" data-family-date-field="mother">
+                  <span>Anne'nin doğum tarihi</span>
+                  <input name="motherBirthDate" type="date" value="1990-05-14" />
+                </label>
+
+                <label class="tool-field family-sign-input is-hidden" data-family-sign-field="mother">
+                  <span>Anne'nin burcu</span>
+                  <select name="motherSign">
+                    <option value="0">Koç</option>
+                    <option value="1">Boğa</option>
+                    <option value="2">İkizler</option>
+                    <option value="3">Yengeç</option>
+                    <option value="4">Aslan</option>
+                    <option value="5">Başak</option>
+                    <option value="6">Terazi</option>
+                    <option value="7">Akrep</option>
+                    <option value="8">Yay</option>
+                    <option value="9">Oğlak</option>
+                    <option value="10">Kova</option>
+                    <option value="11">Balık</option>
+                  </select>
+                </label>
+              </div>
+            </article>
+
+            <article class="family-member-card">
+              <div class="family-member-head">
+                <h3>Baba Bilgileri</h3>
+              </div>
+
+              <div class="family-mode-switch" role="radiogroup" aria-label="Baba giriş modu">
+                <label class="family-mode-pill">
+                  <input type="radio" name="fatherMode" value="date" checked />
+                  <span>Doğum Tarihi</span>
+                </label>
+                <label class="family-mode-pill">
+                  <input type="radio" name="fatherMode" value="sign" />
+                  <span>Burç</span>
+                </label>
+              </div>
+
+              <div class="family-member-inputs">
+                <label class="tool-field family-date-input" data-family-date-field="father">
+                  <span>Baba'nın doğum tarihi</span>
+                  <input name="fatherBirthDate" type="date" value="1988-11-02" />
+                </label>
+
+                <label class="tool-field family-sign-input is-hidden" data-family-sign-field="father">
+                  <span>Baba'nın burcu</span>
+                  <select name="fatherSign">
+                    <option value="0">Koç</option>
+                    <option value="1">Boğa</option>
+                    <option value="2">İkizler</option>
+                    <option value="3">Yengeç</option>
+                    <option value="4">Aslan</option>
+                    <option value="5">Başak</option>
+                    <option value="6">Terazi</option>
+                    <option value="7">Akrep</option>
+                    <option value="8">Yay</option>
+                    <option value="9">Oğlak</option>
+                    <option value="10">Kova</option>
+                    <option value="11">Balık</option>
+                  </select>
+                </label>
+              </div>
+            </article>
+
+            <article class="family-member-card">
+              <div class="family-member-head">
+                <h3>Çocuk Bilgileri</h3>
+              </div>
+
+              <div class="family-mode-switch" role="radiogroup" aria-label="Çocuk giriş modu">
+                <label class="family-mode-pill">
+                  <input type="radio" name="babyMode" value="date" checked />
+                  <span>Doğum Tarihi</span>
+                </label>
+                <label class="family-mode-pill">
+                  <input type="radio" name="babyMode" value="sign" />
+                  <span>Burç</span>
+                </label>
+              </div>
+
+              <div class="family-member-inputs">
+                <label class="tool-field family-date-input" data-family-date-field="baby">
+                  <span>Çocuk'un doğum tarihi</span>
+                  <input name="babyBirthDate" type="date" value="2024-01-18" />
+                </label>
+
+                <label class="tool-field family-sign-input is-hidden" data-family-sign-field="baby">
+                  <span>Çocuk'un burcu</span>
+                  <select name="babySign">
+                    <option value="0">Koç</option>
+                    <option value="1">Boğa</option>
+                    <option value="2">İkizler</option>
+                    <option value="3">Yengeç</option>
+                    <option value="4">Aslan</option>
+                    <option value="5">Başak</option>
+                    <option value="6">Terazi</option>
+                    <option value="7">Akrep</option>
+                    <option value="8">Yay</option>
+                    <option value="9">Oğlak</option>
+                    <option value="10">Kova</option>
+                    <option value="11">Balık</option>
+                  </select>
+                </label>
+              </div>
+            </article>
+
+            <div class="tool-actions family-actions">
+              <button class="tool-button" type="submit">Uyumu Hesapla</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="tool-card tool-result-card family-result-card">
+          <div class="tool-card-head">
+            <div>
+              <h2>Hesaplama sonucu</h2>
+            </div>
+          </div>
+          <div id="familyCompatibilityResult" class="result-stack"></div>
+        </article>
+      </section>
+
+    </main>
+  </body>
+</html>

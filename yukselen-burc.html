@@ -16,9 +16,9 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260403-rising-swiss-1" />
     <script defer src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
-    <script defer src="astro-tools.js?v=20260401-profile-1"></script>
+    <script defer src="astro-tools.js?v=20260403-rising-swiss-1"></script>
   </head>
   <body class="tool-page rising-page" data-page="rising-sign">
     <div class="sky-noise"></div>
@@ -55,7 +55,7 @@
 
       <section class="rising-shell">
         <div class="rising-form-column">
-          <article class="tool-card seek-form-card">
+          <article class="tool-card birth-form-card seek-form-card">
             <div class="tool-card-head">
               <div>
                 <h2>Doğum bilgileri</h2>
@@ -64,30 +64,15 @@
 
             <form id="risingSignForm" class="tool-form seek-form">
               <section class="seek-section">
-                <div class="rising-select-grid">
+                <div class="tool-form-grid">
                   <label class="tool-field">
-                    <span>Gün</span>
-                    <select name="birthDay" data-rising-day></select>
+                    <span>Doğum tarihi</span>
+                    <input name="birthDate" type="date" />
                   </label>
 
                   <label class="tool-field">
-                    <span>Ay</span>
-                    <select name="birthMonth" data-rising-month></select>
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Yıl</span>
-                    <select name="birthYear" data-rising-year></select>
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Saat</span>
-                    <select name="birthHour" data-rising-hour></select>
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Dakika</span>
-                    <select name="birthMinute" data-rising-minute></select>
+                    <span>Doğum saati</span>
+                    <input name="birthTime" type="time" />
                   </label>
                 </div>
 
@@ -96,7 +81,7 @@
                   <span>Doğum saati bilinmiyor</span>
                 </label>
 
-                <div class="rising-location-grid">
+                <div class="tool-form-grid tool-form-grid-3">
                   <label class="tool-field">
                     <span>İl</span>
                     <select id="risingCity" name="city" data-empty-initial="true"></select>
@@ -120,6 +105,23 @@
                 <p class="tool-helper">
                   İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
                 </p>
+
+                <div class="tool-form-grid tool-form-grid-3">
+                  <label class="tool-field">
+                    <span>Enlem</span>
+                    <input name="latitude" type="number" step="0.0001" value="41.0082" />
+                  </label>
+
+                  <label class="tool-field">
+                    <span>Boylam</span>
+                    <input name="longitude" type="number" step="0.0001" value="28.9784" />
+                  </label>
+
+                  <label class="tool-field">
+                    <span>UTC farkı</span>
+                    <input name="timezoneOffset" type="number" step="0.5" value="3" />
+                  </label>
+                </div>
               </section>
 
               <section class="seek-section">

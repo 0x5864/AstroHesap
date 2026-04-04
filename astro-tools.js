@@ -295,6 +295,157 @@ const MOON_SIGN_DETAILS = {
   },
 };
 
+const PLANET_KEY_BY_TURKISH_NAME = {
+  Güneş: "Sun",
+  Ay: "Moon",
+  Merkür: "Mercury",
+  Venüs: "Venus",
+  Mars: "Mars",
+  Jüpiter: "Jupiter",
+  Satürn: "Saturn",
+  Uranüs: "Uranus",
+  Neptün: "Neptune",
+  Plüton: "Pluto",
+};
+
+const SEVENTH_HOUSE_DETAILS = {
+  Koç: {
+    magnet: "Doğrudan, hızlı ve net tavır alan kişilere çekim artar.",
+    theme: "İlişkide canlılık, açık dürüstlük ve girişkenlik aranır.",
+    lesson: "Sabırsız kararlar yerine ortak ritmi korumak önemli olur.",
+  },
+  Boğa: {
+    magnet: "Sakin, güven veren ve istikrarlı partner tipi öne çıkar.",
+    theme: "Bağda sadakat, somut güven ve düzen isteği büyür.",
+    lesson: "Konfor alanına fazla tutunmak esnemeyi zorlaştırabilir.",
+  },
+  "İkizler": {
+    magnet: "Zihinsel uyum kuran, konuşkan ve hareketli kişiler dikkat çeker.",
+    theme: "İlişki içinde sohbet, merak ve karşılıklı öğrenme besleyicidir.",
+    lesson: "Dağılmadan derinleşmek bu evin ana dersidir.",
+  },
+  Yengeç: {
+    magnet: "Şefkatli, koruyucu ve duygusal güven sunan kişiler çekici gelir.",
+    theme: "Yakınlık, ait hissetme ve ev hissi ilişkide öne çıkar.",
+    lesson: "Alınganlık yerine açık duygu paylaşımı denge sağlar.",
+  },
+  Aslan: {
+    magnet: "Görünür, sıcak ve kalbiyle gelen partner tipi dikkat çeker.",
+    theme: "İlişkide gurur, cömertlik ve romantik ifade önemli olur.",
+    lesson: "Ego savaşları yerine karşılıklı takdir ilişkide rahatlatır.",
+  },
+  "Başak": {
+    magnet: "Düzenli, özenli ve gerçek hayatı toparlayan kişiler çekici gelir.",
+    theme: "İlişkide emek, işlev ve küçük detaylar bağın kalitesini belirler.",
+    lesson: "Aşırı eleştiri yerine yapıcı destek üretmek gerekir.",
+  },
+  Terazi: {
+    magnet: "Zarif, dengeli ve ilişki zekası güçlü kişiler öne çıkar.",
+    theme: "Eşitlik, ortak karar ve estetik uyum ilişkide temel tema olur.",
+    lesson: "Kararsız kalmadan kendi ihtiyaçlarını da net söylemek gerekir.",
+  },
+  Akrep: {
+    magnet: "Derin, sadık ve güçlü bağ kuran kişiler çekici gelir.",
+    theme: "İlişkide yoğunluk, güven testi ve dönüşüm alanı büyüktür.",
+    lesson: "Kontrol bırakıldıkça bağ daha sağlıklı akar.",
+  },
+  Yay: {
+    magnet: "Özgür ruhlu, ufku açık ve maceracı kişiler dikkat çeker.",
+    theme: "İlişkide büyüme, yolculuk ve ortak anlam arayışı öne çıkar.",
+    lesson: "Aşırı bağımsızlık bağı yüzeyde bırakabilir.",
+  },
+  Oğlak: {
+    magnet: "Olgun, hedefli ve sorumluluk sahibi partner tipi çekici gelir.",
+    theme: "İlişkide yapı, ciddiyet ve uzun vadeli güven inşası önemlidir.",
+    lesson: "Duyguyu fazla bastırmamak ilişkiyi yumuşatır.",
+  },
+  Kova: {
+    magnet: "Özgün, zihinsel olarak özgür ve farklı düşünen kişiler dikkat çeker.",
+    theme: "İlişkide arkadaşlık, zihinsel alan ve bireysellik ihtiyacı belirgindir.",
+    lesson: "Mesafe ile bağ arasında sağlıklı denge kurmak gerekir.",
+  },
+  "Balık": {
+    magnet: "Sezgisel, yumuşak ve duygusal olarak geçirgen partner tipi öne çıkar.",
+    theme: "İlişkide empati, romantizm ve ruhsal yakınlık aranır.",
+    lesson: "Belirsizlik yerine net sınırlar kurmak bağı korur.",
+  },
+};
+
+const JUNO_PERSONA_DETAILS = {
+  Koç: {
+    title: "İlişkide ilk adımı net atan profil",
+    bond: "Bağlılık içinde hız, dürüstlük ve güçlü canlılık ararsın.",
+    partner: "Cesur, girişken ve hayatı bekletmeden yaşayan kişilere çekilirsin.",
+    shadow: "Acele karar ve sabırsız tepki ilişkiyi gerebilir.",
+  },
+  Boğa: {
+    title: "Güven ve sadakat üstünden bağ kuran profil",
+    bond: "İlişkide sakinlik, tensel güven ve somut istikrar istersin.",
+    partner: "Sözüne güvenilir, ritmi oturmuş ve kalıcı duran kişiler öne çıkar.",
+    shadow: "Değişime direnmek bağı ağırlaştırabilir.",
+  },
+  "İkizler": {
+    title: "Zihinsel uyumu merkez alan profil",
+    bond: "Bağlılık senin için konuşabilmek, öğrenmek ve hareketli kalabilmektir.",
+    partner: "Meraklı, hızlı düşünen ve iletişimi açık kişiler çekici gelir.",
+    shadow: "Yüzeyde kalmak ya da dağılmak derinliği azaltabilir.",
+  },
+  Yengeç: {
+    title: "Duygusal güven arayan profil",
+    bond: "Yakınlık, aidiyet ve duygusal korunma ilişki seçimlerinde belirgindir.",
+    partner: "Şefkatli, sıcak ve ev hissi veren kişilerle daha kolay bağ kurarsın.",
+    shadow: "Alınganlık veya fazla içe çekilme ilişki akışını daraltabilir.",
+  },
+  Aslan: {
+    title: "Kalpten sevgi ve görünür bağlılık isteyen profil",
+    bond: "İlişkide açık sevgi, gurur ve sıcak takdir görmek istersin.",
+    partner: "Özgüvenli, yaratıcı ve kalbi açık kişiler seni çeker.",
+    shadow: "Onay ihtiyacı büyürse dramatik döngüler oluşabilir.",
+  },
+  "Başak": {
+    title: "Emek ve özenle bağ kuran profil",
+    bond: "Günlük hayatta destek olmak ve düzen kurmak sevgiyi büyütür.",
+    partner: "Çalışkan, özenli ve hayatı toparlayan kişiler güven verir.",
+    shadow: "Aşırı analiz veya eleştiri ilişki sıcaklığını düşürebilir.",
+  },
+  Terazi: {
+    title: "Eşitlik ve uyum arayan profil",
+    bond: "Bağlılık senin için karşılıklılık, saygı ve ilişki estetiğidir.",
+    partner: "Nazik, dengeli ve birlikte karar alabilen kişiler çekicidir.",
+    shadow: "Kararsızlık veya memnun etme çabası öz merkezini zayıflatabilir.",
+  },
+  Akrep: {
+    title: "Derin ve güçlü bağ isteyen profil",
+    bond: "İlişkide yoğunluk, sadakat ve gerçek yakınlık ararsın.",
+    partner: "Güvenilir, tutkulu ve kolay açılmayan kişiler ilgini çeker.",
+    shadow: "Kontrol etme arzusu veya kuşku bağı yorabilir.",
+  },
+  Yay: {
+    title: "Özgürlükle büyüyen ilişki profili",
+    bond: "Bağlılık içinde alan, keşif ve ortak yol hissi istersin.",
+    partner: "Açık fikirli, neşeli ve hareketli kişilerle daha rahat bağ kurarsın.",
+    shadow: "Fazla bağımsız kalmak yakınlığı yüzeyde bırakabilir.",
+  },
+  Oğlak: {
+    title: "Ciddi ve uzun vadeli ilişki profili",
+    bond: "İlişkide yapı, güven ve zaman içinde büyüyen sadakat önemlidir.",
+    partner: "Olgun, net ve sorumluluk alan kişiler sana güçlü görünür.",
+    shadow: "Duyguyu fazla kontrol etmek mesafe yaratabilir.",
+  },
+  Kova: {
+    title: "Zihinsel özgürlük isteyen ilişki profili",
+    bond: "Bağlılık senin için önce arkadaşlık, sonra ortak gelecek hissidir.",
+    partner: "Özgün, bağımsız ve farklı düşünen kişiler ilgini çeker.",
+    shadow: "Aşırı mesafe bağın duygusal tarafını zayıflatabilir.",
+  },
+  "Balık": {
+    title: "Ruhsal yakınlık arayan profil",
+    bond: "İlişkide sezgi, merhamet ve görünmeyen bağlar çok belirgindir.",
+    partner: "Yumuşak, empatik ve duygusal derinliği olan kişiler çekicidir.",
+    shadow: "Belirsiz sınırlar hayal kırıklığı yaratabilir.",
+  },
+};
+
 const WEEKDAY_RULERS = [
   "Güneş",
   "Ay",
@@ -340,6 +491,111 @@ const MONTH_LABELS = [
   "Aralık",
 ];
 
+const NUMEROLOGY_MASTER_NUMBERS = new Set([11, 22, 33]);
+const NUMEROLOGY_LETTER_VALUES = {
+  A: 1,
+  B: 2,
+  C: 3,
+  D: 4,
+  E: 5,
+  F: 6,
+  G: 7,
+  H: 8,
+  I: 9,
+  J: 1,
+  K: 2,
+  L: 3,
+  M: 4,
+  N: 5,
+  O: 6,
+  P: 7,
+  Q: 8,
+  R: 9,
+  S: 1,
+  T: 2,
+  U: 3,
+  V: 4,
+  W: 5,
+  X: 6,
+  Y: 7,
+  Z: 8,
+};
+
+const NUMEROLOGY_MEANINGS = {
+  1: {
+    title: "Başlatan enerji",
+    headline: "Liderlik ve ilk adım",
+    keywords: "irade · cesaret · yön",
+    summary: "Bağımsız hareket etme isteği yüksektir. Yol açmayı, karar vermeyi ve kendi izini bırakmayı seven bir sayı titreşimi taşır.",
+  },
+  2: {
+    title: "Uyum ve diplomasi",
+    headline: "Denge ve ortak akıl",
+    keywords: "empati · iş birliği · uyum",
+    summary: "İlişkileri yumuşatan, ortak dil kuran ve hassas dengeleri koruyan bir sayı etkisi verir. Sabır ve sezgi birlikte çalışır.",
+  },
+  3: {
+    title: "İfade ve neşe",
+    headline: "İfade ve yaratıcılık",
+    keywords: "iletişim · üretim · neşe",
+    summary: "Yaratıcı ifade, sosyal akış ve kendini görünür kılma bu sayının ana hattıdır. Hayata daha canlı ve renkli yaklaşma eğilimi verir.",
+  },
+  4: {
+    title: "Düzen ve emek",
+    headline: "Yapı ve dayanıklılık",
+    keywords: "plan · disiplin · emek",
+    summary: "Sağlam temel kurmayı, süreci sabırla örmeyi ve işi sonuçlandırmayı destekler. Güven veren bir çalışma ritmi üretir.",
+  },
+  5: {
+    title: "Değişim ve özgürlük",
+    headline: "Hareket ve yenilik",
+    keywords: "özgürlük · deneyim · değişim",
+    summary: "Yeni olana açılma, keşif arzusu ve değişimle beslenme teması baskındır. Monotonluğu zor seven canlı bir sayı akışıdır.",
+  },
+  6: {
+    title: "Sorumluluk ve bakım",
+    headline: "Koruma ve bağlılık",
+    keywords: "aile · şefkat · sorumluluk",
+    summary: "İnsanları kollama, alanı toparlama ve bağlı ilişkiler kurma eğilimi verir. Sıcaklık ve aidiyet duygusu bu sayıda güçlenir.",
+  },
+  7: {
+    title: "İçgörü ve arayış",
+    headline: "Derinlik ve maneviyat",
+    keywords: "analiz · ruh · bilgelik",
+    summary: "İçe dönük gözlem, sezgi ve anlam arayışı bu sayının merkezindedir. Sessiz derinlikten beslenen bir bilgelik üretir.",
+  },
+  8: {
+    title: "Güç ve yönetim",
+    headline: "Güç ve sonuç odaklılık",
+    keywords: "yönetim · başarı · düzen",
+    summary: "Maddi dünya ile hedef yönetimini birleştirir. Sonuç alma, kaynak kullanma ve yön verme tarafı kuvvetlidir.",
+  },
+  9: {
+    title: "Tamamlanma ve hizmet",
+    headline: "Şefkat ve kapsayıcılık",
+    keywords: "hizmet · ideal · bütünlük",
+    summary: "Geniş bakış, paylaşma isteği ve başkalarına dokunma arzusu bu sayıda artar. Daha kolektif ve anlam yüklü bir bakış getirir.",
+  },
+  11: {
+    title: "Usta sezgi",
+    headline: "Sezgi ve ilham hattı",
+    keywords: "vizyon · hassasiyet · ilham",
+    summary: "İlhamı güçlü, sezgisi yüksek ve ruhsal algısı açık bir titreşimdir. İnce olanı sezme ve yol gösterme potansiyeli taşır.",
+  },
+  22: {
+    title: "Usta kurucu",
+    headline: "Usta inşa edici",
+    keywords: "büyük vizyon · inşa · liderlik",
+    summary: "Büyük resmi somut düzene çevirebilen güçlü bir sayı hattıdır. Ruhsal görüşü maddi dünyada kalıcı yapıya dönüştürme kapasitesi taşır.",
+  },
+  33: {
+    title: "Usta şefkat",
+    headline: "Şifa ve öğreticilik",
+    keywords: "destek · öğretim · şifa",
+    summary: "Koruyan, besleyen ve rehberlik eden bir ustalık sayısıdır. İnsanları yükselten ve yumuşatan bir hizmet kalitesi getirir.",
+  },
+};
+
 const HOUSE_SYSTEM_OPTIONS = [
   { value: "placidus", label: "Placidus" },
   { value: "koch", label: "Koch" },
@@ -362,6 +618,20 @@ const HOUSE_SYSTEM_OPTIONS = [
 const HOUSE_SYSTEM_LABELS = Object.fromEntries(
   HOUSE_SYSTEM_OPTIONS.map((option) => [option.value, option.label]),
 );
+
+const SWISS_HOUSE_SYSTEM_CODES = {
+  placidus: "P",
+  koch: "K",
+  equal: "A",
+  equalmc: "D",
+  equalvehlow: "V",
+  whole: "W",
+  meridian: "X",
+  topocentric: "T",
+  morinus: "M",
+  porphyry: "O",
+  alcabitius: "B",
+};
 
 const ZODIAC_MODE_LABELS = {
   tropical: "Tropik",
@@ -670,6 +940,21 @@ const SIGN_ICON_FILES = [
   "aquarius.png",
   "pisces.png",
 ];
+const SIGN_ICON_BY_NAME = {
+  Koç: "aries.png",
+  Boğa: "taurus.png",
+  İkizler: "gemini.png",
+  Yengeç: "cancer.png",
+  Aslan: "leo.png",
+  Başak: "virgo.png",
+  Terazi: "libra.png",
+  Akrep: "scorpio.png",
+  Yay: "sagittarius.png",
+  Oğlak: "capricorn.png",
+  Kova: "aquarius.png",
+  Balık: "pisces.png",
+};
+const getTableSignIconFile = (signIndex) => SIGN_ICON_FILES[(signIndex + 3) % SIGN_ICON_FILES.length];
 
 const ZODIAC_GLYPHS = ["♈", "♉", "♊", "♋", "♌", "♍", "♎", "♏", "♐", "♑", "♒", "♓"];
 const PLANET_GLYPHS = {
@@ -783,21 +1068,21 @@ const applySavedBirthProfileToPage = () => {
       return false;
     }
 
-    const daySelect = form.querySelector("[data-rising-day]");
-    const monthSelect = form.querySelector("[data-rising-month]");
-    const yearSelect = form.querySelector("[data-rising-year]");
-    const hourSelect = form.querySelector("[data-rising-hour]");
-    const minuteSelect = form.querySelector("[data-rising-minute]");
+    const birthDateInput = form.querySelector('input[name="birthDate"]');
+    const birthTimeInput = form.querySelector('input[name="birthTime"]');
+    const latitudeInput = form.querySelector('input[name="latitude"]');
+    const longitudeInput = form.querySelector('input[name="longitude"]');
+    const timezoneInput = form.querySelector('input[name="timezoneOffset"]');
     const unknownInput = form.querySelector('input[name="unknownBirthTime"]');
     const citySelect = document.querySelector("#risingCity");
     const districtSelect = document.querySelector("#risingDistrict");
     const neighborhoodSelect = document.querySelector("#risingNeighborhood");
 
-    if (daySelect instanceof HTMLSelectElement) daySelect.dataset.selected = dateParts.day;
-    if (monthSelect instanceof HTMLSelectElement) monthSelect.dataset.selected = dateParts.month;
-    if (yearSelect instanceof HTMLSelectElement) yearSelect.dataset.selected = dateParts.year;
-    if (hourSelect instanceof HTMLSelectElement) hourSelect.dataset.selected = timeParts.hour;
-    if (minuteSelect instanceof HTMLSelectElement) minuteSelect.dataset.selected = timeParts.minute;
+    if (birthDateInput instanceof HTMLInputElement) birthDateInput.value = profile.birthDate ?? "";
+    if (birthTimeInput instanceof HTMLInputElement) birthTimeInput.value = profile.birthTime ?? "";
+    if (latitudeInput instanceof HTMLInputElement) latitudeInput.value = profile.latitude ?? "";
+    if (longitudeInput instanceof HTMLInputElement) longitudeInput.value = profile.longitude ?? "";
+    if (timezoneInput instanceof HTMLInputElement) timezoneInput.value = profile.timezoneOffset ?? "2";
     if (unknownInput instanceof HTMLInputElement) unknownInput.checked = Boolean(profile.timeUnknown);
     setSavedLocationDatasets({ citySelect, districtSelect, neighborhoodSelect, profile });
     return true;
@@ -821,8 +1106,38 @@ const applySavedBirthProfileToPage = () => {
     return true;
   }
 
-  if (pageName === "sun-sign-calculator" || pageName === "moon-sign-calculator") {
-    const form = document.querySelector(pageName === "sun-sign-calculator" ? "#sunSignForm" : "#moonSignForm");
+  if (pageName === "juno-persona") {
+    const form = document.querySelector("#junoPersonaForm");
+    if (!(form instanceof HTMLFormElement)) {
+      return false;
+    }
+
+    const birthDateInput = form.querySelector('input[name="birthDate"]');
+    const birthTimeInput = form.querySelector('input[name="birthTime"]');
+    const unknownInput = form.querySelector('input[name="unknownTime"]');
+    const citySelect = form.querySelector('select[name="city"]');
+    const districtSelect = form.querySelector('[data-location-district]');
+    const neighborhoodSelect = form.querySelector('[data-location-neighborhood]');
+
+    if (birthDateInput instanceof HTMLInputElement) birthDateInput.value = profile.birthDate ?? "";
+    if (birthTimeInput instanceof HTMLInputElement) birthTimeInput.value = profile.birthTime ?? "";
+    if (unknownInput instanceof HTMLInputElement) unknownInput.checked = Boolean(profile.timeUnknown);
+    setSavedLocationDatasets({ citySelect, districtSelect, neighborhoodSelect, profile });
+    return true;
+  }
+
+  if (
+    pageName === "sun-sign-calculator" ||
+    pageName === "moon-sign-calculator" ||
+    pageName === "seventh-house"
+  ) {
+    const form = document.querySelector(
+      pageName === "sun-sign-calculator"
+        ? "#sunSignForm"
+        : pageName === "moon-sign-calculator"
+          ? "#moonSignForm"
+          : "#seventhHouseForm",
+    );
     if (!(form instanceof HTMLFormElement)) {
       return false;
     }
@@ -857,21 +1172,21 @@ const applySavedBirthProfileToPage = () => {
       return false;
     }
 
-    const daySelect = form.querySelector("[data-vedic-day]");
-    const monthSelect = form.querySelector("[data-vedic-month]");
-    const yearSelect = form.querySelector("[data-vedic-year]");
-    const hourSelect = form.querySelector("[data-vedic-hour]");
-    const minuteSelect = form.querySelector("[data-vedic-minute]");
+    const birthDateInput = form.querySelector('input[name="birthDate"]');
+    const birthTimeInput = form.querySelector('input[name="birthTime"]');
+    const latitudeInput = form.querySelector('input[name="latitude"]');
+    const longitudeInput = form.querySelector('input[name="longitude"]');
+    const timezoneInput = form.querySelector('input[name="timezoneOffset"]');
     const unknownInput = form.querySelector('input[name="unknownBirthTime"]');
     const citySelect = form.querySelector('select[name="city"]');
     const districtSelect = form.querySelector('[data-location-district]');
     const neighborhoodSelect = form.querySelector('[data-location-neighborhood]');
 
-    if (daySelect instanceof HTMLSelectElement) daySelect.dataset.selected = dateParts.day;
-    if (monthSelect instanceof HTMLSelectElement) monthSelect.dataset.selected = dateParts.month;
-    if (yearSelect instanceof HTMLSelectElement) yearSelect.dataset.selected = dateParts.year;
-    if (hourSelect instanceof HTMLSelectElement) hourSelect.dataset.selected = timeParts.hour;
-    if (minuteSelect instanceof HTMLSelectElement) minuteSelect.dataset.selected = timeParts.minute;
+    if (birthDateInput instanceof HTMLInputElement) birthDateInput.value = profile.birthDate ?? "";
+    if (birthTimeInput instanceof HTMLInputElement) birthTimeInput.value = profile.birthTime ?? "";
+    if (latitudeInput instanceof HTMLInputElement) latitudeInput.value = profile.latitude ?? "";
+    if (longitudeInput instanceof HTMLInputElement) longitudeInput.value = profile.longitude ?? "";
+    if (timezoneInput instanceof HTMLInputElement) timezoneInput.value = profile.timezoneOffset ?? "2";
     if (unknownInput instanceof HTMLInputElement) unknownInput.checked = Boolean(profile.timeUnknown);
     setSavedLocationDatasets({ citySelect, districtSelect, neighborhoodSelect, profile });
     return true;
@@ -882,9 +1197,9 @@ const applySavedBirthProfileToPage = () => {
 
 const clearCurrentPageBirthProfileInputs = () => {
   if (pageName === "rising-sign") {
-    ["[data-rising-day]", "[data-rising-month]", "[data-rising-year]", "[data-rising-hour]", "[data-rising-minute]"].forEach((selector) => {
-      const node = document.querySelector(selector);
-      if (node instanceof HTMLSelectElement) {
+    ["birthDate", "birthTime", "latitude", "longitude", "timezoneOffset"].forEach((name) => {
+      const node = document.querySelector(`#risingSignForm [name="${name}"]`);
+      if (node instanceof HTMLInputElement) {
         node.value = "";
       }
     });
@@ -923,8 +1238,43 @@ const clearCurrentPageBirthProfileInputs = () => {
     return form;
   }
 
-  if (pageName === "sun-sign-calculator" || pageName === "moon-sign-calculator") {
-    const form = document.querySelector(pageName === "sun-sign-calculator" ? "#sunSignForm" : "#moonSignForm");
+  if (pageName === "juno-persona") {
+    const form = document.querySelector("#junoPersonaForm");
+    if (!(form instanceof HTMLFormElement)) {
+      return null;
+    }
+
+    ["birthDate", "birthTime", "latitude", "longitude", "timezoneOffset"].forEach((name) => {
+      const node = form.querySelector(`[name="${name}"]`);
+      if (node instanceof HTMLInputElement) {
+        node.value = "";
+      }
+    });
+    const unknownInput = form.querySelector('input[name="unknownTime"]');
+    const citySelect = form.querySelector('select[name="city"]');
+    const districtSelect = form.querySelector('[data-location-district]');
+    const neighborhoodSelect = form.querySelector('[data-location-neighborhood]');
+    if (unknownInput instanceof HTMLInputElement) unknownInput.checked = false;
+    if (citySelect instanceof HTMLSelectElement) citySelect.value = "";
+    if (districtSelect instanceof HTMLSelectElement) districtSelect.value = "";
+    if (neighborhoodSelect instanceof HTMLSelectElement) neighborhoodSelect.value = "";
+    citySelect?.dispatchEvent(new Event("change"));
+    unknownInput?.dispatchEvent(new Event("change"));
+    return form;
+  }
+
+  if (
+    pageName === "sun-sign-calculator" ||
+    pageName === "moon-sign-calculator" ||
+    pageName === "seventh-house"
+  ) {
+    const form = document.querySelector(
+      pageName === "sun-sign-calculator"
+        ? "#sunSignForm"
+        : pageName === "moon-sign-calculator"
+          ? "#moonSignForm"
+          : "#seventhHouseForm",
+    );
     if (!(form instanceof HTMLFormElement)) {
       return null;
     }
@@ -963,9 +1313,9 @@ const clearCurrentPageBirthProfileInputs = () => {
       return null;
     }
 
-    ["[data-vedic-day]", "[data-vedic-month]", "[data-vedic-year]", "[data-vedic-hour]", "[data-vedic-minute]"].forEach((selector) => {
-      const node = form.querySelector(selector);
-      if (node instanceof HTMLSelectElement) {
+    ["birthDate", "birthTime", "latitude", "longitude", "timezoneOffset"].forEach((name) => {
+      const node = form.querySelector(`[name="${name}"]`);
+      if (node instanceof HTMLInputElement) {
         node.value = "";
       }
     });
@@ -990,6 +1340,7 @@ const injectAlternateBirthProfileBox = () => {
   if (
     !profile ||
     pageName === "zodiac-compatibility" ||
+    pageName === "family-compatibility" ||
     pageName === "synastry" ||
     pageName === "moon-calendar" ||
     pageName === "ephemeris-tables"
@@ -1000,8 +1351,10 @@ const injectAlternateBirthProfileBox = () => {
   const formSelectorMap = {
     "rising-sign": "#risingSignForm",
     "birth-chart-extended": "#birthChartExtendedForm",
+    "juno-persona": "#junoPersonaForm",
     "sun-sign-calculator": "#sunSignForm",
     "moon-sign-calculator": "#moonSignForm",
+    "seventh-house": "#seventhHouseForm",
     "lunar-nodes": "#lunarNodesForm",
     "vedic-sidereal": "#vedicForm",
   };
@@ -1044,8 +1397,14 @@ const injectAlternateBirthProfileBox = () => {
   form.appendChild(wrapper);
 };
 
+const API_REQUEST_TIMEOUT_MS = 2500;
+
 const fetchApiPayload = async (url) => {
-  const response = await fetch(url);
+  const controller = new AbortController();
+  const timeoutId = globalThis.setTimeout(() => controller.abort(), API_REQUEST_TIMEOUT_MS);
+  const response = await fetch(url, { signal: controller.signal }).finally(() => {
+    globalThis.clearTimeout(timeoutId);
+  });
   if (!response.ok) {
     throw new Error(`API request failed: ${response.status}`);
   }
@@ -1821,6 +2180,49 @@ const parseNumericInput = (value, fallback = 0) => {
   return Number.isFinite(parsed) ? parsed : fallback;
 };
 
+const getHistoricalTimeZoneOffsetHours = ({
+  year,
+  month,
+  day,
+  hours,
+  minutes,
+  timeZone = "Europe/Istanbul",
+}) => {
+  try {
+    const probeUtcDate = new Date(Date.UTC(year, month - 1, day, hours, minutes, 0));
+    const formatter = new Intl.DateTimeFormat("en-GB", {
+      timeZone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+
+    const partMap = Object.fromEntries(
+      formatter
+        .formatToParts(probeUtcDate)
+        .filter((part) => part.type !== "literal")
+        .map((part) => [part.type, part.value]),
+    );
+
+    const zonedUtcMillis = Date.UTC(
+      Number.parseInt(partMap.year ?? "0", 10),
+      Number.parseInt(partMap.month ?? "1", 10) - 1,
+      Number.parseInt(partMap.day ?? "1", 10),
+      Number.parseInt(partMap.hour ?? "0", 10),
+      Number.parseInt(partMap.minute ?? "0", 10),
+      Number.parseInt(partMap.second ?? "0", 10),
+    );
+
+    return (zonedUtcMillis - probeUtcDate.getTime()) / 3600000;
+  } catch (_error) {
+    return Number.NaN;
+  }
+};
+
 const degreesMinutesToDecimal = (degreesValue, minutesValue, negativeDirections, directionValue) => {
   const degrees = Math.abs(parseNumericInput(degreesValue));
   const minutes = Math.max(0, Math.min(59, Math.abs(parseNumericInput(minutesValue))));
@@ -2260,6 +2662,136 @@ const astroGmstDegrees = (date) => {
 const astroRadians = (value) => (value * Math.PI) / 180;
 
 const astroDegrees = (value) => (value * 180) / Math.PI;
+const SWISS_EPH_MODULE_URL =
+  typeof window !== "undefined"
+    ? new URL("./vendor/swisseph/src/swisseph.js", window.location.href).href
+    : "./vendor/swisseph/src/swisseph.js";
+const SWISS_EPH_TIMEOUT_MS = 20000;
+const SWISS_ASTEROID_FILE_URL =
+  typeof window !== "undefined"
+    ? new URL("./vendor/swisseph/ephe/seas_18.se1", window.location.href).href
+    : "./vendor/swisseph/ephe/seas_18.se1";
+let swissEphInstancePromise = null;
+
+const withTimeout = (promise, timeoutMs, label) =>
+  Promise.race([
+    promise,
+    new Promise((_, reject) => {
+      globalThis.setTimeout(() => {
+        reject(new Error(`${label} zaman aşımına uğradı.`));
+      }, timeoutMs);
+    }),
+  ]);
+
+const ensureSwissAsteroidData = async (swe) => {
+  const moduleFs = swe?.SweModule?.FS;
+  if (!moduleFs) {
+    return;
+  }
+
+  try {
+    const hasSwephFile = moduleFs.analyzePath?.("/sweph/seas_18.se1")?.exists;
+    const hasEpheFile = moduleFs.analyzePath?.("/ephe/seas_18.se1")?.exists;
+    if (hasSwephFile && hasEpheFile) {
+      swe.set_ephe_path("/sweph:/ephe");
+      return;
+    }
+
+    if (moduleFs.analyzePath?.("/sweph")?.exists === false) {
+      moduleFs.mkdir?.("/sweph");
+    }
+    if (moduleFs.analyzePath?.("/ephe")?.exists === false) {
+      moduleFs.mkdir?.("/ephe");
+    }
+
+    const response = await withTimeout(fetch(SWISS_ASTEROID_FILE_URL), 10000, "Asteroid ephemeris dosyası");
+    if (!response.ok) {
+      throw new Error(`Asteroid ephemeris dosyası yüklenemedi: ${response.status}`);
+    }
+
+    const fileBuffer = new Uint8Array(await response.arrayBuffer());
+
+    if (typeof moduleFs.writeFile === "function") {
+      moduleFs.writeFile("/sweph/seas_18.se1", fileBuffer);
+      moduleFs.writeFile("/ephe/seas_18.se1", fileBuffer);
+    } else if (typeof swe.SweModule.FS_createDataFile === "function") {
+      swe.SweModule.FS_createDataFile("/sweph", "seas_18.se1", fileBuffer, true, true, true);
+      swe.SweModule.FS_createDataFile("/ephe", "seas_18.se1", fileBuffer, true, true, true);
+    }
+
+    swe.set_ephe_path("/sweph:/ephe");
+  } catch (error) {
+    console.warn("Swiss asteroid file could not be mounted:", error);
+  }
+};
+
+const loadSwissEph = async () => {
+  if (!swissEphInstancePromise) {
+    swissEphInstancePromise = (async () => {
+      try {
+        const module = await withTimeout(import(SWISS_EPH_MODULE_URL), SWISS_EPH_TIMEOUT_MS, "Swiss modülü");
+        const SwissEph = module.default;
+        const swe = new SwissEph();
+        await withTimeout(swe.initSwissEph(), SWISS_EPH_TIMEOUT_MS, "Swiss Ephemeris başlangıcı");
+        swe.set_ephe_path("/sweph:/ephe");
+        await ensureSwissAsteroidData(swe);
+        return swe;
+      } catch (error) {
+        swissEphInstancePromise = null;
+        throw error;
+      }
+    })();
+  }
+
+  return swissEphInstancePromise;
+};
+
+const readSwissCalcResult = (rawResult) => {
+  if (
+    Array.isArray(rawResult) ||
+    rawResult instanceof Float64Array ||
+    (ArrayBuffer.isView(rawResult) && typeof rawResult.length === "number")
+  ) {
+    return {
+      degree: mod(rawResult[0] ?? 0, 360),
+      speed: rawResult[3] ?? 0,
+    };
+  }
+
+  return {
+    degree: mod(rawResult?.longitude ?? 0, 360),
+    speed: rawResult?.longitudeSpeed ?? 0,
+  };
+};
+
+const buildSwissAuxiliaryBodies = async ({
+  birthDateValue,
+  birthTime,
+  timezoneOffset,
+  nodeMode = "mean",
+  lilithMode = "mean",
+  ayanamsaOffset = 0,
+}) => {
+  const swe = await loadSwissEph();
+  const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+  const [hours, minutes] = String(birthTime).split(":").map((value) => Number.parseInt(value, 10));
+  const utcHour = hours + minutes / 60 - timezoneOffset;
+  const julianDay = swe.julday(year, month, day, utcHour);
+  const flags = swe.SEFLG_SWIEPH | swe.SEFLG_SPEED;
+  const nodeId = nodeMode === "true" ? swe.SE_TRUE_NODE : swe.SE_MEAN_NODE;
+  const lilithId =
+    lilithMode === "true" && Number.isFinite(swe.SE_OSCU_APOG) ? swe.SE_OSCU_APOG : swe.SE_MEAN_APOG;
+  const northNode = mod(readSwissCalcResult(swe.calc_ut(julianDay, nodeId, flags)).degree - ayanamsaOffset, 360);
+  const lilith = mod(readSwissCalcResult(swe.calc_ut(julianDay, lilithId, flags)).degree - ayanamsaOffset, 360);
+  const chiron = mod(readSwissCalcResult(swe.calc_ut(julianDay, swe.SE_CHIRON, flags)).degree - ayanamsaOffset, 360);
+
+  return {
+    northNode,
+    southNode: mod(northNode + 180, 360),
+    lilith,
+    chiron,
+  };
+};
 
 const astroCalculateMidheaven = (lstDegrees, obliquityDegrees) => {
   const lst = astroRadians(lstDegrees);
@@ -2323,24 +2855,24 @@ const getBirth2PorphyryHouseCusps = (ascendant, midheaven) => {
   const cusp10 = mod(midheaven, 360);
   const cusp7 = mod(cusp1 + 180, 360);
   const cusp4 = mod(cusp10 + 180, 360);
-  const arc10to1 = mod(cusp10 - cusp1, 360);
-  const arc1to4 = mod(cusp1 - cusp4, 360);
-  const arc4to7 = mod(cusp4 - cusp7, 360);
-  const arc7to10 = mod(cusp7 - cusp10, 360);
+  const arc10to1 = mod(cusp1 - cusp10, 360);
+  const arc1to4 = mod(cusp4 - cusp1, 360);
+  const arc4to7 = mod(cusp7 - cusp4, 360);
+  const arc7to10 = mod(cusp10 - cusp7, 360);
 
   return [
     { label: "1. Ev", degree: cusp1 },
-    { label: "2. Ev", degree: mod(cusp1 - arc1to4 / 3, 360) },
-    { label: "3. Ev", degree: mod(cusp1 - (arc1to4 * 2) / 3, 360) },
+    { label: "2. Ev", degree: mod(cusp1 + arc1to4 / 3, 360) },
+    { label: "3. Ev", degree: mod(cusp1 + (arc1to4 * 2) / 3, 360) },
     { label: "4. Ev", degree: cusp4 },
-    { label: "5. Ev", degree: mod(cusp4 - arc4to7 / 3, 360) },
-    { label: "6. Ev", degree: mod(cusp4 - (arc4to7 * 2) / 3, 360) },
+    { label: "5. Ev", degree: mod(cusp4 + arc4to7 / 3, 360) },
+    { label: "6. Ev", degree: mod(cusp4 + (arc4to7 * 2) / 3, 360) },
     { label: "7. Ev", degree: cusp7 },
-    { label: "8. Ev", degree: mod(cusp7 - arc7to10 / 3, 360) },
-    { label: "9. Ev", degree: mod(cusp7 - (arc7to10 * 2) / 3, 360) },
+    { label: "8. Ev", degree: mod(cusp7 + arc7to10 / 3, 360) },
+    { label: "9. Ev", degree: mod(cusp7 + (arc7to10 * 2) / 3, 360) },
     { label: "10. Ev", degree: cusp10 },
-    { label: "11. Ev", degree: mod(cusp10 - arc10to1 / 3, 360) },
-    { label: "12. Ev", degree: mod(cusp10 - (arc10to1 * 2) / 3, 360) },
+    { label: "11. Ev", degree: mod(cusp10 + arc10to1 / 3, 360) },
+    { label: "12. Ev", degree: mod(cusp10 + (arc10to1 * 2) / 3, 360) },
   ];
 };
 
@@ -2468,7 +3000,7 @@ const renderDetailedRisingWheel = ({ planets, ascendant, midheaven, aspectMatrix
   const aspectLines = [];
   planets.slice(0, 7).forEach((left, leftIndex) => {
     planets.slice(leftIndex + 1, 7).forEach((right) => {
-      const aspect = getMajorAspect(left.degree, right.degree, 4.5);
+      const aspect = getMajorAspect(left.degree, right.degree, 5.5);
       if (!aspect) {
         return;
       }
@@ -2531,7 +3063,7 @@ const renderDetailedRisingWheel = ({ planets, ascendant, midheaven, aspectMatrix
   `;
 };
 
-const renderBirth2ReferenceWheel = ({ planets, ascendant, midheaven, houseCusps }) => {
+const renderBirth2ReferenceWheel = ({ planets, ascendant, midheaven, houseCusps, aspectPlanets = planets }) => {
   const cx = 260;
   const cy = 260;
   const outerRadius = 208;
@@ -2558,8 +3090,9 @@ const renderBirth2ReferenceWheel = ({ planets, ascendant, midheaven, houseCusps 
     "#f0a24b",
     "#4666a6",
   ];
-  const zodiacWheelAngle = (zodiacDegree) => mod(zodiacDegree - ascendant + 270, 360);
-  const zodiacBandAngle = (zodiacDegree) => mod(360 - mod(zodiacWheelAngle(zodiacDegree) + 90, 360), 360);
+  const zodiacWheelAngle = (zodiacDegree) => mod(ascendant - zodiacDegree + 270, 360);
+  const zodiacBandAngle = (zodiacDegree) => zodiacWheelAngle(zodiacDegree);
+  const displayedPlanetAngle = (degree) => zodiacWheelAngle(degree);
 
   const tickMarkup = Array.from({ length: 360 }, (_, index) => {
     const angle = zodiacBandAngle(index);
@@ -2629,15 +3162,15 @@ const renderBirth2ReferenceWheel = ({ planets, ascendant, midheaven, houseCusps 
   }).join("");
 
   const aspectLines = [];
-  planets.slice(0, 7).forEach((left, leftIndex) => {
-    planets.slice(leftIndex + 1, 7).forEach((right) => {
+  aspectPlanets.forEach((left, leftIndex) => {
+    aspectPlanets.slice(leftIndex + 1).forEach((right) => {
       const aspect = getMajorAspect(left.degree, right.degree, 4.5);
       if (!aspect) {
         return;
       }
 
-      const leftPoint = polarToCartesian(cx, cy, 90, zodiacWheelAngle(left.degree));
-      const rightPoint = polarToCartesian(cx, cy, 90, zodiacWheelAngle(right.degree));
+      const leftPoint = polarToCartesian(cx, cy, 90, displayedPlanetAngle(left.degree));
+      const rightPoint = polarToCartesian(cx, cy, 90, displayedPlanetAngle(right.degree));
       aspectLines.push(`
         <line
           class="birth2-wheel-aspect aspect-${aspect.key}"
@@ -2650,8 +3183,25 @@ const renderBirth2ReferenceWheel = ({ planets, ascendant, midheaven, houseCusps 
     });
   });
 
-  const planetMarkup = planets.map((planet) => {
-    const point = polarToCartesian(cx, cy, planetOrbit, zodiacWheelAngle(planet.degree));
+  const sortedPlanets = [...planets].sort((left, right) => left.degree - right.degree);
+  const signUsage = new Map();
+  const occupiedAngles = [];
+  const planetMarkup = sortedPlanets.map((planet) => {
+    const angle = displayedPlanetAngle(planet.degree);
+    const signIndex = Math.floor(mod(planet.degree, 360) / 30);
+    const signSlot = signUsage.get(signIndex) ?? 0;
+    signUsage.set(signIndex, signSlot + 1);
+    let orbit = planetOrbit - signSlot * 10;
+
+    occupiedAngles.forEach((occupiedAngle, index) => {
+      const separation = Math.abs(normalizeSignedDegree(angle - occupiedAngle));
+      if (separation < 8) {
+        orbit = Math.min(orbit, planetOrbit - 12 - index * 8);
+      }
+    });
+
+    occupiedAngles.push(angle);
+    const point = polarToCartesian(cx, cy, Math.max(112, orbit), angle);
     return `
       <text class="birth2-wheel-planet" x="${point.x.toFixed(2)}" y="${point.y.toFixed(2)}">${PLANET_GLYPHS[planet.key] ?? planet.short}</text>
     `;
@@ -2699,8 +3249,8 @@ const getBirth2HouseNumberForDegree = (degree, houseCusps) => {
   for (let index = 0; index < houseCusps.length; index += 1) {
     const current = houseCusps[index]?.degree;
     const next = houseCusps[(index + 1) % houseCusps.length]?.degree;
-    const span = mod(current - next, 360);
-    const distance = mod(current - degree, 360);
+    const span = mod(next - current, 360);
+    const distance = mod(degree - current, 360);
 
     if (distance >= 0 && distance < span) {
       return index + 1;
@@ -2711,6 +3261,37 @@ const getBirth2HouseNumberForDegree = (degree, houseCusps) => {
 };
 
 const getBirth2PartOfFortune = (sunDegree, moonDegree, ascDegree) => mod(ascDegree + moonDegree - sunDegree, 360);
+
+const getBirth2TableBodies = (planets, date) => {
+  const northNodeDegree = getApproxPlanetDegree(date, {
+    base: 125.4,
+    speed: -0.05295,
+    wobble: 1.5,
+    cycle: 6798,
+  });
+
+  return [
+    ...planets,
+    ...BIRTH2_EXTRA_BODIES.filter((body) => ["Chiron", "Lilith"].includes(body.key)).map((body) => ({
+      key: body.key,
+      label: body.key === "Lilith" ? "Lilith (Mean Lunar Apogee)" : body.label,
+      short: body.short,
+      degree: getApproxPlanetDegree(date, body),
+    })),
+    {
+      key: "NorthNode",
+      label: "NorthNode",
+      short: "NN",
+      degree: northNodeDegree,
+    },
+    {
+      key: "SouthNode",
+      label: "SouthNode",
+      short: "SN",
+      degree: mod(northNodeDegree + 180, 360),
+    },
+  ];
+};
 
 const renderBirth2SolarAnalysis = ({ planets, ascendant, midheaven, houseCusps, date }) => {
   const northNodeDegree = getApproxPlanetDegree(date, {
@@ -2808,7 +3389,16 @@ const renderBirth2SolarAnalysis = ({ planets, ascendant, midheaven, houseCusps, 
           <div class="birth-solar-body-row">
             <span class="birth-solar-body-glyph">${PLANET_GLYPHS[body.key] ?? body.short}</span>
             <span class="birth-solar-body-name">${body.label}</span>
-            <span class="birth-solar-sign-glyph">${ZODIAC_GLYPHS[parts.signIndex]}</span>
+            <span class="birth-solar-sign-glyph">
+              <img
+                class="birth-solar-sign-icon"
+                src="assets/zodiac/${getTableSignIconFile(parts.signIndex)}?v=20260331-clean-4"
+                alt=""
+                title=""
+                aria-hidden="true"
+                draggable="false"
+              />
+            </span>
             <span class="birth-solar-body-value">${formatZodiacPosition(body.degree)}</span>
             <span class="birth-solar-body-house">${getBirth2HouseNumberForDegree(body.degree, houseCusps)}</span>
           </div>
@@ -2844,33 +3434,7 @@ const renderBirth2SolarAnalysis = ({ planets, ascendant, midheaven, houseCusps, 
 };
 
 const renderBirth2PersonalPlanetsTable = ({ planets, houseCusps, date }) => {
-  const northNodeDegree = getApproxPlanetDegree(date, {
-    base: 125.4,
-    speed: -0.05295,
-    wobble: 1.5,
-    cycle: 6798,
-  });
-  const tableBodies = [
-    ...planets,
-    ...BIRTH2_EXTRA_BODIES.filter((body) => ["Chiron", "Lilith"].includes(body.key)).map((body) => ({
-      key: body.key,
-      label: body.key === "Lilith" ? "Lilith (Mean Lunar Apogee)" : body.label,
-      short: body.short,
-      degree: getApproxPlanetDegree(date, body),
-    })),
-    {
-      key: "NorthNode",
-      label: "NorthNode",
-      short: "NN",
-      degree: northNodeDegree,
-    },
-    {
-      key: "SouthNode",
-      label: "SouthNode",
-      short: "SN",
-      degree: mod(northNodeDegree + 180, 360),
-    },
-  ];
+  const tableBodies = getBirth2TableBodies(planets, date);
 
   const rows = tableBodies
     .map((body) => {
@@ -2915,6 +3479,638 @@ const renderBirth2PersonalPlanetsTable = ({ planets, houseCusps, date }) => {
       </div>
     </section>
   `;
+};
+
+const renderBirth3HouseGrid = (houseCusps) => `
+  <section class="birth3-house-grid">
+    ${houseCusps
+      .map((house, index) => {
+        const parts = getDegreeParts(house.degree);
+        return `
+          <article class="birth3-house-card">
+            <strong>${index + 1}. Ev</strong>
+            <span>${parts.signLabel}</span>
+            <p>${parts.degree}° ${String(parts.minutes).padStart(2, "0")}′</p>
+          </article>
+        `;
+      })
+      .join("")}
+  </section>
+`;
+
+const buildSwissEphBirth3Data = async ({
+  birthDateValue,
+  birthTime,
+  timezoneOffset,
+  latitude,
+  longitude,
+  houseSystem = "P",
+}) => {
+  const swe = await loadSwissEph();
+  const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+  const [hours, minutes] = String(birthTime).split(":").map((value) => Number.parseInt(value, 10));
+  const utcHour = hours + minutes / 60 - timezoneOffset;
+  const julianDay = swe.julday(year, month, day, utcHour);
+  const flags = swe.SEFLG_SWIEPH | swe.SEFLG_SPEED;
+  const planetSpecs = [
+    { key: "Sun", label: "Güneş", short: "SU", id: swe.SE_SUN },
+    { key: "Moon", label: "Ay", short: "MO", id: swe.SE_MOON },
+    { key: "Mercury", label: "Merkür", short: "ME", id: swe.SE_MERCURY },
+    { key: "Venus", label: "Venüs", short: "VE", id: swe.SE_VENUS },
+    { key: "Mars", label: "Mars", short: "MA", id: swe.SE_MARS },
+    { key: "Jupiter", label: "Jüpiter", short: "JU", id: swe.SE_JUPITER },
+    { key: "Saturn", label: "Satürn", short: "SA", id: swe.SE_SATURN },
+    { key: "Uranus", label: "Uranüs", short: "UR", id: swe.SE_URANUS },
+    { key: "Neptune", label: "Neptün", short: "NE", id: swe.SE_NEPTUNE },
+    { key: "Pluto", label: "Plüton", short: "PL", id: swe.SE_PLUTO },
+  ];
+
+  const planets = planetSpecs.map((planet) => {
+    const position = readSwissCalcResult(swe.calc_ut(julianDay, planet.id, flags));
+    return {
+      key: planet.key,
+      label: planet.label,
+      short: planet.short,
+      degree: position.degree,
+      speed: position.speed,
+    };
+  });
+
+  const northNode = readSwissCalcResult(swe.calc_ut(julianDay, swe.SE_TRUE_NODE, flags));
+  const lilith = readSwissCalcResult(swe.calc_ut(julianDay, swe.SE_MEAN_APOG, flags));
+  const chiron = readSwissCalcResult(swe.calc_ut(julianDay, swe.SE_CHIRON, flags));
+  const houses = swe.houses(julianDay, latitude, longitude, houseSystem);
+  const houseCusps = Array.from({ length: 12 }, (_, index) => ({
+    label: `${index + 1}. Ev`,
+    degree: mod(houses.cusps[index + 1], 360),
+  }));
+
+  const extras = [
+    { key: "Chiron", label: "Chiron", short: "CH", degree: chiron.degree },
+    { key: "Lilith", label: "Lilith (Mean Lunar Apogee)", short: "LI", degree: lilith.degree },
+    { key: "NorthNode", label: "NorthNode", short: "NN", degree: northNode.degree },
+    { key: "SouthNode", label: "SouthNode", short: "SN", degree: mod(northNode.degree + 180, 360) },
+  ];
+
+  return {
+    julianDay,
+    planets,
+    tableBodies: [...planets, ...extras],
+    houseCusps,
+    ascendant: mod(houses.ascmc[0], 360),
+    midheaven: mod(houses.ascmc[1], 360),
+  };
+};
+
+const renderBirth3ReferenceWheel = ({ planets, ascendant, midheaven, houseCusps, aspectPlanets = planets }) => {
+  const cx = 260;
+  const cy = 260;
+  const outerRadius = 208;
+  const signBandRadius = 182;
+  const tickOuterRadius = 164;
+  const tickInnerMinorRadius = 158;
+  const tickInnerMajorRadius = 151;
+  const houseOuterRadius = 162;
+  const houseInnerRadius = 112;
+  const coreRadius = 98;
+  const planetOrbit = 146;
+  const houseLabelRadius = 108;
+  const houseWheelAngle = (zodiacDegree) => mod(ascendant - zodiacDegree + 270, 360);
+  const zodiacWheelAngle = (zodiacDegree) => mod(houseWheelAngle(zodiacDegree) + 90, 360);
+
+  const tickMarkup = Array.from({ length: 360 }, (_, index) => {
+    const angle = zodiacWheelAngle(index);
+    const major = index % 5 === 0;
+    const outer = polarToCartesian(cx, cy, tickOuterRadius, angle);
+    const inner = polarToCartesian(cx, cy, major ? tickInnerMajorRadius : tickInnerMinorRadius, angle);
+    return `
+      <line
+        class="birth3-wheel-tick${major ? " is-major" : ""}"
+        x1="${inner.x.toFixed(2)}"
+        y1="${inner.y.toFixed(2)}"
+        x2="${outer.x.toFixed(2)}"
+        y2="${outer.y.toFixed(2)}"
+      />
+    `;
+  }).join("");
+
+  const signMarkup = ZODIAC_SIGNS.map((sign, index) => {
+    const startAngle = zodiacWheelAngle(index * 30);
+    const outerPoint = polarToCartesian(cx, cy, 194, startAngle);
+    const innerPoint = polarToCartesian(cx, cy, houseOuterRadius, startAngle);
+    const labelPoint = polarToCartesian(cx, cy, signBandRadius, zodiacWheelAngle(index * 30 + 15));
+    const iconSize = 18;
+    return `
+      <line
+        class="birth3-wheel-divider"
+        x1="${innerPoint.x.toFixed(2)}"
+        y1="${innerPoint.y.toFixed(2)}"
+        x2="${outerPoint.x.toFixed(2)}"
+        y2="${outerPoint.y.toFixed(2)}"
+      />
+      <image
+        class="birth3-wheel-sign-icon"
+        href="assets/zodiac/${SIGN_ICON_FILES[index]}?v=20260331-clean-4"
+        x="${(labelPoint.x - iconSize / 2).toFixed(2)}"
+        y="${(labelPoint.y - iconSize / 2).toFixed(2)}"
+        width="${iconSize}"
+        height="${iconSize}"
+        preserveAspectRatio="xMidYMid meet"
+        aria-label="${sign.name} burcu"
+      />
+    `;
+  }).join("");
+
+  const houseMarkup = houseCusps.map((house) => {
+    const angle = houseWheelAngle(house.degree);
+    const inner = polarToCartesian(cx, cy, houseInnerRadius, angle);
+    const outer = polarToCartesian(cx, cy, houseOuterRadius, angle);
+    return `
+      <line
+        class="birth3-wheel-house-line"
+        x1="${inner.x.toFixed(2)}"
+        y1="${inner.y.toFixed(2)}"
+        x2="${outer.x.toFixed(2)}"
+        y2="${outer.y.toFixed(2)}"
+      />
+    `;
+  }).join("");
+
+  const houseLabelsMarkup = houseCusps
+    .map((house, index) => {
+      const nextDegree = houseCusps[(index + 1) % houseCusps.length]?.degree ?? house.degree;
+      const span = mod(nextDegree - house.degree, 360);
+      const midpoint = mod(house.degree + span / 2, 360);
+      const label = polarToCartesian(cx, cy, houseLabelRadius, houseWheelAngle(midpoint));
+      return `<text class="birth3-wheel-house-label" x="${label.x.toFixed(2)}" y="${label.y.toFixed(2)}">${index + 1}</text>`;
+    })
+    .join("");
+
+  const aspectLines = [];
+  aspectPlanets.forEach((left, leftIndex) => {
+    aspectPlanets.slice(leftIndex + 1).forEach((right) => {
+      const aspect = getMajorAspect(left.degree, right.degree, 4.5);
+      if (!aspect) {
+        return;
+      }
+
+      const leftPoint = polarToCartesian(cx, cy, 86, houseWheelAngle(left.degree));
+      const rightPoint = polarToCartesian(cx, cy, 86, houseWheelAngle(right.degree));
+      aspectLines.push(`
+        <line
+          class="birth3-wheel-aspect aspect-${aspect.key}"
+          x1="${leftPoint.x.toFixed(2)}"
+          y1="${leftPoint.y.toFixed(2)}"
+          x2="${rightPoint.x.toFixed(2)}"
+          y2="${rightPoint.y.toFixed(2)}"
+        />
+      `);
+    });
+  });
+
+  const sortedPlanets = [...planets].sort((left, right) => left.degree - right.degree);
+  const collisionThreshold = 8;
+  const orbitOffsets = [0, -10, 10, -18, 18, -26, 26, -34, 34];
+  const clusters = [];
+
+  sortedPlanets.forEach((planet) => {
+    const angle = houseWheelAngle(planet.degree);
+    const currentCluster = clusters[clusters.length - 1];
+
+    if (!currentCluster) {
+      clusters.push([{ planet, angle }]);
+      return;
+    }
+
+    const previous = currentCluster[currentCluster.length - 1];
+    if (previous && Math.abs(normalizeSignedDegree(angle - previous.angle)) <= collisionThreshold) {
+      currentCluster.push({ planet, angle });
+      return;
+    }
+
+    clusters.push([{ planet, angle }]);
+  });
+
+  if (
+    clusters.length > 1 &&
+    Math.abs(
+      normalizeSignedDegree(
+        clusters[0][0].angle - clusters[clusters.length - 1][clusters[clusters.length - 1].length - 1].angle,
+      ),
+    ) <= collisionThreshold
+  ) {
+    clusters[0] = [...clusters[clusters.length - 1], ...clusters[0]];
+    clusters.pop();
+  }
+
+  const planetMarkup = clusters
+    .map((cluster) =>
+      cluster
+        .map(({ planet, angle }, index) => {
+        const resolvedOrbit = Math.max(112, planetOrbit + (orbitOffsets[index] ?? -(index * 8)));
+        const point = polarToCartesian(cx, cy, resolvedOrbit, angle);
+        const anchorOuter = polarToCartesian(cx, cy, tickInnerMajorRadius - 2, angle);
+        const anchorInner = polarToCartesian(cx, cy, resolvedOrbit + 8, angle);
+        return `
+          <line
+            class="birth3-wheel-planet-anchor"
+            x1="${anchorOuter.x.toFixed(2)}"
+            y1="${anchorOuter.y.toFixed(2)}"
+            x2="${anchorInner.x.toFixed(2)}"
+            y2="${anchorInner.y.toFixed(2)}"
+          />
+          <text class="birth3-wheel-planet" x="${point.x.toFixed(2)}" y="${point.y.toFixed(2)}">${PLANET_GLYPHS[planet.key] ?? planet.short}</text>
+        `;
+        })
+        .join(""),
+    )
+    .join("");
+
+  const ascAngle = houseWheelAngle(ascendant);
+  const mcAngle = houseWheelAngle(midheaven);
+  const ascInner = polarToCartesian(cx, cy, houseInnerRadius, ascAngle);
+  const ascOuter = polarToCartesian(cx, cy, tickOuterRadius, ascAngle);
+  const mcInner = polarToCartesian(cx, cy, houseInnerRadius, mcAngle);
+  const mcOuter = polarToCartesian(cx, cy, tickOuterRadius, mcAngle);
+  const ascLabel = polarToCartesian(cx, cy, houseInnerRadius + 12, ascAngle);
+  const mcLabel = polarToCartesian(cx, cy, houseOuterRadius - 8, mcAngle);
+
+  return `
+    <article class="birth3-wheel-card">
+      <div class="birth3-wheel-shell">
+        <svg viewBox="0 0 520 520" role="img" aria-label="Doğum Haritası çemberi">
+          <circle class="birth3-wheel-fill" cx="${cx}" cy="${cy}" r="194" />
+          <circle class="birth3-wheel-outer" cx="${cx}" cy="${cy}" r="${outerRadius}" />
+          <circle class="birth3-wheel-tick-ring" cx="${cx}" cy="${cy}" r="${tickOuterRadius}" />
+          <circle class="birth3-wheel-house-ring" cx="${cx}" cy="${cy}" r="${houseOuterRadius}" />
+          <circle class="birth3-wheel-core" cx="${cx}" cy="${cy}" r="${coreRadius}" />
+          <g class="birth3-wheel-sign-group">${signMarkup}</g>
+          <g class="birth3-wheel-tick-group">${tickMarkup}</g>
+          <g class="birth3-wheel-house-group">${houseMarkup}</g>
+          <g class="birth3-wheel-house-label-group">${houseLabelsMarkup}</g>
+          <g class="birth3-wheel-aspect-group">${aspectLines.join("")}</g>
+          <line class="birth3-wheel-axis asc" x1="${ascInner.x.toFixed(2)}" y1="${ascInner.y.toFixed(2)}" x2="${ascOuter.x.toFixed(2)}" y2="${ascOuter.y.toFixed(2)}" />
+          <line class="birth3-wheel-axis mc" x1="${mcInner.x.toFixed(2)}" y1="${mcInner.y.toFixed(2)}" x2="${mcOuter.x.toFixed(2)}" y2="${mcOuter.y.toFixed(2)}" />
+          <text class="birth3-wheel-axis-label" x="${ascLabel.x.toFixed(2)}" y="${ascLabel.y.toFixed(2)}">AC</text>
+          <text class="birth3-wheel-axis-label" x="${mcLabel.x.toFixed(2)}" y="${mcLabel.y.toFixed(2)}">MC</text>
+          <g class="birth3-wheel-planets">${planetMarkup}</g>
+        </svg>
+      </div>
+    </article>
+  `;
+};
+
+const renderBirth3PersonalPlanetsTable = ({ tableBodies, houseCusps }) => {
+  return `
+    <section class="birth3-planet-table-wrap">
+      <table class="birth3-planet-table">
+        <thead>
+          <tr>
+            <th>Gezegen/Nokta</th>
+            <th>Pozisyon</th>
+            <th>Ev</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableBodies
+            .map((body) => `
+              <tr>
+                <td>${body.label}</td>
+                <td>${formatZodiacPosition(body.degree)}</td>
+                <td>${getBirth2HouseNumberForDegree(body.degree, houseCusps)}</td>
+              </tr>
+            `)
+            .join("")}
+        </tbody>
+      </table>
+    </section>
+  `;
+};
+
+const renderBirth3SolarAnalysis = ({ tableBodies, ascendant, midheaven, houseCusps }) => {
+  const listBodies = [
+    ...tableBodies,
+    { key: "Ascendant", label: "Yükselen", short: "AC", degree: ascendant },
+    { key: "Midheaven", label: "Midheaven", short: "MC", degree: midheaven },
+  ];
+
+  const matrixRows = listBodies
+    .map((rowBody, rowIndex) => {
+      const cells = listBodies
+        .slice(0, rowIndex + 1)
+        .map((colBody, colIndex) => {
+          if (colIndex === rowIndex) {
+            return `<td class="is-label" data-label="${rowBody.label}">${PLANET_GLYPHS[rowBody.key] ?? rowBody.short}</td>`;
+          }
+
+          const aspect = getMajorAspect(rowBody.degree, colBody.degree, 5);
+          if (!aspect) {
+            return '<td class="is-empty"></td>';
+          }
+
+          return `<td class="aspect-${aspect.key}" title="${rowBody.label} - ${colBody.label} ${aspect.label}">${RISING_ASPECT_SYMBOLS[aspect.key] ?? "•"}</td>`;
+        })
+        .join("");
+
+      return `<tr>${cells}</tr>`;
+    })
+    .join("");
+
+  const legendMarkup = COMPATIBILITY_ASPECTS.map(
+    (aspect) => `
+      <span class="rising-aspect-legend-item">
+        <span class="rising-aspect-legend-symbol aspect-${aspect.key}">${RISING_ASPECT_SYMBOLS[aspect.key] ?? aspect.label}</span>
+        <span class="rising-aspect-legend-text">${aspect.label}</span>
+      </span>
+    `,
+  ).join("");
+
+  const listMarkup = `
+    <div class="birth-solar-body-head">
+      <span></span>
+      <span>Gezegen</span>
+      <span></span>
+      <span>Boylam</span>
+      <span>Ev</span>
+    </div>
+    ${listBodies
+      .map((body) => {
+        const parts = getDegreeParts(body.degree);
+        return `
+          <div class="birth-solar-body-row">
+            <span class="birth-solar-body-glyph">${PLANET_GLYPHS[body.key] ?? body.short}</span>
+            <span class="birth-solar-body-name">${body.label}</span>
+            <span class="birth-solar-sign-glyph">
+              <img
+                class="birth-solar-sign-icon"
+                src="assets/zodiac/${getTableSignIconFile(parts.signIndex)}?v=20260331-clean-4"
+                alt=""
+                title=""
+                aria-hidden="true"
+                draggable="false"
+              />
+            </span>
+            <span class="birth-solar-body-value">${formatZodiacPosition(body.degree)}</span>
+            <span class="birth-solar-body-house">${getBirth2HouseNumberForDegree(body.degree, houseCusps)}</span>
+          </div>
+        `;
+      })
+      .join("")}
+  `;
+
+  return `
+    <article class="result-note-card birth2-solar-analysis-card">
+      <div class="birth-solar-analysis-top">
+        <div class="birth-solar-matrix-block">
+          <div class="rising-aspect-legend birth-solar-legend">
+            ${legendMarkup}
+          </div>
+          <div class="rising-aspect-table-wrap">
+            <table class="rising-aspect-table birth-solar-aspect-table">
+              <tbody>
+                ${matrixRows}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="birth-solar-side-block">
+          <div class="birth-solar-body-list">
+            ${listMarkup}
+          </div>
+        </div>
+      </div>
+    </article>
+  `;
+};
+
+const renderBirth3ResultScene = ({ detailData, houseCusps, tableBodies }) => {
+  const wheelMarkup = renderBirth3ReferenceWheel({
+    planets: tableBodies,
+    ascendant: detailData.ascendant,
+    midheaven: detailData.midheaven,
+    houseCusps,
+    aspectPlanets: tableBodies,
+  });
+
+  return `
+    <section class="birth3-scene">
+      <div class="birth3-scene-wheel">
+        ${wheelMarkup}
+      </div>
+    </section>
+    ${renderBirth3SolarAnalysis({
+      tableBodies,
+      ascendant: detailData.ascendant,
+      midheaven: detailData.midheaven,
+      houseCusps,
+    })}
+  `;
+};
+
+const renderBirthChartThreeResult = async () => {
+  const form = document.querySelector("#birthChartThreeForm");
+  const result = document.querySelector("#birthChartThreeResult");
+  const housesResult = document.querySelector("[data-birth3-house-grid]");
+  const citySelect = form?.querySelector("[data-birth3-city]");
+  const districtSelect = form?.querySelector("[data-birth3-district]");
+  const neighborhoodSelect = form?.querySelector("[data-birth3-neighborhood]");
+  const birthDateInput = form?.querySelector('input[name="birthDate"]');
+  const birthTimeInput = form?.querySelector('input[name="birthTime"]');
+  const unknownTimeInput = form?.querySelector('input[name="unknownTime"]');
+  const latitudeInput = form?.querySelector('input[name="latitude"]');
+  const longitudeInput = form?.querySelector('input[name="longitude"]');
+  const timezoneInput = form?.querySelector('input[name="timezoneOffset"]');
+  const summaryNodes = {
+    sun: document.querySelector("[data-birth3-sun]"),
+    moon: document.querySelector("[data-birth3-moon]"),
+    ascendant: document.querySelector("[data-birth3-ascendant]"),
+    midheaven: document.querySelector("[data-birth3-midheaven]"),
+  };
+
+  if (
+    !(form instanceof HTMLFormElement) ||
+    !(result instanceof HTMLElement) ||
+    !(housesResult instanceof HTMLElement) ||
+    !(citySelect instanceof HTMLSelectElement) ||
+    !(districtSelect instanceof HTMLSelectElement) ||
+    !(neighborhoodSelect instanceof HTMLSelectElement) ||
+    !(birthDateInput instanceof HTMLInputElement) ||
+    !(birthTimeInput instanceof HTMLInputElement) ||
+    !(unknownTimeInput instanceof HTMLInputElement) ||
+    !(latitudeInput instanceof HTMLInputElement) ||
+    !(longitudeInput instanceof HTMLInputElement) ||
+    !(timezoneInput instanceof HTMLInputElement)
+  ) {
+    return;
+  }
+
+  bindLocationSelects({
+    citySelect,
+    districtSelect,
+    neighborhoodSelect,
+  }).catch(() => {});
+
+  const syncUnknownTime = () => {
+    birthTimeInput.disabled = unknownTimeInput.checked;
+    if (unknownTimeInput.checked && !birthTimeInput.value) {
+      birthTimeInput.value = "12:00";
+    }
+  };
+
+  const syncDerivedFields = async ({ syncCoordinates = true } = {}) => {
+    const selectedLocation = await resolveSelectedLocationCoordinates({
+      citySelect,
+      districtSelect,
+      neighborhoodSelect,
+    });
+
+    if (syncCoordinates) {
+      latitudeInput.value = selectedLocation.latitude.toFixed(4);
+      longitudeInput.value = selectedLocation.longitude.toFixed(4);
+    }
+
+    if (!birthDateInput.value) {
+      return;
+    }
+
+    const [year, month, day] = birthDateInput.value.split("-").map((value) => Number.parseInt(value, 10));
+    const calculationTime = unknownTimeInput.checked ? "12:00" : birthTimeInput.value || "00:00";
+    const [hours, minutes] = calculationTime.split(":").map((value) => Number.parseInt(value, 10));
+    const inferredTimezoneOffset = getHistoricalTimeZoneOffsetHours({
+      year,
+      month,
+      day,
+      hours,
+      minutes,
+    });
+
+    if (Number.isFinite(inferredTimezoneOffset)) {
+      timezoneInput.value = String(inferredTimezoneOffset);
+    }
+  };
+
+  const update = async () => {
+    const formData = new FormData(form);
+    const birthDateValue = String(formData.get("birthDate") ?? "");
+    const unknownTime = formData.has("unknownTime");
+    const birthTime = unknownTime ? "12:00" : String(formData.get("birthTime") ?? "12:00");
+    const latitude = Number.parseFloat(String(formData.get("latitude") ?? ""));
+    const longitude = Number.parseFloat(String(formData.get("longitude") ?? ""));
+    const date = birthDateValue ? new Date(`${birthDateValue}T12:00:00`) : null;
+    const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+    const [hours, minutes] = birthTime.split(":").map((value) => Number.parseInt(value, 10));
+    const inferredTimezoneOffset = getHistoricalTimeZoneOffsetHours({
+      year,
+      month,
+      day,
+      hours,
+      minutes,
+    });
+    const effectiveTimezoneOffset = Number.isFinite(inferredTimezoneOffset)
+      ? inferredTimezoneOffset
+      : Number.parseFloat(String(formData.get("timezoneOffset") ?? "3")) || 3;
+
+    result.innerHTML = `
+      <article class="result-note-card">
+        <h4>Harita hesaplanıyor</h4>
+        <p>Swiss Ephemeris verileri okunuyor ve çember hazırlanıyor.</p>
+      </article>
+    `;
+
+    if (!(date instanceof Date) || Number.isNaN(date.getTime()) || !birthTime) {
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Doğum bilgisi eksik</h4>
+          <p>Detaylı haritayı göstermek için doğum tarihi ve saati gir.</p>
+        </article>
+      `;
+      housesResult.innerHTML = "";
+      return;
+    }
+
+    const selectedLocation = await resolveSelectedLocationCoordinates({
+      citySelect,
+      districtSelect,
+      neighborhoodSelect,
+    });
+
+    try {
+      const detailData = await withTimeout(
+        buildSwissEphBirth3Data({
+          birthDateValue,
+          birthTime,
+          timezoneOffset: effectiveTimezoneOffset,
+          latitude: Number.isFinite(latitude) ? latitude : selectedLocation.latitude,
+          longitude: Number.isFinite(longitude) ? longitude : selectedLocation.longitude,
+          houseSystem: "P",
+        }),
+        SWISS_EPH_TIMEOUT_MS + 5000,
+        "Doğum Haritası hesaplama",
+      );
+
+      const houseCusps = detailData.houseCusps;
+
+      if (summaryNodes.sun instanceof HTMLElement) {
+        summaryNodes.sun.textContent = formatZodiacPosition(detailData.planets[0].degree);
+      }
+      if (summaryNodes.moon instanceof HTMLElement) {
+        summaryNodes.moon.textContent = formatZodiacPosition(detailData.planets[1].degree);
+      }
+      if (summaryNodes.ascendant instanceof HTMLElement) {
+        summaryNodes.ascendant.textContent = formatZodiacPosition(detailData.ascendant);
+      }
+      if (summaryNodes.midheaven instanceof HTMLElement) {
+        summaryNodes.midheaven.textContent = formatZodiacPosition(detailData.midheaven);
+      }
+      result.innerHTML = renderBirth3ResultScene({
+        detailData,
+        houseCusps,
+        tableBodies: detailData.tableBodies,
+      });
+      housesResult.innerHTML = renderBirth3HouseGrid(houseCusps);
+    } catch (error) {
+      console.error("Birth3 Swiss Ephemeris load failed:", error);
+      const errorMessage =
+        error instanceof Error && error.message ? error.message : "Bilinmeyen yükleme hatası.";
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Swiss Ephemeris yüklenemedi</h4>
+          <p>Doğum Haritası bu sayfada yerel Swiss Ephemeris WASM ile çalışıyor. Lütfen sayfayı yeniden yükleyip tekrar dene.</p>
+          <p>Hata: ${escapeHtml(errorMessage)}</p>
+        </article>
+      `;
+      housesResult.innerHTML = "";
+    }
+  };
+
+  syncUnknownTime();
+
+  citySelect.addEventListener("locationresolved", () => {
+    void syncDerivedFields().then(update);
+  });
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    void syncDerivedFields({ syncCoordinates: false }).then(update);
+  });
+
+  form.addEventListener("change", async (event) => {
+    const target = event.target;
+    const isLocationTarget =
+      target === citySelect || target === districtSelect || target === neighborhoodSelect;
+
+    if (target === unknownTimeInput || target === birthDateInput || target === birthTimeInput) {
+      syncUnknownTime();
+      await syncDerivedFields({ syncCoordinates: false });
+    }
+
+    if (!isLocationTarget) {
+      update();
+    }
+  });
+
+  await syncDerivedFields();
+  update();
 };
 
 const renderRisingPlanetTable = (planets, ascendant, midheaven) => `
@@ -3175,34 +4371,59 @@ const getCompatibilityStyleWeights = (styleKey) => {
   };
 };
 
-const buildCompatibilityProfile = ({
+const buildSwissCompatibilityProfile = async ({
   name,
-  date,
+  birthDateValue,
   timeValue,
   unknownTime,
+  timezoneOffset,
   location,
   district,
   neighborhood,
   zodiacMode,
+  houseSystem,
 }) => {
   const ayanamsaOffset = zodiacMode === "sidereal" ? AYANAMSA_LABELS.lahiri.degrees : 0;
   const resolvedTime = unknownTime ? "12:00" : timeValue;
   const minutes = parseTimeToMinutes(resolvedTime);
-  const sunDegree = mod(getApproxTropicalSunDegree(date) - ayanamsaOffset, 360);
-  const moonDegree = mod(sunDegree + getMoonPhaseInfo(date).age * 12.2 - ayanamsaOffset, 360);
-  const sunriseMinutes = getApproxSunriseMinutes(date, location);
-  const ascDegree = mod(
-    (getSunSign(date).index + Math.floor((minutes - sunriseMinutes) / 120)) * 30 + minutes / 4 - ayanamsaOffset,
-    360,
-  );
-  const mercuryDegree = mod(getApproxPlanetDegree(date, EPHEMERIS_PLANETS[2]) - ayanamsaOffset, 360);
-  const venusDegree = mod(getApproxPlanetDegree(date, EPHEMERIS_PLANETS[3]) - ayanamsaOffset, 360);
-  const marsDegree = mod(getApproxPlanetDegree(date, EPHEMERIS_PLANETS[4]) - ayanamsaOffset, 360);
+  const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+  const [hours, minuteValue] = resolvedTime.split(":").map((value) => Number.parseInt(value, 10));
+  const inferredTimezoneOffset = getHistoricalTimeZoneOffsetHours({
+    year,
+    month,
+    day,
+    hours,
+    minutes: minuteValue,
+  });
+  const resolvedTimezoneOffset = Number.isFinite(timezoneOffset) ? timezoneOffset : inferredTimezoneOffset;
+  const detailData = await buildSwissEphBirth3Data({
+    birthDateValue,
+    birthTime: resolvedTime,
+    timezoneOffset: Number.isFinite(resolvedTimezoneOffset) ? resolvedTimezoneOffset : 3,
+    latitude: location.latitude,
+    longitude: location.longitude,
+    houseSystem: houseSystem ?? "P",
+  });
+  const planetsByKey = Object.fromEntries(detailData.planets.map((planet) => [planet.key, planet]));
+  const rawSunDegree = planetsByKey.Sun?.degree ?? 0;
+  const rawMoonDegree = planetsByKey.Moon?.degree ?? 0;
+  const rawMercuryDegree = planetsByKey.Mercury?.degree ?? 0;
+  const rawVenusDegree = planetsByKey.Venus?.degree ?? 0;
+  const rawMarsDegree = planetsByKey.Mars?.degree ?? 0;
+  const rawAscDegree = detailData.ascendant;
+  const sunDegree = mod(rawSunDegree - ayanamsaOffset, 360);
+  const moonDegree = mod(rawMoonDegree - ayanamsaOffset, 360);
+  const ascDegree = mod(rawAscDegree - ayanamsaOffset, 360);
+  const mercuryDegree = mod(rawMercuryDegree - ayanamsaOffset, 360);
+  const venusDegree = mod(rawVenusDegree - ayanamsaOffset, 360);
+  const marsDegree = mod(rawMarsDegree - ayanamsaOffset, 360);
   const timeSegment = getTimeSegment(minutes);
+  const date = new Date(`${birthDateValue}T12:00:00`);
 
   return {
     name,
     date,
+    birthDateValue,
     timeValue: resolvedTime,
     unknownTime,
     locationLabel: `${location.label}${district ? `, ${district}` : ""}${neighborhood ? ` / ${neighborhood}` : ""}`,
@@ -3220,6 +4441,7 @@ const buildCompatibilityProfile = ({
     marsSign: getSignFromDegree(marsDegree),
     moonPhase: getMoonPhaseInfo(date),
     timeSegment,
+    houseCusps: detailData.houseCusps,
   };
 };
 
@@ -3370,6 +4592,322 @@ const renderMetricCards = (items) =>
     )
     .join("");
 
+const renderNumerologyFeatureCards = (items) =>
+  items
+    .map(
+      (item) => `
+        <article class="numerology-feature-card numerology-feature-card-${
+          (Number.parseInt(String(item.value), 10) || 0) % 4 + 1
+        }">
+          <div class="numerology-feature-orb numerology-number-${String(item.value).replace(/\s*\/\s*/g, "-").replace(/[^\w-]/g, "")}">${item.value}</div>
+          <p class="numerology-feature-label">${item.label}</p>
+          <h4 class="numerology-feature-headline">${item.headline}</h4>
+          <p class="numerology-feature-keywords">${item.keywords}</p>
+          <p class="numerology-feature-copy">${item.summary}</p>
+        </article>
+      `,
+    )
+    .join("");
+
+const getFamilySignFromValue = (value) => {
+  const signIndex = Number.parseInt(String(value ?? ""), 10);
+  return ZODIAC_SIGNS[signIndex] ?? null;
+};
+
+const buildFamilyMemberProfile = async (formData, prefix, label) => {
+  const mode = String(formData.get(`${prefix}Mode`) ?? "date");
+
+  if (mode === "sign") {
+    const sign = getFamilySignFromValue(formData.get(`${prefix}Sign`));
+    if (!sign) {
+      return null;
+    }
+
+    return {
+      label,
+      sign,
+      mode,
+      sourceLabel: "Burç girişi",
+      detailLabel: sign.name,
+      sunSummary: sign.name,
+      moonSummary: null,
+      ascSummary: null,
+      summaryNote: "Bu üyede sadece manuel burç bilgisi kullanıldı.",
+    };
+  }
+
+  const birthDateValue = String(formData.get(`${prefix}BirthDate`) ?? "");
+  if (!birthDateValue) {
+    return null;
+  }
+
+  const date = new Date(`${birthDateValue}T12:00:00`);
+  if (Number.isNaN(date.getTime())) {
+    return null;
+  }
+
+  const birthTime = "12:00";
+  const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+  const timezoneOffset = getHistoricalTimeZoneOffsetHours({
+    year,
+    month,
+    day,
+    hours: 12,
+    minutes: 0,
+  });
+  const detailData = await buildSwissEphBirth3Data({
+    birthDateValue,
+    birthTime,
+    timezoneOffset: Number.isFinite(timezoneOffset) ? timezoneOffset : 3,
+    latitude: CITY_DATA.istanbul.latitude,
+    longitude: CITY_DATA.istanbul.longitude,
+    houseSystem: "P",
+  });
+  const sunDegree = detailData.planets.find((planet) => planet.key === "Sun")?.degree ?? 0;
+  const sign = getSignFromDegree(sunDegree);
+  return {
+    label,
+    sign,
+    mode,
+    sourceLabel: "Doğum tarihi",
+    detailLabel: `${formatDate(date)} · ${formatZodiacPosition(sunDegree)}`,
+    sunSummary: formatZodiacPosition(sunDegree),
+    moonSummary: formatZodiacPosition(detailData.planets.find((planet) => planet.key === "Moon")?.degree ?? 0),
+    ascSummary: formatZodiacPosition(detailData.ascendant),
+    summaryNote: "Ay ve Yükselen için 12:00 İstanbul varsayımı kullanıldı.",
+  };
+};
+
+const buildFamilyPairSummary = (leftProfile, rightProfile) => {
+  const leftDegree = leftProfile.sign.index * 30 + 15;
+  const rightDegree = rightProfile.sign.index * 30 + 15;
+  const elementScore = getElementCompatibilityScore(leftProfile.sign, rightProfile.sign);
+  const modeScore = getModeCompatibilityScore(leftProfile.sign, rightProfile.sign);
+  const aspect = findClosestAspect(leftDegree, rightDegree, 15);
+  const score = Math.round(Math.min(100, elementScore * 3.6 + modeScore * 3 + (aspect?.weight ?? 8) * 2.2));
+
+  return {
+    score,
+    tone: getCompatibilityTone(score),
+    summary: aspect
+      ? `${leftProfile.sign.name} ve ${rightProfile.sign.name} arasında ${aspect.label} teması çalışıyor.`
+      : `${leftProfile.sign.name} ile ${rightProfile.sign.name} ilişkisi daha çok element ve ritim üzerinden okunur.`,
+    note: `${leftProfile.sign.element} / ${rightProfile.sign.element} · ${leftProfile.sign.mode} / ${rightProfile.sign.mode}`,
+  };
+};
+
+const renderFamilyCompatibilityResult = () => {
+  const form = document.querySelector("#familyCompatibilityForm");
+  const result = document.querySelector("#familyCompatibilityResult");
+
+  if (!(form instanceof HTMLFormElement) || !(result instanceof HTMLElement)) {
+    return;
+  }
+
+  const memberKeys = ["mother", "father", "baby"];
+
+  const syncModeFields = () => {
+    memberKeys.forEach((key) => {
+      const mode = form.querySelector(`input[name="${key}Mode"]:checked`);
+      const dateField = form.querySelector(`[data-family-date-field="${key}"]`);
+      const signField = form.querySelector(`[data-family-sign-field="${key}"]`);
+      const isSignMode = mode instanceof HTMLInputElement && mode.value === "sign";
+
+      dateField?.classList.toggle("is-hidden", isSignMode);
+      signField?.classList.toggle("is-hidden", !isSignMode);
+    });
+  };
+
+  const update = async () => {
+    const formData = new FormData(form);
+    result.innerHTML = `
+      <article class="result-note-card">
+        <h4>Hesaplanıyor</h4>
+        <p>Aile ekseni Swiss Ephemeris ile güncelleniyor.</p>
+      </article>
+    `;
+
+    let motherProfile;
+    let fatherProfile;
+    let babyProfile;
+
+    try {
+      [motherProfile, fatherProfile, babyProfile] = await Promise.all([
+        buildFamilyMemberProfile(formData, "mother", "Anne"),
+        buildFamilyMemberProfile(formData, "father", "Baba"),
+        buildFamilyMemberProfile(formData, "baby", "Çocuk"),
+      ]);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error && error.message ? error.message : "Bilinmeyen yükleme hatası.";
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Hesap yapılamadı</h4>
+          <p>Aile uyumu bu sayfada yerel Swiss Ephemeris WASM ile çalışıyor.</p>
+          <p>Hata: ${escapeHtml(errorMessage)}</p>
+        </article>
+      `;
+      return;
+    }
+
+    if (!motherProfile || !fatherProfile || !babyProfile) {
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Bilgi eksik</h4>
+          <p>Anne, baba ve çocuk için doğum tarihi ya da burç seçimi tamamlandığında aile uyumu görünür.</p>
+        </article>
+      `;
+      return;
+    }
+
+    const motherBaby = buildFamilyPairSummary(motherProfile, babyProfile);
+    const fatherBaby = buildFamilyPairSummary(fatherProfile, babyProfile);
+    const motherFather = buildFamilyPairSummary(motherProfile, fatherProfile);
+    const overallScore = Math.round(motherBaby.score * 0.38 + fatherBaby.score * 0.38 + motherFather.score * 0.24);
+    const dominantElement =
+      [motherProfile.sign.element, fatherProfile.sign.element, babyProfile.sign.element]
+        .sort((left, right) => left.localeCompare(right, "tr"))
+        .join(" · ");
+    const topPair = [motherBaby, fatherBaby, motherFather].sort((left, right) => right.score - left.score)[0];
+    const lowPair = [motherBaby, fatherBaby, motherFather].sort((left, right) => left.score - right.score)[0];
+
+    result.innerHTML = `
+      <article class="result-hero">
+        <p class="preview-label">Aile okuması</p>
+        <h3>${motherProfile.sign.name} · ${fatherProfile.sign.name} · ${babyProfile.sign.name}</h3>
+        <p>
+          Üçlü eksende genel aile uyumu ${overallScore}/100 görünüyor. En rahat akan hat "${topPair.summary}"
+        </p>
+      </article>
+
+      <article class="result-note-card compatibility-score-shell">
+        <div class="compatibility-score-head">
+          <div>
+            <h4>Aile uyum skoru</h4>
+            <p>${getCompatibilityTone(overallScore)} · Güneş burcu odaklı hızlı okuma</p>
+          </div>
+          <strong class="compatibility-score-value">${overallScore}</strong>
+        </div>
+        <div class="compatibility-score-bar" aria-hidden="true">
+          <span class="compatibility-score-fill" style="width: ${overallScore}%"></span>
+        </div>
+      </article>
+
+      <section class="result-grid">
+        ${renderMetricCards([
+          {
+            label: "Anne - Çocuk",
+            value: `${motherBaby.score}/100`,
+            note: motherBaby.note,
+          },
+          {
+            label: "Baba - Çocuk",
+            value: `${fatherBaby.score}/100`,
+            note: fatherBaby.note,
+          },
+          {
+            label: "Anne - Baba",
+            value: `${motherFather.score}/100`,
+            note: motherFather.note,
+          },
+          {
+            label: "Element akışı",
+            value: dominantElement,
+            note: "Aile içi doğal ton",
+          },
+        ])}
+      </section>
+
+      <section class="family-triad-grid">
+        <article class="family-member-result">
+          <strong>Anne</strong>
+          <span>${motherProfile.sign.name}</span>
+          <p>${motherProfile.sign.element} · ${motherProfile.sign.mode}</p>
+          <p>${motherProfile.sourceLabel}: ${motherProfile.detailLabel}</p>
+          <div class="family-mini-summary-grid">
+            <article class="family-mini-summary-item">
+              <strong>Güneş</strong>
+              <span>${motherProfile.sunSummary}</span>
+            </article>
+            <article class="family-mini-summary-item">
+              <strong>Ay</strong>
+              <span>${motherProfile.moonSummary ?? "Burç modunda yok"}</span>
+            </article>
+            <article class="family-mini-summary-item">
+              <strong>Yükselen</strong>
+              <span>${motherProfile.ascSummary ?? "Burç modunda yok"}</span>
+            </article>
+          </div>
+          <p class="family-mini-note">${motherProfile.summaryNote}</p>
+        </article>
+        <article class="family-member-result">
+          <strong>Baba</strong>
+          <span>${fatherProfile.sign.name}</span>
+          <p>${fatherProfile.sign.element} · ${fatherProfile.sign.mode}</p>
+          <p>${fatherProfile.sourceLabel}: ${fatherProfile.detailLabel}</p>
+          <div class="family-mini-summary-grid">
+            <article class="family-mini-summary-item">
+              <strong>Güneş</strong>
+              <span>${fatherProfile.sunSummary}</span>
+            </article>
+            <article class="family-mini-summary-item">
+              <strong>Ay</strong>
+              <span>${fatherProfile.moonSummary ?? "Burç modunda yok"}</span>
+            </article>
+            <article class="family-mini-summary-item">
+              <strong>Yükselen</strong>
+              <span>${fatherProfile.ascSummary ?? "Burç modunda yok"}</span>
+            </article>
+          </div>
+          <p class="family-mini-note">${fatherProfile.summaryNote}</p>
+        </article>
+        <article class="family-member-result">
+          <strong>Çocuk</strong>
+          <span>${babyProfile.sign.name}</span>
+          <p>${babyProfile.sign.element} · ${babyProfile.sign.mode}</p>
+          <p>${babyProfile.sourceLabel}: ${babyProfile.detailLabel}</p>
+          <div class="family-mini-summary-grid">
+            <article class="family-mini-summary-item">
+              <strong>Güneş</strong>
+              <span>${babyProfile.sunSummary}</span>
+            </article>
+            <article class="family-mini-summary-item">
+              <strong>Ay</strong>
+              <span>${babyProfile.moonSummary ?? "Burç modunda yok"}</span>
+            </article>
+            <article class="family-mini-summary-item">
+              <strong>Yükselen</strong>
+              <span>${babyProfile.ascSummary ?? "Burç modunda yok"}</span>
+            </article>
+          </div>
+          <p class="family-mini-note">${babyProfile.summaryNote}</p>
+        </article>
+      </section>
+
+    `;
+  };
+
+  syncModeFields();
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    syncModeFields();
+    update();
+  });
+
+  form.addEventListener("change", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLInputElement) && !(target instanceof HTMLSelectElement)) {
+      return;
+    }
+
+    syncModeFields();
+    update();
+  });
+
+  update();
+};
+
 const renderBirthChartResult = () => {
   const form = document.querySelector("#birthChartForm");
   const result = document.querySelector("#birthChartResult");
@@ -3454,6 +4992,11 @@ const renderRisingSignResult = async () => {
   const citySelect = document.querySelector("#risingCity");
   const districtSelect = document.querySelector("#risingDistrict");
   const neighborhoodSelect = document.querySelector("#risingNeighborhood");
+  const birthDateInput = form?.querySelector('input[name="birthDate"]');
+  const birthTimeInput = form?.querySelector('input[name="birthTime"]');
+  const latitudeInput = form?.querySelector('input[name="latitude"]');
+  const longitudeInput = form?.querySelector('input[name="longitude"]');
+  const timezoneInput = form?.querySelector('input[name="timezoneOffset"]');
   const daySelect = form?.querySelector("[data-rising-day]");
   const monthSelect = form?.querySelector("[data-rising-month]");
   const yearSelect = form?.querySelector("[data-rising-year]");
@@ -3470,42 +5013,74 @@ const renderRisingSignResult = async () => {
     return;
   }
 
-  populateRisingSelectControls(form);
-
   await bindLocationSelects({
     citySelect,
     districtSelect,
     neighborhoodSelect,
   });
 
+  if (
+    !(
+      birthDateInput instanceof HTMLInputElement &&
+      birthTimeInput instanceof HTMLInputElement &&
+      latitudeInput instanceof HTMLInputElement &&
+      longitudeInput instanceof HTMLInputElement &&
+      timezoneInput instanceof HTMLInputElement
+    )
+  ) {
+    populateRisingSelectControls(form);
+  }
+
+  const syncCoordinates = async () => {
+    if (!(latitudeInput instanceof HTMLInputElement) || !(longitudeInput instanceof HTMLInputElement)) {
+      return null;
+    }
+
+    const city = await resolveSelectedLocationCoordinates({
+      citySelect,
+      districtSelect,
+      neighborhoodSelect,
+    });
+    latitudeInput.value = city.latitude.toFixed(4);
+    longitudeInput.value = city.longitude.toFixed(4);
+    return city;
+  };
+
   const syncUnknownTime = () => {
-    if (
-      !(unknownTimeToggle instanceof HTMLInputElement) ||
-      !(hourSelect instanceof HTMLSelectElement) ||
-      !(minuteSelect instanceof HTMLSelectElement)
-    ) {
+    if (!(unknownTimeToggle instanceof HTMLInputElement)) {
       return;
     }
 
-    hourSelect.disabled = unknownTimeToggle.checked;
-    minuteSelect.disabled = unknownTimeToggle.checked;
+    if (hourSelect instanceof HTMLSelectElement) {
+      hourSelect.disabled = unknownTimeToggle.checked;
+    }
+
+    if (minuteSelect instanceof HTMLSelectElement) {
+      minuteSelect.disabled = unknownTimeToggle.checked;
+    }
+
+    if (birthTimeInput instanceof HTMLInputElement) {
+      birthTimeInput.disabled = unknownTimeToggle.checked;
+    }
   };
 
   const update = async () => {
     const formData = new FormData(form);
-    const name = String(formData.get("name") ?? "").trim() || "Danışan";
     const unknownBirthTime = formData.has("unknownBirthTime");
-    const legacyDateValue = String(formData.get("birthDate") ?? "");
-    const legacyTimeValue = String(formData.get("birthTime") ?? "00:00");
+    const birthDateValue = String(formData.get("birthDate") ?? "");
+    const birthTimeValue = String(formData.get("birthTime") ?? "12:00");
     const selectedHour = String(formData.get("birthHour") ?? "00");
     const selectedMinute = String(formData.get("birthMinute") ?? "00");
-    const timeValue = unknownBirthTime ? "12:00" : `${selectedHour}:${selectedMinute}`;
+    const fallbackTimeValue = `${selectedHour}:${selectedMinute}`;
+    const timeValue = unknownBirthTime ? "12:00" : birthTimeValue || fallbackTimeValue;
     const district = getSelectedOptionLabel(districtSelect);
     const neighborhood = getSelectedOptionLabel(neighborhoodSelect);
     const date =
-      daySelect instanceof HTMLSelectElement &&
-      monthSelect instanceof HTMLSelectElement &&
-      yearSelect instanceof HTMLSelectElement
+      birthDateInput instanceof HTMLInputElement && birthDateValue
+        ? new Date(`${birthDateValue}T${unknownBirthTime ? "12:00" : (birthTimeValue || "00:00")}:00`)
+        : daySelect instanceof HTMLSelectElement &&
+            monthSelect instanceof HTMLSelectElement &&
+            yearSelect instanceof HTMLSelectElement
         ? buildBirthDate({
             yearValue: String(formData.get("birthYear") ?? ""),
             monthValue: String(formData.get("birthMonth") ?? ""),
@@ -3513,7 +5088,7 @@ const renderRisingSignResult = async () => {
             hourValue: unknownBirthTime ? "12" : selectedHour,
             minuteValue: unknownBirthTime ? "00" : selectedMinute,
           })
-        : new Date(`${legacyDateValue}T${legacyTimeValue}:00`);
+        : new Date(`${birthDateValue}T${birthTimeValue || "00:00"}:00`);
 
     if (!(date instanceof Date) || Number.isNaN(date.getTime())) {
       result.innerHTML = `
@@ -3525,40 +5100,95 @@ const renderRisingSignResult = async () => {
       return;
     }
 
-    const city = await resolveSelectedLocationCoordinates({
-      citySelect,
-      districtSelect,
-      neighborhoodSelect,
+    const autoLocation =
+      (await syncCoordinates()) ??
+      (await resolveSelectedLocationCoordinates({
+        citySelect,
+        districtSelect,
+        neighborhoodSelect,
+      }));
+    const latitude = parseNumericInput(latitudeInput?.value, autoLocation.latitude);
+    const longitude = parseNumericInput(longitudeInput?.value, autoLocation.longitude);
+    const city = {
+      ...autoLocation,
+      latitude,
+      longitude,
+    };
+    const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+    const [hours, minutes] = timeValue.split(":").map((value) => Number.parseInt(value, 10));
+    const inferredTimezoneOffset = getHistoricalTimeZoneOffsetHours({
+      year,
+      month,
+      day,
+      hours,
+      minutes,
     });
-    const detailData = buildRisingDetailData({
-      date,
-      timeValue,
-      city,
-      useApproximate: !window.Astronomy,
-    });
-    const sign = getSunSign(date);
+    const effectiveTimezoneOffset = Number.isFinite(inferredTimezoneOffset)
+      ? inferredTimezoneOffset
+      : Number.parseFloat(String(formData.get("timezoneOffset") ?? timezoneInput?.value ?? "3")) || 3;
+
+    if (timezoneInput instanceof HTMLInputElement && Number.isFinite(inferredTimezoneOffset)) {
+      timezoneInput.value = String(inferredTimezoneOffset);
+    }
+
+    result.innerHTML = `
+      <article class="result-note-card">
+        <h4>Hesaplanıyor</h4>
+        <p>Yükselen ve ev yerleşimleri Swiss Ephemeris ile çözümleniyor.</p>
+      </article>
+    `;
+
+    let detailData;
+    try {
+      detailData = await withTimeout(
+        buildSwissEphBirth3Data({
+          birthDateValue,
+          birthTime: timeValue,
+          timezoneOffset: effectiveTimezoneOffset,
+          latitude,
+          longitude,
+          houseSystem: "P",
+        }),
+        SWISS_EPH_TIMEOUT_MS + 5000,
+        "Yükselen Burç Hesaplama",
+      );
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error && error.message ? error.message : "Bilinmeyen yükleme hatası.";
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Hesap yapılamadı</h4>
+          <p>Yükselen hesabı bu sayfada yerel Swiss Ephemeris WASM ile çalışıyor.</p>
+          <p>Hata: ${escapeHtml(errorMessage)}</p>
+        </article>
+      `;
+      return;
+    }
+
+    const sunDegree = detailData.planets.find((planet) => planet.key === "Sun")?.degree ?? 0;
+    const moonDegree = detailData.planets.find((planet) => planet.key === "Moon")?.degree ?? 0;
+    const mercuryDegree = detailData.planets.find((planet) => planet.key === "Mercury")?.degree ?? 0;
+    const sign = getSignFromDegree(sunDegree);
     const birthMinutes = parseTimeToMinutes(timeValue);
     const sunriseMinutes = getApproxSunriseMinutes(date, city);
-    const signShift = Math.floor((birthMinutes - sunriseMinutes) / 120);
-    const risingSign = ZODIAC_SIGNS[mod(sign.index + signShift, 12)];
+    const risingSign = getSignFromDegree(detailData.ascendant);
     const phase = getMoonPhaseInfo(date);
-    const sunDegree = getApproxTropicalSunDegree(date);
-    const moonDegree = mod(sunDegree + phase.age * 12.2, 360);
-    const ascDegree = getApproxAscDegree(date, city, birthMinutes);
-    const mcDegree = mod(ascDegree + 90, 360);
-    const mercuryDegree = getApproxPlanetDegree(date, EPHEMERIS_PLANETS[2]);
+    const ascDegree = detailData.ascendant;
+    const mcDegree = detailData.midheaven;
     const mercurySign = getSignFromDegree(mercuryDegree);
     const risingShiftRows = getRisingShiftRows(date, city);
     const planetTableMarkup = renderRisingPlanetTable(
       detailData.planets,
-      detailData.ascendant,
-      detailData.midheaven,
+      ascDegree,
+      mcDegree,
     );
     const houseTableMarkup = renderRisingHouseTable(detailData.houseCusps);
     const displayedTime = unknownBirthTime ? "12:00 (yaklaşık)" : timeValue;
     const sunriseHour = `${String(Math.floor(sunriseMinutes / 60)).padStart(2, "0")}:${String(
       sunriseMinutes % 60,
     ).padStart(2, "0")}`;
+    const timezoneOffset = String(effectiveTimezoneOffset);
+    const locationLabel = `${citySelect.value}${district ? `, ${district}` : ""}${neighborhood ? ` / ${neighborhood}` : ""}`;
 
     result.innerHTML = `
       <section class="result-grid rising-summary-grid">
@@ -3566,12 +5196,12 @@ const renderRisingSignResult = async () => {
           {
             label: "Yükselen",
             value: risingSign.name,
-            note: `${risingSign.element} elementi`,
+            note: formatZodiacPosition(ascDegree),
           },
           {
             label: "Güneş burcu",
             value: sign.name,
-            note: "Kimliğin ana tonu",
+            note: formatZodiacPosition(sunDegree),
           },
           {
             label: "Gün doğumu",
@@ -3586,7 +5216,7 @@ const renderRisingSignResult = async () => {
           {
             label: "Merkür tonu",
             value: mercurySign.name,
-            note: "İletişim biçimi",
+            note: formatZodiacPosition(mercuryDegree),
           },
           {
             label: "Doğum saati",
@@ -3595,6 +5225,9 @@ const renderRisingSignResult = async () => {
           },
         ])}
       </section>
+      <p class="result-inline-meta">
+        ${formatDate(date)} · ${displayedTime} · ${locationLabel} · UTC ${timezoneOffset}
+      </p>
       <section class="rising-detail-tables">
         ${planetTableMarkup}
         ${houseTableMarkup}
@@ -3669,31 +5302,38 @@ const renderRisingSignResult = async () => {
   };
 
   syncUnknownTime();
+  if (citySelect.value) {
+    void syncCoordinates();
+  }
 
   unknownTimeToggle?.addEventListener("change", () => {
     syncUnknownTime();
-    update();
+    void update();
   });
 
-  citySelect.addEventListener("locationresolved", update);
+  citySelect.addEventListener("locationresolved", () => {
+    void syncCoordinates();
+    void update();
+  });
 
   form.addEventListener("change", (event) => {
     const target = event.target;
     if (target !== unknownTimeToggle) {
-      update();
+      void update();
     }
   });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    update();
+    void update();
   });
 
   neighborhoodSelect.addEventListener("change", () => {
-    update();
+    void syncCoordinates();
+    void update();
   });
 
-  update();
+  void update();
 };
 
 const renderExtendedBirthChartResult = async () => {
@@ -3801,6 +5441,7 @@ const renderExtendedBirthChartResult = async () => {
       useApproximate: !window.Astronomy,
     });
     const birth2HouseCusps = getBirth2PorphyryHouseCusps(detailData.ascendant, detailData.midheaven);
+    const birth2TableBodies = getBirth2TableBodies(detailData.planets, date);
     const sunText = formatZodiacPosition(detailData.planets[0].degree);
     const moonText = formatZodiacPosition(detailData.planets[1].degree);
     const ascText = formatZodiacPosition(detailData.ascendant);
@@ -3829,10 +5470,11 @@ const renderExtendedBirthChartResult = async () => {
     }
 
     const wheelOnlyMarkup = renderBirth2ReferenceWheel({
-      planets: detailData.planets,
+      planets: birth2TableBodies,
       ascendant: detailData.ascendant,
       midheaven: detailData.midheaven,
       houseCusps: birth2HouseCusps,
+      aspectPlanets: detailData.planets.slice(0, 7),
     });
     const analysisMarkup = renderBirth2SolarAnalysis({
       planets: detailData.planets,
@@ -3846,11 +5488,6 @@ const renderExtendedBirthChartResult = async () => {
       ${wheelOnlyMarkup}
       ${analysisMarkup}
     `;
-    personalPlanetsResult.innerHTML = renderBirth2PersonalPlanetsTable({
-      planets: detailData.planets,
-      houseCusps: birth2HouseCusps,
-      date,
-    });
   };
 
   citySelect.addEventListener("locationresolved", () => {
@@ -3903,14 +5540,32 @@ const renderMoonCalendarResult = () => {
   const form = document.querySelector("#moonCalendarForm");
   const result = document.querySelector("#moonCalendarResult");
   const monthInput = document.querySelector("#moonMonth");
-  if (!(form instanceof HTMLFormElement) || !(result instanceof HTMLElement) || !(monthInput instanceof HTMLInputElement)) {
+  const yearInput = document.querySelector("#moonYear");
+  if (
+    !(form instanceof HTMLFormElement) ||
+    !(result instanceof HTMLElement) ||
+    !(monthInput instanceof HTMLSelectElement) ||
+    !(yearInput instanceof HTMLInputElement)
+  ) {
     return;
   }
 
+  if (!monthInput.options.length) {
+    monthInput.innerHTML = MONTH_LABELS.map(
+      (label, index) => `<option value="${String(index + 1).padStart(2, "0")}">${label}</option>`,
+    ).join("");
+  }
+
+  if (!monthInput.value || !yearInput.value) {
+    const now = new Date();
+    monthInput.value = String(now.getMonth() + 1).padStart(2, "0");
+    yearInput.value = String(now.getFullYear());
+  }
+
   const update = () => {
-    const monthValue = monthInput.value;
     const focus = String(new FormData(form).get("focus") ?? "").trim();
-    const [yearText, monthText] = monthValue.split("-");
+    const yearText = String(yearInput.value ?? "");
+    const monthText = String(monthInput.value ?? "");
     const year = Number.parseInt(yearText, 10);
     const monthIndex = Number.parseInt(monthText, 10) - 1;
     const monthDate = new Date(year, monthIndex, 1);
@@ -3980,6 +5635,149 @@ const renderMoonCalendarResult = () => {
   update();
 };
 
+const normalizeNumerologyText = (value) =>
+  String(value ?? "")
+    .toUpperCase()
+    .replace(/[^A-Z\s]/g, " ");
+
+const reduceNumerologyNumber = (value) => {
+  let result = Number.parseInt(String(value ?? "0"), 10);
+  if (!Number.isFinite(result) || result <= 0) {
+    return 0;
+  }
+
+  while (result > 9 && !NUMEROLOGY_MASTER_NUMBERS.has(result)) {
+    result = String(result)
+      .split("")
+      .reduce((sum, digit) => sum + Number.parseInt(digit, 10), 0);
+  }
+
+  return result;
+};
+
+const getNumerologyCharacterSum = (text, mode = "all") => {
+  const normalized = normalizeNumerologyText(text);
+  const vowels = new Set(["A", "E", "I", "O", "U"]);
+
+  return normalized.split("").reduce((sum, character) => {
+    if (!NUMEROLOGY_LETTER_VALUES[character]) {
+      return sum;
+    }
+
+    const isVowel = vowels.has(character);
+    if (mode === "vowel" && !isVowel) {
+      return sum;
+    }
+    if (mode === "consonant" && isVowel) {
+      return sum;
+    }
+    return sum + NUMEROLOGY_LETTER_VALUES[character];
+  }, 0);
+};
+
+const getLifePathNumber = (birthDateValue) => {
+  const digits = String(birthDateValue ?? "").replace(/\D/g, "");
+  if (!digits) {
+    return 0;
+  }
+  const total = digits.split("").reduce((sum, digit) => sum + Number.parseInt(digit, 10), 0);
+  return reduceNumerologyNumber(total);
+};
+
+const getNumerologyMeaning = (numberValue) =>
+  NUMEROLOGY_MEANINGS[numberValue] ?? {
+    title: "Sayı yorumu",
+    summary: "Bu sayı için kısa yorum hazırlanamadı.",
+  };
+
+const renderNumerologyResult = () => {
+  const form = document.querySelector("#numerologyForm");
+  const result = document.querySelector("#numerologyResult");
+  if (!(form instanceof HTMLFormElement) || !(result instanceof HTMLElement)) {
+    return;
+  }
+
+  const birthDateInput = form.querySelector('input[name="birthDate"]');
+  if (birthDateInput instanceof HTMLInputElement && !birthDateInput.value) {
+    const savedProfile = getSavedBirthProfile();
+    birthDateInput.value = savedProfile?.birthDate ?? "";
+  }
+
+  const update = () => {
+    const formData = new FormData(form);
+    const fullName = String(formData.get("fullName") ?? "").trim();
+    const birthDateValue = String(formData.get("birthDate") ?? "");
+
+    if (!fullName || !birthDateValue) {
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Bilgileri tamamla</h4>
+          <p>Numeroloji özeti için ad soyad ve doğum tarihi gir.</p>
+        </article>
+      `;
+      return;
+    }
+
+    const lifePath = getLifePathNumber(birthDateValue);
+    const expression = reduceNumerologyNumber(getNumerologyCharacterSum(fullName, "all"));
+    const soulUrge = reduceNumerologyNumber(getNumerologyCharacterSum(fullName, "vowel"));
+    const personality = reduceNumerologyNumber(getNumerologyCharacterSum(fullName, "consonant"));
+    const lifeMeaning = getNumerologyMeaning(lifePath);
+    const expressionMeaning = getNumerologyMeaning(expression);
+    const soulMeaning = getNumerologyMeaning(soulUrge);
+    const personalityMeaning = getNumerologyMeaning(personality);
+
+    result.innerHTML = `
+      <article class="result-hero">
+        <p class="preview-label">Numeroloji özeti</p>
+        <h3>${fullName}</h3>
+        <p>${formatDate(new Date(`${birthDateValue}T12:00:00`))} doğum tarihine göre ana sayıların aşağıda listelendi.</p>
+      </article>
+
+      <section class="numerology-feature-grid">
+        ${renderNumerologyFeatureCards([
+          {
+            label: "Yaşam Yolu Sayısı",
+            value: String(lifePath),
+            headline: lifeMeaning.headline ?? lifeMeaning.title,
+            keywords: lifeMeaning.keywords ?? lifeMeaning.title,
+            summary: lifeMeaning.summary,
+          },
+          {
+            label: "İfade Sayısı",
+            value: String(expression),
+            headline: expressionMeaning.headline ?? expressionMeaning.title,
+            keywords: expressionMeaning.keywords ?? expressionMeaning.title,
+            summary: expressionMeaning.summary,
+          },
+          {
+            label: "Ruh Dürtüsü Sayısı",
+            value: String(soulUrge),
+            headline: soulMeaning.headline ?? soulMeaning.title,
+            keywords: soulMeaning.keywords ?? soulMeaning.title,
+            summary: soulMeaning.summary,
+          },
+          {
+            label: "Kişilik Sayısı",
+            value: String(personality),
+            headline: personalityMeaning.headline ?? personalityMeaning.title,
+            keywords: personalityMeaning.keywords ?? personalityMeaning.title,
+            summary: personalityMeaning.summary,
+          },
+        ])}
+      </section>
+    `;
+  };
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    update();
+  });
+
+  form.addEventListener("change", update);
+  update();
+};
+
 const renderEphemerisTablesResult = () => {
   const form = document.querySelector("#ephemerisForm");
   const result = document.querySelector("#ephemerisResult");
@@ -4003,6 +5801,11 @@ const renderEphemerisTablesResult = () => {
   const setMonthValue = (year, monthIndex) => {
     monthInput.value = `${String(year)}-${String(monthIndex + 1).padStart(2, "0")}`;
   };
+
+  if (!monthInput.value) {
+    const now = new Date();
+    setMonthValue(now.getFullYear(), now.getMonth());
+  }
 
   const renderYearNavigation = (year) => {
     yearNav.innerHTML = `
@@ -4255,6 +6058,7 @@ const renderEphemerisTablesResult = () => {
 const renderZodiacCompatibilityResult = async () => {
   const form = document.querySelector("#compatibilityForm");
   const result = document.querySelector("#compatibilityResult");
+  const isFamilyPage = pageName === "family-compatibility";
   const partnerACity = document.querySelector("#compatibilityCityA");
   const partnerADistrict = document.querySelector("#compatibilityDistrictA");
   const partnerANeighborhood = document.querySelector("#compatibilityNeighborhoodA");
@@ -4289,24 +6093,87 @@ const renderZodiacCompatibilityResult = async () => {
     neighborhoodSelect: partnerBNeighborhood,
   });
 
-  const partnerAHour = form.querySelector('select[name="partnerAHour"]');
-  const partnerAMinute = form.querySelector('select[name="partnerAMinute"]');
-  const partnerBHour = form.querySelector('select[name="partnerBHour"]');
-  const partnerBMinute = form.querySelector('select[name="partnerBMinute"]');
+  const partnerABirthDate = form.querySelector('input[name="partnerABirthDate"]');
+  const partnerABirthTime = form.querySelector('input[name="partnerABirthTime"]');
+  const partnerALatitude = form.querySelector('input[name="partnerALatitude"]');
+  const partnerALongitude = form.querySelector('input[name="partnerALongitude"]');
+  const partnerATimezoneOffset = form.querySelector('input[name="partnerATimezoneOffset"]');
+  const partnerBBirthDate = form.querySelector('input[name="partnerBBirthDate"]');
+  const partnerBBirthTime = form.querySelector('input[name="partnerBBirthTime"]');
+  const partnerBLatitude = form.querySelector('input[name="partnerBLatitude"]');
+  const partnerBLongitude = form.querySelector('input[name="partnerBLongitude"]');
+  const partnerBTimezoneOffset = form.querySelector('input[name="partnerBTimezoneOffset"]');
   const partnerAUnknown = form.querySelector('input[name="partnerAUnknownTime"]');
   const partnerBUnknown = form.querySelector('input[name="partnerBUnknownTime"]');
 
-  const syncUnknownTime = (toggle, hourSelect, minuteSelect) => {
-    if (
-      !(toggle instanceof HTMLInputElement) ||
-      !(hourSelect instanceof HTMLSelectElement) ||
-      !(minuteSelect instanceof HTMLSelectElement)
-    ) {
+  if (
+    !(partnerABirthDate instanceof HTMLInputElement) ||
+    !(partnerABirthTime instanceof HTMLInputElement) ||
+    !(partnerALatitude instanceof HTMLInputElement) ||
+    !(partnerALongitude instanceof HTMLInputElement) ||
+    !(partnerATimezoneOffset instanceof HTMLInputElement) ||
+    !(partnerBBirthDate instanceof HTMLInputElement) ||
+    !(partnerBBirthTime instanceof HTMLInputElement) ||
+    !(partnerBLatitude instanceof HTMLInputElement) ||
+    !(partnerBLongitude instanceof HTMLInputElement) ||
+    !(partnerBTimezoneOffset instanceof HTMLInputElement)
+  ) {
+    return;
+  }
+
+  const syncUnknownTime = (toggle, timeInput) => {
+    if (!(toggle instanceof HTMLInputElement) || !(timeInput instanceof HTMLInputElement)) {
       return;
     }
 
-    hourSelect.disabled = toggle.checked;
-    minuteSelect.disabled = toggle.checked;
+    if (toggle.checked && !timeInput.value) {
+      timeInput.value = "12:00";
+    }
+
+    timeInput.disabled = toggle.checked;
+  };
+
+  const syncPartnerDerivedFields = async ({
+    birthDateInput,
+    birthTimeInput,
+    unknownToggle,
+    citySelect,
+    districtSelect,
+    neighborhoodSelect,
+    latitudeInput,
+    longitudeInput,
+    timezoneInput,
+    syncCoordinates = true,
+  }) => {
+    const autoLocation = await resolveSelectedLocationCoordinates({
+      citySelect,
+      districtSelect,
+      neighborhoodSelect,
+    });
+
+    if (syncCoordinates) {
+      latitudeInput.value = autoLocation.latitude.toFixed(4);
+      longitudeInput.value = autoLocation.longitude.toFixed(4);
+    }
+
+    if (!birthDateInput.value) {
+      return;
+    }
+
+    const [year, month, day] = birthDateInput.value.split("-").map((value) => Number.parseInt(value, 10));
+    const calculationTime = unknownToggle?.checked ? "12:00" : birthTimeInput.value || "00:00";
+    const [hours, minutes] = calculationTime.split(":").map((value) => Number.parseInt(value, 10));
+    const offset = getHistoricalTimeZoneOffsetHours({
+      year,
+      month,
+      day,
+      hours,
+      minutes,
+    });
+
+    if (Number.isFinite(offset) && !String(timezoneInput.value).trim()) {
+      timezoneInput.value = String(offset);
+    }
   };
 
   const update = async () => {
@@ -4314,6 +6181,7 @@ const renderZodiacCompatibilityResult = async () => {
     const relationStyle = String(formData.get("relationStyle") ?? "romance");
     const comparisonDepth = String(formData.get("comparisonDepth") ?? "balanced");
     const houseSystem = String(formData.get("houseSystem") ?? "placidus");
+    const swissHouseSystem = SWISS_HOUSE_SYSTEM_CODES[houseSystem] ?? "P";
     const zodiacMode = String(formData.get("zodiacMode") ?? "tropical");
     const orbLevel = String(formData.get("orbLevel") ?? "balanced");
     const readingTone = String(formData.get("readingTone") ?? "soft");
@@ -4321,27 +6189,25 @@ const renderZodiacCompatibilityResult = async () => {
     const includeAscendant = formData.has("includeAscendant");
     const includeVenusMars = formData.has("includeVenusMars");
     const focusLongTerm = formData.has("focusLongTerm");
+    const leftBirthDateValue = String(formData.get("partnerABirthDate") ?? "");
+    const rightBirthDateValue = String(formData.get("partnerBBirthDate") ?? "");
+    const leftTimeValue = String(formData.get("partnerABirthTime") ?? "00:00") || "00:00";
+    const rightTimeValue = String(formData.get("partnerBBirthTime") ?? "00:00") || "00:00";
+    const leftResolvedTime = formData.has("partnerAUnknownTime") ? "12:00" : leftTimeValue;
+    const rightResolvedTime = formData.has("partnerBUnknownTime") ? "12:00" : rightTimeValue;
+    const leftDate = leftBirthDateValue ? new Date(`${leftBirthDateValue}T${leftResolvedTime}:00`) : null;
+    const rightDate = rightBirthDateValue ? new Date(`${rightBirthDateValue}T${rightResolvedTime}:00`) : null;
 
-    const leftDate = buildBirthDate({
-      yearValue: String(formData.get("partnerAYear") ?? ""),
-      monthValue: String(formData.get("partnerAMonth") ?? ""),
-      dayValue: String(formData.get("partnerADay") ?? ""),
-      hourValue: String(formData.get("partnerAHour") ?? "00"),
-      minuteValue: String(formData.get("partnerAMinute") ?? "00"),
-    });
-    const rightDate = buildBirthDate({
-      yearValue: String(formData.get("partnerBYear") ?? ""),
-      monthValue: String(formData.get("partnerBMonth") ?? ""),
-      dayValue: String(formData.get("partnerBDay") ?? ""),
-      hourValue: String(formData.get("partnerBHour") ?? "00"),
-      minuteValue: String(formData.get("partnerBMinute") ?? "00"),
-    });
-
-    if (!(leftDate instanceof Date) || !(rightDate instanceof Date)) {
+    if (
+      !(leftDate instanceof Date) ||
+      !(rightDate instanceof Date) ||
+      Number.isNaN(leftDate.getTime()) ||
+      Number.isNaN(rightDate.getTime())
+    ) {
       result.innerHTML = `
         <article class="result-note-card">
           <h4>Doğum bilgisi eksik</h4>
-          <p>Uyum sonucunu göstermek için her iki partnerin de geçerli gün, ay, yıl ve saat seçimi olmalı.</p>
+          <p>${isFamilyPage ? "Aile özetini göstermek için her iki aile üyesinin de geçerli gün, ay, yıl ve saat seçimi olmalı." : "Uyum sonucunu göstermek için her iki partnerin de geçerli gün, ay, yıl ve saat seçimi olmalı."}</p>
         </article>
       `;
       return;
@@ -4360,26 +6226,47 @@ const renderZodiacCompatibilityResult = async () => {
       }),
     ]);
 
-    const leftProfile = buildCompatibilityProfile({
-      name: String(formData.get("partnerAName") ?? "").trim() || "Partner A",
-      date: leftDate,
-      timeValue: `${String(formData.get("partnerAHour") ?? "00")}:${String(formData.get("partnerAMinute") ?? "00")}`,
-      unknownTime: formData.has("partnerAUnknownTime"),
-      location: leftLocation,
-      district: getSelectedOptionLabel(partnerADistrict),
-      neighborhood: getSelectedOptionLabel(partnerANeighborhood),
-      zodiacMode,
-    });
-    const rightProfile = buildCompatibilityProfile({
-      name: String(formData.get("partnerBName") ?? "").trim() || "Partner B",
-      date: rightDate,
-      timeValue: `${String(formData.get("partnerBHour") ?? "00")}:${String(formData.get("partnerBMinute") ?? "00")}`,
-      unknownTime: formData.has("partnerBUnknownTime"),
-      location: rightLocation,
-      district: getSelectedOptionLabel(partnerBDistrict),
-      neighborhood: getSelectedOptionLabel(partnerBNeighborhood),
-      zodiacMode,
-    });
+    const leftLatitude = parseNumericInput(formData.get("partnerALatitude"), leftLocation.latitude);
+    const leftLongitude = parseNumericInput(formData.get("partnerALongitude"), leftLocation.longitude);
+    const leftTimezoneOffset = parseNumericInput(formData.get("partnerATimezoneOffset"), Number.NaN);
+    const rightLatitude = parseNumericInput(formData.get("partnerBLatitude"), rightLocation.latitude);
+    const rightLongitude = parseNumericInput(formData.get("partnerBLongitude"), rightLocation.longitude);
+    const rightTimezoneOffset = parseNumericInput(formData.get("partnerBTimezoneOffset"), Number.NaN);
+
+    const [leftProfile, rightProfile] = await Promise.all([
+      buildSwissCompatibilityProfile({
+        name: String(formData.get("partnerAName") ?? "").trim() || "Partner A",
+        birthDateValue: leftBirthDateValue,
+        timeValue: leftTimeValue,
+        unknownTime: formData.has("partnerAUnknownTime"),
+        timezoneOffset: leftTimezoneOffset,
+        location: {
+          label: leftLocation.label,
+          latitude: leftLatitude,
+          longitude: leftLongitude,
+        },
+        district: getSelectedOptionLabel(partnerADistrict),
+        neighborhood: getSelectedOptionLabel(partnerANeighborhood),
+        zodiacMode,
+        houseSystem: swissHouseSystem,
+      }),
+      buildSwissCompatibilityProfile({
+        name: String(formData.get("partnerBName") ?? "").trim() || "Partner B",
+        birthDateValue: rightBirthDateValue,
+        timeValue: rightTimeValue,
+        unknownTime: formData.has("partnerBUnknownTime"),
+        timezoneOffset: rightTimezoneOffset,
+        location: {
+          label: rightLocation.label,
+          latitude: rightLatitude,
+          longitude: rightLongitude,
+        },
+        district: getSelectedOptionLabel(partnerBDistrict),
+        neighborhood: getSelectedOptionLabel(partnerBNeighborhood),
+        zodiacMode,
+        houseSystem: swissHouseSystem,
+      }),
+    ]);
 
     const summary = summarizeCompatibility({
       leftProfile,
@@ -4409,10 +6296,43 @@ const renderZodiacCompatibilityResult = async () => {
       ZODIAC_MODE_LABELS[zodiacMode] ?? ZODIAC_MODE_LABELS.tropical,
       HOUSE_SYSTEM_LABELS[houseSystem] ?? HOUSE_SYSTEM_LABELS.placidus,
     ];
+    const copy = isFamilyPage
+      ? {
+          previewLabel: "Aile okuması",
+          scoreTitle: "Aile uyum skoru",
+          metricEmotional: "Duygusal bağ",
+          metricCommunication: "İletişim",
+          metricAttraction: "Koruma",
+          metricRhythm: "Ev ritmi",
+          metricLongTerm: "Uzun vade",
+          metricSun: "Merkez eşleşmesi",
+          strengthsTitle: "Aileyi taşıyan alanlar",
+          cautionsTitle: "Denge isteyen alanlar",
+          themesTitle: "Öne çıkan aile temaları",
+          summaryTitle: "Aile özeti",
+          leftLocation: "Üye A doğum yeri",
+          rightLocation: "Üye B doğum yeri",
+        }
+      : {
+          previewLabel: "Uyum okuması",
+          scoreTitle: "Genel uyum skoru",
+          metricEmotional: "Duygusal akış",
+          metricCommunication: "İletişim",
+          metricAttraction: "Çekim",
+          metricRhythm: "Tempo",
+          metricLongTerm: "Uzun vade",
+          metricSun: "Güneş eşleşmesi",
+          strengthsTitle: "İlişkiyi taşıyan alanlar",
+          cautionsTitle: "Denge ister",
+          themesTitle: "Öne çıkan temaslar",
+          summaryTitle: "Partner özeti",
+          leftLocation: "Partner A doğum yeri",
+          rightLocation: "Partner B doğum yeri",
+        };
 
     result.innerHTML = `
       <article class="result-hero">
-        <p class="preview-label">Uyum okuması</p>
+        <p class="preview-label">${copy.previewLabel}</p>
         <h3>${leftProfile.name} &amp; ${rightProfile.name}</h3>
         <p>
           ${formatDate(leftProfile.date)} ${displayedTimeLeft} ve ${formatDate(rightProfile.date)} ${displayedTimeRight}
@@ -4423,7 +6343,7 @@ const renderZodiacCompatibilityResult = async () => {
       <article class="result-note-card compatibility-score-shell">
         <div class="compatibility-score-head">
           <div>
-            <h4>Genel uyum skoru</h4>
+            <h4>${copy.scoreTitle}</h4>
             <p>${summary.tone} · ${READING_TONE_LABELS[readingTone] ?? READING_TONE_LABELS.soft}</p>
           </div>
           <strong class="compatibility-score-value">${summary.totalScore}</strong>
@@ -4439,32 +6359,32 @@ const renderZodiacCompatibilityResult = async () => {
       <section class="result-grid">
         ${renderMetricCards([
           {
-            label: "Duygusal akış",
+            label: copy.metricEmotional,
             value: `${summary.metrics.emotional}/100`,
             note: `${leftProfile.moonSign.name} - ${rightProfile.moonSign.name}`,
           },
           {
-            label: "İletişim",
+            label: copy.metricCommunication,
             value: `${summary.metrics.communication}/100`,
             note: `${leftProfile.mercurySign.name} - ${rightProfile.mercurySign.name}`,
           },
           {
-            label: "Çekim",
+            label: copy.metricAttraction,
             value: `${summary.metrics.attraction}/100`,
             note: `${leftProfile.venusSign.name} - ${rightProfile.marsSign.name}`,
           },
           {
-            label: "Tempo",
+            label: copy.metricRhythm,
             value: `${summary.metrics.rhythm}/100`,
             note: `${leftProfile.timeSegment.label} - ${rightProfile.timeSegment.label}`,
           },
           {
-            label: "Uzun vade",
+            label: copy.metricLongTerm,
             value: `${summary.metrics.longTerm}/100`,
             note: `${leftProfile.sunSign.mode} - ${rightProfile.sunSign.mode}`,
           },
           {
-            label: "Güneş eşleşmesi",
+            label: copy.metricSun,
             value: `${leftProfile.sunSign.name} + ${rightProfile.sunSign.name}`,
             note: `${leftProfile.sunSign.element} / ${rightProfile.sunSign.element}`,
           },
@@ -4473,7 +6393,7 @@ const renderZodiacCompatibilityResult = async () => {
 
       <section class="compatibility-insight-grid">
         <article class="result-note-card">
-          <h4>İlişkiyi taşıyan alanlar</h4>
+          <h4>${copy.strengthsTitle}</h4>
           <div class="compatibility-aspect-list">
             ${summary.strengths
               .map(
@@ -4489,7 +6409,7 @@ const renderZodiacCompatibilityResult = async () => {
         </article>
 
         <article class="result-note-card">
-          <h4>Denge ister</h4>
+          <h4>${copy.cautionsTitle}</h4>
           <div class="compatibility-aspect-list">
             ${summary.cautions
               .map(
@@ -4507,7 +6427,7 @@ const renderZodiacCompatibilityResult = async () => {
 
       <section class="compatibility-insight-grid">
         <article class="result-note-card">
-          <h4>Öne çıkan temaslar</h4>
+          <h4>${copy.themesTitle}</h4>
           <div class="compatibility-aspect-list">
             ${visibleAspectCards
               .map(
@@ -4523,7 +6443,7 @@ const renderZodiacCompatibilityResult = async () => {
         </article>
 
         <article class="result-note-card">
-          <h4>Partner özeti</h4>
+          <h4>${copy.summaryTitle}</h4>
           <div class="compatibility-pair-summary">
             <div class="compatibility-pair-row">
               <article class="compatibility-token">
@@ -4537,11 +6457,11 @@ const renderZodiacCompatibilityResult = async () => {
             </div>
             <div class="compatibility-pair-row">
               <article class="compatibility-token">
-                <strong>Partner A doğum yeri</strong>
+                <strong>${copy.leftLocation}</strong>
                 <span>${leftProfile.locationLabel}</span>
               </article>
               <article class="compatibility-token">
-                <strong>Partner B doğum yeri</strong>
+                <strong>${copy.rightLocation}</strong>
                 <span>${rightProfile.locationLabel}</span>
               </article>
             </div>
@@ -4551,40 +6471,150 @@ const renderZodiacCompatibilityResult = async () => {
     `;
   };
 
-  syncUnknownTime(partnerAUnknown, partnerAHour, partnerAMinute);
-  syncUnknownTime(partnerBUnknown, partnerBHour, partnerBMinute);
+  syncUnknownTime(partnerAUnknown, partnerABirthTime);
+  syncUnknownTime(partnerBUnknown, partnerBBirthTime);
 
-  partnerAUnknown?.addEventListener("change", () => {
-    syncUnknownTime(partnerAUnknown, partnerAHour, partnerAMinute);
-    update();
+  partnerACity.addEventListener("locationresolved", () => {
+    void syncPartnerDerivedFields({
+      birthDateInput: partnerABirthDate,
+      birthTimeInput: partnerABirthTime,
+      unknownToggle: partnerAUnknown,
+      citySelect: partnerACity,
+      districtSelect: partnerADistrict,
+      neighborhoodSelect: partnerANeighborhood,
+      latitudeInput: partnerALatitude,
+      longitudeInput: partnerALongitude,
+      timezoneInput: partnerATimezoneOffset,
+    }).then(update);
   });
-  partnerBUnknown?.addEventListener("change", () => {
-    syncUnknownTime(partnerBUnknown, partnerBHour, partnerBMinute);
-    update();
+
+  partnerBCity.addEventListener("locationresolved", () => {
+    void syncPartnerDerivedFields({
+      birthDateInput: partnerBBirthDate,
+      birthTimeInput: partnerBBirthTime,
+      unknownToggle: partnerBUnknown,
+      citySelect: partnerBCity,
+      districtSelect: partnerBDistrict,
+      neighborhoodSelect: partnerBNeighborhood,
+      latitudeInput: partnerBLatitude,
+      longitudeInput: partnerBLongitude,
+      timezoneInput: partnerBTimezoneOffset,
+    }).then(update);
   });
 
-  partnerACity.addEventListener("locationresolved", update);
-  partnerBCity.addEventListener("locationresolved", update);
-
-  form.addEventListener("change", (event) => {
+  form.addEventListener("change", async (event) => {
     const target = event.target;
-    if (target !== partnerAUnknown && target !== partnerBUnknown) {
+    const isLeftLocationTarget =
+      target === partnerACity || target === partnerADistrict || target === partnerANeighborhood;
+    const isRightLocationTarget =
+      target === partnerBCity || target === partnerBDistrict || target === partnerBNeighborhood;
+
+    if (target === partnerAUnknown || target === partnerABirthDate || target === partnerABirthTime) {
+      syncUnknownTime(partnerAUnknown, partnerABirthTime);
+      await syncPartnerDerivedFields({
+        birthDateInput: partnerABirthDate,
+        birthTimeInput: partnerABirthTime,
+        unknownToggle: partnerAUnknown,
+        citySelect: partnerACity,
+        districtSelect: partnerADistrict,
+        neighborhoodSelect: partnerANeighborhood,
+        latitudeInput: partnerALatitude,
+        longitudeInput: partnerALongitude,
+        timezoneInput: partnerATimezoneOffset,
+        syncCoordinates: false,
+      });
+    }
+
+    if (target === partnerBUnknown || target === partnerBBirthDate || target === partnerBBirthTime) {
+      syncUnknownTime(partnerBUnknown, partnerBBirthTime);
+      await syncPartnerDerivedFields({
+        birthDateInput: partnerBBirthDate,
+        birthTimeInput: partnerBBirthTime,
+        unknownToggle: partnerBUnknown,
+        citySelect: partnerBCity,
+        districtSelect: partnerBDistrict,
+        neighborhoodSelect: partnerBNeighborhood,
+        latitudeInput: partnerBLatitude,
+        longitudeInput: partnerBLongitude,
+        timezoneInput: partnerBTimezoneOffset,
+        syncCoordinates: false,
+      });
+    }
+
+    if (!isLeftLocationTarget && !isRightLocationTarget) {
       update();
     }
   });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    update();
+    void Promise.all([
+      syncPartnerDerivedFields({
+        birthDateInput: partnerABirthDate,
+        birthTimeInput: partnerABirthTime,
+        unknownToggle: partnerAUnknown,
+        citySelect: partnerACity,
+        districtSelect: partnerADistrict,
+        neighborhoodSelect: partnerANeighborhood,
+        latitudeInput: partnerALatitude,
+        longitudeInput: partnerALongitude,
+        timezoneInput: partnerATimezoneOffset,
+        syncCoordinates: false,
+      }),
+      syncPartnerDerivedFields({
+        birthDateInput: partnerBBirthDate,
+        birthTimeInput: partnerBBirthTime,
+        unknownToggle: partnerBUnknown,
+        citySelect: partnerBCity,
+        districtSelect: partnerBDistrict,
+        neighborhoodSelect: partnerBNeighborhood,
+        latitudeInput: partnerBLatitude,
+        longitudeInput: partnerBLongitude,
+        timezoneInput: partnerBTimezoneOffset,
+        syncCoordinates: false,
+      }),
+    ]).then(update);
   });
+
+  await Promise.all([
+    syncPartnerDerivedFields({
+      birthDateInput: partnerABirthDate,
+      birthTimeInput: partnerABirthTime,
+      unknownToggle: partnerAUnknown,
+      citySelect: partnerACity,
+      districtSelect: partnerADistrict,
+      neighborhoodSelect: partnerANeighborhood,
+      latitudeInput: partnerALatitude,
+      longitudeInput: partnerALongitude,
+      timezoneInput: partnerATimezoneOffset,
+    }),
+    syncPartnerDerivedFields({
+      birthDateInput: partnerBBirthDate,
+      birthTimeInput: partnerBBirthTime,
+      unknownToggle: partnerBUnknown,
+      citySelect: partnerBCity,
+      districtSelect: partnerBDistrict,
+      neighborhoodSelect: partnerBNeighborhood,
+      latitudeInput: partnerBLatitude,
+      longitudeInput: partnerBLongitude,
+      timezoneInput: partnerBTimezoneOffset,
+    }),
+  ]);
 
   update();
 };
 
-const renderLunarNodesResult = () => {
+const renderLunarNodesResult = async () => {
   const form = document.querySelector("#lunarNodesForm");
   const result = document.querySelector("#lunarNodesResult");
   const tableBody = document.querySelector("#lunarNodesTableBody");
+  const birthTimeInput = form?.querySelector('input[name="birthTime"]');
+  const unknownTimeInput = form?.querySelector('input[name="unknownTime"]');
+  const citySelect = form?.querySelector('select[name="city"]');
+  const districtSelect = form?.querySelector('[data-location-district]');
+  const neighborhoodSelect = form?.querySelector('[data-location-neighborhood]');
+  const latitudeInput = form?.querySelector('input[name="latitude"]');
+  const longitudeInput = form?.querySelector('input[name="longitude"]');
 
   if (!(form instanceof HTMLFormElement) || !(result instanceof HTMLElement) || !(tableBody instanceof HTMLElement)) {
     return;
@@ -4596,6 +6626,57 @@ const renderLunarNodesResult = () => {
   };
 
   const getSignByName = (signLabel) => ZODIAC_SIGNS.find((sign) => sign.name === signLabel) ?? ZODIAC_SIGNS[0];
+
+  if (
+    birthTimeInput instanceof HTMLInputElement &&
+    unknownTimeInput instanceof HTMLInputElement
+  ) {
+    birthTimeInput.disabled = unknownTimeInput.checked;
+    unknownTimeInput.addEventListener("change", () => {
+      birthTimeInput.disabled = unknownTimeInput.checked;
+      if (unknownTimeInput.checked) {
+        birthTimeInput.value = "";
+      }
+      update();
+    });
+  }
+
+  if (
+    citySelect instanceof HTMLSelectElement &&
+    districtSelect instanceof HTMLSelectElement &&
+    neighborhoodSelect instanceof HTMLSelectElement
+  ) {
+    void bindLocationSelects({
+      citySelect,
+      districtSelect,
+      neighborhoodSelect,
+    }).then(() => {
+      const syncCoordinates = async () => {
+        const city = await resolveSelectedLocationCoordinates({
+          citySelect,
+          districtSelect,
+          neighborhoodSelect,
+        });
+
+        if (latitudeInput instanceof HTMLInputElement) {
+          latitudeInput.value = city.latitude.toFixed(4);
+        }
+        if (longitudeInput instanceof HTMLInputElement) {
+          longitudeInput.value = city.longitude.toFixed(4);
+        }
+      };
+
+      citySelect.addEventListener("locationresolved", () => {
+        void syncCoordinates();
+        update();
+      });
+      neighborhoodSelect.addEventListener("change", () => {
+        void syncCoordinates();
+        update();
+      });
+      void syncCoordinates();
+    });
+  }
 
   const getNodeAxisLesson = (northSign, southSign, focusKey) => {
     const focusLabel = NODE_FOCUS_DESCRIPTIONS[focusKey] ?? NODE_FOCUS_DESCRIPTIONS.general;
@@ -4641,13 +6722,15 @@ const renderLunarNodesResult = () => {
     }).join("");
   };
 
-  const update = () => {
+  const update = async () => {
     const formData = new FormData(form);
     const name = String(formData.get("name") ?? "").trim() || "AstroHesap kullanıcısı";
     const birthDateValue = String(formData.get("birthDate") ?? "");
     const nodeMode = String(formData.get("nodeMode") ?? "mean");
     const zodiacMode = String(formData.get("zodiacMode") ?? "tropical");
     const focusArea = String(formData.get("focusArea") ?? "general");
+    const unknownTime = formData.has("unknownTime");
+    const birthTimeValue = unknownTime ? "12:00" : String(formData.get("birthTime") ?? "12:00");
 
     if (!birthDateValue) {
       renderReferenceTable(null);
@@ -4672,18 +6755,42 @@ const renderLunarNodesResult = () => {
       return;
     }
 
-    const nodeConfig = nodeMode === "true" ? EPHEMERIS_EXTRA_POINTS.trueNode : EPHEMERIS_EXTRA_POINTS.meanNode;
-    const ayanamsaOffset = zodiacMode === "sidereal" ? AYANAMSA_LABELS.lahiri.degrees : 0;
-    const northDegree = mod(getApproxPlanetDegree(birthDate, nodeConfig) - ayanamsaOffset, 360);
-    const southDegree = mod(northDegree + 180, 360);
-    const northSign = getSignFromDegree(northDegree);
-    const southSign = getSignFromDegree(southDegree);
-    const period = LUNAR_NODE_PERIODS.find((item) => birthDateValue >= item.start && birthDateValue <= item.end) ?? null;
-    const lesson = getNodeAxisLesson(northSign, southSign, focusArea);
-
-    renderReferenceTable(period);
-
     result.innerHTML = `
+      <article class="result-note-card">
+        <h4>Hesaplanıyor</h4>
+        <p>Ay düğümleri Swiss Ephemeris ile çözümleniyor.</p>
+      </article>
+    `;
+
+    try {
+      const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+      const [hours, minutes] = birthTimeValue.split(":").map((value) => Number.parseInt(value, 10));
+      const inferredTimezoneOffset = getHistoricalTimeZoneOffsetHours({
+        year,
+        month,
+        day,
+        hours,
+        minutes,
+      });
+      const effectiveTimezoneOffset = Number.isFinite(inferredTimezoneOffset)
+        ? inferredTimezoneOffset
+        : Number.parseFloat(String(formData.get("timezoneOffset") ?? "3")) || 3;
+      const swe = await loadSwissEph();
+      const utcHour = hours + minutes / 60 - effectiveTimezoneOffset;
+      const julianDay = swe.julday(year, month, day, utcHour);
+      const flags = swe.SEFLG_SWIEPH | swe.SEFLG_SPEED;
+      const nodeId = nodeMode === "true" ? swe.SE_TRUE_NODE : swe.SE_MEAN_NODE;
+      const ayanamsaOffset = zodiacMode === "sidereal" ? AYANAMSA_LABELS.lahiri.degrees : 0;
+      const northDegree = mod(readSwissCalcResult(swe.calc_ut(julianDay, nodeId, flags)).degree - ayanamsaOffset, 360);
+      const southDegree = mod(northDegree + 180, 360);
+      const northSign = getSignFromDegree(northDegree);
+      const southSign = getSignFromDegree(southDegree);
+      const period = LUNAR_NODE_PERIODS.find((item) => birthDateValue >= item.start && birthDateValue <= item.end) ?? null;
+      const lesson = getNodeAxisLesson(northSign, southSign, focusArea);
+
+      renderReferenceTable(period);
+
+      result.innerHTML = `
       <section class="result-grid nodes-summary-grid">
         ${renderMetricCards([
           {
@@ -4719,6 +6826,8 @@ const renderLunarNodesResult = () => {
           ${zodiacMode === "sidereal" ? "Sideral" : "Tropik"}
           <span class="divider-dot" aria-hidden="true"></span>
           ${lesson.focusLabel}
+          <span class="divider-dot" aria-hidden="true"></span>
+          ${unknownTime ? "12:00 (yaklaşık)" : birthTimeValue}
         </p>
       </article>
 
@@ -4742,6 +6851,18 @@ const renderLunarNodesResult = () => {
         </article>
       </section>
     `;
+    } catch (error) {
+      renderReferenceTable(null);
+      const errorMessage =
+        error instanceof Error && error.message ? error.message : "Bilinmeyen yükleme hatası.";
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Hesap yapılamadı</h4>
+          <p>Ay düğümleri bu sayfada yerel Swiss Ephemeris WASM ile çalışıyor.</p>
+          <p>Hata: ${escapeHtml(errorMessage)}</p>
+        </article>
+      `;
+    }
   };
 
   form.addEventListener("change", update);
@@ -4753,14 +6874,15 @@ const renderLunarNodesResult = () => {
   update();
 };
 
-const renderSunSignCalculatorResult = () => {
-  const form = document.querySelector("#sunSignForm");
-  const result = document.querySelector("#sunSignResult");
+const renderSeventhHouseResult = async () => {
+  const form = document.querySelector("#seventhHouseForm");
+  const result = document.querySelector("#seventhHouseResult");
   const citySelect = form?.querySelector('select[name="city"]');
   const districtSelect = form?.querySelector('[data-location-district]');
   const neighborhoodSelect = form?.querySelector('[data-location-neighborhood]');
   const latitudeInput = form?.querySelector('input[name="latitude"]');
   const longitudeInput = form?.querySelector('input[name="longitude"]');
+  const timezoneInput = form?.querySelector('input[name="timezoneOffset"]');
   const birthDateInput = form?.querySelector('input[name="birthDate"]');
   const birthTimeInput = form?.querySelector('input[name="birthTime"]');
   const unknownTimeInput = form?.querySelector('input[name="unknownTime"]');
@@ -4773,6 +6895,7 @@ const renderSunSignCalculatorResult = () => {
     !(neighborhoodSelect instanceof HTMLSelectElement) ||
     !(latitudeInput instanceof HTMLInputElement) ||
     !(longitudeInput instanceof HTMLInputElement) ||
+    !(timezoneInput instanceof HTMLInputElement) ||
     !(birthDateInput instanceof HTMLInputElement) ||
     !(birthTimeInput instanceof HTMLInputElement) ||
     !(unknownTimeInput instanceof HTMLInputElement)
@@ -4780,7 +6903,7 @@ const renderSunSignCalculatorResult = () => {
     return;
   }
 
-  bindLocationSelects({
+  await bindLocationSelects({
     citySelect,
     districtSelect,
     neighborhoodSelect,
@@ -4797,11 +6920,537 @@ const renderSunSignCalculatorResult = () => {
     return city;
   };
 
-  const update = () => {
+  const buildFallbackSeventhData = ({ date, timeValue, latitude, longitude }) => {
+    const approximateData = buildRisingDetailData({
+      date,
+      timeValue,
+      city: {
+        label: getSelectedOptionLabel(citySelect) || "Türkiye",
+        latitude,
+        longitude,
+      },
+      useApproximate: true,
+    });
+
+    return {
+      ...approximateData,
+      houseCusps: getBirth2PorphyryHouseCusps(approximateData.ascendant, approximateData.midheaven),
+    };
+  };
+
+  const update = async () => {
     const formData = new FormData(form);
     const birthDateValue = String(formData.get("birthDate") ?? "");
     const birthTimeValue = String(formData.get("birthTime") ?? "12:00");
-    const timezoneOffset = String(formData.get("timezoneOffset") ?? "3");
+    const unknownTime = formData.has("unknownTime");
+
+    if (!birthDateValue) {
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Doğum tarihini seç</h4>
+          <p>7. ev yorumunu görmek için tarih gir. Saat bilgisi varsa descendant ve ilişki ekseni çok daha net çıkar.</p>
+        </article>
+      `;
+      return;
+    }
+
+    const calculationTime = unknownTime ? "12:00" : birthTimeValue;
+    const calculationDate = new Date(`${birthDateValue}T${calculationTime}:00`);
+    if (!(calculationDate instanceof Date) || Number.isNaN(calculationDate.getTime())) {
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Geçersiz tarih</h4>
+          <p>7. ev hesabını göstermek için geçerli bir tarih ve mümkünse saat bilgisi gir.</p>
+        </article>
+      `;
+      return;
+    }
+
+    const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+    const [hours, minutes] = calculationTime.split(":").map((value) => Number.parseInt(value, 10));
+    const inferredTimezoneOffset = getHistoricalTimeZoneOffsetHours({
+      year,
+      month,
+      day,
+      hours,
+      minutes,
+    });
+    const effectiveTimezoneOffset = Number.isFinite(inferredTimezoneOffset)
+      ? inferredTimezoneOffset
+      : Number.parseFloat(String(formData.get("timezoneOffset") ?? "3")) || 3;
+
+    timezoneInput.value = String(effectiveTimezoneOffset);
+
+    const fallbackLocation = getFallbackCityContext(citySelect.value || "İstanbul");
+    const latitude = parseNumericInput(latitudeInput.value, fallbackLocation.latitude);
+    const longitude = parseNumericInput(longitudeInput.value, fallbackLocation.longitude);
+
+    let detailData;
+    try {
+      detailData = buildFallbackSeventhData({
+        date: calculationDate,
+        timeValue: calculationTime,
+        latitude,
+        longitude,
+      });
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error && error.message ? error.message : "Bilinmeyen hesaplama hatası.";
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Hesap yapılamadı</h4>
+          <p>7. ev sonucu oluşturulamadı.</p>
+          <p>Hata: ${escapeHtml(errorMessage)}</p>
+        </article>
+      `;
+      return;
+    }
+
+    const ascDegree = detailData.ascendant;
+    const descendantDegree = detailData.houseCusps[6]?.degree ?? mod(ascDegree + 180, 360);
+    const ascSign = getSignFromDegree(ascDegree);
+    const descendantSign = getSignFromDegree(descendantDegree);
+    const seventhDetails = SEVENTH_HOUSE_DETAILS[descendantSign.name] ?? SEVENTH_HOUSE_DETAILS["Terazi"];
+    const rulerName = SUN_SIGN_DETAILS[descendantSign.name]?.ruler ?? "Venüs";
+    const rulerKey = PLANET_KEY_BY_TURKISH_NAME[rulerName] ?? "Venus";
+    const rulerPlanet = detailData.planets.find((planet) => planet.key === rulerKey) ?? null;
+    const rulerHouse = rulerPlanet ? getBirth2HouseNumberForDegree(rulerPlanet.degree, detailData.houseCusps) : "-";
+    const planetsInSeventh = detailData.planets.filter(
+      (planet) => getBirth2HouseNumberForDegree(planet.degree, detailData.houseCusps) === 7,
+    );
+    const planetsInSeventhText =
+      planetsInSeventh.length > 0
+        ? planetsInSeventh
+            .map((planet) => `${planet.label} (${formatZodiacPosition(planet.degree)})`)
+            .join(", ")
+        : "7. evde ana gezegen yerleşimi görünmüyor. Yorum daha çok yönetici gezegen üzerinden okunur.";
+    const cityLabel = getSelectedOptionLabel(citySelect);
+    const district = getSelectedOptionLabel(districtSelect);
+    const neighborhood = getSelectedOptionLabel(neighborhoodSelect);
+    const locationLabel = `${cityLabel}${district ? `, ${district}` : ""}${neighborhood ? ` / ${neighborhood}` : ""}`;
+    const displayedTime = unknownTime ? "12:00 (yaklaşık)" : birthTimeValue;
+    const noteText = unknownTime
+      ? "Saat bilinmediği için descendant, ev çizgileri ve yönetici ev yorumu 12:00 eksenine göre yaklaşık hesaplandı."
+      : "Bu sayfada hızlı okuma için yaklaşık hesap yöntemi kullanılıyor. Saat ve konum doğru oldukça yorum ekseni daha tutarlı olur.";
+
+    result.innerHTML = `
+      <section class="result-grid">
+        ${renderMetricCards([
+          {
+            label: "7. ev burcu",
+            value: descendantSign.name,
+            note: `${descendantSign.element} · ${descendantSign.mode}`,
+          },
+          {
+            label: "Descendant",
+            value: formatZodiacPosition(descendantDegree),
+            note: "İlişki kapısı",
+          },
+          {
+            label: "Yönetici gezegen",
+            value: rulerName,
+            note: rulerPlanet ? `${rulerHouse}. ev · ${formatZodiacPosition(rulerPlanet.degree)}` : "Yerleşim okunamadı",
+          },
+          {
+            label: "7. ev vurgusu",
+            value: planetsInSeventh.length > 0 ? `${planetsInSeventh.length} gezegen` : "Gezegen yok",
+            note: planetsInSeventh.length > 0 ? planetsInSeventh.map((planet) => planet.label).join(", ") : "Yönetici gezegen daha belirleyici",
+          },
+        ])}
+      </section>
+
+      <article class="sun-sign-result-panel">
+        <div class="sun-sign-result-copy">
+          <p><strong>İlişki ekseni</strong></p>
+          <p><strong>7. Ev Burcun:</strong> ${descendantSign.name}</p>
+          <p><strong>Descendant Derecen:</strong> ${formatZodiacPosition(descendantDegree)}</p>
+          <p><strong>İlişki Yöneticin:</strong> ${rulerName}${rulerPlanet ? ` · ${formatZodiacPosition(rulerPlanet.degree)} · ${rulerHouse}. ev` : ""}</p>
+          <p><strong>7. Evdeki Gezegenler:</strong> ${planetsInSeventhText}</p>
+          <p><strong>İlişki Ekseni:</strong> 1. ev ${ascSign.name} / 7. ev ${descendantSign.name}</p>
+          <p><strong>Partnere Çekildiğin Tarz:</strong> ${seventhDetails.magnet}</p>
+          <p class="sun-sign-result-note"><strong>Not:</strong> ${noteText}</p>
+          <p class="result-inline-meta">
+            ${formatDate(calculationDate)} · ${displayedTime} · ${escapeHtml(locationLabel)} · UTC ${effectiveTimezoneOffset}
+          </p>
+        </div>
+      </article>
+
+      <section class="sun-sign-story-grid">
+        <article class="result-note-card">
+          <h4>İlişki tonu</h4>
+          <p>${seventhDetails.theme}</p>
+        </article>
+        <article class="result-note-card">
+          <h4>Gelişim dersi</h4>
+          <p>${seventhDetails.lesson}</p>
+        </article>
+      </section>
+
+      <section class="seek-mini-grid sun-sign-mini-grid">
+        <article class="seek-mini-card">
+          <strong>Yöneticinin alanı</strong>
+          <span>${rulerPlanet ? `${rulerName} ${rulerHouse}. evde çalışıyor; ilişki konuları bu alana taşınır.` : "Yönetici yerleşimi okunamadı."}</span>
+        </article>
+        <article class="seek-mini-card">
+          <strong>İlk bakışta partner profili</strong>
+          <span>${seventhDetails.magnet}</span>
+        </article>
+      </section>
+    `;
+  };
+
+  if (!birthDateInput.value) {
+    birthDateInput.value = new Date().toISOString().slice(0, 10);
+  }
+
+  const syncUnknownTimeState = () => {
+    birthTimeInput.disabled = unknownTimeInput.checked;
+  };
+
+  citySelect.addEventListener("locationresolved", () => {
+    void syncCoordinates();
+    void update();
+  });
+
+  neighborhoodSelect.addEventListener("change", () => {
+    void syncCoordinates();
+    void update();
+  });
+
+  form.addEventListener("change", (event) => {
+    const target = event.target;
+    if (target === citySelect || target === districtSelect || target === neighborhoodSelect) {
+      return;
+    }
+    void update();
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    void update();
+  });
+
+  unknownTimeInput.addEventListener("change", () => {
+    syncUnknownTimeState();
+    void update();
+  });
+
+  syncUnknownTimeState();
+  void update();
+};
+
+const buildSwissJunoPersonaData = async ({
+  birthDateValue,
+  birthTime,
+  timezoneOffset,
+  latitude,
+  longitude,
+}) => {
+  const baseData = await buildSwissEphBirth3Data({
+    birthDateValue,
+    birthTime,
+    timezoneOffset,
+    latitude,
+    longitude,
+    houseSystem: "P",
+  });
+  const junoApproxConfig = BIRTH2_EXTRA_BODIES.find((body) => body.key === "Juno");
+  const safeDate = new Date(`${birthDateValue}T${birthTime}:00`);
+  const junoDegree =
+    safeDate instanceof Date &&
+    !Number.isNaN(safeDate.getTime()) &&
+    junoApproxConfig
+      ? getApproxPlanetDegree(safeDate, junoApproxConfig)
+      : 0;
+  const juno = {
+    degree: junoDegree,
+    speed: junoApproxConfig?.speed ?? 0,
+  };
+  const junoHouse = getBirth2HouseNumberForDegree(juno.degree, baseData.houseCusps);
+  const personaPlanets = baseData.planets.map((planet) => ({
+    ...planet,
+    personaDegree: mod(planet.degree - juno.degree, 360),
+  }));
+  const personaAscendant = mod(baseData.ascendant - juno.degree, 360);
+  const personaMidheaven = mod(baseData.midheaven - juno.degree, 360);
+
+  return {
+    ...baseData,
+    juno,
+    junoHouse,
+    personaPlanets,
+    personaAscendant,
+    personaMidheaven,
+  };
+};
+
+const renderJunoPersonaResult = async () => {
+  const form = document.querySelector("#junoPersonaForm");
+  const result = document.querySelector("#junoPersonaResult");
+  const citySelect = form?.querySelector('select[name="city"]');
+  const districtSelect = form?.querySelector('[data-location-district]');
+  const neighborhoodSelect = form?.querySelector('[data-location-neighborhood]');
+  const latitudeInput = form?.querySelector('input[name="latitude"]');
+  const longitudeInput = form?.querySelector('input[name="longitude"]');
+  const timezoneInput = form?.querySelector('input[name="timezoneOffset"]');
+  const birthDateInput = form?.querySelector('input[name="birthDate"]');
+  const birthTimeInput = form?.querySelector('input[name="birthTime"]');
+  const unknownTimeInput = form?.querySelector('input[name="unknownTime"]');
+
+  if (
+    !(form instanceof HTMLFormElement) ||
+    !(result instanceof HTMLElement) ||
+    !(citySelect instanceof HTMLSelectElement) ||
+    !(districtSelect instanceof HTMLSelectElement) ||
+    !(neighborhoodSelect instanceof HTMLSelectElement) ||
+    !(latitudeInput instanceof HTMLInputElement) ||
+    !(longitudeInput instanceof HTMLInputElement) ||
+    !(timezoneInput instanceof HTMLInputElement) ||
+    !(birthDateInput instanceof HTMLInputElement) ||
+    !(birthTimeInput instanceof HTMLInputElement) ||
+    !(unknownTimeInput instanceof HTMLInputElement)
+  ) {
+    return;
+  }
+
+  void bindLocationSelects({
+    citySelect,
+    districtSelect,
+    neighborhoodSelect,
+  }).catch(() => {});
+
+  const update = () => {
+    try {
+      const formData = new FormData(form);
+      const birthDateValue = String(formData.get("birthDate") ?? "");
+      const birthTimeValue = String(formData.get("birthTime") ?? "12:00");
+      const unknownTime = formData.has("unknownTime");
+
+      if (!birthDateValue) {
+        result.innerHTML = "";
+        return;
+      }
+
+      const calculationTime = unknownTime ? "12:00" : birthTimeValue;
+      const calculationDate = new Date(`${birthDateValue}T${calculationTime}:00`);
+      if (!(calculationDate instanceof Date) || Number.isNaN(calculationDate.getTime())) {
+        result.innerHTML = `
+          <article class="result-note-card">
+            <h4>Geçersiz tarih</h4>
+            <p>Juno Persona hesabı için geçerli tarih ve mümkünse saat bilgisi gir.</p>
+          </article>
+        `;
+        return;
+      }
+
+      const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+      const [hours, minutes] = calculationTime.split(":").map((value) => Number.parseInt(value, 10));
+      const inferredTimezoneOffset = getHistoricalTimeZoneOffsetHours({
+        year,
+        month,
+        day,
+        hours,
+        minutes,
+      });
+      const effectiveTimezoneOffset = Number.isFinite(inferredTimezoneOffset)
+        ? inferredTimezoneOffset
+        : Number.parseFloat(String(formData.get("timezoneOffset") ?? "3")) || 3;
+
+      timezoneInput.value = String(effectiveTimezoneOffset);
+
+      const fallbackCity = getFallbackCityContext(citySelect.value || "İstanbul");
+      const latitude = parseNumericInput(latitudeInput.value, fallbackCity.latitude);
+      const longitude = parseNumericInput(longitudeInput.value, fallbackCity.longitude);
+
+      const junoApproxConfig = BIRTH2_EXTRA_BODIES.find((body) => body.key === "Juno");
+      const approximateJunoDegree = junoApproxConfig ? getApproxPlanetDegree(calculationDate, junoApproxConfig) : 0;
+      const approximateAscendant = getApproxAscDegree(
+        calculationDate,
+        { latitude, longitude },
+        parseTimeToMinutes(calculationTime),
+      );
+      const approximateHouseCusps = getEqualHouseCusps(approximateAscendant);
+      const detailData = {
+        juno: {
+          degree: approximateJunoDegree,
+        },
+        junoHouse: getBirth2HouseNumberForDegree(approximateJunoDegree, approximateHouseCusps),
+        personaPlanets: [
+          {
+            key: "Sun",
+            personaDegree: mod((getApproxPlanetDegree(calculationDate, EPHEMERIS_PLANETS[0]) ?? 0) - approximateJunoDegree, 360),
+          },
+          {
+            key: "Moon",
+            personaDegree: mod((getApproxPlanetDegree(calculationDate, EPHEMERIS_PLANETS[1]) ?? 0) - approximateJunoDegree, 360),
+          },
+          {
+            key: "Venus",
+            personaDegree: mod((getApproxPlanetDegree(calculationDate, EPHEMERIS_PLANETS[3]) ?? 0) - approximateJunoDegree, 360),
+          },
+          {
+            key: "Mars",
+            personaDegree: mod((getApproxPlanetDegree(calculationDate, EPHEMERIS_PLANETS[4]) ?? 0) - approximateJunoDegree, 360),
+          },
+        ],
+        personaAscendant: mod(approximateAscendant - approximateJunoDegree, 360),
+      };
+
+      const junoSign = getSignFromDegree(detailData.juno.degree);
+      const personaSun = detailData.personaPlanets.find((planet) => planet.key === "Sun")?.personaDegree ?? 0;
+      const personaMoon = detailData.personaPlanets.find((planet) => planet.key === "Moon")?.personaDegree ?? 0;
+      const personaVenus = detailData.personaPlanets.find((planet) => planet.key === "Venus")?.personaDegree ?? 0;
+      const personaMars = detailData.personaPlanets.find((planet) => planet.key === "Mars")?.personaDegree ?? 0;
+      const personaAsc = detailData.personaAscendant;
+      const personaSunSign = getSignFromDegree(personaSun);
+      const personaMoonSign = getSignFromDegree(personaMoon);
+      const personaAscSign = getSignFromDegree(personaAsc);
+      const detailText = JUNO_PERSONA_DETAILS[junoSign.name] ?? JUNO_PERSONA_DETAILS["Terazi"];
+      const district = getSelectedOptionLabel(districtSelect);
+      const neighborhood = getSelectedOptionLabel(neighborhoodSelect);
+      const locationLabel = `${citySelect.value}${district ? `, ${district}` : ""}${neighborhood ? ` / ${neighborhood}` : ""}`;
+      const displayedTime = unknownTime ? "12:00 (yaklaşık)" : birthTimeValue;
+      result.innerHTML = `
+      <section class="result-grid">
+        ${renderMetricCards([
+          {
+            label: "Natal Juno",
+            value: formatZodiacPosition(detailData.juno.degree),
+            note: `${detailData.junoHouse}. ev`,
+          },
+          {
+            label: "Persona Güneş",
+            value: formatZodiacPosition(personaSun),
+            note: personaSunSign.name,
+          },
+          {
+            label: "Persona Ay",
+            value: formatZodiacPosition(personaMoon),
+            note: personaMoonSign.name,
+          },
+          {
+            label: "Persona Yükselen",
+            value: formatZodiacPosition(personaAsc),
+            note: personaAscSign.name,
+          },
+        ])}
+      </section>
+
+      <section class="result-grid">
+        ${renderMetricCards([
+          {
+            label: "Persona Venüs",
+            value: formatZodiacPosition(personaVenus),
+            note: getSignFromDegree(personaVenus).name,
+          },
+          {
+            label: "Persona Mars",
+            value: formatZodiacPosition(personaMars),
+            note: getSignFromDegree(personaMars).name,
+          },
+        ])}
+      </section>
+
+      <p class="result-inline-meta">
+        ${formatDate(calculationDate)} · ${displayedTime} · ${escapeHtml(locationLabel)} · UTC ${effectiveTimezoneOffset}
+      </p>
+    `;
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Bilinmeyen hata";
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Sonuç üretilemedi</h4>
+          <p>Juno Persona sonucu hesap sırasında durdu.</p>
+          <p>Hata: ${escapeHtml(errorMessage)}</p>
+        </article>
+      `;
+    }
+  };
+
+  if (!birthDateInput.value) {
+    birthDateInput.value = new Date().toISOString().slice(0, 10);
+  }
+
+  const syncUnknownTimeState = () => {
+    birthTimeInput.disabled = unknownTimeInput.checked;
+  };
+
+  citySelect.addEventListener("locationresolved", update);
+
+  neighborhoodSelect.addEventListener("change", update);
+
+  form.addEventListener("change", (event) => {
+    const target = event.target;
+    if (target === citySelect || target === districtSelect || target === neighborhoodSelect) {
+      return;
+    }
+    void update();
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    update();
+  });
+
+  unknownTimeInput.addEventListener("change", () => {
+    syncUnknownTimeState();
+    update();
+  });
+
+  syncUnknownTimeState();
+  update();
+};
+
+const renderSunSignCalculatorResult = async () => {
+  const form = document.querySelector("#sunSignForm");
+  const result = document.querySelector("#sunSignResult");
+  const citySelect = form?.querySelector('select[name="city"]');
+  const districtSelect = form?.querySelector('[data-location-district]');
+  const neighborhoodSelect = form?.querySelector('[data-location-neighborhood]');
+  const latitudeInput = form?.querySelector('input[name="latitude"]');
+  const longitudeInput = form?.querySelector('input[name="longitude"]');
+  const timezoneInput = form?.querySelector('input[name="timezoneOffset"]');
+  const birthDateInput = form?.querySelector('input[name="birthDate"]');
+  const birthTimeInput = form?.querySelector('input[name="birthTime"]');
+  const unknownTimeInput = form?.querySelector('input[name="unknownTime"]');
+
+  if (
+    !(form instanceof HTMLFormElement) ||
+    !(result instanceof HTMLElement) ||
+    !(citySelect instanceof HTMLSelectElement) ||
+    !(districtSelect instanceof HTMLSelectElement) ||
+    !(neighborhoodSelect instanceof HTMLSelectElement) ||
+    !(latitudeInput instanceof HTMLInputElement) ||
+    !(longitudeInput instanceof HTMLInputElement) ||
+    !(timezoneInput instanceof HTMLInputElement) ||
+    !(birthDateInput instanceof HTMLInputElement) ||
+    !(birthTimeInput instanceof HTMLInputElement) ||
+    !(unknownTimeInput instanceof HTMLInputElement)
+  ) {
+    return;
+  }
+
+  await bindLocationSelects({
+    citySelect,
+    districtSelect,
+    neighborhoodSelect,
+  });
+
+  const syncCoordinates = async () => {
+    const city = await resolveSelectedLocationCoordinates({
+      citySelect,
+      districtSelect,
+      neighborhoodSelect,
+    });
+    latitudeInput.value = city.latitude.toFixed(4);
+    longitudeInput.value = city.longitude.toFixed(4);
+    return city;
+  };
+
+  const update = async () => {
+    const formData = new FormData(form);
+    const birthDateValue = String(formData.get("birthDate") ?? "");
+    const birthTimeValue = String(formData.get("birthTime") ?? "12:00");
     const unknownTime = formData.has("unknownTime");
 
     if (!birthDateValue) {
@@ -4825,9 +7474,69 @@ const renderSunSignCalculatorResult = () => {
       return;
     }
 
-    const calculationDate = new Date(`${birthDateValue}T${unknownTime ? "12:00" : birthTimeValue}:00`);
-    const sign = getSunSign(calculationDate);
-    const moonPhase = getMoonPhaseInfo(calculationDate);
+    result.innerHTML = `
+      <article class="result-note-card">
+        <h4>Hesaplanıyor</h4>
+        <p>Doğum bilgileri Swiss Ephemeris ile çözümleniyor.</p>
+      </article>
+    `;
+
+    const calculationTime = unknownTime ? "12:00" : birthTimeValue;
+    const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+    const [hours, minutes] = calculationTime.split(":").map((value) => Number.parseInt(value, 10));
+    const inferredTimezoneOffset = getHistoricalTimeZoneOffsetHours({
+      year,
+      month,
+      day,
+      hours,
+      minutes,
+    });
+    const effectiveTimezoneOffset = Number.isFinite(inferredTimezoneOffset)
+      ? inferredTimezoneOffset
+      : Number.parseFloat(String(formData.get("timezoneOffset") ?? "3")) || 3;
+
+    timezoneInput.value = String(effectiveTimezoneOffset);
+
+    const selectedLocation = await resolveSelectedLocationCoordinates({
+      citySelect,
+      districtSelect,
+      neighborhoodSelect,
+    });
+
+    const latitude = parseNumericInput(latitudeInput.value, selectedLocation.latitude);
+    const longitude = parseNumericInput(longitudeInput.value, selectedLocation.longitude);
+    const calculationDate = new Date(`${birthDateValue}T${calculationTime}:00`);
+
+    let detailData;
+    try {
+      detailData = await withTimeout(
+        buildSwissEphBirth3Data({
+          birthDateValue,
+          birthTime: calculationTime,
+          timezoneOffset: effectiveTimezoneOffset,
+          latitude,
+          longitude,
+          houseSystem: "P",
+        }),
+        SWISS_EPH_TIMEOUT_MS + 5000,
+        "Burç Hesaplama",
+      );
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error && error.message ? error.message : "Bilinmeyen yükleme hatası.";
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Hesap yapılamadı</h4>
+          <p>Burç hesabı bu sayfada yerel Swiss Ephemeris WASM ile çalışıyor.</p>
+          <p>Hata: ${escapeHtml(errorMessage)}</p>
+        </article>
+      `;
+      return;
+    }
+
+    const sunDegree = detailData.planets.find((planet) => planet.key === "Sun")?.degree ?? 0;
+    const moonDegree = detailData.planets.find((planet) => planet.key === "Moon")?.degree ?? 0;
+    const sign = getSignFromDegree(sunDegree);
     const details = SUN_SIGN_DETAILS[sign.name] ?? SUN_SIGN_DETAILS["Koç"];
     const birthWeekdayRuler = WEEKDAY_RULERS[birthDate.getDay()] ?? WEEKDAY_RULERS[0];
     const weekdayRaw = birthDate.toLocaleDateString("tr-TR", { weekday: "long" });
@@ -4836,21 +7545,11 @@ const renderSunSignCalculatorResult = () => {
     const neighborhood = getSelectedOptionLabel(neighborhoodSelect);
     const locationLabel = `${citySelect.value}${district ? `, ${district}` : ""}${neighborhood ? ` / ${neighborhood}` : ""}`;
     const displayedTime = unknownTime ? "12:00 (yaklaşık)" : birthTimeValue;
-    const latitude = parseNumericInput(latitudeInput.value, 41.0082);
-    const longitude = parseNumericInput(longitudeInput.value, 28.9784);
-    const calculationMinutes = parseTimeToMinutes(unknownTime ? "12:00" : birthTimeValue);
-    const sunriseMinutes = getApproxSunriseMinutes(calculationDate, {
-      label: citySelect.value || "İstanbul",
-      latitude,
-      longitude,
-    });
-    const signShift = Math.floor((calculationMinutes - sunriseMinutes) / 120);
-    const ascDegree = mod((sign.index + signShift) * 30 + calculationMinutes / 4, 360);
-    const moonDegree = mod(getApproxTropicalSunDegree(calculationDate) + moonPhase.age * 12.2, 360);
+    const ascDegree = detailData.ascendant;
     const moonSign = getSignFromDegree(moonDegree);
     const ascSign = getSignFromDegree(ascDegree);
-    const sunHouse = Math.floor(mod(getApproxTropicalSunDegree(calculationDate) - ascDegree, 360) / 30) + 1;
-    const moonHouse = Math.floor(mod(moonDegree - ascDegree, 360) / 30) + 1;
+    const sunHouse = getBirth2HouseNumberForDegree(sunDegree, detailData.houseCusps);
+    const moonHouse = getBirth2HouseNumberForDegree(moonDegree, detailData.houseCusps);
     const formatPositionSuffix = (degreeValue) => {
       const full = formatZodiacPosition(degreeValue);
       const signLabel = getSignFromDegree(degreeValue).name;
@@ -4864,7 +7563,7 @@ const renderSunSignCalculatorResult = () => {
       <article class="sun-sign-result-panel">
         <div class="sun-sign-result-copy">
           <p><strong>Burcunuz (Güneş Burcu):</strong> ${sign.name}</p>
-          <p><strong>Güneşin Konumu:</strong> ${sunHouse}. ev (${formatZodiacPosition(getApproxTropicalSunDegree(calculationDate))})</p>
+          <p><strong>Güneşin Konumu:</strong> ${sunHouse}. ev (${formatZodiacPosition(sunDegree)})</p>
           <p><strong>Ay Burcunuz:</strong> ${moonSign.name}</p>
           <p><strong>Ayın Konumu:</strong> ${moonHouse}. ev (${formatZodiacPosition(moonDegree)})</p>
           <p><strong>Yükselen Burcunuz:</strong> ${ascSign.name} (${formatPositionSuffix(ascDegree)})</p>
@@ -4873,7 +7572,7 @@ const renderSunSignCalculatorResult = () => {
           <p><strong>Haftanın hangi günüydü:</strong> Bir ${weekdayLabel} günü doğdunuz.</p>
           <p class="sun-sign-result-note"><strong>Not:</strong> ${noteText}</p>
           <p class="result-inline-meta">
-            ${formatDate(birthDate)} · ${displayedTime} · ${locationLabel} · UTC ${timezoneOffset}
+            ${formatDate(birthDate)} · ${displayedTime} · ${locationLabel} · UTC ${effectiveTimezoneOffset}
           </p>
         </div>
       </article>
@@ -4911,13 +7610,13 @@ const renderSunSignCalculatorResult = () => {
   };
 
   citySelect.addEventListener("locationresolved", () => {
-    syncCoordinates();
-    update();
+    void syncCoordinates();
+    void update();
   });
 
   neighborhoodSelect.addEventListener("change", () => {
-    syncCoordinates();
-    update();
+    void syncCoordinates();
+    void update();
   });
 
   form.addEventListener("change", (event) => {
@@ -4929,26 +7628,26 @@ const renderSunSignCalculatorResult = () => {
     ) {
       return;
     }
-    update();
+    void update();
   });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    update();
+    void update();
   });
 
   unknownTimeInput.addEventListener("change", () => {
     syncUnknownTimeState();
-    update();
+    void update();
   });
 
   syncUnknownTimeState();
-  syncCoordinates().then(() => {
-    update();
+  void syncCoordinates().then(() => {
+    void update();
   });
 };
 
-const renderMoonSignCalculatorResult = () => {
+const renderMoonSignCalculatorResult = async () => {
   const form = document.querySelector("#moonSignForm");
   const result = document.querySelector("#moonSignResult");
   const citySelect = form?.querySelector('select[name="city"]');
@@ -4956,6 +7655,7 @@ const renderMoonSignCalculatorResult = () => {
   const neighborhoodSelect = form?.querySelector('[data-location-neighborhood]');
   const latitudeInput = form?.querySelector('input[name="latitude"]');
   const longitudeInput = form?.querySelector('input[name="longitude"]');
+  const timezoneInput = form?.querySelector('input[name="timezoneOffset"]');
   const birthDateInput = form?.querySelector('input[name="birthDate"]');
   const birthTimeInput = form?.querySelector('input[name="birthTime"]');
   const unknownTimeInput = form?.querySelector('input[name="unknownTime"]');
@@ -4968,6 +7668,7 @@ const renderMoonSignCalculatorResult = () => {
     !(neighborhoodSelect instanceof HTMLSelectElement) ||
     !(latitudeInput instanceof HTMLInputElement) ||
     !(longitudeInput instanceof HTMLInputElement) ||
+    !(timezoneInput instanceof HTMLInputElement) ||
     !(birthDateInput instanceof HTMLInputElement) ||
     !(birthTimeInput instanceof HTMLInputElement) ||
     !(unknownTimeInput instanceof HTMLInputElement)
@@ -4975,7 +7676,7 @@ const renderMoonSignCalculatorResult = () => {
     return;
   }
 
-  bindLocationSelects({
+  await bindLocationSelects({
     citySelect,
     districtSelect,
     neighborhoodSelect,
@@ -4992,11 +7693,10 @@ const renderMoonSignCalculatorResult = () => {
     return city;
   };
 
-  const update = () => {
+  const update = async () => {
     const formData = new FormData(form);
     const birthDateValue = String(formData.get("birthDate") ?? "");
     const birthTimeValue = String(formData.get("birthTime") ?? "12:00");
-    const timezoneOffset = String(formData.get("timezoneOffset") ?? "3");
     const unknownTime = formData.has("unknownTime");
 
     if (!birthDateValue) {
@@ -5020,30 +7720,79 @@ const renderMoonSignCalculatorResult = () => {
       return;
     }
 
-    const calculationDate = new Date(`${birthDateValue}T${unknownTime ? "12:00" : birthTimeValue}:00`);
-    const sunSign = getSunSign(calculationDate);
-    const moonPhase = getMoonPhaseInfo(calculationDate);
-    const sunDegree = getApproxTropicalSunDegree(calculationDate);
-    const moonDegree = mod(sunDegree + moonPhase.age * 12.2, 360);
+    result.innerHTML = `
+      <article class="result-note-card">
+        <h4>Hesaplanıyor</h4>
+        <p>Doğum bilgileri Swiss Ephemeris ile çözümleniyor.</p>
+      </article>
+    `;
+
+    const calculationTime = unknownTime ? "12:00" : birthTimeValue;
+    const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+    const [hours, minutes] = calculationTime.split(":").map((value) => Number.parseInt(value, 10));
+    const inferredTimezoneOffset = getHistoricalTimeZoneOffsetHours({
+      year,
+      month,
+      day,
+      hours,
+      minutes,
+    });
+    const effectiveTimezoneOffset = Number.isFinite(inferredTimezoneOffset)
+      ? inferredTimezoneOffset
+      : Number.parseFloat(String(formData.get("timezoneOffset") ?? "3")) || 3;
+
+    timezoneInput.value = String(effectiveTimezoneOffset);
+
+    const selectedLocation = await resolveSelectedLocationCoordinates({
+      citySelect,
+      districtSelect,
+      neighborhoodSelect,
+    });
+
+    const latitude = parseNumericInput(latitudeInput.value, selectedLocation.latitude);
+    const longitude = parseNumericInput(longitudeInput.value, selectedLocation.longitude);
+    const calculationDate = new Date(`${birthDateValue}T${calculationTime}:00`);
+
+    let detailData;
+    try {
+      detailData = await withTimeout(
+        buildSwissEphBirth3Data({
+          birthDateValue,
+          birthTime: calculationTime,
+          timezoneOffset: effectiveTimezoneOffset,
+          latitude,
+          longitude,
+          houseSystem: "P",
+        }),
+        SWISS_EPH_TIMEOUT_MS + 5000,
+        "Ay Burcu Hesaplama",
+      );
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error && error.message ? error.message : "Bilinmeyen yükleme hatası.";
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Hesap yapılamadı</h4>
+          <p>Ay burcu hesabı bu sayfada yerel Swiss Ephemeris WASM ile çalışıyor.</p>
+          <p>Hata: ${escapeHtml(errorMessage)}</p>
+        </article>
+      `;
+      return;
+    }
+
+    const sunDegree = detailData.planets.find((planet) => planet.key === "Sun")?.degree ?? 0;
+    const moonDegree = detailData.planets.find((planet) => planet.key === "Moon")?.degree ?? 0;
+    const sunSign = getSignFromDegree(sunDegree);
     const moonSign = getSignFromDegree(moonDegree);
     const details = MOON_SIGN_DETAILS[moonSign.name] ?? MOON_SIGN_DETAILS["Koç"];
     const district = getSelectedOptionLabel(districtSelect);
     const neighborhood = getSelectedOptionLabel(neighborhoodSelect);
     const locationLabel = `${citySelect.value}${district ? `, ${district}` : ""}${neighborhood ? ` / ${neighborhood}` : ""}`;
     const displayedTime = unknownTime ? "12:00 (yaklaşık)" : birthTimeValue;
-    const latitude = parseNumericInput(latitudeInput.value, 41.0082);
-    const longitude = parseNumericInput(longitudeInput.value, 28.9784);
-    const calculationMinutes = parseTimeToMinutes(unknownTime ? "12:00" : birthTimeValue);
-    const sunriseMinutes = getApproxSunriseMinutes(calculationDate, {
-      label: citySelect.value || "İstanbul",
-      latitude,
-      longitude,
-    });
-    const signShift = Math.floor((calculationMinutes - sunriseMinutes) / 120);
-    const ascDegree = mod((sunSign.index + signShift) * 30 + calculationMinutes / 4, 360);
+    const ascDegree = detailData.ascendant;
     const ascSign = getSignFromDegree(ascDegree);
-    const sunHouse = Math.floor(mod(sunDegree - ascDegree, 360) / 30) + 1;
-    const moonHouse = Math.floor(mod(moonDegree - ascDegree, 360) / 30) + 1;
+    const sunHouse = getBirth2HouseNumberForDegree(sunDegree, detailData.houseCusps);
+    const moonHouse = getBirth2HouseNumberForDegree(moonDegree, detailData.houseCusps);
     const formatPositionSuffix = (degreeValue) => {
       const full = formatZodiacPosition(degreeValue);
       const signLabel = getSignFromDegree(degreeValue).name;
@@ -5063,7 +7812,7 @@ const renderMoonSignCalculatorResult = () => {
           <p><strong>Yükselen Burcunuz:</strong> ${ascSign.name} (${formatPositionSuffix(ascDegree)})</p>
           <p class="sun-sign-result-note"><strong>Not:</strong> ${noteText}</p>
           <p class="result-inline-meta">
-            ${formatDate(birthDate)} · ${displayedTime} · ${locationLabel} · UTC ${timezoneOffset}
+            ${formatDate(birthDate)} · ${displayedTime} · ${locationLabel} · UTC ${effectiveTimezoneOffset}
           </p>
         </div>
       </article>
@@ -5086,7 +7835,7 @@ const renderMoonSignCalculatorResult = () => {
         </article>
         <article class="seek-mini-card">
           <strong>Ay fazı</strong>
-          <span>${moonPhase.name} · ${moonPhase.theme}</span>
+          <span>${getMoonPhaseInfo(calculationDate).name} · ${getMoonPhaseInfo(calculationDate).theme}</span>
         </article>
       </section>
     `;
@@ -5101,13 +7850,13 @@ const renderMoonSignCalculatorResult = () => {
   };
 
   citySelect.addEventListener("locationresolved", () => {
-    syncCoordinates();
-    update();
+    void syncCoordinates();
+    void update();
   });
 
   neighborhoodSelect.addEventListener("change", () => {
-    syncCoordinates();
-    update();
+    void syncCoordinates();
+    void update();
   });
 
   form.addEventListener("change", (event) => {
@@ -5115,22 +7864,22 @@ const renderMoonSignCalculatorResult = () => {
     if (target === citySelect || target === districtSelect || target === neighborhoodSelect) {
       return;
     }
-    update();
+    void update();
   });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    update();
+    void update();
   });
 
   unknownTimeInput.addEventListener("change", () => {
     syncUnknownTimeState();
-    update();
+    void update();
   });
 
   syncUnknownTimeState();
-  syncCoordinates().then(() => {
-    update();
+  void syncCoordinates().then(() => {
+    void update();
   });
 };
 
@@ -5140,15 +7889,12 @@ const renderVedicSiderealResult = async () => {
   const citySelect = form?.querySelector('select[name="city"]');
   const districtSelect = form?.querySelector('[data-location-district]');
   const neighborhoodSelect = form?.querySelector('[data-location-neighborhood]');
-  const placeInput = form?.querySelector("[data-vedic-place]");
-  const manualToggle = form?.querySelector("[data-vedic-manual-toggle]");
-  const manualPanel = form?.querySelector("[data-vedic-manual-panel]");
-  const latitudeDegreesInput = form?.querySelector("[data-vedic-lat-deg]");
-  const latitudeMinutesInput = form?.querySelector("[data-vedic-lat-min]");
-  const latitudeDirectionSelect = form?.querySelector("[data-vedic-lat-dir]");
-  const longitudeDegreesInput = form?.querySelector("[data-vedic-lon-deg]");
-  const longitudeMinutesInput = form?.querySelector("[data-vedic-lon-min]");
-  const longitudeDirectionSelect = form?.querySelector("[data-vedic-lon-dir]");
+  const birthDateInput = form?.querySelector('input[name="birthDate"]');
+  const birthTimeInput = form?.querySelector('input[name="birthTime"]');
+  const latitudeInput = form?.querySelector('input[name="latitude"]');
+  const longitudeInput = form?.querySelector('input[name="longitude"]');
+  const timezoneInput = form?.querySelector('input[name="timezoneOffset"]');
+  const unknownTimeInput = form?.querySelector('input[name="unknownBirthTime"]');
 
   if (
     !(form instanceof HTMLFormElement) ||
@@ -5156,15 +7902,12 @@ const renderVedicSiderealResult = async () => {
     !(citySelect instanceof HTMLSelectElement) ||
     !(districtSelect instanceof HTMLSelectElement) ||
     !(neighborhoodSelect instanceof HTMLSelectElement) ||
-    !(placeInput instanceof HTMLInputElement) ||
-    !(manualToggle instanceof HTMLInputElement) ||
-    !(manualPanel instanceof HTMLElement) ||
-    !(latitudeDegreesInput instanceof HTMLInputElement) ||
-    !(latitudeMinutesInput instanceof HTMLInputElement) ||
-    !(latitudeDirectionSelect instanceof HTMLSelectElement) ||
-    !(longitudeDegreesInput instanceof HTMLInputElement) ||
-    !(longitudeMinutesInput instanceof HTMLInputElement) ||
-    !(longitudeDirectionSelect instanceof HTMLSelectElement)
+    !(birthDateInput instanceof HTMLInputElement) ||
+    !(birthTimeInput instanceof HTMLInputElement) ||
+    !(latitudeInput instanceof HTMLInputElement) ||
+    !(longitudeInput instanceof HTMLInputElement) ||
+    !(timezoneInput instanceof HTMLInputElement) ||
+    !(unknownTimeInput instanceof HTMLInputElement)
   ) {
     return;
   }
@@ -5179,23 +7922,14 @@ const renderVedicSiderealResult = async () => {
 
   let lastAutoLocation = null;
 
-  const setManualPanelVisibility = () => {
-    manualPanel.hidden = !manualToggle.checked;
+  const syncUnknownTimeState = () => {
+    birthTimeInput.disabled = unknownTimeInput.checked;
+    if (unknownTimeInput.checked && !birthTimeInput.value) {
+      birthTimeInput.value = "12:00";
+    }
   };
 
-  const syncManualCoordinateFields = (location) => {
-    const latitudeParts = decimalToDegreesMinutes(location.latitude, "N", "S");
-    const longitudeParts = decimalToDegreesMinutes(location.longitude, "E", "W");
-
-    latitudeDegreesInput.value = String(latitudeParts.degrees);
-    latitudeMinutesInput.value = String(latitudeParts.minutes);
-    latitudeDirectionSelect.value = latitudeParts.direction;
-    longitudeDegreesInput.value = String(longitudeParts.degrees);
-    longitudeMinutesInput.value = String(longitudeParts.minutes);
-    longitudeDirectionSelect.value = longitudeParts.direction;
-  };
-
-  const syncCoordinates = async ({ forceManualSync = false, forcePlaceSync = false } = {}) => {
+  const syncCoordinates = async () => {
     const city = await resolveSelectedLocationCoordinates({
       citySelect,
       districtSelect,
@@ -5203,29 +7937,19 @@ const renderVedicSiderealResult = async () => {
     });
 
     lastAutoLocation = city;
-
-    if (!manualToggle.checked || forceManualSync) {
-      syncManualCoordinateFields(city);
-    }
-
-    if (!manualToggle.checked || forcePlaceSync) {
-      const district = getSelectedOptionLabel(districtSelect);
-      const neighborhood = getSelectedOptionLabel(neighborhoodSelect);
-      const country = String(new FormData(form).get("country") ?? "Türkiye").trim() || "Türkiye";
-      placeInput.value = `${city.label}${district ? `, ${district}` : ""}${neighborhood ? ` / ${neighborhood}` : ""}, ${country}`;
-    }
+    latitudeInput.value = String(city.latitude);
+    longitudeInput.value = String(city.longitude);
 
     return city;
   };
 
   const update = async () => {
     const formData = new FormData(form);
-    const name = String(formData.get("name") ?? "").trim() || "Danışan";
-    const birthDay = String(formData.get("birthDay") ?? "1");
-    const birthMonth = String(formData.get("birthMonth") ?? "1");
-    const birthYear = String(formData.get("birthYear") ?? "1990");
-    const enteredHour = String(formData.get("birthHour") ?? "00");
-    const enteredMinute = String(formData.get("birthMinute") ?? "00");
+    const name = "Danışan";
+    const birthDateValue = String(formData.get("birthDate") ?? "");
+    const [birthYear = "1990", birthMonth = "1", birthDay = "1"] = birthDateValue.split("-");
+    const enteredTime = String(formData.get("birthTime") ?? "00:00");
+    const [enteredHour = "00", enteredMinute = "00"] = enteredTime.split(":");
     const unknownBirthTime = formData.has("unknownBirthTime");
     const birthHour = unknownBirthTime ? "12" : enteredHour;
     const birthMinute = unknownBirthTime ? "00" : enteredMinute;
@@ -5233,14 +7957,13 @@ const renderVedicSiderealResult = async () => {
     const displayedBirthTime = unknownBirthTime ? "12:00 (yaklaşık)" : `${enteredHour}:${enteredMinute}`;
     const district = getSelectedOptionLabel(districtSelect);
     const neighborhood = getSelectedOptionLabel(neighborhoodSelect);
-    const country = String(formData.get("country") ?? "").trim() || "Türkiye";
-    const birthPlaceLabel = String(formData.get("birthPlace") ?? "").trim();
+    const country = "Türkiye";
     const houseSystemKey = String(formData.get("houseSystem") ?? "placidus");
     const focusAreaKey = String(formData.get("focusArea") ?? "dharma");
     const readingStyleKey = String(formData.get("readingStyle") ?? "balanced");
     const ayanamsaKey = String(formData.get("ayanamsa") ?? "lahiri");
     const toleranceKey = String(formData.get("tolerance") ?? "1");
-    const timezoneOffsetKey = String(formData.get("timezoneOffset") ?? "auto");
+    const timezoneOffsetKey = String(formData.get("timezoneOffset") ?? "3");
     const dstModeKey = String(formData.get("dstMode") ?? "auto");
     const showNakshatra = formData.has("showNakshatra");
     const showRemedies = formData.has("showRemedies");
@@ -5258,7 +7981,6 @@ const renderVedicSiderealResult = async () => {
     const focusArea = VEDIC_FOCUS_LABELS[focusAreaKey] ?? VEDIC_FOCUS_LABELS.dharma;
     const readingStyle = READING_STYLE_LABELS[readingStyleKey] ?? READING_STYLE_LABELS.balanced;
     const tolerance = TOLERANCE_LABELS[toleranceKey] ?? TOLERANCE_LABELS["1"];
-    const timezoneLabel = TIMEZONE_OPTIONS.find((option) => option.value === timezoneOffsetKey)?.label ?? "Otomatik";
     const dstLabel = DST_MODE_LABELS[dstModeKey] ?? DST_MODE_LABELS.auto;
     const date = buildBirthDate({
       yearValue: birthYear,
@@ -5279,54 +8001,95 @@ const renderVedicSiderealResult = async () => {
     }
 
     const autoLocation = lastAutoLocation ?? (await syncCoordinates());
-    const latitude = manualToggle.checked
-      ? degreesMinutesToDecimal(
-          latitudeDegreesInput.value,
-          latitudeMinutesInput.value,
-          ["S"],
-          getSelectedOptionValue(latitudeDirectionSelect),
-        )
-      : autoLocation.latitude;
-    const longitude = manualToggle.checked
-      ? degreesMinutesToDecimal(
-          longitudeDegreesInput.value,
-          longitudeMinutesInput.value,
-          ["W"],
-          getSelectedOptionValue(longitudeDirectionSelect),
-        )
-      : autoLocation.longitude;
+    const latitude = Number.parseFloat(String(formData.get("latitude") ?? "")) || autoLocation.latitude;
+    const longitude = Number.parseFloat(String(formData.get("longitude") ?? "")) || autoLocation.longitude;
 
     if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
       result.innerHTML = `
         <article class="result-note-card">
           <h4>Koordinatlar eksik</h4>
-          <p>Manuel koordinat kullanıyorsan derece, dakika ve yön alanlarını doldur.</p>
+          <p>Enlem ve boylam alanlarını doldur ya da il, ilçe ve mahalle seç.</p>
         </article>
       `;
       return;
     }
 
-    const locationLabel =
-      birthPlaceLabel ||
-      `${autoLocation.label}${district ? `, ${district}` : ""}${neighborhood ? ` / ${neighborhood}` : ""}, ${country}`;
+    const locationLabel = `${autoLocation.label}${district ? `, ${district}` : ""}${neighborhood ? ` / ${neighborhood}` : ""}, ${country}`;
     const location = {
       label: locationLabel,
       latitude,
       longitude,
-      source: manualToggle.checked ? "manual" : autoLocation.source,
+      source: autoLocation.source,
     };
-    const birthMinutes = parseTimeToMinutes(birthTime);
-    const tropicalSunDegree = getApproxTropicalSunDegree(date);
-    const tropicalMoonDegree = mod(tropicalSunDegree + getMoonPhaseInfo(date).age * 12.2, 360);
-    const sunriseMinutes = getApproxSunriseMinutes(date, location);
-    const tropicalAscDegree = mod(
-      (getSunSign(date).index + Math.floor((birthMinutes - sunriseMinutes) / 120)) * 30 + birthMinutes / 4,
-      360,
-    );
+    const normalizedBirthDateValue = `${birthYear.padStart(4, "0")}-${birthMonth.padStart(2, "0")}-${birthDay.padStart(2, "0")}`;
+    const locationSourceLabel =
+      location.source === "neighborhood"
+        ? "Mahalle seviyesi eşleme"
+        : location.source === "district"
+          ? "İlçe seviyesi eşleme"
+          : "İl merkezi eşleme";
+    const [timeHours, timeMinutes] = birthTime.split(":").map((value) => Number.parseInt(value, 10));
+    const inferredTimezoneOffset = getHistoricalTimeZoneOffsetHours({
+      year: Number.parseInt(birthYear, 10),
+      month: Number.parseInt(birthMonth, 10),
+      day: Number.parseInt(birthDay, 10),
+      hours: timeHours,
+      minutes: timeMinutes,
+    });
+    const manualTimezoneOffset = Number.parseFloat(timezoneOffsetKey);
+    const baseTimezoneOffset =
+      timezoneOffsetKey === "auto"
+        ? inferredTimezoneOffset
+        : Number.isFinite(manualTimezoneOffset)
+          ? manualTimezoneOffset
+          : inferredTimezoneOffset;
+    const effectiveTimezoneOffset =
+      Number.isFinite(baseTimezoneOffset)
+        ? baseTimezoneOffset + (dstModeKey === "1" ? 1 : 0)
+        : 3 + (dstModeKey === "1" ? 1 : 0);
+    const timezoneLabel = `UTC ${effectiveTimezoneOffset >= 0 ? "+" : ""}${effectiveTimezoneOffset}`;
+    result.innerHTML = `
+      <article class="result-note-card">
+        <h4>Hesaplanıyor</h4>
+        <p>Vedik/Sideral veriler Swiss Ephemeris ile çözümleniyor.</p>
+      </article>
+    `;
+
+    let detailData;
+    try {
+      detailData = await withTimeout(
+        buildSwissEphBirth3Data({
+          birthDateValue: normalizedBirthDateValue,
+          birthTime,
+          timezoneOffset: effectiveTimezoneOffset,
+          latitude,
+          longitude,
+          houseSystem: SWISS_HOUSE_SYSTEM_CODES[houseSystemKey] ?? "P",
+        }),
+        SWISS_EPH_TIMEOUT_MS + 5000,
+        "Vedik/Sideral hesaplama",
+      );
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error && error.message ? error.message : "Bilinmeyen yükleme hatası.";
+      result.innerHTML = `
+        <article class="result-note-card">
+          <h4>Hesap yapılamadı</h4>
+          <p>Vedik/Sideral hesap bu sayfada yerel Swiss Ephemeris WASM ile çalışıyor.</p>
+          <p>Hata: ${escapeHtml(errorMessage)}</p>
+        </article>
+      `;
+      return;
+    }
+
+    const tropicalSunDegree = detailData.planets.find((planet) => planet.key === "Sun")?.degree ?? 0;
+    const tropicalMoonDegree = detailData.planets.find((planet) => planet.key === "Moon")?.degree ?? 0;
+    const tropicalAscDegree = detailData.ascendant;
+    const tropicalMcDegree = detailData.midheaven;
     const siderealSunDegree = mod(tropicalSunDegree - ayanamsa.degrees, 360);
     const siderealMoonDegree = mod(tropicalMoonDegree - ayanamsa.degrees, 360);
     const siderealAscDegree = mod(tropicalAscDegree - ayanamsa.degrees, 360);
-    const siderealMcDegree = mod(siderealAscDegree + 90, 360);
+    const siderealMcDegree = mod(tropicalMcDegree - ayanamsa.degrees, 360);
     const moonNakshatra = getNakshatraInfo(siderealMoonDegree);
     const ascNakshatra = getNakshatraInfo(siderealAscDegree);
     const siderealSun = formatZodiacPosition(siderealSunDegree);
@@ -5341,41 +8104,19 @@ const renderVedicSiderealResult = async () => {
       houseSystem,
       focusArea,
     });
-    const visibleObjects = [
-      showFortune ? "Fortune" : "",
-      showChiron ? "Chiron" : "",
-      showLilith ? `Lilith${trueLilith ? " (True)" : ""}` : "",
-      showNodes ? `Ay düğümleri${trueNodes ? " (True)" : ""}` : "",
-    ].filter(Boolean);
-    const aspectTargets = [
-      "Temel gezegenler",
-      showAscMcAspects ? "ASC & MC" : "",
-      visibleObjects.length > 0 ? visibleObjects.join(", ") : "",
-    ].filter(Boolean);
-    const remedyLine =
-      readingStyleKey === "spiritual"
-        ? "Mantra, nefes ve niyet pratiği bu haritada denge kuran ilk adım olur."
-        : readingStyleKey === "practical"
-          ? "Rutin, zaman disiplini ve net öncelik listesi vedik dengeyi güçlendirir."
-          : "Ritüel ile gündelik düzen arasında küçük ve sürekli adımlar bu haritayı dengeler.";
-    const coordinateModeLabel = manualToggle.checked ? "Manuel giriş" : "Otomatik eşleme";
-    const locationSourceLabel =
-      location.source === "manual"
-        ? "Kullanıcının girdiği koordinat"
-        : location.source === "neighborhood"
-          ? "Mahalle seviyesi eşleme"
-          : "İl merkezi eşleme";
+    const auxiliaryBodies =
+      showChiron || showLilith || showNodes
+        ? await buildSwissAuxiliaryBodies({
+            birthDateValue: normalizedBirthDateValue,
+            birthTime,
+            timezoneOffset: effectiveTimezoneOffset,
+            nodeMode: trueNodes ? "true" : "mean",
+            lilithMode: trueLilith ? "true" : "mean",
+            ayanamsaOffset: ayanamsa.degrees,
+          })
+        : null;
 
     result.innerHTML = `
-      <article class="result-hero">
-        <p class="preview-label">Vedik özet</p>
-        <h3>${name} için sideral harita ana başlıkları</h3>
-        <p>
-          ${formatDate(date)} tarihinde ${displayedBirthTime} saat girdisiyle ${location.label} için
-          ${ayanamsa.label} ayanamsa ve ${houseSystem} ev sistemi kullanılarak vedik özet oluşturuldu.
-        </p>
-      </article>
-
       <section class="result-grid">
         ${renderMetricCards([
           {
@@ -5416,8 +8157,6 @@ const renderVedicSiderealResult = async () => {
         ])}
       </section>
 
-      ${miniChartMarkup}
-
       <article class="result-note-card">
         <h4>Vedik yorum ekseni</h4>
         <p>
@@ -5431,8 +8170,8 @@ const renderVedicSiderealResult = async () => {
             <span>${displayedBirthTime}</span>
           </article>
           <article class="seek-mini-card">
-            <strong>Koordinat modu</strong>
-            <span>${coordinateModeLabel}</span>
+            <strong>Konum kaynağı</strong>
+            <span>${locationSourceLabel}</span>
           </article>
           <article class="seek-mini-card">
             <strong>Saat dilimi</strong>
@@ -5461,10 +8200,6 @@ const renderVedicSiderealResult = async () => {
             <span>${formatCoordinateValue(location.longitude, "D", "B")}</span>
           </article>
           <article class="seek-mini-card">
-            <strong>Konum kaynağı</strong>
-            <span>${locationSourceLabel}</span>
-          </article>
-          <article class="seek-mini-card">
             <strong>Orb ayarı</strong>
             <span>${tolerance}</span>
           </article>
@@ -5475,119 +8210,110 @@ const renderVedicSiderealResult = async () => {
         </div>
       </article>
 
-      <article class="result-note-card">
-        <h4>Vedik notlar ve geniş ayarlar</h4>
-        <div class="phase-list">
-          <article class="phase-item">
-            <strong>Gösterilen noktalar</strong>
-            <span>${visibleObjects.length > 0 ? visibleObjects.join(", ") : "Temel gezegenler"}</span>
-            <p>Bu seçimler harita özetinde hangi yardımcı sembollerin öne çıktığını belirler.</p>
-          </article>
-          <article class="phase-item">
-            <strong>Açı paketi</strong>
-            <span>${aspectTargets.join(" · ")}</span>
-            <p>Açı değerlendirmesi ${tolerance.toLowerCase()} ile özetlenir.</p>
-          </article>
-          ${
-            compareTropical
-              ? `
-                <article class="phase-item">
-                  <strong>Tropik fark</strong>
-                  <span>Tropik Güneş: ${tropicalSun}</span>
-                  <p>Sideral yoruma geçerken yaklaşık ${ayanamsa.degrees.toFixed(1)}° kayma uygulanır.</p>
-                </article>
-              `
-              : ""
-          }
-          ${
-            showDasha
-              ? `
-                <article class="phase-item">
-                  <strong>Dasha yönelimi</strong>
-                  <span>${moonNakshatra.name} teması</span>
-                  <p>Ay nakshatrası, hangi yaşam başlığının zamanla daha görünür olacağını işaret eder.</p>
-                </article>
-              `
-              : ""
-          }
-          ${
-            showRemedies
-              ? `
-                <article class="phase-item">
-                  <strong>Dengeleme önerisi</strong>
-                  <span>${focusArea}</span>
-                  <p>${remedyLine}</p>
-                </article>
-              `
-              : ""
-          }
-          ${
-            unknownBirthTime
-              ? `
-                <article class="phase-item">
-                  <strong>Bilinmeyen saat notu</strong>
-                  <span>Yükselen yaklaşıklandı</span>
-                  <p>Saat bilinmediği için yükselen ve evler öğle eksenine göre yaklaşık hesaplandı.</p>
-                </article>
-              `
-              : ""
-          }
-          <article class="phase-item">
-            <strong>Konum kaydı</strong>
-            <span>${autoLocation.label}, ${country}${district ? ` / ${district}` : ""}${neighborhood ? ` / ${neighborhood}` : ""}</span>
-            <p>${locationSourceLabel}. Yer etiketi farklıysa sonuçta girilen metin kullanılır.</p>
-          </article>
-        </div>
-      </article>
+      ${
+        auxiliaryBodies
+          ? `
+            <article class="result-note-card">
+              <h4>Yardımcı noktalar</h4>
+              <div class="seek-mini-grid">
+                ${
+                  showChiron
+                    ? `
+                      <article class="seek-mini-card">
+                        <strong>Chiron</strong>
+                        <span>${formatZodiacPosition(auxiliaryBodies.chiron)}</span>
+                      </article>
+                    `
+                    : ""
+                }
+                ${
+                  showLilith
+                    ? `
+                      <article class="seek-mini-card">
+                        <strong>${trueLilith ? "True Lilith" : "Lilith"}</strong>
+                        <span>${formatZodiacPosition(auxiliaryBodies.lilith)}</span>
+                      </article>
+                    `
+                    : ""
+                }
+                ${
+                  showNodes
+                    ? `
+                      <article class="seek-mini-card">
+                        <strong>Kuzey Ay Düğümü</strong>
+                        <span>${formatZodiacPosition(auxiliaryBodies.northNode)}</span>
+                      </article>
+                      <article class="seek-mini-card">
+                        <strong>Güney Ay Düğümü</strong>
+                        <span>${formatZodiacPosition(auxiliaryBodies.southNode)}</span>
+                      </article>
+                    `
+                    : ""
+                }
+              </div>
+            </article>
+          `
+          : ""
+      }
+
     `;
   };
 
-  setManualPanelVisibility();
-
   citySelect.addEventListener("locationresolved", () => {
     syncCoordinates().then(() => {
-      update();
+      void update();
     });
   });
 
   neighborhoodSelect.addEventListener("change", () => {
     syncCoordinates().then(() => {
-      update();
+      void update();
     });
-  });
-
-  manualToggle.addEventListener("change", () => {
-    setManualPanelVisibility();
-    if (!manualToggle.checked) {
-      syncCoordinates({ forceManualSync: true, forcePlaceSync: true }).then(() => {
-        update();
-      });
-      return;
-    }
-    update();
   });
 
   form.addEventListener("change", (event) => {
     const target = event.target;
-    if (target === citySelect || target === districtSelect || target === neighborhoodSelect || target === manualToggle) {
+    if (target === citySelect || target === districtSelect || target === neighborhoodSelect) {
       return;
     }
 
-    update();
+    void update();
   });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    update();
+    void update();
   });
 
-  await syncCoordinates({ forceManualSync: true, forcePlaceSync: true });
-  update();
+  unknownTimeInput.addEventListener("change", () => {
+    syncUnknownTimeState();
+    void update();
+  });
+
+  syncUnknownTimeState();
+  await syncCoordinates();
+  void update();
 };
 
 const initializeTools = async () => {
   applySavedBirthProfileToPage();
-  await populateCitySelects();
+  const citySelectsReady = populateCitySelects().catch(() => {});
+
+  if (pageName === "birth-chart-3") {
+    await renderBirthChartThreeResult();
+    await citySelectsReady;
+    injectAlternateBirthProfileBox();
+    return;
+  }
+
+  if (pageName === "seventh-house") {
+    await renderSeventhHouseResult();
+    citySelectsReady.then(() => {}).catch(() => {});
+    injectAlternateBirthProfileBox();
+    return;
+  }
+
+  await citySelectsReady;
 
   if (pageName === "birth-chart") {
     renderBirthChartResult();
@@ -5609,16 +8335,28 @@ const initializeTools = async () => {
     await renderZodiacCompatibilityResult();
   }
 
+  if (pageName === "family-compatibility") {
+    renderFamilyCompatibilityResult();
+  }
+
   if (pageName === "lunar-nodes") {
-    renderLunarNodesResult();
+    await renderLunarNodesResult();
   }
 
   if (pageName === "sun-sign-calculator") {
-    renderSunSignCalculatorResult();
+    await renderSunSignCalculatorResult();
   }
 
   if (pageName === "moon-sign-calculator") {
-    renderMoonSignCalculatorResult();
+    await renderMoonSignCalculatorResult();
+  }
+
+  if (pageName === "juno-persona") {
+    await renderJunoPersonaResult();
+  }
+
+  if (pageName === "numerology") {
+    renderNumerologyResult();
   }
 
   if (pageName === "birth-chart-extended") {

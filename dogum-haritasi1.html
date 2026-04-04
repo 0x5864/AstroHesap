@@ -5,21 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#07111f" />
     <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
-    <title>AstroHesap | Doğum Haritası1</title>
-    <meta
-      name="description"
-      content="Doğum Haritası1 ile geniş doğum verisi formu, gelişmiş ayarlar ve hızlı harita ön izlemesini tek sayfada kullan."
-    />
+    <title>AstroHesap | Doğum Haritası1 Kaldırıldı</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260401-birth1-white-1" />
-    <script defer src="astro-tools.js?v=20260401-profile-1"></script>
+    <link rel="stylesheet" href="styles.css?v=20260402-birth1-closed-1" />
   </head>
-  <body class="tool-page" data-page="birth-chart-extended">
+  <body class="tool-page">
     <div class="sky-noise"></div>
     <div class="sky-glow sky-glow-left"></div>
     <div class="sky-glow sky-glow-right"></div>
@@ -31,264 +26,20 @@
             <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
           </span>
         </a>
-
-        <form class="header-search" action="index.html" method="get" role="search" aria-label="Araç ara">
-          <label class="visually-hidden" for="toolSearchInputBirth1">Astro araç ara</label>
-          <input
-            id="toolSearchInputBirth1"
-            class="header-search-input"
-            type="search"
-            name="q"
-            placeholder="Araç, konu ya da burç ara"
-            autocomplete="off"
-          />
-          <button class="header-search-btn" type="submit">Ara</button>
-        </form>
       </nav>
     </header>
 
     <main class="tool-main tool-main-extended">
-      <section class="seek-layout">
-        <div class="seek-main-column">
-          <article class="tool-card seek-form-card">
-            <div class="tool-card-head">
-              <div>
-                <p class="section-kicker">Form ekranı</p>
-                <h2>Doğum Haritası1</h2>
-              </div>
-              <p class="tool-note">
-                Referans sayfadaki gibi uzun giriş akışı, AstroHesap için daha sade ve temiz bir dille kuruldu.
-              </p>
+      <section class="tool-layout">
+        <article class="tool-card">
+          <div class="tool-card-head">
+            <div>
+              <h2>Doğum Haritası1 kaldırıldı</h2>
             </div>
-
-            <form id="birthChartExtendedForm" class="tool-form seek-form">
-              <section class="seek-section">
-                <div class="seek-section-head">
-                  <h3>Doğum bilgileri</h3>
-                  <p>Temel harita için kimlik ve zaman bilgisini gir.</p>
-                </div>
-
-                <div class="seek-form-grid seek-form-grid-2">
-                  <label class="tool-field">
-                    <span>Ad</span>
-                    <input name="name" type="text" placeholder="İsmin ya da rumuzun" value="AstroHesap Kullanıcısı" />
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Doğum tarihi</span>
-                    <input name="birthDate" type="date" required value="1994-08-17" />
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Doğum saati</span>
-                    <input name="birthTime" type="time" required value="08:30" />
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Saat dilimi</span>
-                    <select name="timezone">
-                      <option value="Europe/Istanbul">Europe/Istanbul</option>
-                      <option value="UTC">UTC</option>
-                      <option value="Europe/Berlin">Europe/Berlin</option>
-                      <option value="America/New_York">America/New_York</option>
-                    </select>
-                  </label>
-                </div>
-
-                <div class="seek-form-grid seek-form-grid-3">
-                  <label class="tool-field">
-                    <span>İl</span>
-                    <select name="city" data-extended-city>
-                      <option value="istanbul">İstanbul</option>
-                      <option value="ankara">Ankara</option>
-                      <option value="izmir">İzmir</option>
-                      <option value="antalya">Antalya</option>
-                      <option value="adana">Adana</option>
-                      <option value="trabzon">Trabzon</option>
-                    </select>
-                  </label>
-
-                  <label class="tool-field">
-                    <span>İlçe</span>
-                    <select
-                      name="district"
-                      data-location-district
-                      data-selected-district="Kadıköy"
-                      disabled
-                    >
-                      <option value="">İlçe seçiniz</option>
-                    </select>
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Mahalle</span>
-                    <select
-                      name="neighborhood"
-                      data-location-neighborhood
-                      data-selected-neighborhood="Moda"
-                      disabled
-                    >
-                      <option value="">Mahalle seçiniz</option>
-                    </select>
-                  </label>
-                </div>
-
-                <p class="tool-helper">
-                  İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
-                </p>
-              </section>
-
-              <section class="seek-section">
-                <div class="seek-section-head">
-                  <h3>Konum ayrıntıları</h3>
-                  <p>Koordinatları otomatik doldurabilir ya da elle düzenleyebilirsin.</p>
-                </div>
-
-                <div class="seek-form-grid seek-form-grid-2">
-                  <label class="tool-field">
-                    <span>Ülke</span>
-                    <input name="country" type="text" value="Türkiye" />
-                  </label>
-                </div>
-
-                <div class="seek-form-grid seek-form-grid-3">
-                  <label class="tool-field">
-                    <span>Enlem</span>
-                    <input name="latitude" type="number" step="0.0001" value="41.0082" data-extended-latitude />
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Boylam</span>
-                    <input name="longitude" type="number" step="0.0001" value="28.9784" data-extended-longitude />
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Yer notu</span>
-                    <input name="accuracy" type="text" value="Şehir merkezi" />
-                  </label>
-                </div>
-              </section>
-
-              <section class="seek-section">
-                <div class="seek-section-head">
-                  <h3>Gelişmiş ayarlar</h3>
-                  <p>Harita okumasının nasıl derleneceğini belirle.</p>
-                </div>
-
-                <div class="seek-form-grid seek-form-grid-2">
-                  <label class="tool-field">
-                    <span>Ev sistemi</span>
-                    <select name="houseSystem">
-                      <option value="placidus">Placidus</option>
-                      <option value="whole-sign">Whole Sign</option>
-                      <option value="equal">Equal</option>
-                      <option value="koch">Koch</option>
-                    </select>
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Zodyak modu</span>
-                    <select name="zodiacMode">
-                      <option value="tropical">Tropik</option>
-                      <option value="sidereal">Sideral</option>
-                    </select>
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Orb seviyesi</span>
-                    <select name="orbLevel">
-                      <option value="balanced">Dengeli orb</option>
-                      <option value="tight">Dar orb</option>
-                      <option value="wide">Geniş orb</option>
-                    </select>
-                  </label>
-
-                  <label class="tool-field">
-                    <span>Harita odağı</span>
-                    <select name="focusArea">
-                      <option value="general">Genel profil</option>
-                      <option value="career">Kariyer yönü</option>
-                      <option value="relationships">İlişki dinamiği</option>
-                      <option value="spiritual">Ruhsal eksen</option>
-                    </select>
-                  </label>
-                </div>
-
-                <div class="seek-toggle-grid" aria-label="Ek hesap ayarları">
-                  <label class="seek-checkline">
-                    <input name="includeAspects" type="checkbox" checked />
-                    <span>Açı matrisi dahil et</span>
-                  </label>
-
-                  <label class="seek-checkline">
-                    <input name="includeRetro" type="checkbox" checked />
-                    <span>Retro bilgilerini göster</span>
-                  </label>
-
-                  <label class="seek-checkline">
-                    <input name="showHouses" type="checkbox" checked />
-                    <span>Ev ekseni vurgusu ekle</span>
-                  </label>
-
-                  <label class="seek-checkline">
-                    <input name="showElements" type="checkbox" />
-                    <span>Element dağılımını öne çıkar</span>
-                  </label>
-                </div>
-              </section>
-
-              <div class="tool-actions">
-                <button class="tool-button" type="submit">Haritayı hazırla</button>
-                <a class="tool-link" href="dogum-haritasi.html">Klasik doğum haritasına dön</a>
-              </div>
-            </form>
-          </article>
-
-          <article class="tool-card tool-result-card">
-            <div class="tool-card-head">
-              <div>
-                <p class="section-kicker">Sonuç ekranı</p>
-                <h2>Harita ön izlemesi</h2>
-              </div>
-              <p class="tool-note">Bu alan, seçtiğin ayarlara göre hızlı ve okunabilir bir özet üretir.</p>
-            </div>
-
-            <div id="birthChartExtendedResult" class="result-stack"></div>
-          </article>
-        </div>
-
-        <aside class="seek-sidebar" aria-label="Ek astro araç rehberi">
-          <article class="tool-card seek-sidebar-card">
-            <p class="section-kicker">Ücretsiz haritalar</p>
-            <h3>Doğum araçları</h3>
-            <div class="seek-sidebar-list">
-              <a href="dogum-haritasi.html">Klasik Doğum Haritası</a>
-              <a href="dogum-haritasi1.html">Doğum Haritası1</a>
-              <a href="yukselen-burc.html">Yükselen Burç</a>
-              <a href="ay-takvimi.html">Ay Takvimi</a>
-            </div>
-          </article>
-
-          <article class="tool-card seek-sidebar-card">
-            <p class="section-kicker">Yorum odakları</p>
-            <h3>Hangi ekran ne verir?</h3>
-            <div class="seek-sidebar-list">
-              <span>Kimlik ve karakter vurgusu</span>
-              <span>İlişki, kariyer ve ritim başlıkları</span>
-              <span>Ay fazı ve gün teması yorumu</span>
-              <span>Seçilen ayarların kısa özeti</span>
-            </div>
-          </article>
-
-          <article class="tool-card seek-sidebar-card">
-            <p class="section-kicker">Not</p>
-            <h3>Bu sayfanın yapısı</h3>
-            <p class="tool-note">
-              Referans verdiğin Astro-Seek ekranındaki uzun form ve yan modül hissi korundu; görsel dil
-              ise AstroHesap tasarımına göre yeniden kuruldu.
-            </p>
-          </article>
-        </aside>
+          </div>
+          <p class="tool-helper">Bu ekran artık kullanılmıyor.</p>
+          <p class="tool-helper">İstersen ana sayfadan diğer doğum haritası ekranlarını kullanabilirsin.</p>
+        </article>
       </section>
     </main>
   </body>

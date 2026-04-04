@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
+    <title>AstroHesap | Juno Persona</title>
+    <meta
+      name="description"
+      content="Juno Persona haritası ile bağlılık tarzını, ideal partner enerjini ve ilişki kalıplarını tek ekranda gör."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260404-juno-persona-v3" />
+    <script defer src="astro-tools.js?v=20260404-juno-persona-v3"></script>
+  </head>
+  <body class="tool-page sun-sign-page juno-persona-page" data-page="juno-persona-local">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
+
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
+          </span>
+        </a>
+
+        <form class="header-search" action="index.html" method="get" role="search" aria-label="Araç ara">
+          <label class="visually-hidden" for="toolSearchInputJunoPersona">Astro araç ara</label>
+          <input
+            id="toolSearchInputJunoPersona"
+            class="header-search-input"
+            type="search"
+            name="q"
+            placeholder="Araç, konu ya da burç ara"
+            autocomplete="off"
+          />
+          <button class="header-search-btn" type="submit">Ara</button>
+        </form>
+      </nav>
+    </header>
+
+    <main class="tool-main tool-main-extended">
+      <section class="sun-sign-page-heading" aria-label="Sayfa başlığı">
+        <h1>Juno Persona Haritası</h1>
+      </section>
+
+      <section style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:0.9rem; align-items:start;">
+        <section class="tool-card tool-result-card juno-persona-result-wrap" style="grid-column:1; width:100%;">
+          <div class="tool-card-head">
+            <div>
+              <h2>Juno Persona Sonucu</h2>
+            </div>
+          </div>
+          <div id="junoPersonaResult" class="result-stack"></div>
+        </section>
+
+        <article class="tool-card birth-form-card sun-sign-form-card" style="grid-column:2; width:100%;">
+          <div class="tool-card-head">
+            <div>
+              <h2>Doğum bilgileri</h2>
+            </div>
+          </div>
+
+          <form id="junoPersonaForm" class="tool-form seek-form">
+            <section class="seek-section">
+              <div class="tool-form-grid">
+                <label class="tool-field">
+                  <span>Doğum tarihi</span>
+                  <input name="birthDate" type="date" />
+                </label>
+
+                <label class="tool-field">
+                  <span>Doğum saati</span>
+                  <input name="birthTime" type="time" value="12:00" />
+                </label>
+              </div>
+
+              <label class="seek-checkline sun-sign-inline-check">
+                <input name="unknownTime" type="checkbox" />
+                <span>Doğum saati bilinmiyor</span>
+              </label>
+
+              <div class="tool-form-grid tool-form-grid-3">
+                <label class="tool-field">
+                  <span>İl</span>
+                  <select name="city" data-default-city-label="İstanbul">
+                    <option value="İstanbul">İstanbul</option>
+                    <option value="Ankara">Ankara</option>
+                    <option value="İzmir">İzmir</option>
+                    <option value="Antalya">Antalya</option>
+                  </select>
+                </label>
+
+                <label class="tool-field">
+                  <span>İlçe</span>
+                  <select name="district" data-location-district>
+                    <option value="">İlçe seçiniz</option>
+                  </select>
+                </label>
+
+                <label class="tool-field">
+                  <span>Mahalle</span>
+                  <select name="neighborhood" data-location-neighborhood>
+                    <option value="">Mahalle seçiniz</option>
+                  </select>
+                </label>
+              </div>
+
+              <p class="tool-helper">
+                İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.
+              </p>
+
+              <div class="tool-form-grid tool-form-grid-3">
+                <label class="tool-field">
+                  <span>Enlem</span>
+                  <input name="latitude" type="number" step="0.0001" value="41.0082" />
+                </label>
+
+                <label class="tool-field">
+                  <span>Boylam</span>
+                  <input name="longitude" type="number" step="0.0001" value="28.9784" />
+                </label>
+
+                <label class="tool-field">
+                  <span>UTC farkı</span>
+                  <input name="timezoneOffset" type="number" step="0.5" value="3" />
+                </label>
+              </div>
+
+              <section class="saved-birth-override-card" data-juno-saved-birth hidden>
+                <div class="saved-birth-override-copy">
+                  <p>Sistem, otomatik olarak senin kayıtlı doğum bilgilerini kullanıyor. İstersen farklı doğum bilgileri girerek formu yeniden doldurabilirsin.</p>
+                </div>
+                <button class="saved-birth-override-btn" data-juno-clear-profile type="button">Farklı doğum bilgisi gir</button>
+              </section>
+
+              <div class="tool-actions">
+                <button class="tool-button" type="submit">Juno Persona Haritamı Hesapla</button>
+              </div>
+            </section>
+          </form>
+        </article>
+      </section>
+
+    </main>
+    <script>
+      window.addEventListener("load", () => {
+        const form = document.querySelector("#junoPersonaForm");
+        const result = document.querySelector("#junoPersonaResult");
+        const birthDateInput = form?.querySelector('input[name="birthDate"]');
+        const birthTimeInput = form?.querySelector('input[name="birthTime"]');
+        const unknownTimeInput = form?.querySelector('input[name="unknownTime"]');
+        const citySelect = form?.querySelector('select[name="city"]');
+        const latitudeInput = form?.querySelector('input[name="latitude"]');
+        const longitudeInput = form?.querySelector('input[name="longitude"]');
+        const timezoneInput = form?.querySelector('input[name="timezoneOffset"]');
+        const districtSelect = form?.querySelector('[data-location-district]');
+        const neighborhoodSelect = form?.querySelector('[data-location-neighborhood]');
+        const savedBirthCard = form?.querySelector("[data-juno-saved-birth]");
+        const clearSavedBirthButton = form?.querySelector("[data-juno-clear-profile]");
+
+        if (!(form instanceof HTMLFormElement) || !(result instanceof HTMLElement) || !(birthDateInput instanceof HTMLInputElement) || !(birthTimeInput instanceof HTMLInputElement) || !(unknownTimeInput instanceof HTMLInputElement) || !(citySelect instanceof HTMLSelectElement)) {
+          return;
+        }
+
+        const cities = {
+          "İstanbul": { latitude: 41.0082, longitude: 28.9784 },
+          "İzmir": { latitude: 38.4237, longitude: 27.1428 },
+          "Ankara": { latitude: 39.9334, longitude: 32.8597 },
+          "Antalya": { latitude: 36.8969, longitude: 30.7133 },
+        };
+
+        const getSavedBirthProfile = () => {
+          try {
+            const session = JSON.parse(window.localStorage.getItem("astrohesap-session") || "null");
+            const users = JSON.parse(window.localStorage.getItem("astrohesap-users") || "[]");
+            if (!session || !session.email || !Array.isArray(users)) {
+              return null;
+            }
+            const currentUser = users.find((entry) => entry && entry.email === session.email);
+            return currentUser && currentUser.birthInfo ? currentUser.birthInfo : null;
+          } catch (_error) {
+            return null;
+          }
+        };
+
+        const ensureSelectValue = (select, value, placeholderLabel = "Seçiniz") => {
+          if (!(select instanceof HTMLSelectElement) || !value) {
+            return;
+          }
+          const hasOption = Array.from(select.options).some((option) => option.value === value);
+          if (!hasOption) {
+            const option = document.createElement("option");
+            option.value = value;
+            option.textContent = value || placeholderLabel;
+            select.appendChild(option);
+          }
+          select.value = value;
+        };
+
+        const zodiac = [
+          { name: "Koç", element: "Ateş", mode: "Öncü" },
+          { name: "Boğa", element: "Toprak", mode: "Sabit" },
+          { name: "İkizler", element: "Hava", mode: "Değişken" },
+          { name: "Yengeç", element: "Su", mode: "Öncü" },
+          { name: "Aslan", element: "Ateş", mode: "Sabit" },
+          { name: "Başak", element: "Toprak", mode: "Değişken" },
+          { name: "Terazi", element: "Hava", mode: "Öncü" },
+          { name: "Akrep", element: "Su", mode: "Sabit" },
+          { name: "Yay", element: "Ateş", mode: "Değişken" },
+          { name: "Oğlak", element: "Toprak", mode: "Öncü" },
+          { name: "Kova", element: "Hava", mode: "Sabit" },
+          { name: "Balık", element: "Su", mode: "Değişken" },
+        ];
+
+        const junoDetails = {
+          Koç: ["İlişkide ilk adımı net atan profil", "Bağlılık içinde hız, dürüstlük ve güçlü canlılık ararsın.", "Acele karar ve sabırsız tepki ilişkiyi gerebilir."],
+          Boğa: ["Güven ve sadakat üstünden bağ kuran profil", "İlişkide sakinlik, tensel güven ve somut istikrar istersin.", "Değişime direnmek bağı ağırlaştırabilir."],
+          "İkizler": ["Zihinsel uyumu merkez alan profil", "Bağlılık senin için konuşabilmek, öğrenmek ve hareketli kalabilmektir.", "Yüzeyde kalmak ya da dağılmak derinliği azaltabilir."],
+          Yengeç: ["Duygusal güven arayan profil", "Yakınlık, aidiyet ve duygusal korunma ilişki seçimlerinde belirgindir.", "Alınganlık veya fazla içe çekilme ilişki akışını daraltabilir."],
+          Aslan: ["Kalpten sevgi ve görünür bağlılık isteyen profil", "İlişkide açık sevgi, gurur ve sıcak takdir görmek istersin.", "Onay ihtiyacı büyürse dramatik döngüler oluşabilir."],
+          "Başak": ["Emek ve özenle bağ kuran profil", "Günlük hayatta destek olmak ve düzen kurmak sevgiyi büyütür.", "Aşırı analiz veya eleştiri ilişki sıcaklığını düşürebilir."],
+          Terazi: ["Eşitlik ve uyum arayan profil", "Bağlılık senin için karşılıklılık, saygı ve ilişki estetiğidir.", "Kararsızlık veya memnun etme çabası öz merkezini zayıflatabilir."],
+          Akrep: ["Derin ve güçlü bağ isteyen profil", "İlişkide yoğunluk, sadakat ve gerçek yakınlık ararsın.", "Kontrol etme arzusu veya kuşku bağı yorabilir."],
+          Yay: ["Özgürlükle büyüyen ilişki profili", "Bağlılık içinde alan, keşif ve ortak yol hissi istersin.", "Fazla bağımsız kalmak yakınlığı yüzeyde bırakabilir."],
+          Oğlak: ["Ciddi ve uzun vadeli ilişki profili", "İlişkide yapı, güven ve zaman içinde büyüyen sadakat önemlidir.", "Duyguyu fazla kontrol etmek mesafe yaratabilir."],
+          Kova: ["Zihinsel özgürlük isteyen ilişki profili", "Bağlılık senin için önce arkadaşlık, sonra ortak gelecek hissidir.", "Aşırı mesafe bağın duygusal tarafını zayıflatabilir."],
+          "Balık": ["Ruhsal yakınlık arayan profil", "İlişkide sezgi, merhamet ve görünmeyen bağlar çok belirgindir.", "Belirsiz sınırlar hayal kırıklığı yaratabilir."],
+        };
+
+        const planets = {
+          Sun: { base: 280.147, speed: 0.985647, wobble: 1.1, cycle: 365.256 },
+          Moon: { base: 218.316, speed: 13.176396, wobble: 4.8, cycle: 27.321582 },
+          Venus: { base: 181.979, speed: 1.60214, wobble: 2.5, cycle: 224.701 },
+          Mars: { base: 355.433, speed: 0.524039, wobble: 3.4, cycle: 686.98 },
+          Juno: { base: 192.4, speed: 0.0832, wobble: 4.2, cycle: 1592 },
+        };
+
+        const mod = (value, divisor = 360) => ((value % divisor) + divisor) % divisor;
+        const parseTimeToMinutes = (value) => {
+          const [hours = "0", minutes = "0"] = String(value).split(":");
+          return Number.parseInt(hours, 10) * 60 + Number.parseInt(minutes, 10);
+        };
+        const getHistoricalTimeZoneOffsetHours = ({ year, month, day, hours, minutes, timeZone = "Europe/Istanbul" }) => {
+          try {
+            const probeUtcDate = new Date(Date.UTC(year, month - 1, day, hours, minutes, 0));
+            const formatter = new Intl.DateTimeFormat("en-GB", {
+              timeZone,
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+              hour12: false,
+            });
+            const parts = formatter.formatToParts(probeUtcDate);
+            const pick = (type) => parts.find((part) => part.type === type)?.value ?? "00";
+            const zonedUtc = Date.UTC(
+              Number.parseInt(pick("year"), 10),
+              Number.parseInt(pick("month"), 10) - 1,
+              Number.parseInt(pick("day"), 10),
+              Number.parseInt(pick("hour"), 10),
+              Number.parseInt(pick("minute"), 10),
+              Number.parseInt(pick("second"), 10),
+            );
+            return (zonedUtc - probeUtcDate.getTime()) / 3600000;
+          } catch (_error) {
+            return 3;
+          }
+        };
+        const getDaysSinceEpoch = (date) => (date.getTime() - Date.UTC(2000, 0, 1, 12, 0, 0)) / 86400000;
+        const getApproxPlanetDegree = (date, config) => {
+          const days = getDaysSinceEpoch(date);
+          const wave = Math.sin((2 * Math.PI * days) / config.cycle) * config.wobble;
+          return mod(config.base + days * config.speed + wave);
+        };
+        const getSign = (degree) => zodiac[Math.floor(mod(degree) / 30)];
+        const formatPosition = (degree) => {
+          const safe = mod(degree);
+          const signIndex = Math.floor(safe / 30);
+          const degreeInSign = safe % 30;
+          const whole = Math.floor(degreeInSign);
+          const minutes = Math.round((degreeInSign - whole) * 60);
+          return `${zodiac[signIndex].name} ${whole}° ${String(minutes === 60 ? 0 : minutes).padStart(2, "0")}′`;
+        };
+        const getPositionSuffix = (degree) => {
+          const safe = mod(degree);
+          const degreeInSign = safe % 30;
+          const whole = Math.floor(degreeInSign);
+          const minutes = Math.round((degreeInSign - whole) * 60);
+          return `${whole}° ${String(minutes === 60 ? 0 : minutes).padStart(2, "0")}′`;
+        };
+        const getApproxAscDegree = (date, location, birthMinutes) => {
+          const baseSunDegree = Math.floor(getApproxPlanetDegree(date, planets.Sun) / 30) * 30;
+          const segmentOffset = mod(birthMinutes - 360, 120) / 4;
+          const signShift = Math.floor((birthMinutes - 360) / 120);
+          return mod(baseSunDegree + signShift * 30 + segmentOffset + (location.latitude - 39) * 0.9);
+        };
+        const polarToCartesian = (cx, cy, radius, degree) => {
+          const radians = ((degree - 90) * Math.PI) / 180;
+          return {
+            x: cx + radius * Math.cos(radians),
+            y: cy + radius * Math.sin(radians),
+          };
+        };
+        const renderWheel = ({ junoDegree, personaSun, personaMoon, personaVenus, personaMars, personaAsc }) => {
+          const cx = 170;
+          const cy = 170;
+          const outerRadius = 136;
+          const signRadius = 116;
+          const planetRadius = 88;
+          const ascRadius = 76;
+          const markers = [
+            { label: "J", degree: junoDegree, className: "juno-persona-wheel-marker-juno" },
+            { label: "☉", degree: personaSun, className: "juno-persona-wheel-marker-sun" },
+            { label: "☽", degree: personaMoon, className: "juno-persona-wheel-marker-moon" },
+            { label: "♀", degree: personaVenus, className: "juno-persona-wheel-marker-venus" },
+            { label: "♂", degree: personaMars, className: "juno-persona-wheel-marker-mars" },
+          ];
+          const signMarkup = zodiac.map((sign, index) => {
+            const point = polarToCartesian(cx, cy, signRadius, index * 30 + 15);
+            return `<text class="juno-persona-wheel-sign" x="${point.x.toFixed(2)}" y="${point.y.toFixed(2)}">${sign.name.slice(0, 2)}</text>`;
+          }).join("");
+          const linesMarkup = Array.from({ length: 12 }, (_, index) => {
+            const outer = polarToCartesian(cx, cy, outerRadius, index * 30);
+            const inner = polarToCartesian(cx, cy, 62, index * 30);
+            return `<line class="juno-persona-wheel-spoke" x1="${inner.x.toFixed(2)}" y1="${inner.y.toFixed(2)}" x2="${outer.x.toFixed(2)}" y2="${outer.y.toFixed(2)}"></line>`;
+          }).join("");
+          const markerMarkup = markers.map((marker, index) => {
+            const point = polarToCartesian(cx, cy, planetRadius - index * 7, marker.degree);
+            return `<text class="juno-persona-wheel-marker ${marker.className}" x="${point.x.toFixed(2)}" y="${point.y.toFixed(2)}">${marker.label}</text>`;
+          }).join("");
+          const ascPoint = polarToCartesian(cx, cy, ascRadius, personaAsc);
+          return `
+            <article class="juno-persona-wheel-card">
+              <svg viewBox="0 0 340 340" role="img" aria-label="Juno Persona mini çemberi">
+                <circle class="juno-persona-wheel-outer" cx="${cx}" cy="${cy}" r="${outerRadius}"></circle>
+                <circle class="juno-persona-wheel-inner" cx="${cx}" cy="${cy}" r="98"></circle>
+                <circle class="juno-persona-wheel-core" cx="${cx}" cy="${cy}" r="62"></circle>
+                <g>${linesMarkup}</g>
+                <g>${signMarkup}</g>
+                <g>${markerMarkup}</g>
+                <text class="juno-persona-wheel-asc" x="${ascPoint.x.toFixed(2)}" y="${ascPoint.y.toFixed(2)}">AC</text>
+              </svg>
+            </article>
+          `;
+        };
+
+        const render = () => {
+          const birthDateValue = birthDateInput.value;
+          if (!birthDateValue) {
+            result.innerHTML = "";
+            return;
+          }
+
+          const timeValue = unknownTimeInput.checked ? "12:00" : (birthTimeInput.value || "12:00");
+          const date = new Date(`${birthDateValue}T${timeValue}:00`);
+          if (Number.isNaN(date.getTime())) {
+            result.innerHTML = `
+              <article class="result-note-card">
+                <h4>Geçersiz tarih</h4>
+                <p>Geçerli tarih ve saat gir.</p>
+              </article>
+            `;
+            return;
+          }
+
+          const city = cities[citySelect.value] || cities["İstanbul"];
+          const latitude = Number.parseFloat(latitudeInput.value || String(city.latitude)) || city.latitude;
+          const longitude = Number.parseFloat(longitudeInput.value || String(city.longitude)) || city.longitude;
+          const [year, month, day] = birthDateValue.split("-").map((value) => Number.parseInt(value, 10));
+          const [hours, minutes] = timeValue.split(":").map((value) => Number.parseInt(value, 10));
+          const historicalOffset = getHistoricalTimeZoneOffsetHours({ year, month, day, hours, minutes });
+          if (timezoneInput instanceof HTMLInputElement) {
+            timezoneInput.value = String(historicalOffset);
+          }
+          const junoDegree = getApproxPlanetDegree(date, planets.Juno);
+          const ascDegree = getApproxAscDegree(date, { latitude, longitude }, parseTimeToMinutes(timeValue));
+          const personaSun = mod(getApproxPlanetDegree(date, planets.Sun) - junoDegree);
+          const personaMoon = mod(getApproxPlanetDegree(date, planets.Moon) - junoDegree);
+          const personaVenus = mod(getApproxPlanetDegree(date, planets.Venus) - junoDegree);
+          const personaMars = mod(getApproxPlanetDegree(date, planets.Mars) - junoDegree);
+          const personaAsc = mod(ascDegree - junoDegree);
+          const junoSign = getSign(junoDegree);
+          const details = junoDetails[junoSign.name] || junoDetails["Terazi"];
+          const venusSign = getSign(personaVenus);
+          const marsSign = getSign(personaMars);
+          const district = districtSelect instanceof HTMLSelectElement ? districtSelect.value : "";
+          const neighborhood = neighborhoodSelect instanceof HTMLSelectElement ? neighborhoodSelect.value : "";
+          const locationLabel = `${citySelect.value || "İstanbul"}${district ? `, ${district}` : ""}${neighborhood ? ` / ${neighborhood}` : ""}`;
+          const utc = timezoneInput instanceof HTMLInputElement && timezoneInput.value ? timezoneInput.value : String(historicalOffset);
+          const displayedTime = unknownTimeInput.checked ? "12:00 (yaklaşık)" : timeValue;
+
+          result.innerHTML = `
+            <section class="juno-persona-result-top">
+              ${renderWheel({ junoDegree, personaSun, personaMoon, personaVenus, personaMars, personaAsc })}
+              <div class="juno-persona-summary-stack">
+                <section class="result-grid">
+                  <article class="result-item">
+                    <p>Natal Juno</p>
+                    <strong>${formatPosition(junoDegree)}</strong>
+                    <span>${junoSign.element} · ${junoSign.mode}</span>
+                  </article>
+                  <article class="result-item">
+                    <p>Persona Güneş</p>
+                    <strong>${formatPosition(personaSun)}</strong>
+                    <span>${getSign(personaSun).name}</span>
+                  </article>
+                  <article class="result-item">
+                    <p>Persona Ay</p>
+                    <strong>${formatPosition(personaMoon)}</strong>
+                    <span>${getSign(personaMoon).name}</span>
+                  </article>
+                  <article class="result-item">
+                    <p>Persona Yükselen</p>
+                    <strong>${formatPosition(personaAsc)}</strong>
+                    <span>${getSign(personaAsc).name}</span>
+                  </article>
+                  <article class="result-item">
+                    <p>Persona Venüs</p>
+                    <strong>${formatPosition(personaVenus)}</strong>
+                    <span>${venusSign.name}</span>
+                  </article>
+                  <article class="result-item">
+                    <p>Persona Mars</p>
+                    <strong>${formatPosition(personaMars)}</strong>
+                    <span>${marsSign.name}</span>
+                  </article>
+                </section>
+                <p class="result-inline-meta">${date.toLocaleDateString("tr-TR")} · ${displayedTime} · ${locationLabel} · UTC ${utc}</p>
+              </div>
+            </section>
+          `;
+        };
+
+        if (!birthDateInput.value) {
+          birthDateInput.value = new Date().toISOString().slice(0, 10);
+        }
+
+        const savedProfile = getSavedBirthProfile();
+        if (savedProfile) {
+          if (savedBirthCard instanceof HTMLElement) {
+            savedBirthCard.hidden = false;
+          }
+          if (savedProfile.birthDate) {
+            birthDateInput.value = savedProfile.birthDate;
+          }
+          if (savedProfile.birthTime && birthTimeInput instanceof HTMLInputElement) {
+            birthTimeInput.value = savedProfile.birthTime;
+          }
+          if (unknownTimeInput instanceof HTMLInputElement) {
+            unknownTimeInput.checked = Boolean(savedProfile.timeUnknown);
+          }
+          if (savedProfile.city) {
+            ensureSelectValue(citySelect, savedProfile.city, "Şehir seçiniz");
+          }
+          if (savedProfile.district) {
+            ensureSelectValue(districtSelect, savedProfile.district, "İlçe seçiniz");
+          }
+          if (savedProfile.neighborhood) {
+            ensureSelectValue(neighborhoodSelect, savedProfile.neighborhood, "Mahalle seçiniz");
+          }
+          if (latitudeInput instanceof HTMLInputElement && savedProfile.latitude) {
+            latitudeInput.value = savedProfile.latitude;
+          }
+          if (longitudeInput instanceof HTMLInputElement && savedProfile.longitude) {
+            longitudeInput.value = savedProfile.longitude;
+          }
+          if (timezoneInput instanceof HTMLInputElement && savedProfile.timezoneOffset) {
+            timezoneInput.value = savedProfile.timezoneOffset;
+          }
+        }
+
+        const syncUnknownState = () => {
+          birthTimeInput.disabled = unknownTimeInput.checked;
+        };
+
+        syncUnknownState();
+        render();
+
+        if (clearSavedBirthButton instanceof HTMLButtonElement) {
+          clearSavedBirthButton.addEventListener("click", () => {
+            birthDateInput.value = "";
+            birthTimeInput.value = "12:00";
+            unknownTimeInput.checked = false;
+            citySelect.value = "İstanbul";
+            if (districtSelect instanceof HTMLSelectElement) {
+              districtSelect.value = "";
+            }
+            if (neighborhoodSelect instanceof HTMLSelectElement) {
+              neighborhoodSelect.value = "";
+            }
+            if (latitudeInput instanceof HTMLInputElement) {
+              latitudeInput.value = String(cities["İstanbul"].latitude);
+            }
+            if (longitudeInput instanceof HTMLInputElement) {
+              longitudeInput.value = String(cities["İstanbul"].longitude);
+            }
+            if (timezoneInput instanceof HTMLInputElement) {
+              timezoneInput.value = String(getHistoricalTimeZoneOffsetHours({
+                year: 2000,
+                month: 1,
+                day: 1,
+                hours: 12,
+                minutes: 0,
+              }));
+            }
+            if (savedBirthCard instanceof HTMLElement) {
+              savedBirthCard.hidden = true;
+            }
+            syncUnknownState();
+            render();
+          });
+        }
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          syncUnknownState();
+          render();
+        });
+
+        form.addEventListener("change", () => {
+          syncUnknownState();
+          render();
+        });
+      });
+    </script>
+  </body>
+</html>
