@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
+    <title>AstroHesap | Arama</title>
+    <meta
+      name="description"
+      content="AstroHesap araçlarını tek sayfada ara, ihtiyacın olan doğum haritası ve ilişki aracına hızlıca ulaş."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260404-search-dock-1" />
+    <script defer src="astro-tools.js?v=20260404-search-dock-1"></script>
+    <script defer src="app.js?v=20260404-search-dock-1"></script>
+  </head>
+  <body class="tool-page search-hub-page" data-page="search-hub">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
+
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
+          </span>
+        </a>
+      </nav>
+    </header>
+
+    <main class="tool-main tool-main-extended">
+      <section class="search-hub-shell">
+        <article class="search-hub-hero" aria-label="Arama alanı">
+          <h1>Ne arıyorsun?</h1>
+          <p>Bir araç, konu ya da astroloji başlığı yaz. İhtiyacın olan ekrana buradan daha hızlı geçebilirsin.</p>
+
+          <form id="toolSearchForm" class="search-hub-form" role="search" aria-label="Astro araç ara">
+            <label class="visually-hidden" for="toolSearchInput">Astro araç ara</label>
+            <input
+              id="toolSearchInput"
+              class="search-hub-input"
+              type="search"
+              name="q"
+              placeholder="Araç, konu ya da burç ara"
+              autocomplete="off"
+            />
+            <button class="search-hub-submit" type="submit">Ara</button>
+          </form>
+        </article>
+
+        <section class="section-shell" aria-label="Arama sonuçları">
+          <div data-card-group>
+            <div class="home-subsection-head home-subsection-head-primary">
+              <h2>Kişisel özellikler</h2>
+            </div>
+
+            <div class="home-card-box">
+              <div class="top-city-grid search-hub-grid" id="toolGrid" aria-label="Kişisel araçlar">
+                <a
+                  class="top-city-card category-home-card"
+                  href="burc-hesaplama.html"
+                  data-keywords="burç hesaplama güneş burcu astroloji doğum tarihi zodiac sign"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Burç Hesaplama</span>
+                  </span>
+                </a>
+
+                <a
+                  class="top-city-card category-home-card"
+                  href="ay-burcu.html"
+                  data-keywords="ay burcu hesaplama moon sign duygular iç dünya"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Ay Burcu</span>
+                  </span>
+                </a>
+
+                <a
+                  class="top-city-card category-home-card"
+                  href="yukselen-burc.html"
+                  data-keywords="yükselen burç rising ascendant saat konum"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Yükselen Burç</span>
+                  </span>
+                </a>
+
+                <a
+                  class="top-city-card category-home-card"
+                  href="dogum-haritasi.html"
+                  data-keywords="doğum haritası natal chart gezegen ev açı"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Doğum Haritası</span>
+                  </span>
+                </a>
+
+                <a
+                  class="top-city-card category-home-card"
+                  href="aile-uyumu.html"
+                  data-keywords="aile uyumu aile ilişkileri ebeveyn çocuk kardeş aile dengesi"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Aile uyumu</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div data-card-group>
+            <div class="home-subsection-head">
+              <h2>Aşk-İlişki</h2>
+            </div>
+
+            <div class="home-card-box home-card-box-secondary">
+              <div class="top-city-grid search-hub-grid" aria-label="İlişki araçları">
+                <a
+                  class="top-city-card category-home-card"
+                  href="burc-uyumu.html"
+                  data-keywords="aşk uyumu burç uyumu synastry aşk ilişki partner"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Aşk uyumu</span>
+                  </span>
+                </a>
+
+                <a
+                  class="top-city-card category-home-card"
+                  href="juno-persona.html"
+                  data-keywords="juno persona juno evlilik arketipi partner bağlılık ilişki persona chart"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Juno Persona</span>
+                  </span>
+                </a>
+
+                <a
+                  class="top-city-card category-home-card"
+                  href="7-ev-iliski-evi.html"
+                  data-keywords="7. ev ilişki evi descendant ortaklık evlilik partner bağ kurma"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">7. Ev (İlişki Evi)</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div data-card-group>
+            <div class="home-subsection-head">
+              <h2>İleri araçlar</h2>
+            </div>
+
+            <div class="home-card-box home-card-box-secondary">
+              <div class="top-city-grid search-hub-grid" aria-label="İleri araçlar">
+                <a
+                  class="top-city-card category-home-card"
+                  href="ay-takvimi.html"
+                  data-keywords="ay takvimi new moon full moon luna"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Ay Takvimi</span>
+                  </span>
+                </a>
+
+                <a
+                  class="top-city-card category-home-card"
+                  href="ay-dugumleri.html"
+                  data-keywords="ay düğümleri kuzey ay düğümü güney ay düğümü karma kadersel eksen"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Ay Düğümleri</span>
+                  </span>
+                </a>
+
+                <a
+                  class="top-city-card category-home-card"
+                  href="numeroloji.html"
+                  data-keywords="numeroloji hayat yolu sayi isim sayisi"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Numeroloji</span>
+                  </span>
+                </a>
+
+                <a
+                  class="top-city-card category-home-card"
+                  href="efemeris-tablolari.html"
+                  data-keywords="efemeris tabloları ephemeris gezegen konumları günlük tablo"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Efemeris Tabloları</span>
+                  </span>
+                </a>
+
+                <a
+                  class="top-city-card category-home-card"
+                  href="vedik-sideral-astroloji.html"
+                  data-keywords="vedik sideral astroloji vedic sidereal lahiri nakshatra ayanamsa"
+                >
+                  <span class="top-city-content">
+                    <span class="top-city-name">Vedik/Sideral</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <p class="empty-state" id="emptyState" hidden>Bu arama için eşleşen araç bulunamadı.</p>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#07111f" />
-    <meta http-equiv="refresh" content="0; url=juno-persona-v2.html" />
     <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
     <title>AstroHesap | Juno Persona</title>
     <meta
@@ -17,8 +16,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260403-juno-persona-14" />
-    <script defer src="astro-tools.js?v=20260403-juno-persona-14"></script>
+    <link rel="stylesheet" href="styles.css?v=20260404-search-dock-1" />
+    <script defer src="astro-tools.js?v=20260404-search-dock-1"></script>
   </head>
   <body class="tool-page sun-sign-page juno-persona-page" data-page="juno-persona-local">
     <div class="sky-noise"></div>
@@ -53,17 +52,10 @@
         <h1>Juno Persona Haritası</h1>
       </section>
 
-      <section class="sun-sign-shell juno-persona-shell" style="display:flex; flex-direction:row; gap:0.9rem; align-items:stretch;">
-        <section class="tool-card tool-result-card juno-persona-result-wrap" style="order:1; flex:1 1 0; min-width:0;">
-          <div class="tool-card-head">
-            <div>
-              <h2>Juno Persona Sonucu</h2>
-            </div>
-          </div>
-          <div id="junoPersonaResult" class="result-stack"></div>
-        </section>
-
-        <article class="tool-card birth-form-card sun-sign-form-card" style="order:2; flex:1 1 0; min-width:0;">
+      <table style="width:100%; table-layout:fixed; border-collapse:separate; border-spacing:14px 0;">
+        <tr>
+          <td style="width:50%; vertical-align:top; padding:0;">
+            <article class="tool-card birth-form-card sun-sign-form-card" style="width:100%; margin:0;">
           <div class="tool-card-head">
             <div>
               <h2>Doğum bilgileri</h2>
@@ -149,7 +141,19 @@
             </section>
           </form>
         </article>
-      </section>
+          </td>
+          <td style="width:50%; vertical-align:top; padding:0;">
+            <section class="tool-card tool-result-card juno-persona-result-wrap" style="width:100%; margin:0;">
+          <div class="tool-card-head">
+            <div>
+              <h2>Juno Persona Sonucu</h2>
+            </div>
+          </div>
+          <div id="junoPersonaResult" class="result-stack"></div>
+        </section>
+          </td>
+        </tr>
+      </table>
 
     </main>
     <script>

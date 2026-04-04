@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20260331-favicon-2" />
+    <title>AstroHesap | Ayarlar</title>
+    <meta
+      name="description"
+      content="Hesap, doğum bilgileri, şifre ve geribildirim ayarlarına tek sayfadan ulaş."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260404-settings-head-6" />
+    <script defer src="astro-tools.js?v=20260404-settings-head-6"></script>
+    <script defer src="app.js?v=20260404-settings-head-6"></script>
+    <script defer src="auth-local.js?v=20260404-settings-head-6"></script>
+  </head>
+  <body class="tool-page settings-hub-page" data-page="settings-hub">
+    <div class="sky-noise"></div>
+    <div class="sky-glow sky-glow-left"></div>
+    <div class="sky-glow sky-glow-right"></div>
+
+    <header class="global-header-band">
+      <nav class="topbar global-topbar" aria-label="Ana gezinme">
+        <a class="brand" href="index.html" aria-label="AstroHesap ana sayfa">
+          <span class="brand-wordmark">
+            <span class="brand-wordmark-accent">astro</span><span class="brand-wordmark-rest">hesap</span>
+          </span>
+        </a>
+      </nav>
+    </header>
+
+    <div class="auth-overlay" data-auth-overlay hidden>
+      <div class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="authDialogTitle">
+        <button class="auth-close-btn" type="button" aria-label="Pencereyi kapat" data-auth-close>
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M5.72 5.72a.75.75 0 0 1 1.06 0L10 8.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L11.06 10l3.22 3.22a.75.75 0 0 1-1.06 1.06L10 11.06l-3.22 3.22a.75.75 0 1 1-1.06-1.06L8.94 10 5.72 6.78a.75.75 0 0 1 0-1.06Z" />
+          </svg>
+        </button>
+
+        <div class="auth-tabs" role="tablist" aria-label="Hesap sekmeleri">
+          <button class="auth-tab is-active" id="authLoginTab" type="button" role="tab" aria-selected="true" aria-controls="authLoginPanel" data-auth-tab="login">Giriş yap</button>
+          <button class="auth-tab" id="authRegisterTab" type="button" role="tab" aria-selected="false" aria-controls="authRegisterPanel" data-auth-tab="register">Kayıt ol</button>
+        </div>
+
+        <section class="auth-panel is-active" id="authLoginPanel" role="tabpanel" aria-labelledby="authLoginTab" data-auth-panel="login">
+          <form class="auth-form" id="authLoginForm" autocomplete="on">
+            <label class="auth-field">
+              <span>E-posta</span>
+              <div class="auth-input-wrap">
+                <input name="email" type="email" autocomplete="email" />
+              </div>
+            </label>
+            <label class="auth-field">
+              <span>Şifre</span>
+              <div class="auth-input-wrap">
+                <input name="password" type="password" autocomplete="current-password" data-password-input />
+                <button class="auth-eye-btn" type="button" aria-label="Şifreyi göster veya gizle" data-password-toggle>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3.53 2.47a.75.75 0 1 0-1.06 1.06l2.18 2.18A12.9 12.9 0 0 0 1.39 12a13.72 13.72 0 0 0 4.19 4.56A10.89 10.89 0 0 0 12 18.75a10.52 10.52 0 0 0 4.58-1L20.47 21.6a.75.75 0 0 0 1.06-1.06Zm7.2 7.2 3.6 3.6A2.83 2.83 0 0 1 12 14a3 3 0 0 1-3-3 2.83 2.83 0 0 1 .73-1.33Zm1.07-4.42A10.52 10.52 0 0 1 12 5.25 10.89 10.89 0 0 1 18.42 7.4 13.72 13.72 0 0 1 22.61 12a13.77 13.77 0 0 1-3.32 3.84l-1.09-1.09A11.82 11.82 0 0 0 20.83 12 11.94 11.94 0 0 0 17.57 8.7a9.45 9.45 0 0 0-4.7-1.95Z" />
+                  </svg>
+                </button>
+              </div>
+            </label>
+            <div class="auth-row">
+              <label class="auth-check">
+                <input name="rememberEmail" type="checkbox" checked />
+                <span>E-postamı hatırla</span>
+              </label>
+              <button class="auth-link-btn" type="button" data-auth-forgot>Şifremi unuttum</button>
+            </div>
+            <p class="auth-status" data-auth-status="login" hidden></p>
+            <div class="auth-actions">
+              <button class="auth-submit-btn" type="submit">Giriş yap</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="auth-panel" id="authRegisterPanel" role="tabpanel" aria-labelledby="authRegisterTab" data-auth-panel="register" hidden>
+          <form class="auth-form" id="authRegisterForm" autocomplete="on">
+            <label class="auth-field">
+              <span>Ad Soyad</span>
+              <input name="fullName" type="text" placeholder="Adın ve soyadın" autocomplete="name" />
+            </label>
+            <label class="auth-field">
+              <span>E-posta</span>
+              <input name="email" type="email" placeholder="ornek@mail.com" autocomplete="email" />
+            </label>
+            <label class="auth-field">
+              <span>Şifre</span>
+              <input name="password" type="password" placeholder="Şifre oluştur" autocomplete="new-password" />
+            </label>
+            <label class="auth-field">
+              <span>Şifre tekrar</span>
+              <input name="passwordRepeat" type="password" placeholder="Şifreni tekrar yaz" autocomplete="new-password" />
+            </label>
+            <label class="auth-check auth-check-stack">
+              <input name="termsAccepted" type="checkbox" checked />
+              <span>Kullanım koşulları ve gizlilik metnini okudum.</span>
+            </label>
+            <p class="auth-status" data-auth-status="register" hidden></p>
+            <div class="auth-actions">
+              <button class="auth-submit-btn" type="submit">Kayıt ol</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+
+    <div class="settings-overlay" data-settings-overlay hidden>
+      <div class="settings-dialog" role="dialog" aria-modal="true" aria-labelledby="settingsDialogTitle">
+        <button
+          class="settings-close-btn"
+          type="button"
+          aria-label="Pencereyi kapat"
+          data-settings-close
+          onclick="if (window.AstroHesapUi?.closeSettingsModal) { window.AstroHesapUi.closeSettingsModal(); } else { window.AstroHesapInlineSettings?.close?.(); }"
+        >
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M5.72 5.72a.75.75 0 0 1 1.06 0L10 8.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L11.06 10l3.22 3.22a.75.75 0 0 1-1.06 1.06L10 11.06l-3.22 3.22a.75.75 0 1 1-1.06-1.06L8.94 10 5.72 6.78a.75.75 0 0 1 0-1.06Z" />
+          </svg>
+        </button>
+
+        <p class="settings-breadcrumb">Ayarlar</p>
+
+        <div class="settings-shell">
+          <aside class="settings-sidebar" aria-label="Ayar sekmeleri">
+            <button class="settings-nav-item is-active" type="button" data-settings-tab="account">
+              <span class="settings-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12.25a4.25 4.25 0 1 0-4.25-4.25A4.25 4.25 0 0 0 12 12.25Zm0 1.5c-4.45 0-8 2.3-8 5.25a.75.75 0 0 0 1.5 0c0-1.78 2.67-3.75 6.5-3.75s6.5 1.97 6.5 3.75a.75.75 0 0 0 1.5 0c0-2.95-3.55-5.25-8-5.25Z" /></svg></span>
+              <span class="settings-nav-label">Hesap</span>
+              <span class="settings-nav-arrow" aria-hidden="true">›</span>
+            </button>
+            <button class="settings-nav-item" type="button" data-settings-tab="birth">
+              <span class="settings-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.75 3a.75.75 0 0 1 .75.75V5h7V3.75a.75.75 0 0 1 1.5 0V5h.25A2.75 2.75 0 0 1 20 7.75v10.5A2.75 2.75 0 0 1 17.25 21H6.75A2.75 2.75 0 0 1 4 18.25V7.75A2.75 2.75 0 0 1 6.75 5H7V3.75A.75.75 0 0 1 7.75 3ZM5.5 10v8.25c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25V10Zm1.25-3.5c-.69 0-1.25.56-1.25 1.25V8.5h13v-.75c0-.69-.56-1.25-1.25-1.25Z" /></svg></span>
+              <span class="settings-nav-label">Doğum Bilgileri</span>
+              <span class="settings-nav-arrow" aria-hidden="true">›</span>
+            </button>
+            <button class="settings-nav-item" type="button" data-settings-tab="password">
+              <span class="settings-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.5 10V7.75a4.5 4.5 0 1 1 9 0V10h.75A1.75 1.75 0 0 1 19 11.75v7.5A1.75 1.75 0 0 1 17.25 21h-10.5A1.75 1.75 0 0 1 5 19.25v-7.5A1.75 1.75 0 0 1 6.75 10Zm1.5 0H15V7.75a3 3 0 1 0-6 0Z" /></svg></span>
+              <span class="settings-nav-label">Şifre Değişikliği</span>
+              <span class="settings-nav-arrow" aria-hidden="true">›</span>
+            </button>
+            <button class="settings-nav-item" type="button" data-settings-tab="feedback">
+              <span class="settings-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.75 4A2.75 2.75 0 0 0 4 6.75v7.5A2.75 2.75 0 0 0 6.75 17H8v2.02a.75.75 0 0 0 1.28.53L12.83 17h4.42A2.75 2.75 0 0 0 20 14.25v-7.5A2.75 2.75 0 0 0 17.25 4Zm1.5 5.25a1 1 0 1 1 1-1 1 1 0 0 1-1 1Zm3.75 0a1 1 0 1 1 1-1 1 1 0 0 1-1 1Zm3.75 0a1 1 0 1 1 1-1 1 1 0 0 1-1 1Z" /></svg></span>
+              <span class="settings-nav-label">Geribildirim</span>
+              <span class="settings-nav-arrow" aria-hidden="true">›</span>
+            </button>
+            <button class="settings-sidebar-action" type="button" data-settings-session-action>Çıkış için giriş yap</button>
+          </aside>
+
+          <section class="settings-content">
+            <section class="settings-panel is-active" data-settings-panel="account">
+              <div class="settings-panel-head">
+                <h2 id="settingsDialogTitle">Hesap bilgileri</h2>
+                <p>Adını ve e-postanı burada güncelleyebilirsin.</p>
+              </div>
+              <form class="settings-form" id="settingsAccountForm">
+                <label class="settings-field"><span>Ad Soyad</span><input name="fullName" type="text" /></label>
+                <label class="settings-field"><span>E-posta</span><input name="email" type="email" /></label>
+                <p class="settings-status-note" data-settings-note="account"></p>
+                <div class="settings-actions"><button class="settings-primary-btn settings-offset-btn" type="submit">Kaydet</button></div>
+                <button class="settings-wide-btn" type="button" data-settings-register-cta>Kayıt ol</button>
+              </form>
+            </section>
+
+            <section class="settings-panel" data-settings-panel="password" hidden>
+              <div class="settings-panel-head">
+                <h2>Şifre değişikliği</h2>
+                <p>Önce e-posta bağlantısı al, bağlantıdan açılan ekranda yeni şifreni belirle.</p>
+              </div>
+              <form class="settings-form" id="settingsPasswordForm">
+                <button class="settings-wide-btn settings-email-btn" type="button" data-password-email-btn>Şifre değişikliği e-postası gönder</button>
+                <label class="settings-field"><span>Yeni şifre</span><input name="password" type="password" /></label>
+                <label class="settings-field"><span>Yeni şifre tekrar</span><input name="passwordRepeat" type="password" /></label>
+                <p class="settings-status-note is-warning" data-settings-note="password"></p>
+                <div class="settings-actions"><button class="settings-primary-btn" type="submit">Şifreyi güncelle</button></div>
+              </form>
+            </section>
+
+            <section class="settings-panel" data-settings-panel="feedback" hidden>
+              <div class="settings-panel-head">
+                <h2>Geribildirim</h2>
+                <p>Mesajını konu seçerek hızlıca iletebilirsin.</p>
+              </div>
+              <form class="settings-form" id="settingsFeedbackForm">
+                <label class="settings-field"><input name="fullName" type="text" placeholder="Ad Soyad" /></label>
+                <label class="settings-field"><input name="email" type="email" placeholder="E-posta" /></label>
+                <label class="settings-field">
+                  <select name="subject">
+                    <option value="">Konu</option>
+                    <option value="onerim">Öneri</option>
+                    <option value="hata">Hata bildirimi</option>
+                    <option value="uyelik">Üyelik desteği</option>
+                  </select>
+                </label>
+                <label class="settings-field"><textarea name="message" rows="6" placeholder="Mesaj"></textarea></label>
+                <p class="settings-status-note" data-settings-note="feedback"></p>
+                <div class="settings-actions"><button class="settings-primary-btn" type="submit">Gönder</button></div>
+              </form>
+            </section>
+
+            <section class="settings-panel" data-settings-panel="birth" hidden>
+              <form class="settings-form settings-birth-form tool-form seek-form" id="settingsBirthForm">
+                <section class="seek-section settings-birth-profile">
+                  <div class="tool-card-head settings-birth-head"><div><h2>Doğum bilgileri</h2></div></div>
+                  <div class="tool-form-grid">
+                    <label class="tool-field"><span>Doğum tarihi</span><input name="birthDate" type="date" data-settings-birth-date /></label>
+                    <label class="tool-field"><span>Doğum saati</span><input name="birthTime" type="time" data-settings-birth-time /></label>
+                  </div>
+                  <label class="seek-checkline sun-sign-inline-check settings-birth-checkline">
+                    <input name="timeUnknown" type="checkbox" data-birth-time-unknown />
+                    <span>Doğum saati bilinmiyor</span>
+                  </label>
+                  <div class="tool-form-grid tool-form-grid-3 settings-birth-location-grid">
+                    <label class="tool-field">
+                      <span>İl</span>
+                      <select
+                        name="city"
+                        data-empty-initial="true"
+                        data-settings-birth-city
+                        onchange="window.AstroHesapSettingsSync?.forceBirthFallback?.()"
+                      >
+                        <option value="">İl seçiniz</option>
+                      </select>
+                    </label>
+                    <label class="tool-field">
+                      <span>İlçe</span>
+                      <select
+                        name="district"
+                        data-settings-birth-district
+                        onchange="window.AstroHesapSettingsSync?.forceBirthNeighborhoodFallback?.()"
+                        disabled
+                      >
+                        <option value="">İlçe seçiniz</option>
+                      </select>
+                    </label>
+                    <label class="tool-field">
+                      <span>Mahalle</span>
+                      <select name="neighborhood" data-settings-birth-neighborhood disabled>
+                        <option value="">Mahalle seçiniz</option>
+                      </select>
+                    </label>
+                  </div>
+                  <p class="tool-helper settings-birth-helper">İlçe seçince mahalleler otomatik gelir. Mahalle seçersen koordinatlar daha net bulunur.</p>
+                  <div class="tool-form-grid tool-form-grid-3 settings-birth-coordinates">
+                    <label class="tool-field"><span>Enlem</span><input name="latitude" type="number" step="0.0001" value="41.0082" /></label>
+                    <label class="tool-field"><span>Boylam</span><input name="longitude" type="number" step="0.0001" value="28.9784" /></label>
+                    <label class="tool-field"><span>UTC farkı</span><input name="timezoneOffset" type="number" step="0.5" value="2" /></label>
+                  </div>
+                </section>
+                <p class="settings-status-note" data-settings-note="birth"></p>
+                <div class="settings-actions"><button class="settings-primary-btn" type="submit">Kaydet</button></div>
+              </form>
+            </section>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.AstroHesapInlineSettings = {
+        open(tabKey, options = {}) {
+          const overlay = document.querySelector("[data-settings-overlay]");
+          if (!overlay) return;
+          overlay.removeAttribute("hidden");
+          document.body.classList.add("auth-open");
+          overlay.querySelector(".settings-dialog")?.classList.toggle("is-single-panel", Boolean(options.singlePanel));
+          this.setTab(tabKey || "account");
+        },
+        close() {
+          const overlay = document.querySelector("[data-settings-overlay]");
+          if (!overlay) return;
+          overlay.querySelector(".settings-dialog")?.classList.remove("is-single-panel");
+          overlay.setAttribute("hidden", "");
+          document.body.classList.remove("auth-open");
+        },
+        setTab(tabKey) {
+          document.querySelectorAll("[data-settings-tab]").forEach((item) => {
+            item.classList.toggle("is-active", item.getAttribute("data-settings-tab") === tabKey);
+          });
+          document.querySelectorAll("[data-settings-panel]").forEach((panel) => {
+            const isActive = panel.getAttribute("data-settings-panel") === tabKey;
+            panel.hidden = !isActive;
+            panel.classList.toggle("is-active", isActive);
+          });
+        },
+      };
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const getSession = () => {
+          try {
+            const parsed = JSON.parse(window.localStorage.getItem("astrohesap-session") ?? "null");
+            return parsed && typeof parsed === "object" ? parsed : null;
+          } catch (_error) {
+            return null;
+          }
+        };
+
+        const getUsers = () => {
+          try {
+            const parsed = JSON.parse(window.localStorage.getItem("astrohesap-users") ?? "[]");
+            return Array.isArray(parsed) ? parsed : [];
+          } catch (_error) {
+            return [];
+          }
+        };
+
+        const setUsers = (users) => {
+          window.localStorage.setItem("astrohesap-users", JSON.stringify(users));
+        };
+
+        const syncSettingsAccountState = () => {
+          const session = getSession();
+          const currentUser = session
+            ? getUsers().find((entry) => entry?.email === session.email) ?? null
+            : null;
+          const sessionAction = document.querySelector("[data-settings-session-action]");
+          const registerCta = document.querySelector("[data-settings-register-cta]");
+          const accountNote = document.querySelector('[data-settings-note="account"]');
+          const passwordNote = document.querySelector('[data-settings-note="password"]');
+          const birthNote = document.querySelector('[data-settings-note="birth"]');
+          const accountNameInput = document.querySelector('#settingsAccountForm input[name="fullName"]');
+          const accountEmailInput = document.querySelector('#settingsAccountForm input[name="email"]');
+          const hasSavedBirthMessage = birthNote instanceof HTMLElement
+            && /kaydedildi/i.test(birthNote.textContent ?? "")
+            && !birthNote.classList.contains("is-error");
+
+          if (sessionAction instanceof HTMLButtonElement) {
+            sessionAction.textContent = session ? "Çıkış yap" : "Çıkış için giriş yap";
+          }
+
+          if (registerCta instanceof HTMLButtonElement) {
+            registerCta.hidden = Boolean(session);
+          }
+
+          if (accountNote instanceof HTMLElement) {
+            accountNote.textContent = session
+              ? "Kayıtlı oturum açık. Bilgilerini burada güncelleyebilirsin."
+              : "Kayıtlı oturum yok. Önce kayıt ol.";
+          }
+
+          if (passwordNote instanceof HTMLElement) {
+            passwordNote.textContent = session
+              ? "Şifreni burada güncelleyebilirsin."
+              : "Şifre değiştirmek için önce giriş yap.";
+            passwordNote.classList.toggle("is-warning", !session);
+            passwordNote.classList.toggle("is-error", !session);
+          }
+
+          if (birthNote instanceof HTMLElement && !hasSavedBirthMessage) {
+            birthNote.textContent = session
+              ? "Doğum bilgilerini burada saklayabilirsin."
+              : "Doğum bilgilerini kaydetmek için önce giriş yap.";
+            birthNote.classList.toggle("is-warning", !session);
+            birthNote.classList.toggle("is-error", !session);
+            birthNote.classList.remove("is-success");
+          }
+
+          if (accountNameInput instanceof HTMLInputElement) {
+            accountNameInput.value = currentUser?.fullName ?? session?.fullName ?? "";
+          }
+
+          if (accountEmailInput instanceof HTMLInputElement) {
+            accountEmailInput.value = currentUser?.email ?? session?.email ?? "";
+          }
+        };
+
+        window.AstroHesapSettingsSync = {
+          syncAccountPanel: syncSettingsAccountState,
+        };
+
+        syncSettingsAccountState();
+
+        const birthForm = document.querySelector("#settingsBirthForm");
+        const citySelect = document.querySelector("[data-settings-birth-city]");
+        const districtSelect = document.querySelector("[data-settings-birth-district]");
+        const neighborhoodSelect = document.querySelector("[data-settings-birth-neighborhood]");
+
+        const setBirthNote = (message, isError = false) => {
+          const birthNote = document.querySelector('[data-settings-note="birth"]');
+          if (!(birthNote instanceof HTMLElement)) {
+            return;
+          }
+          birthNote.textContent = message;
+          birthNote.classList.toggle("is-error", isError);
+          birthNote.classList.toggle("is-warning", isError);
+          birthNote.classList.toggle("is-success", !isError);
+        };
+
+        const populateBirthFallback = () => {
+          if (
+            !(citySelect instanceof HTMLSelectElement) ||
+            !(districtSelect instanceof HTMLSelectElement) ||
+            !(neighborhoodSelect instanceof HTMLSelectElement)
+          ) {
+            return;
+          }
+
+          const locationApi = window.AstroHesapLocations;
+          if (!locationApi?.getLocationTreeForCity || !locationApi?.setSelectOptions) {
+            return;
+          }
+
+          if (!citySelect.value) {
+            locationApi.setSelectOptions(districtSelect, [], "İlçe seçiniz");
+            locationApi.setSelectOptions(neighborhoodSelect, [], "Mahalle seçiniz");
+            districtSelect.disabled = true;
+            neighborhoodSelect.disabled = true;
+            return;
+          }
+
+          const tree = locationApi.getLocationTreeForCity(citySelect.value);
+          const districts = Object.keys(tree ?? {});
+          locationApi.setSelectOptions(districtSelect, districts, "İlçe seçiniz");
+          districtSelect.disabled = districts.length === 0;
+          districtSelect.value = districts[0] ?? "";
+
+          const neighborhoods = districtSelect.value ? tree?.[districtSelect.value] ?? [] : [];
+          locationApi.setSelectOptions(neighborhoodSelect, neighborhoods, "Mahalle seçiniz");
+          neighborhoodSelect.disabled = neighborhoods.length === 0;
+          neighborhoodSelect.value = neighborhoods[0] ?? "";
+        };
+
+        const populateNeighborhoodFallback = () => {
+          if (
+            !(citySelect instanceof HTMLSelectElement) ||
+            !(districtSelect instanceof HTMLSelectElement) ||
+            !(neighborhoodSelect instanceof HTMLSelectElement)
+          ) {
+            return;
+          }
+
+          const locationApi = window.AstroHesapLocations;
+          if (!locationApi?.getLocationTreeForCity || !locationApi?.setSelectOptions || !citySelect.value) {
+            return;
+          }
+
+          const tree = locationApi.getLocationTreeForCity(citySelect.value);
+          const neighborhoods = districtSelect.value ? tree?.[districtSelect.value] ?? [] : [];
+          locationApi.setSelectOptions(neighborhoodSelect, neighborhoods, "Mahalle seçiniz");
+          neighborhoodSelect.disabled = neighborhoods.length === 0;
+          neighborhoodSelect.value = neighborhoods[0] ?? "";
+        };
+
+        window.AstroHesapSettingsSync = {
+          ...(window.AstroHesapSettingsSync ?? {}),
+          syncAccountPanel: syncSettingsAccountState,
+          forceBirthFallback: populateBirthFallback,
+          forceBirthNeighborhoodFallback: populateNeighborhoodFallback,
+        };
+
+        if (citySelect instanceof HTMLSelectElement) {
+          citySelect.addEventListener("change", () => {
+            window.setTimeout(() => {
+              if (districtSelect instanceof HTMLSelectElement && districtSelect.options.length <= 1) {
+                populateBirthFallback();
+              }
+            }, 900);
+          });
+        }
+
+        if (districtSelect instanceof HTMLSelectElement) {
+          districtSelect.addEventListener("change", () => {
+            window.setTimeout(() => {
+              if (neighborhoodSelect instanceof HTMLSelectElement && neighborhoodSelect.options.length <= 1) {
+                populateNeighborhoodFallback();
+              }
+            }, 900);
+          });
+        }
+
+        birthForm?.addEventListener(
+          "submit",
+          (event) => {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            if (!(birthForm instanceof HTMLFormElement)) {
+              return;
+            }
+
+            const session = getSession();
+            if (!session?.email) {
+              setBirthNote("Doğum bilgilerini kaydetmek için önce giriş yap.", true);
+              return;
+            }
+
+            const formData = new FormData(birthForm);
+            const users = getUsers();
+            const nextUsers = users.map((entry) =>
+              entry.email === session.email
+                ? {
+                    ...entry,
+                    birthInfo: {
+                      birthDate: String(formData.get("birthDate") ?? "").trim(),
+                      birthTime: formData.has("timeUnknown") ? "" : String(formData.get("birthTime") ?? "").trim(),
+                      city: String(formData.get("city") ?? "").trim(),
+                      district: String(formData.get("district") ?? "").trim(),
+                      neighborhood: String(formData.get("neighborhood") ?? "").trim(),
+                      latitude: String(formData.get("latitude") ?? "").trim(),
+                      longitude: String(formData.get("longitude") ?? "").trim(),
+                      timezoneOffset: String(formData.get("timezoneOffset") ?? "").trim(),
+                      timeUnknown: formData.has("timeUnknown"),
+                    },
+                  }
+                : entry,
+            );
+
+            setUsers(nextUsers);
+            setBirthNote("Doğum bilgileri kaydedildi.");
+          },
+          true,
+        );
+
+        document.querySelectorAll("[data-settings-launch]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const tabKey = button.getAttribute("data-settings-launch") || "account";
+            syncSettingsAccountState();
+            if (window.AstroHesapUi?.openSettingsModal) {
+              window.AstroHesapUi.openSettingsModal(tabKey, { singlePanel: true });
+              return;
+            }
+            window.AstroHesapInlineSettings?.open?.(tabKey, { singlePanel: true });
+          });
+        });
+
+        const registerCta = document.querySelector("[data-settings-register-cta]");
+        registerCta?.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.location.href = "giris.html?tab=register";
+        });
+
+        window.addEventListener("pageshow", syncSettingsAccountState);
+        window.addEventListener("focus", syncSettingsAccountState);
+        document.addEventListener("visibilitychange", () => {
+          if (!document.hidden) {
+            syncSettingsAccountState();
+          }
+        });
+        document.addEventListener("resume", syncSettingsAccountState);
+      });
+    </script>
+
+    <main class="tool-main tool-main-extended">
+      <h1 class="settings-hub-title">Ayarlar</h1>
+
+      <section class="settings-hub-shell">
+
+        <section class="settings-tab-strip" aria-label="Ayar başlıkları">
+          <button class="settings-hub-item" type="button" data-settings-launch="account">
+            <span class="settings-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12.25a4.25 4.25 0 1 0-4.25-4.25A4.25 4.25 0 0 0 12 12.25Zm0 1.5c-4.45 0-8 2.3-8 5.25a.75.75 0 0 0 1.5 0c0-1.78 2.67-3.75 6.5-3.75s6.5 1.97 6.5 3.75a.75.75 0 0 0 1.5 0c0-2.95-3.55-5.25-8-5.25Z" /></svg></span>
+            <span class="settings-nav-label">Hesap bilgileri</span>
+            <span class="settings-nav-arrow" aria-hidden="true">›</span>
+          </button>
+          <button class="settings-hub-item" type="button" data-settings-launch="birth">
+            <span class="settings-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.75 3a.75.75 0 0 1 .75.75V5h7V3.75a.75.75 0 0 1 1.5 0V5h.25A2.75 2.75 0 0 1 20 7.75v10.5A2.75 2.75 0 0 1 17.25 21H6.75A2.75 2.75 0 0 1 4 18.25V7.75A2.75 2.75 0 0 1 6.75 5H7V3.75A.75.75 0 0 1 7.75 3ZM5.5 10v8.25c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25V10Zm1.25-3.5c-.69 0-1.25.56-1.25 1.25V8.5h13v-.75c0-.69-.56-1.25-1.25-1.25Z" /></svg></span>
+            <span class="settings-nav-label">Doğum bilgileri</span>
+            <span class="settings-nav-arrow" aria-hidden="true">›</span>
+          </button>
+          <button class="settings-hub-item" type="button" data-settings-launch="password">
+            <span class="settings-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.5 10V7.75a4.5 4.5 0 1 1 9 0V10h.75A1.75 1.75 0 0 1 19 11.75v7.5A1.75 1.75 0 0 1 17.25 21h-10.5A1.75 1.75 0 0 1 5 19.25v-7.5A1.75 1.75 0 0 1 6.75 10Zm1.5 0H15V7.75a3 3 0 1 0-6 0Z" /></svg></span>
+            <span class="settings-nav-label">Şifre değişikliği</span>
+            <span class="settings-nav-arrow" aria-hidden="true">›</span>
+          </button>
+          <button class="settings-hub-item" type="button" data-settings-launch="feedback">
+            <span class="settings-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.75 4A2.75 2.75 0 0 0 4 6.75v7.5A2.75 2.75 0 0 0 6.75 17H8v2.02a.75.75 0 0 0 1.28.53L12.83 17h4.42A2.75 2.75 0 0 0 20 14.25v-7.5A2.75 2.75 0 0 0 17.25 4Zm1.5 5.25a1 1 0 1 1 1-1 1 1 0 0 1-1 1Zm3.75 0a1 1 0 1 1 1-1 1 1 0 0 1-1 1Zm3.75 0a1 1 0 1 1 1-1 1 1 0 0 1-1 1Z" /></svg></span>
+            <span class="settings-nav-label">Geribildirim</span>
+            <span class="settings-nav-arrow" aria-hidden="true">›</span>
+          </button>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

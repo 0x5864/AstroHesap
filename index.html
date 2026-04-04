@@ -16,9 +16,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260402-settings-birth-1" />
-    <script defer src="astro-tools.js?v=20260401-profile-1"></script>
-    <script defer src="app.js?v=20260402-settings-birth-1"></script>
+    <link rel="stylesheet" href="styles.css?v=20260404-android-home-10" />
+    <script defer src="astro-tools.js?v=20260404-android-home-10"></script>
+    <script defer src="app.js?v=20260404-android-home-10"></script>
+    <script defer src="auth-local.js?v=20260404-auth-fix-2"></script>
   </head>
   <body class="home-page">
     <div class="sky-noise"></div>
@@ -53,6 +54,7 @@
               aria-label="Giriş yap veya kayıt ol"
               data-auth-open
               data-auth-trigger
+              onclick="if (window.AstroHesapUi?.openAuthModal) { window.AstroHesapUi.openAuthModal('login'); }"
             >
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -370,18 +372,6 @@
                   </select>
                 </label>
 
-                <div class="settings-phone-row">
-                  <label class="settings-field settings-phone-code">
-                    <input name="countryCode" type="text" value="+90" />
-                  </label>
-                  <label class="settings-field settings-phone-area">
-                    <input name="areaCode" type="text" placeholder="Alan kod" />
-                  </label>
-                  <label class="settings-field">
-                    <input name="phoneNumber" type="text" placeholder="Telefon numarası" />
-                  </label>
-                </div>
-
                 <label class="settings-field">
                   <textarea name="message" rows="6" placeholder="Mesaj"></textarea>
                 </label>
@@ -423,14 +413,24 @@
                   <div class="tool-form-grid tool-form-grid-3 settings-birth-location-grid">
                     <label class="tool-field">
                       <span>İl</span>
-                      <select name="city" data-empty-initial="true" data-settings-birth-city>
+                      <select
+                        name="city"
+                        data-empty-initial="true"
+                        data-settings-birth-city
+                        onchange="window.AstroHesapSettingsSync?.forceBirthFallback?.()"
+                      >
                         <option value="">İl seçiniz</option>
                       </select>
                     </label>
 
                     <label class="tool-field">
                       <span>İlçe</span>
-                      <select name="district" data-settings-birth-district disabled>
+                      <select
+                        name="district"
+                        data-settings-birth-district
+                        onchange="window.AstroHesapSettingsSync?.forceBirthNeighborhoodFallback?.()"
+                        disabled
+                      >
                         <option value="">İlçe seçiniz</option>
                       </select>
                     </label>
@@ -717,7 +717,7 @@
 
             <a
               class="top-city-card category-home-card"
-              href="juno-persona-v3.html"
+              href="juno-persona.html"
               data-keywords="juno persona juno evlilik arketipi partner bağlılık ilişki persona chart"
             >
               <span class="top-city-content">
@@ -798,5 +798,199 @@
         <p class="empty-state" id="emptyState" hidden>Bu arama için eşleşen araç bulunamadı.</p>
       </section>
     </main>
+    <script>
+      window.AstroHesapInlineSettings = {
+        open(tabKey, options = {}) {
+          const overlay = document.querySelector("[data-settings-overlay]");
+          if (!overlay) return;
+          overlay.removeAttribute("hidden");
+          document.body.classList.add("auth-open");
+          overlay.querySelector(".settings-dialog")?.classList.toggle("is-single-panel", Boolean(options.singlePanel));
+          this.setTab(tabKey || "account");
+        },
+        close() {
+          const overlay = document.querySelector("[data-settings-overlay]");
+          if (!overlay) return;
+          overlay.querySelector(".settings-dialog")?.classList.remove("is-single-panel");
+          overlay.setAttribute("hidden", "");
+          document.body.classList.remove("auth-open");
+        },
+        setTab(tabKey) {
+          document.querySelectorAll("[data-settings-tab]").forEach((item) => {
+            item.classList.toggle("is-active", item.getAttribute("data-settings-tab") === tabKey);
+          });
+          document.querySelectorAll("[data-settings-panel]").forEach((panel) => {
+            const isActive = panel.getAttribute("data-settings-panel") === tabKey;
+            panel.hidden = !isActive;
+            panel.classList.toggle("is-active", isActive);
+          });
+        },
+      };
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const birthForm = document.querySelector("#settingsBirthForm");
+        const citySelect = document.querySelector("[data-settings-birth-city]");
+        const districtSelect = document.querySelector("[data-settings-birth-district]");
+        const neighborhoodSelect = document.querySelector("[data-settings-birth-neighborhood]");
+        const birthNote = document.querySelector('[data-settings-note="birth"]');
+
+        const getUsers = () => {
+          try {
+            const parsed = JSON.parse(window.localStorage.getItem("astrohesap-users") ?? "[]");
+            return Array.isArray(parsed) ? parsed : [];
+          } catch (_error) {
+            return [];
+          }
+        };
+
+        const setUsers = (users) => {
+          window.localStorage.setItem("astrohesap-users", JSON.stringify(users));
+        };
+
+        const getSession = () => {
+          try {
+            const parsed = JSON.parse(window.localStorage.getItem("astrohesap-session") ?? "null");
+            return parsed && typeof parsed === "object" ? parsed : null;
+          } catch (_error) {
+            return null;
+          }
+        };
+
+        const setBirthNote = (message, isError = false) => {
+          if (!(birthNote instanceof HTMLElement)) {
+            return;
+          }
+          birthNote.textContent = message;
+          birthNote.classList.toggle("is-error", isError);
+          birthNote.classList.toggle("is-warning", isError);
+          birthNote.classList.toggle("is-success", !isError);
+        };
+
+        const populateBirthFallback = () => {
+          if (
+            !(citySelect instanceof HTMLSelectElement) ||
+            !(districtSelect instanceof HTMLSelectElement) ||
+            !(neighborhoodSelect instanceof HTMLSelectElement)
+          ) {
+            return;
+          }
+
+          const locationApi = window.AstroHesapLocations;
+          if (!locationApi?.getLocationTreeForCity || !locationApi?.setSelectOptions) {
+            return;
+          }
+
+          const cityLabel = citySelect.value;
+          if (!cityLabel) {
+            locationApi.setSelectOptions(districtSelect, [], "İlçe seçiniz");
+            locationApi.setSelectOptions(neighborhoodSelect, [], "Mahalle seçiniz");
+            districtSelect.disabled = true;
+            neighborhoodSelect.disabled = true;
+            return;
+          }
+
+          const tree = locationApi.getLocationTreeForCity(cityLabel);
+          const districts = Object.keys(tree ?? {});
+          locationApi.setSelectOptions(districtSelect, districts, "İlçe seçiniz");
+          districtSelect.disabled = districts.length === 0;
+          districtSelect.value = districts[0] ?? "";
+
+          const neighborhoods = districtSelect.value ? tree?.[districtSelect.value] ?? [] : [];
+          locationApi.setSelectOptions(neighborhoodSelect, neighborhoods, "Mahalle seçiniz");
+          neighborhoodSelect.disabled = neighborhoods.length === 0;
+          neighborhoodSelect.value = neighborhoods[0] ?? "";
+        };
+
+        const populateNeighborhoodFallback = () => {
+          if (
+            !(citySelect instanceof HTMLSelectElement) ||
+            !(districtSelect instanceof HTMLSelectElement) ||
+            !(neighborhoodSelect instanceof HTMLSelectElement)
+          ) {
+            return;
+          }
+
+          const locationApi = window.AstroHesapLocations;
+          if (!locationApi?.getLocationTreeForCity || !locationApi?.setSelectOptions || !citySelect.value) {
+            return;
+          }
+
+          const tree = locationApi.getLocationTreeForCity(citySelect.value);
+          const neighborhoods = districtSelect.value ? tree?.[districtSelect.value] ?? [] : [];
+          locationApi.setSelectOptions(neighborhoodSelect, neighborhoods, "Mahalle seçiniz");
+          neighborhoodSelect.disabled = neighborhoods.length === 0;
+          neighborhoodSelect.value = neighborhoods[0] ?? "";
+        };
+
+        window.AstroHesapSettingsSync = {
+          ...(window.AstroHesapSettingsSync ?? {}),
+          forceBirthFallback: populateBirthFallback,
+          forceBirthNeighborhoodFallback: populateNeighborhoodFallback,
+        };
+
+        if (citySelect instanceof HTMLSelectElement) {
+          citySelect.addEventListener("change", () => {
+            window.setTimeout(() => {
+              if (districtSelect instanceof HTMLSelectElement && districtSelect.options.length <= 1) {
+                populateBirthFallback();
+              }
+            }, 900);
+          });
+        }
+
+        if (districtSelect instanceof HTMLSelectElement) {
+          districtSelect.addEventListener("change", () => {
+            window.setTimeout(() => {
+              if (neighborhoodSelect instanceof HTMLSelectElement && neighborhoodSelect.options.length <= 1) {
+                populateNeighborhoodFallback();
+              }
+            }, 900);
+          });
+        }
+
+        birthForm?.addEventListener(
+          "submit",
+          (event) => {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            if (!(birthForm instanceof HTMLFormElement)) {
+              return;
+            }
+
+            const session = getSession();
+            if (!session?.email) {
+              setBirthNote("Doğum bilgilerini kaydetmek için önce giriş yap.", true);
+              return;
+            }
+
+            const formData = new FormData(birthForm);
+            const users = getUsers();
+            const nextUsers = users.map((entry) =>
+              entry.email === session.email
+                ? {
+                    ...entry,
+                    birthInfo: {
+                      birthDate: String(formData.get("birthDate") ?? "").trim(),
+                      birthTime: formData.has("timeUnknown") ? "" : String(formData.get("birthTime") ?? "").trim(),
+                      city: String(formData.get("city") ?? "").trim(),
+                      district: String(formData.get("district") ?? "").trim(),
+                      neighborhood: String(formData.get("neighborhood") ?? "").trim(),
+                      latitude: String(formData.get("latitude") ?? "").trim(),
+                      longitude: String(formData.get("longitude") ?? "").trim(),
+                      timezoneOffset: String(formData.get("timezoneOffset") ?? "").trim(),
+                      timeUnknown: formData.has("timeUnknown"),
+                    },
+                  }
+                : entry,
+            );
+
+            setUsers(nextUsers);
+            setBirthNote("Doğum bilgileri kaydedildi.");
+          },
+          true,
+        );
+      });
+    </script>
   </body>
 </html>

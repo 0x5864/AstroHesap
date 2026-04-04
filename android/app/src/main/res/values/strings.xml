@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">AstroHesap</string>
+    <string name="title_activity_main">AstroHesap</string>
+    <string name="package_name">com.astrohesap.app</string>
+    <string name="custom_url_scheme">com.astrohesap.app</string>
+</resources>

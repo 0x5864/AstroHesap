@@ -2,6 +2,9 @@
 .env
 .env.*
 node_modules/
+mobile-www/
+android/keystore.properties
+android/keystore/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

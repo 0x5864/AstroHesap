@@ -115,6 +115,90 @@ const CITY_LOCATION_TREE = {
   },
 };
 
+const PROVINCE_ID_BY_LABEL = {
+  Adana: 1,
+  Adıyaman: 2,
+  Afyonkarahisar: 3,
+  Ağrı: 4,
+  Amasya: 5,
+  Ankara: 6,
+  Antalya: 7,
+  Artvin: 8,
+  Aydın: 9,
+  Balıkesir: 10,
+  Bilecik: 11,
+  Bingöl: 12,
+  Bitlis: 13,
+  Bolu: 14,
+  Burdur: 15,
+  Bursa: 16,
+  Çanakkale: 17,
+  Çankırı: 18,
+  Çorum: 19,
+  Denizli: 20,
+  Diyarbakır: 21,
+  Edirne: 22,
+  Elazığ: 23,
+  Erzincan: 24,
+  Erzurum: 25,
+  Eskişehir: 26,
+  Gaziantep: 27,
+  Giresun: 28,
+  Gümüşhane: 29,
+  Hakkari: 30,
+  Hatay: 31,
+  Isparta: 32,
+  Mersin: 33,
+  İstanbul: 34,
+  İzmir: 35,
+  Kars: 36,
+  Kastamonu: 37,
+  Kayseri: 38,
+  Kırklareli: 39,
+  Kırşehir: 40,
+  Kocaeli: 41,
+  Konya: 42,
+  Kütahya: 43,
+  Malatya: 44,
+  Manisa: 45,
+  Kahramanmaraş: 46,
+  Mardin: 47,
+  Muğla: 48,
+  Muş: 49,
+  Nevşehir: 50,
+  Niğde: 51,
+  Ordu: 52,
+  Rize: 53,
+  Sakarya: 54,
+  Samsun: 55,
+  Siirt: 56,
+  Sinop: 57,
+  Sivas: 58,
+  Tekirdağ: 59,
+  Tokat: 60,
+  Trabzon: 61,
+  Tunceli: 62,
+  Şanlıurfa: 63,
+  Uşak: 64,
+  Van: 65,
+  Yozgat: 66,
+  Zonguldak: 67,
+  Aksaray: 68,
+  Bayburt: 69,
+  Karaman: 70,
+  Kırıkkale: 71,
+  Batman: 72,
+  Şırnak: 73,
+  Bartın: 74,
+  Ardahan: 75,
+  Iğdır: 76,
+  Yalova: 77,
+  Karabük: 78,
+  Kilis: 79,
+  Osmaniye: 80,
+  Düzce: 81,
+};
+
 const ZODIAC_SIGNS = [
   { name: "Koç", element: "Ateş", mode: "Öncü", index: 0 },
   { name: "Boğa", element: "Toprak", mode: "Sabit", index: 1 },
@@ -990,6 +1074,116 @@ const TURKIYE_API_BASE = "https://api.turkiyeapi.dev/v1";
 const NOMINATIM_BASE = "https://nominatim.openstreetmap.org/search";
 
 const pageName = document.body.dataset.page ?? "";
+const currentPagePath = window.location.pathname.split("/").pop() || "index.html";
+const isNativeShell = (() => {
+  try {
+    return Boolean(window.Capacitor?.isNativePlatform?.() ?? window.Capacitor?.isNative);
+  } catch (_error) {
+    return false;
+  }
+})();
+
+const SHARED_NAV_GROUPS = {
+  home: new Set(["index.html", ""]),
+  search: new Set(["arama.html"]),
+  auth: new Set(["giris.html"]),
+  compatibility: new Set([
+    "burc-uyumu.html",
+    "aile-uyumu.html",
+    "7-ev-iliski-evi.html",
+    "juno-persona.html",
+    "juno-persona-v2.html",
+    "juno-persona-v3.html",
+    "juno-persona-v4.html",
+    "sinastri.html",
+  ]),
+  settings: new Set(["settings.html"]),
+};
+
+const isSharedNavActive = (key) => SHARED_NAV_GROUPS[key]?.has(currentPagePath) ?? false;
+
+const SHARED_DOCK_ICONS = {
+  home: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 10.2 12 4.5l7.5 5.7"/><path d="M6.2 9.6v9h4.2v-5.1h3.2v5.1h4.2v-9"/></svg>`,
+  search: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M14.7 14.7 19 19"/></svg>`,
+  auth: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.2" r="3.2"/><path d="M5 19c0-3.1 3.1-5.2 7-5.2s7 2.1 7 5.2"/></svg>`,
+  settings: ``,
+};
+
+const ensureSharedHeaderShortcut = () => {
+  if (!isNativeShell) {
+    return;
+  }
+
+  const topbar = document.querySelector(".global-topbar");
+  const headerSearch = document.querySelector(".header-search");
+
+  if (!(topbar instanceof HTMLElement)) {
+    return;
+  }
+
+  if (headerSearch instanceof HTMLElement) {
+    headerSearch.hidden = true;
+    headerSearch.setAttribute("aria-hidden", "true");
+  }
+
+  if (currentPagePath === "arama.html") {
+    return;
+  }
+
+  if (topbar.querySelector(".header-search-shortcut")) {
+    return;
+  }
+
+  let utility = topbar.querySelector(".header-utility");
+  if (!(utility instanceof HTMLElement)) {
+    utility = document.createElement("div");
+    utility.className = "header-utility header-utility-injected";
+    topbar.append(utility);
+  }
+
+  const searchLink = document.createElement("a");
+  searchLink.className = "header-search-shortcut";
+  searchLink.href = "arama.html";
+  searchLink.setAttribute("aria-label", "Arama sayfasını aç");
+  searchLink.innerHTML = `
+    ${SHARED_DOCK_ICONS.search}
+    <span>Ara</span>
+  `;
+  utility.prepend(searchLink);
+};
+
+const injectSharedMobileDock = () => {
+  if (!isNativeShell) {
+    return;
+  }
+
+  if (!(document.body instanceof HTMLBodyElement) || document.querySelector(".shared-mobile-dock")) {
+    return;
+  }
+
+  document.body.classList.add("native-shell");
+  document.body.classList.add("has-mobile-dock");
+
+  const dock = document.createElement("nav");
+  dock.className = "shared-mobile-dock";
+  dock.setAttribute("aria-label", "Hızlı gezinme");
+  dock.innerHTML = `
+    <a class="shared-mobile-dock-item${isSharedNavActive("home") ? " is-active" : ""}" href="index.html" aria-label="Ana sayfa">
+      <span class="shared-mobile-dock-icon">${SHARED_DOCK_ICONS.home}</span>
+    </a>
+    <a class="shared-mobile-dock-item${isSharedNavActive("search") ? " is-active" : ""}" href="arama.html" aria-label="Arama">
+      <span class="shared-mobile-dock-icon">${SHARED_DOCK_ICONS.search}</span>
+    </a>
+    <a class="shared-mobile-dock-item${isSharedNavActive("auth") ? " is-active" : ""}" href="giris.html" aria-label="Giriş yap veya kayıt ol">
+      <span class="shared-mobile-dock-icon">${SHARED_DOCK_ICONS.auth}</span>
+    </a>
+    <a class="shared-mobile-dock-item shared-mobile-dock-item-settings${isSharedNavActive("settings") ? " is-active" : ""}" href="settings.html" aria-label="Ayarlar">
+      <span class="shared-mobile-dock-icon">${SHARED_DOCK_ICONS.settings}</span>
+    </a>
+  `;
+
+  document.body.append(dock);
+};
 const API_CACHE = {
   provinces: null,
   provinceDetails: new Map(),
@@ -997,9 +1191,37 @@ const API_CACHE = {
   neighborhoods: new Map(),
   geocodes: new Map(),
 };
+let FULL_CITY_LOCATION_TREE = null;
+let fullLocationTreePromise = null;
 const PROFILE_STORAGE_KEYS = {
   users: "astrohesap-users",
   session: "astrohesap-session",
+};
+
+const loadFullLocationTree = async () => {
+  if (FULL_CITY_LOCATION_TREE) {
+    return FULL_CITY_LOCATION_TREE;
+  }
+
+  if (!fullLocationTreePromise) {
+    fullLocationTreePromise = fetch("assets/location-tree-full.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Full location tree request failed: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((payload) => {
+        FULL_CITY_LOCATION_TREE = payload && typeof payload === "object" ? payload : null;
+        return FULL_CITY_LOCATION_TREE;
+      })
+      .catch(() => {
+        FULL_CITY_LOCATION_TREE = null;
+        return null;
+      });
+  }
+
+  return fullLocationTreePromise;
 };
 
 const getSavedBirthProfile = () => {
@@ -1053,146 +1275,157 @@ const setSavedLocationDatasets = ({ citySelect, districtSelect, neighborhoodSele
   }
 };
 
+const setInputValueIfPresent = (node, value) => {
+  if (!(node instanceof HTMLInputElement)) {
+    return;
+  }
+
+  const normalizedValue = typeof value === "string" ? value.trim() : "";
+  if (!normalizedValue) {
+    return;
+  }
+
+  node.value = normalizedValue;
+};
+
+const setCheckboxValueIfPresent = (node, checked) => {
+  if (!(node instanceof HTMLInputElement)) {
+    return;
+  }
+
+  node.checked = Boolean(checked);
+};
+
+const applySavedLocationToForm = ({
+  citySelect,
+  districtSelect,
+  neighborhoodSelect,
+  profile,
+}) => {
+  setSavedLocationDatasets({ citySelect, districtSelect, neighborhoodSelect, profile });
+
+  if (citySelect instanceof HTMLSelectElement && profile?.city?.trim()) {
+    citySelect.value = profile.city.trim();
+  }
+
+  if (districtSelect instanceof HTMLSelectElement && profile?.district?.trim()) {
+    districtSelect.value = profile.district.trim();
+  }
+
+  if (neighborhoodSelect instanceof HTMLSelectElement && profile?.neighborhood?.trim()) {
+    neighborhoodSelect.value = profile.neighborhood.trim();
+  }
+};
+
+const applySavedProfileToSingleBirthForm = ({ form, profile }) => {
+  if (!(form instanceof HTMLFormElement) || !profile) {
+    return false;
+  }
+
+  const birthDateInput = form.querySelector('input[name="birthDate"]');
+  const birthTimeInput = form.querySelector('input[name="birthTime"]');
+  const latitudeInput = form.querySelector('input[name="latitude"]');
+  const longitudeInput = form.querySelector('input[name="longitude"]');
+  const timezoneInput = form.querySelector('input[name="timezoneOffset"]');
+  const unknownInput =
+    form.querySelector('input[name="unknownTime"]') ??
+    form.querySelector('input[name="unknownBirthTime"]') ??
+    form.querySelector('input[name="timeUnknown"]');
+  const citySelect =
+    form.querySelector('select[name="city"]') ??
+    form.querySelector("[data-location-city]") ??
+    form.querySelector("[data-birth3-city]") ??
+    form.querySelector("#risingCity");
+  const districtSelect =
+    form.querySelector('select[name="district"]') ??
+    form.querySelector("[data-location-district]") ??
+    form.querySelector("[data-birth3-district]") ??
+    form.querySelector("#risingDistrict");
+  const neighborhoodSelect =
+    form.querySelector('select[name="neighborhood"]') ??
+    form.querySelector("[data-location-neighborhood]") ??
+    form.querySelector("[data-birth3-neighborhood]") ??
+    form.querySelector("#risingNeighborhood");
+
+  if (
+    !(
+      birthDateInput instanceof HTMLInputElement ||
+      birthTimeInput instanceof HTMLInputElement ||
+      citySelect instanceof HTMLSelectElement ||
+      latitudeInput instanceof HTMLInputElement ||
+      longitudeInput instanceof HTMLInputElement ||
+      timezoneInput instanceof HTMLInputElement
+    )
+  ) {
+    return false;
+  }
+
+  setInputValueIfPresent(birthDateInput, profile.birthDate);
+  setInputValueIfPresent(birthTimeInput, profile.birthTime);
+  setInputValueIfPresent(latitudeInput, profile.latitude);
+  setInputValueIfPresent(longitudeInput, profile.longitude);
+  setInputValueIfPresent(timezoneInput, profile.timezoneOffset);
+  setCheckboxValueIfPresent(unknownInput, profile.timeUnknown);
+  applySavedLocationToForm({ citySelect, districtSelect, neighborhoodSelect, profile });
+  return true;
+};
+
+const applySavedProfileToPartnerAFields = ({ form, profile }) => {
+  if (!(form instanceof HTMLFormElement) || !profile) {
+    return false;
+  }
+
+  const birthDateInput = form.querySelector('input[name="partnerABirthDate"]');
+  const birthTimeInput = form.querySelector('input[name="partnerABirthTime"]');
+  const latitudeInput = form.querySelector('input[name="partnerALatitude"]');
+  const longitudeInput = form.querySelector('input[name="partnerALongitude"]');
+  const timezoneInput = form.querySelector('input[name="partnerATimezoneOffset"]');
+  const unknownInput = form.querySelector('input[name="partnerAUnknownTime"]');
+  const citySelect =
+    form.querySelector('select[name="partnerACity"]') ?? form.querySelector("#compatibilityCityA");
+  const districtSelect =
+    form.querySelector('select[name="partnerADistrict"]') ?? form.querySelector("#compatibilityDistrictA");
+  const neighborhoodSelect =
+    form.querySelector('select[name="partnerANeighborhood"]') ?? form.querySelector("#compatibilityNeighborhoodA");
+
+  if (
+    !(
+      birthDateInput instanceof HTMLInputElement ||
+      birthTimeInput instanceof HTMLInputElement ||
+      citySelect instanceof HTMLSelectElement
+    )
+  ) {
+    return false;
+  }
+
+  setInputValueIfPresent(birthDateInput, profile.birthDate);
+  setInputValueIfPresent(birthTimeInput, profile.birthTime);
+  setInputValueIfPresent(latitudeInput, profile.latitude);
+  setInputValueIfPresent(longitudeInput, profile.longitude);
+  setInputValueIfPresent(timezoneInput, profile.timezoneOffset);
+  setCheckboxValueIfPresent(unknownInput, profile.timeUnknown);
+  applySavedLocationToForm({ citySelect, districtSelect, neighborhoodSelect, profile });
+  return true;
+};
+
 const applySavedBirthProfileToPage = () => {
   const profile = getSavedBirthProfile();
   if (!profile) {
     return false;
   }
 
-  const dateParts = splitSavedBirthDate(profile.birthDate);
-  const timeParts = splitSavedBirthTime(profile.birthTime);
+  let applied = false;
 
-  if (pageName === "rising-sign") {
-    const form = document.querySelector("#risingSignForm");
+  document.querySelectorAll("form").forEach((form) => {
     if (!(form instanceof HTMLFormElement)) {
-      return false;
+      return;
     }
 
-    const birthDateInput = form.querySelector('input[name="birthDate"]');
-    const birthTimeInput = form.querySelector('input[name="birthTime"]');
-    const latitudeInput = form.querySelector('input[name="latitude"]');
-    const longitudeInput = form.querySelector('input[name="longitude"]');
-    const timezoneInput = form.querySelector('input[name="timezoneOffset"]');
-    const unknownInput = form.querySelector('input[name="unknownBirthTime"]');
-    const citySelect = document.querySelector("#risingCity");
-    const districtSelect = document.querySelector("#risingDistrict");
-    const neighborhoodSelect = document.querySelector("#risingNeighborhood");
+    applied = applySavedProfileToSingleBirthForm({ form, profile }) || applied;
+    applied = applySavedProfileToPartnerAFields({ form, profile }) || applied;
+  });
 
-    if (birthDateInput instanceof HTMLInputElement) birthDateInput.value = profile.birthDate ?? "";
-    if (birthTimeInput instanceof HTMLInputElement) birthTimeInput.value = profile.birthTime ?? "";
-    if (latitudeInput instanceof HTMLInputElement) latitudeInput.value = profile.latitude ?? "";
-    if (longitudeInput instanceof HTMLInputElement) longitudeInput.value = profile.longitude ?? "";
-    if (timezoneInput instanceof HTMLInputElement) timezoneInput.value = profile.timezoneOffset ?? "2";
-    if (unknownInput instanceof HTMLInputElement) unknownInput.checked = Boolean(profile.timeUnknown);
-    setSavedLocationDatasets({ citySelect, districtSelect, neighborhoodSelect, profile });
-    return true;
-  }
-
-  if (pageName === "birth-chart-extended") {
-    const form = document.querySelector("#birthChartExtendedForm");
-    if (!(form instanceof HTMLFormElement)) {
-      return false;
-    }
-
-    const birthDateInput = form.querySelector('input[name="birthDate"]');
-    const birthTimeInput = form.querySelector('input[name="birthTime"]');
-    const citySelect = document.querySelector("[data-extended-city]");
-    const districtSelect = form.querySelector('[data-location-district]');
-    const neighborhoodSelect = form.querySelector('[data-location-neighborhood]');
-
-    if (birthDateInput instanceof HTMLInputElement) birthDateInput.value = profile.birthDate ?? "";
-    if (birthTimeInput instanceof HTMLInputElement) birthTimeInput.value = profile.birthTime ?? "";
-    setSavedLocationDatasets({ citySelect, districtSelect, neighborhoodSelect, profile });
-    return true;
-  }
-
-  if (pageName === "juno-persona") {
-    const form = document.querySelector("#junoPersonaForm");
-    if (!(form instanceof HTMLFormElement)) {
-      return false;
-    }
-
-    const birthDateInput = form.querySelector('input[name="birthDate"]');
-    const birthTimeInput = form.querySelector('input[name="birthTime"]');
-    const unknownInput = form.querySelector('input[name="unknownTime"]');
-    const citySelect = form.querySelector('select[name="city"]');
-    const districtSelect = form.querySelector('[data-location-district]');
-    const neighborhoodSelect = form.querySelector('[data-location-neighborhood]');
-
-    if (birthDateInput instanceof HTMLInputElement) birthDateInput.value = profile.birthDate ?? "";
-    if (birthTimeInput instanceof HTMLInputElement) birthTimeInput.value = profile.birthTime ?? "";
-    if (unknownInput instanceof HTMLInputElement) unknownInput.checked = Boolean(profile.timeUnknown);
-    setSavedLocationDatasets({ citySelect, districtSelect, neighborhoodSelect, profile });
-    return true;
-  }
-
-  if (
-    pageName === "sun-sign-calculator" ||
-    pageName === "moon-sign-calculator" ||
-    pageName === "seventh-house"
-  ) {
-    const form = document.querySelector(
-      pageName === "sun-sign-calculator"
-        ? "#sunSignForm"
-        : pageName === "moon-sign-calculator"
-          ? "#moonSignForm"
-          : "#seventhHouseForm",
-    );
-    if (!(form instanceof HTMLFormElement)) {
-      return false;
-    }
-
-    const birthDateInput = form.querySelector('input[name="birthDate"]');
-    const birthTimeInput = form.querySelector('input[name="birthTime"]');
-    const unknownInput = form.querySelector('input[name="unknownTime"]');
-    const citySelect = form.querySelector('select[name="city"]');
-    const districtSelect = form.querySelector('[data-location-district]');
-    const neighborhoodSelect = form.querySelector('[data-location-neighborhood]');
-
-    if (birthDateInput instanceof HTMLInputElement) birthDateInput.value = profile.birthDate ?? "";
-    if (birthTimeInput instanceof HTMLInputElement) birthTimeInput.value = profile.birthTime ?? "";
-    if (unknownInput instanceof HTMLInputElement) unknownInput.checked = Boolean(profile.timeUnknown);
-    setSavedLocationDatasets({ citySelect, districtSelect, neighborhoodSelect, profile });
-    return true;
-  }
-
-  if (pageName === "lunar-nodes") {
-    const form = document.querySelector("#lunarNodesForm");
-    const birthDateInput = form?.querySelector('input[name="birthDate"]');
-    if (birthDateInput instanceof HTMLInputElement) {
-      birthDateInput.value = profile.birthDate ?? "";
-      return true;
-    }
-    return false;
-  }
-
-  if (pageName === "vedic-sidereal") {
-    const form = document.querySelector("#vedicForm");
-    if (!(form instanceof HTMLFormElement)) {
-      return false;
-    }
-
-    const birthDateInput = form.querySelector('input[name="birthDate"]');
-    const birthTimeInput = form.querySelector('input[name="birthTime"]');
-    const latitudeInput = form.querySelector('input[name="latitude"]');
-    const longitudeInput = form.querySelector('input[name="longitude"]');
-    const timezoneInput = form.querySelector('input[name="timezoneOffset"]');
-    const unknownInput = form.querySelector('input[name="unknownBirthTime"]');
-    const citySelect = form.querySelector('select[name="city"]');
-    const districtSelect = form.querySelector('[data-location-district]');
-    const neighborhoodSelect = form.querySelector('[data-location-neighborhood]');
-
-    if (birthDateInput instanceof HTMLInputElement) birthDateInput.value = profile.birthDate ?? "";
-    if (birthTimeInput instanceof HTMLInputElement) birthTimeInput.value = profile.birthTime ?? "";
-    if (latitudeInput instanceof HTMLInputElement) latitudeInput.value = profile.latitude ?? "";
-    if (longitudeInput instanceof HTMLInputElement) longitudeInput.value = profile.longitude ?? "";
-    if (timezoneInput instanceof HTMLInputElement) timezoneInput.value = profile.timezoneOffset ?? "2";
-    if (unknownInput instanceof HTMLInputElement) unknownInput.checked = Boolean(profile.timeUnknown);
-    setSavedLocationDatasets({ citySelect, districtSelect, neighborhoodSelect, profile });
-    return true;
-  }
-
-  return false;
+  return applied;
 };
 
 const clearCurrentPageBirthProfileInputs = () => {
@@ -1397,7 +1630,7 @@ const injectAlternateBirthProfileBox = () => {
   form.appendChild(wrapper);
 };
 
-const API_REQUEST_TIMEOUT_MS = 2500;
+const API_REQUEST_TIMEOUT_MS = isNativeShell ? 20000 : 2500;
 
 const fetchApiPayload = async (url) => {
   const controller = new AbortController();
@@ -1641,7 +1874,10 @@ const populateCitySelects = async () => {
   } catch (_error) {
     const optionsMarkup = Object.entries(CITY_DATA)
       .sort(([, left], [, right]) => left.label.localeCompare(right.label, "tr"))
-      .map(([, city]) => `<option value="${city.label}">${city.label}</option>`)
+      .map(([, city]) => {
+        const provinceId = PROVINCE_ID_BY_LABEL[city.label] ?? "";
+        return `<option value="${city.label}" data-id="${provinceId}">${city.label}</option>`;
+      })
       .join("");
 
     citySelects.forEach((select) => {
@@ -1936,6 +2172,15 @@ const populateRisingSelectControls = (form) => {
 };
 
 const getLocationTreeForCity = (cityLabel) => {
+  if (
+    FULL_CITY_LOCATION_TREE &&
+    typeof FULL_CITY_LOCATION_TREE === "object" &&
+    FULL_CITY_LOCATION_TREE[cityLabel] &&
+    typeof FULL_CITY_LOCATION_TREE[cityLabel] === "object"
+  ) {
+    return FULL_CITY_LOCATION_TREE[cityLabel];
+  }
+
   const cityKey =
     Object.entries(CITY_DATA).find(([, city]) => city.label === cityLabel)?.[0] ?? "istanbul";
   const city = CITY_DATA[cityKey] ?? CITY_DATA.istanbul;
@@ -2166,6 +2411,8 @@ const bindLocationSelects = async ({ citySelect, districtSelect, neighborhoodSel
 window.AstroHesapLocations = {
   populateCitySelects,
   bindLocationSelects,
+  getLocationTreeForCity,
+  setSelectOptions,
 };
 
 const mod = (value, divisor) => ((value % divisor) + divisor) % divisor;
@@ -8296,7 +8543,13 @@ const renderVedicSiderealResult = async () => {
 };
 
 const initializeTools = async () => {
+  if (isNativeShell && document.body instanceof HTMLBodyElement) {
+    document.body.classList.add("native-shell");
+    ensureSharedHeaderShortcut();
+    injectSharedMobileDock();
+  }
   applySavedBirthProfileToPage();
+  const fullLocationTreeReady = loadFullLocationTree().catch(() => null);
   const citySelectsReady = populateCitySelects().catch(() => {});
 
   if (pageName === "birth-chart-3") {
@@ -8314,6 +8567,7 @@ const initializeTools = async () => {
   }
 
   await citySelectsReady;
+  await fullLocationTreeReady;
 
   if (pageName === "birth-chart") {
     renderBirthChartResult();

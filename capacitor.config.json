@@ -1,0 +1,6 @@
+{
+  "appId": "com.astrohesap.app",
+  "appName": "AstroHesap",
+  "webDir": "mobile-www",
+  "bundledWebRuntime": false
+}

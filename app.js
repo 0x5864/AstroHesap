@@ -1,5 +1,18 @@
 const searchForm = document.querySelector("#toolSearchForm");
 const searchInput = document.querySelector("#toolSearchInput");
+const isSearchHubPage = document.body.dataset.page === "search-hub";
+const isAuthEntryPage = document.body.dataset.page === "auth-entry";
+const isNativeShell = (() => {
+  try {
+    return Boolean(window.Capacitor?.isNativePlatform?.() ?? window.Capacitor?.isNative);
+  } catch (_error) {
+    return false;
+  }
+})();
+
+if (isNativeShell) {
+  document.body.classList.add("native-shell");
+}
 const toolCards = Array.from(document.querySelectorAll(".top-city-card"));
 const cardGroups = Array.from(document.querySelectorAll("[data-card-group]"));
 const resultsCount = document.querySelector("#resultsCount");
@@ -175,7 +188,11 @@ const setSettingsNote = (node, message, type = "") => {
   node.textContent = message;
   node.classList.toggle("is-error", type === "error");
   node.classList.toggle("is-warning", type === "error");
+  node.classList.toggle("is-success", type === "success");
 };
+
+const hasSavedBirthMessage = (node) =>
+  node instanceof HTMLElement && /kaydedildi/i.test(node.textContent ?? "") && !node.classList.contains("is-error");
 
 const syncBirthTimeField = (isUnknown) => {
   if (settingsBirthTimeInput instanceof HTMLInputElement) {
@@ -277,6 +294,98 @@ const splitBirthTime = (birthTime) => {
   return { hour, minute };
 };
 
+const waitForLocationApi = async (attempts = 12, delayMs = 120) => {
+  for (let index = 0; index < attempts; index += 1) {
+    const locationApi = window.AstroHesapLocations;
+    if (locationApi?.populateCitySelects && locationApi?.bindLocationSelects) {
+      return locationApi;
+    }
+
+    await new Promise((resolve) => {
+      window.setTimeout(resolve, delayMs);
+    });
+  }
+
+  return null;
+};
+
+const attachSettingsBirthFallbackHandlers = (locationApi) => {
+  if (
+    !(settingsBirthCitySelect instanceof HTMLSelectElement) ||
+    !(settingsBirthDistrictSelect instanceof HTMLSelectElement) ||
+    !(settingsBirthNeighborhoodSelect instanceof HTMLSelectElement) ||
+    !locationApi?.getLocationTreeForCity ||
+    !locationApi?.setSelectOptions ||
+    settingsBirthCitySelect.dataset.settingsFallbackBound === "true"
+  ) {
+    return;
+  }
+
+  const syncFallbackDistricts = () => {
+    const cityLabel = settingsBirthCitySelect.value;
+    if (!cityLabel) {
+      locationApi.setSelectOptions(settingsBirthDistrictSelect, [], "İlçe seçiniz");
+      locationApi.setSelectOptions(settingsBirthNeighborhoodSelect, [], "Mahalle seçiniz");
+      settingsBirthDistrictSelect.disabled = true;
+      settingsBirthNeighborhoodSelect.disabled = true;
+      return;
+    }
+
+    const locationTree = locationApi.getLocationTreeForCity(cityLabel);
+    const districtNames = Object.keys(locationTree ?? {});
+    locationApi.setSelectOptions(settingsBirthDistrictSelect, districtNames, "İlçe seçiniz");
+    settingsBirthDistrictSelect.disabled = districtNames.length === 0;
+    settingsBirthDistrictSelect.value = districtNames[0] ?? "";
+
+    const neighborhoods = settingsBirthDistrictSelect.value
+      ? locationTree?.[settingsBirthDistrictSelect.value] ?? []
+      : [];
+    locationApi.setSelectOptions(settingsBirthNeighborhoodSelect, neighborhoods, "Mahalle seçiniz");
+    settingsBirthNeighborhoodSelect.disabled = neighborhoods.length === 0;
+    settingsBirthNeighborhoodSelect.value = neighborhoods[0] ?? "";
+  };
+
+  const syncFallbackNeighborhoods = () => {
+    const cityLabel = settingsBirthCitySelect.value;
+    const districtLabel = settingsBirthDistrictSelect.value;
+    if (!cityLabel || !districtLabel) {
+      locationApi.setSelectOptions(settingsBirthNeighborhoodSelect, [], "Mahalle seçiniz");
+      settingsBirthNeighborhoodSelect.disabled = true;
+      return;
+    }
+
+    const locationTree = locationApi.getLocationTreeForCity(cityLabel);
+    const neighborhoods = locationTree?.[districtLabel] ?? [];
+    locationApi.setSelectOptions(settingsBirthNeighborhoodSelect, neighborhoods, "Mahalle seçiniz");
+    settingsBirthNeighborhoodSelect.disabled = neighborhoods.length === 0;
+    settingsBirthNeighborhoodSelect.value = neighborhoods[0] ?? "";
+  };
+
+  window.AstroHesapSettingsSync = {
+    ...(window.AstroHesapSettingsSync ?? {}),
+    forceBirthFallback: syncFallbackDistricts,
+    forceBirthNeighborhoodFallback: syncFallbackNeighborhoods,
+  };
+
+  settingsBirthCitySelect.addEventListener("change", () => {
+    window.setTimeout(() => {
+      if (settingsBirthDistrictSelect.options.length <= 1) {
+        syncFallbackDistricts();
+      }
+    }, 900);
+  });
+
+  settingsBirthDistrictSelect.addEventListener("change", () => {
+    window.setTimeout(() => {
+      if (settingsBirthNeighborhoodSelect.options.length <= 1) {
+        syncFallbackNeighborhoods();
+      }
+    }, 900);
+  });
+
+  settingsBirthCitySelect.dataset.settingsFallbackBound = "true";
+};
+
 const initializeBirthLocationFields = async (birthInfo = null) => {
   if (
     !(settingsBirthCitySelect instanceof HTMLSelectElement) ||
@@ -286,8 +395,8 @@ const initializeBirthLocationFields = async (birthInfo = null) => {
     return;
   }
 
-  const locationApi = window.AstroHesapLocations;
-  if (!locationApi?.populateCitySelects || !locationApi?.bindLocationSelects) {
+  const locationApi = await waitForLocationApi();
+  if (!locationApi) {
     return;
   }
 
@@ -300,6 +409,7 @@ const initializeBirthLocationFields = async (birthInfo = null) => {
   settingsBirthNeighborhoodSelect.dataset.selectedNeighborhood = neighborhood;
 
   await locationApi.populateCitySelects();
+  attachSettingsBirthFallbackHandlers(locationApi);
 
   if (!settingsBirthCitySelect.dataset.boundLocation) {
     await locationApi.bindLocationSelects({
@@ -332,6 +442,12 @@ const updateAuthUI = () => {
   if (settingsSessionAction instanceof HTMLButtonElement) {
     settingsSessionAction.textContent = session ? "Çıkış yap" : "Çıkış için giriş yap";
   }
+};
+
+const refreshAuthSurfaces = () => {
+  updateAuthUI();
+  void hydrateSettingsForms();
+  window.AstroHesapSettingsSync?.syncAccountPanel?.();
 };
 
 const setAuthTab = (tabKey) => {
@@ -460,21 +576,26 @@ const hydrateSettingsForms = async () => {
     session ? "" : "error",
   );
   setSettingsNote(settingsFeedbackNote, "Mesajını konu seçerek hızlıca iletebilirsin.");
-  setSettingsNote(
-    settingsBirthNote,
-    session ? "Doğum bilgilerini burada saklayabilirsin." : "Doğum bilgilerini kaydetmek için önce giriş yap.",
-    session ? "" : "error",
-  );
+  if (!hasSavedBirthMessage(settingsBirthNote)) {
+    setSettingsNote(
+      settingsBirthNote,
+      session ? "Doğum bilgilerini burada saklayabilirsin." : "Doğum bilgilerini kaydetmek için önce giriş yap.",
+      session ? "" : "error",
+    );
+  }
 
   await initializeBirthLocationFields(birthInfo);
 };
 
-const openSettingsModal = (tabKey = "account") => {
+const openSettingsModal = (tabKey = "account", options = {}) => {
   if (!(settingsOverlay instanceof HTMLElement)) {
     return;
   }
 
-  void hydrateSettingsForms();
+  const mode = options.singlePanel ? "single-panel" : "full";
+  const settingsDialog = settingsOverlay.querySelector(".settings-dialog");
+  settingsDialog?.classList.toggle("is-single-panel", mode === "single-panel");
+  refreshAuthSurfaces();
   setSettingsTab(tabKey);
   settingsOverlay.hidden = false;
   document.body.classList.add("auth-open");
@@ -485,11 +606,15 @@ const closeSettingsModal = () => {
     return;
   }
 
+  const settingsDialog = settingsOverlay.querySelector(".settings-dialog");
+  settingsDialog?.classList.remove("is-single-panel");
   settingsOverlay.hidden = true;
   document.body.classList.remove("auth-open");
 };
 
 window.AstroHesapUi = {
+  openAuthModal,
+  closeAuthModal,
   openSettingsModal,
   closeSettingsModal,
   setSettingsTab,
@@ -528,6 +653,11 @@ const handleLogin = () => {
   void hydrateSettingsForms();
 
   window.setTimeout(() => {
+    if (isAuthEntryPage) {
+      window.location.href = "index.html";
+      return;
+    }
+
     closeAuthModal();
     setStatus(loginStatus, "");
   }, 450);
@@ -579,6 +709,12 @@ const handleRegister = () => {
   });
   setStoredUsers(users);
   setRememberedEmail(email);
+  setSession({
+    email,
+    fullName,
+    loggedAt: new Date().toISOString(),
+  });
+  updateAuthUI();
 
   const loginEmailInput = loginForm?.querySelector('input[name="email"]');
   const loginPasswordInput = loginForm?.querySelector('input[name="password"]');
@@ -589,10 +725,19 @@ const handleRegister = () => {
     loginPasswordInput.value = "";
   }
 
-  setStatus(registerStatus, "Kayıt tamamlandı. Şimdi giriş yapabilirsin.", "success");
-  setAuthTab("login");
-  setStatus(loginStatus, "Hesabın oluşturuldu. Şifrenle giriş yap.", "success");
+  setStatus(registerStatus, "Kayıt tamamlandı. Hesabın açıldı.", "success");
+  setStatus(loginStatus, "");
   void hydrateSettingsForms();
+
+  window.setTimeout(() => {
+    if (isAuthEntryPage) {
+      window.location.href = "index.html";
+      return;
+    }
+
+    closeAuthModal();
+    setStatus(registerStatus, "");
+  }, 450);
 };
 
 const handleForgotPassword = () => {
@@ -736,6 +881,9 @@ const handleBirthSave = () => {
   const city = String(formData.get("city") ?? "").trim();
   const district = String(formData.get("district") ?? "").trim();
   const neighborhood = String(formData.get("neighborhood") ?? "").trim();
+  const latitude = String(formData.get("latitude") ?? "").trim();
+  const longitude = String(formData.get("longitude") ?? "").trim();
+  const timezoneOffset = String(formData.get("timezoneOffset") ?? "").trim();
   const timeUnknown = formData.has("timeUnknown");
   const birthDate = directBirthDate
     || (birthYear && birthMonth && birthDay
@@ -755,6 +903,9 @@ const handleBirthSave = () => {
             city,
             district,
             neighborhood,
+            latitude,
+            longitude,
+            timezoneOffset,
             timeUnknown,
           },
         }
@@ -781,7 +932,18 @@ searchForm?.addEventListener("submit", (event) => {
     return;
   }
 
-  updateCards(searchInput.value);
+  const query = searchInput.value.trim();
+
+  if (!isSearchHubPage && isNativeShell) {
+    const nextUrl = new URL("arama.html", window.location.href);
+    if (query) {
+      nextUrl.searchParams.set("q", query);
+    }
+    window.location.href = nextUrl.toString();
+    return;
+  }
+
+  updateCards(query);
 });
 
 if (searchInput instanceof HTMLInputElement) {
@@ -797,8 +959,7 @@ if (rememberedEmail && loginEmailInput instanceof HTMLInputElement) {
 }
 
 populateBirthDateTimeSelects();
-updateAuthUI();
-void hydrateSettingsForms();
+refreshAuthSurfaces();
 
 authOpenButton?.addEventListener("click", () => {
   setStatus(loginStatus, "");
@@ -824,6 +985,7 @@ settingsOverlay?.addEventListener("click", (event) => {
 
 settingsNavItems.forEach((item) => {
   item.addEventListener("click", () => {
+    refreshAuthSurfaces();
     setSettingsTab(item.dataset.settingsTab ?? "account");
   });
 });
@@ -832,8 +994,7 @@ settingsSessionAction?.addEventListener("click", () => {
   const session = getSession();
   if (session) {
     setSession(null);
-    updateAuthUI();
-    void hydrateSettingsForms();
+    refreshAuthSurfaces();
     closeSettingsModal();
     return;
   }
@@ -843,6 +1004,11 @@ settingsSessionAction?.addEventListener("click", () => {
 });
 
 settingsRegisterCta?.addEventListener("click", () => {
+  if (document.body.dataset.page === "settings-hub") {
+    window.location.href = "giris.html?tab=register";
+    return;
+  }
+
   closeSettingsModal();
   openAuthModal("register");
 });
@@ -931,4 +1097,22 @@ document.addEventListener("keydown", (event) => {
     closeAuthModal();
     closeSettingsModal();
   }
+});
+
+window.addEventListener("pageshow", () => {
+  refreshAuthSurfaces();
+});
+
+window.addEventListener("focus", () => {
+  refreshAuthSurfaces();
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    refreshAuthSurfaces();
+  }
+});
+
+document.addEventListener("resume", () => {
+  refreshAuthSurfaces();
 });

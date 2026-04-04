@@ -1,0 +1,30 @@
+{
+  "name": "astrohesap",
+  "version": "1.0.0",
+  "description": "AstroHesap, yerelde calisan cok sayfali bir astroloji arayuzudur.",
+  "main": "app.js",
+  "scripts": {
+    "mobile:prepare": "node scripts/prepare-mobile.mjs",
+    "mobile:add:android": "npm run mobile:prepare && npx cap add android",
+    "mobile:sync": "npm run mobile:prepare && npx cap sync android",
+    "mobile:open:android": "npx cap open android",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0x5864/AstroHesap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/0x5864/AstroHesap/issues"
+  },
+  "homepage": "https://github.com/0x5864/AstroHesap#readme",
+  "dependencies": {
+    "@capacitor/android": "^8.3.0",
+    "@capacitor/cli": "^8.3.0",
+    "@capacitor/core": "^8.3.0"
+  }
+}
