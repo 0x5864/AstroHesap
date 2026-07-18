@@ -4,6 +4,7 @@
   "description": "AstroHesap, yerelde calisan cok sayfali bir astroloji arayuzudur.",
   "main": "app.js",
   "scripts": {
+    "pages:build": "node scripts/build-pages.mjs",
     "mobile:prepare": "node scripts/prepare-mobile.mjs",
     "mobile:add:android": "npm run mobile:prepare && npx cap add android",
     "mobile:sync": "npm run mobile:prepare && npx cap sync android",
@@ -21,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/0x5864/AstroHesap/issues"
   },
-  "homepage": "https://github.com/0x5864/AstroHesap#readme",
+  "homepage": "https://0x5864.github.io/AstroHesap/",
   "dependencies": {
     "@capacitor/android": "^8.3.0",
     "@capacitor/cli": "^8.3.0",

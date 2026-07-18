@@ -2,6 +2,8 @@
 
 AstroHesap, yerelde calisan cok sayfali bir astroloji arayuzudur.
 
+Canli site: [https://0x5864.github.io/AstroHesap/](https://0x5864.github.io/AstroHesap/)
+
 Bu surumda sunlar var:
 
 - Sabit ust bar
@@ -45,6 +47,15 @@ Istersen portu elle de verebilirsin:
 
 ```bash
 PORT=8012 node server.mjs
+```
+
+## GitHub Pages
+
+`main` dalina gonderilen her degisiklik GitHub Actions ile otomatik yayinlanir.
+Yayin paketini yerelde kontrol etmek icin:
+
+```bash
+npm run pages:build
 ```
 
 ## Sayfalar
